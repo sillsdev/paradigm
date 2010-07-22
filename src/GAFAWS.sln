@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysis", "GAFAWSAnalysis\GAFAWSAnalysis.csproj", "{99ADD953-FE50-4A29-8BA0-145FE3425855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysisTests", "GAFAWSAnalysisTests\GAFAWSAnalysisTests.csproj", "{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffixPositionAnalyzer", "AffixPositionAnalyzer\AffixPositionAnalyzer.csproj", "{DE8540D7-7DB6-478F-A599-A0229683D9F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Test Data", "XML Test Data", "{134BDBDD-1C19-40DE-8E72-482C38580D92}"
+	ProjectSection(SolutionItems) = preProject
+		GAFAWSAnalysisTests\XML\AffixPositionChart.xsl = GAFAWSAnalysisTests\XML\AffixPositionChart.xsl
+		GAFAWSAnalysisTests\XML\GAFAWS.xsd = GAFAWSAnalysisTests\XML\GAFAWS.xsd
+		GAFAWSAnalysisTests\XML\hab1.xml = GAFAWSAnalysisTests\XML\hab1.xml
+		GAFAWSAnalysisTests\XML\Old Style.xsl = GAFAWSAnalysisTests\XML\Old Style.xsl
+		GAFAWSAnalysisTests\XML\OUTTestA1.xml = GAFAWSAnalysisTests\XML\OUTTestA1.xml
+		GAFAWSAnalysisTests\XML\RT-OUThab1.xml = GAFAWSAnalysisTests\XML\RT-OUThab1.xml
+		GAFAWSAnalysisTests\XML\RT-OUTtestA.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA.xml
+		GAFAWSAnalysisTests\XML\RT-OUTtestA1.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA1.xml
+		GAFAWSAnalysisTests\XML\RT-OUTtestA2.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA2.xml
+		GAFAWSAnalysisTests\XML\RT-OUTtestB.xml = GAFAWSAnalysisTests\XML\RT-OUTtestB.xml
+		GAFAWSAnalysisTests\XML\RT-OUTtestC.xml = GAFAWSAnalysisTests\XML\RT-OUTtestC.xml
+		GAFAWSAnalysisTests\XML\TestA.xml = GAFAWSAnalysisTests\XML\TestA.xml
+		GAFAWSAnalysisTests\XML\TestA1.xml = GAFAWSAnalysisTests\XML\TestA1.xml
+		GAFAWSAnalysisTests\XML\TestA1A.xml = GAFAWSAnalysisTests\XML\TestA1A.xml
+		GAFAWSAnalysisTests\XML\TestA2.xml = GAFAWSAnalysisTests\XML\TestA2.xml
+		GAFAWSAnalysisTests\XML\TestB.xml = GAFAWSAnalysisTests\XML\TestB.xml
+		GAFAWSAnalysisTests\XML\TestC.xml = GAFAWSAnalysisTests\XML\TestC.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99ADD953-FE50-4A29-8BA0-145FE3425855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99ADD953-FE50-4A29-8BA0-145FE3425855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99ADD953-FE50-4A29-8BA0-145FE3425855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99ADD953-FE50-4A29-8BA0-145FE3425855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
