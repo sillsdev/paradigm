@@ -49,7 +49,7 @@
 	<BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<OutputPath>..\..\..\..\..\Output\Debug\</OutputPath>
+	<OutputPath>obj\Debug\</OutputPath>
 	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
 	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -71,7 +71,7 @@
 	<ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<OutputPath>..\..\..\..\..\Output\Release\</OutputPath>
+	<OutputPath>obj\Release\</OutputPath>
 	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
 	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -168,27 +168,21 @@
 	<None Include="XML\RT-OUTtestB.xml" />
 	<None Include="XML\RT-OUTtestC.xml" />
 	<None Include="XML\TestA.xml">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
 	<None Include="XML\TestA1.xml">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
 	<None Include="XML\TestA1A.xml">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
 	<None Include="XML\TestA2.xml" />
 	<None Include="XML\TestB.xml">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
 	<None Include="XML\TestC.xml">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
 	<PreBuildEvent>
 	</PreBuildEvent>
-	<PostBuildEvent>
-	</PostBuildEvent>
+	<PostBuildEvent>copy $(ProjectDir)\XML\Test*.xml $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
