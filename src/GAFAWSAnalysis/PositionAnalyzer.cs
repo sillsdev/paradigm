@@ -33,19 +33,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// The prefixes that need to be processed.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private Dictionary<string, MorphemeWrapper> m_prefixes;
+		private readonly Dictionary<string, MorphemeWrapper> m_prefixes;
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// The suffixes that need to be processed.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private Dictionary<string, MorphemeWrapper> m_suffixes;
+		private readonly Dictionary<string, MorphemeWrapper> m_suffixes;
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Status messages that get added to the output.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private Dictionary<string, string> m_messages;
+		private readonly Dictionary<string, string> m_messages;
 
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
@@ -96,7 +96,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 
 			// Replaces CJGParadigm::GetAffixesFromDom()
 			// 52 lines in C++.
-			foreach(Morpheme m in m_gd.Morphemes)
+			foreach(var m in m_gd.Morphemes)
 			{
 				switch (m.type)
 				{
@@ -169,10 +169,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 					// only one affix, which is right, since it has nothing on either side.
 					for (var iAfx = 1; ac != null && iAfx < ac.Count; ++iAfx)
 					{
-						var prevID = ac[iAfx -1].MIDREF;
-						var curID = ac[iAfx].MIDREF;
-						affixes[curID].AddAsSuccessor(prevID);
-						affixes[prevID].AddAsPredecessor(curID);
+						var prevId = ac[iAfx -1].MIDREF;
+						var curId = ac[iAfx].MIDREF;
+						affixes[curId].AddAsSuccessor(prevId);
+						affixes[prevId].AddAsPredecessor(curId);
 					}
 				}
 			}
@@ -186,8 +186,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// -----------------------------------------------------------------------------------
 		private void LoadMessages()
 		{
-			const string resID = "SIL.WordWorks.GAFAWS.PositionAnalysis.StringsResource";
-			var resourceManager = new ResourceManager(resID, GetType().Assembly);
+			const string resId = "SIL.WordWorks.GAFAWS.PositionAnalysis.StringsResource";
+			var resourceManager = new ResourceManager(resId, GetType().Assembly);
 
 			var stid = "kstidBadPrefixes";
 			m_messages.Add(stid, resourceManager.GetString(stid));
@@ -215,19 +215,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// The real morpheme.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private Morpheme m_morpheme;
+		private readonly Morpheme m_morpheme;
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// List of predecessor affixes.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private StringCollection m_predecessors;
+		private readonly StringCollection m_predecessors;
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// List of successor affixes.
 		/// </summary>
 		/// -----------------------------------------------------------------------------------
-		private StringCollection m_successors;
+		private readonly StringCollection m_successors;
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Starting class.
@@ -377,7 +377,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// </summary>
 		/// <returns>The ID of the wrapped morpheme.</returns>
 		/// -----------------------------------------------------------------------------------
-		public string GetID()
+		public string GetId()
 		{
 			return m_morpheme.MID;
 		}

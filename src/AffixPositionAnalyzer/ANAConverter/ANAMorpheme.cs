@@ -13,6 +13,7 @@
 //
 // --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
+using System.Linq;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
@@ -62,17 +63,17 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		{
 			switch (type)
 			{
-				case LineType.kUnderlyingForm:
+				case LineType.UnderlyingForm:
 				{
 					m_underlyingForm = form;
 					break;
 				}
-				case LineType.kCategory:
+				case LineType.Category:
 				{
 					m_category = form;
 					break;
 				}
-				case LineType.kDecomposition:
+				case LineType.Decomposition:
 				{
 					m_decomposition = form;
 					break;
@@ -88,13 +89,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal virtual void Convert()
 		{
-			foreach (Morpheme m in s_gd.Morphemes)
+			foreach (var m in s_gd.Morphemes.Where(m => m.MID == m_morphname))
 			{
-				if (m.MID == m_morphname)
-				{
-					m_morpheme = m;
-					break;
-				}
+				m_morpheme = m;
+				break;
 			}
 			if (m_morpheme == null)
 			{
@@ -104,21 +102,17 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			m_dataLayerMorpheme.MIDREF = m_morpheme.MID;
 			if (m_underlyingForm != null)
 			{
-				string xml = "<ANAInfo underlyingForm=\'" + m_underlyingForm + "\' />";
-				m_morpheme.Other = xml;
+				m_morpheme.Other = "<ANAInfo underlyingForm=\'" + m_underlyingForm + "\' />";
 			}
-			if (m_category != null
-				|| m_decomposition != null)
-			{
-				string xml = "<ANAInfo";
-				if (m_category != null)
-					xml += " category=\'" + m_category + "\'";
-				if (m_decomposition != null)
-					xml += " decomposition=\'" + m_decomposition + "\'";
-				xml += " />";
-				m_dataLayerMorpheme.Other = xml;
-			}
+			if (m_category == null && m_decomposition == null) return;
 
+			var xml = "<ANAInfo";
+			if (m_category != null)
+				xml += " category=\'" + m_category + "\'";
+			if (m_decomposition != null)
+				xml += " decomposition=\'" + m_decomposition + "\'";
+			xml += " />";
+			m_dataLayerMorpheme.Other = xml;
 		}
 	}
 
@@ -138,7 +132,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		internal ANAStem(string morphname)
 			: base(morphname.Trim().Replace(" ", "_"))
 		{
-			m_type = MorphemeType.stem;
+			m_type = MorphemeType.Stem;
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -174,7 +168,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		{
 			switch (type)
 			{
-				case LineType.kUnderlyingForm:
+				case LineType.UnderlyingForm:
 				{
 					if (m_underlyingForm == null)
 						m_underlyingForm = form;
@@ -182,7 +176,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 						m_underlyingForm += "_" + form;
 					break;
 				}
-				case LineType.kCategory:
+				case LineType.Category:
 				{
 					if (m_category == null)
 						m_category = form;
@@ -190,7 +184,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 						m_category += "_" + form;
 					break;
 				}
-				case LineType.kDecomposition:
+				case LineType.Decomposition:
 				{
 					if (m_decomposition == null)
 						m_decomposition = form;
@@ -232,7 +226,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		internal ANAPrefix(string morphname)
 			: base(morphname)
 		{
-			m_type = MorphemeType.prefix;
+			m_type = MorphemeType.Prefix;
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -242,7 +236,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal override void Convert()
 		{
-			Affix afx = new Affix();
+			var afx = new Affix();
 			m_dataLayerMorpheme = afx;
 			LastRecord.Prefixes.Add(afx);
 			base.Convert();
@@ -260,12 +254,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			List<ANAPrefix> list = null;
 			if (affixes.Length > 0)
 			{
-				list = new List<ANAPrefix>();
-				string[] afxes = affixes.Trim().Split();
-				for (int i = 0; i < afxes.Length; ++i)
-				{
-					list.Add(new ANAPrefix(afxes[i]));
-				}
+				var afxes = affixes.Trim().Split();
+				list = afxes.Select(t => new ANAPrefix(t)).ToList();
 			}
 			return list;
 		}
@@ -282,7 +272,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		internal ANASuffix(string morphname)
 			: base(morphname)
 		{
-			m_type = MorphemeType.suffix;
+			m_type = MorphemeType.Suffix;
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -292,7 +282,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal override void Convert()
 		{
-			Affix afx = new Affix();
+			var afx = new Affix();
 			LastRecord.Suffixes.Add(afx);
 			m_dataLayerMorpheme = afx;
 			base.Convert();
@@ -310,15 +300,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			List<ANASuffix> list = null;
 			if (affixes.Length > 0)
 			{
-				list = new List<ANASuffix>();
-				string[] afxes = affixes.Trim().Split();
-				for (int i = 0; i < afxes.Length; ++i)
-				{
-					list.Add(new ANASuffix(afxes[i]));
-				}
+				var afxes = affixes.Trim().Split();
+				list = afxes.Select(t => new ANASuffix(t)).ToList();
 			}
 			return list;
 		}
 	}
-
 }

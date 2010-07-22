@@ -213,7 +213,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			var ht = m_toCheck
 				.Select(kvp => kvp.Value)
 				.Where(mr => mr.CanAssignClass(listType))
-				.ToDictionary(mr => mr.GetID());
+				.ToDictionary(mr => mr.GetId());
 			if (ht.Count == 0)
 			{
 				// Couldn't find any, so we have bad input data.
@@ -306,7 +306,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			foreach (var mr in toBeAssigned.Select(kvp => kvp.Value))
 			{
 				mr.SetAffixClass(isStartPoint, cls);
-				var mid = mr.GetID();
+				var mid = mr.GetId();
 				m_toCheck.Remove(mid);
 				foreach (var kvpInner in m_toCheck)
 				{

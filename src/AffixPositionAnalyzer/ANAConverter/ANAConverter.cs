@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
@@ -46,7 +47,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// </summary>
 		public void Convert()
 		{
-			using (ANAConverterDlg dlg = new ANAConverterDlg())
+			using (var dlg = new ANAConverterDlg())
 			{
 				dlg.ShowDialog();
 				if (dlg.DialogResult == DialogResult.OK)
@@ -56,11 +57,11 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 					try
 					{
 						parametersPathname = dlg.ParametersPathname;
-						string anaPathname = dlg.ANAPathname;
-						using (StreamReader reader = new StreamReader(anaPathname)) // Client to catch any exception.
+						var anaPathname = dlg.ANAPathname;
+						using (var reader = new StreamReader(anaPathname)) // Client to catch any exception.
 						{
 							ANARecord record = null;
-							string line = reader.ReadLine();
+							var line = reader.ReadLine();
 							ANARecord.SetParameters(parametersPathname);
 							ANAObject.DataLayer = m_gd;
 
@@ -93,17 +94,17 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 										}
 									case "\\u":
 										{
-											record.ProcessOtherLine(LineType.kUnderlyingForm, line.Substring(3));
+											record.ProcessOtherLine(LineType.UnderlyingForm, line.Substring(3));
 											break;
 										}
 									case "\\d":
 										{
-											record.ProcessOtherLine(LineType.kDecomposition, line.Substring(3));
+											record.ProcessOtherLine(LineType.Decomposition, line.Substring(3));
 											break;
 										}
 									case "\\cat":
 										{
-											record.ProcessOtherLine(LineType.kCategory, line.Substring(5));
+											record.ProcessOtherLine(LineType.Category, line.Substring(5));
 											break;
 										}
 									default:
@@ -117,7 +118,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 						}
 
 						// Main processing.
-						PositionAnalyzer anal = new PositionAnalyzer();
+						var anal = new PositionAnalyzer();
 						anal.Process(m_gd);
 
 						// Do any post-analysis processing here, if needed.
@@ -128,25 +129,25 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 						m_gd.SaveData(outputPathname);
 
 						// Transform.
-						XslCompiledTransform trans = new XslCompiledTransform();
+						var trans = new XslCompiledTransform();
 						try
 						{
 							trans.Load(XSLPathname);
 						}
 						catch
 						{
-							MessageBox.Show("Could not load the XSL file.", "Information");
+							MessageBox.Show(Resources.kCouldNotLoadFile, Resources.kInformation);
 							return;
 						}
 
-						string htmlOutput = Path.GetTempFileName() + ".html";
+						var htmlOutput = Path.GetTempFileName() + ".html";
 						try
 						{
 							trans.Transform(outputPathname, htmlOutput);
 						}
 						catch
 						{
-							MessageBox.Show("Could not transform the input file.", "Information");
+							MessageBox.Show(Resources.kCouldNotTransform, Resources.kInformation);
 							return;
 						}
 						Process.Start(htmlOutput);
@@ -203,11 +204,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// <param name="reader">The reader to close.</param>
 		/// <param name="pathInput">Input pathname for invalid file.</param>
 		/// <param name="message">The message to use in the exception.</param>
-		private void ThrowFileLoadException(StreamReader reader, string pathInput, string message)
+		private static void ThrowFileLoadException(TextReader reader, string pathInput, string message)
 		{
 			reader.Close();
 			throw new FileLoadException(message, pathInput);
 		}
-
 	}
 }

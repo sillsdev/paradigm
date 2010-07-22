@@ -114,4 +114,19 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+	<data name="kCouldNotTransform">
+		<value xml:space="preserve">Could not transform the input file.</value>
+	</data>
+	<data name="kInformation">
+		<value xml:space="preserve">Information</value>
+	</data>
+	<data name="kCouldNotLoadFile">
+		<value xml:space="preserve">Could not load the XSL file.</value>
+	</data>
+	<data name="kAmpleAnalysisFile">
+		<value xml:space="preserve">Ample Analysis File</value>
+	</data>
+	<data name="kFileTypes">
+		<value xml:space="preserve">ANA files (*.ana)|*.ana|All files (*.*)|*.*</value>
+	</data>
 </root>

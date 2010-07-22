@@ -29,6 +29,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 	[XmlRootAttribute(Namespace="", IsNullable=false)]
 	public sealed class GAFAWSData
 	{
+		private static XmlSerializer s_serializer = new XmlSerializer(typeof(GAFAWSData));
+
 		#region Data members
 
 		/// -----------------------------------------------------------------------------------
@@ -186,8 +188,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		{
 			using(TextWriter writer = new StreamWriter(pathname))
 			{
-				var serializer = new XmlSerializer(typeof(GAFAWSData));
-				serializer.Serialize(writer, this);
+				s_serializer.Serialize(writer, this);
 			}
 		}
 
@@ -207,17 +208,16 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			GAFAWSData gd;
 			using (var reader = XmlReader.Create(pathname))
 			{
-				var serializer = new XmlSerializer(typeof(GAFAWSData));
-				gd = (GAFAWSData)serializer.Deserialize(reader);
-				// Remove empty collections from WordRecord objects,
-				// since the loader makes them, but the XML schema has them as optional.
-				foreach (var wr in gd.m_wordRecords)
-				{
-					if (wr.Prefixes.Count == 0)
-						wr.Prefixes = null;
-					if (wr.Suffixes.Count == 0)
-						wr.Suffixes = null;
-				}
+				gd = (GAFAWSData)s_serializer.Deserialize(reader);
+			}
+			// Remove empty collections from WordRecord objects,
+			// since the loader makes them, but the XML schema has them as optional.
+			foreach (var wr in gd.m_wordRecords)
+			{
+				if (wr.Prefixes.Count == 0)
+					wr.Prefixes = null;
+				if (wr.Suffixes.Count == 0)
+					wr.Suffixes = null;
 			}
 
 			return gd;

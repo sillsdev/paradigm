@@ -27,10 +27,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 	/// ---------------------------------------------------------------------------------------
 	internal class ANAAnalysis : ANAObject
 	{
-		private List<ANAPrefix> m_prefixes;
-		private ANAStem m_stem;
-		private string m_sstem;
-		private List<ANASuffix> m_suffixes;
+		private readonly List<ANAPrefix> m_prefixes;
+		private readonly ANAStem m_stem;
+		private readonly string m_sstem;
+		private readonly List<ANASuffix> m_suffixes;
 		private string m_originalForm;
 		private string m_wordCategory;
 
@@ -115,7 +115,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 
 			string[] forms;
 			char[] sep = {s_separatorCharacter};
-			if (type == LineType.kCategory)
+			if (type == LineType.Category)
 			{
 				// \cat %5%N N%ADJ ADJ%N N%V VA/V=VA%V VA/V=VA%
 				sep = new char[1];

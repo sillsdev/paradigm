@@ -89,7 +89,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			{
 				var cls = m_gd.Classes;
 				Assert.IsNotNull(cls);
-				var m = new Morpheme(MorphemeType.stem, "M1");
+				var m = new Morpheme(MorphemeType.Stem, "M1");
 				m_gd.Morphemes.Add(m);
 				var wr = new WordRecord();
 				m_gd.WordRecords.Add(wr);

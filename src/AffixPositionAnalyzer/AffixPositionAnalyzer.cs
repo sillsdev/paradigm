@@ -17,6 +17,7 @@
 using System;
 using System.Windows.Forms;
 using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
@@ -39,7 +40,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			InitializeComponent();
 
 			// Load up the converters.
-			IGafawsConverter converter = new PlainWordlistConverter.PlainWordlistConverter();
+			var converter = (IGafawsConverter)new PlainWordlistConverter.PlainWordlistConverter();
 			var lvi = new ListViewItem(converter.Name) {Tag = converter};
 			m_lvConverters.Items.Add(lvi);
 			lvi.Selected = true;
@@ -67,7 +68,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 			catch
 			{
-				MessageBox.Show("There were problems with the original data, and it could not be processed.", "Information");
+				MessageBox.Show("There were problems with the original data, and it could not be processed.", Resources.kInformation);
 			}
 			finally
 			{

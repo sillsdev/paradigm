@@ -17,53 +17,55 @@
 // --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// <summary>
 	/// Summary description for ANAConverterDlg.
 	/// </summary>
-	internal class ANAConverterDlg : System.Windows.Forms.Form
+	internal class ANAConverterDlg : Form
 	{
 		#region Data members
 
-		private string m_parametersPathname = null;
+		private string m_parametersPathname;
 
-		private System.Windows.Forms.Button btnAnal;
+		private Button btnAnal;
 		private ToolTip tipBtnAnal;
-		private System.Windows.Forms.Button btnClose;
+		private Button btnClose;
 		private ToolTip tipBtnClose;
-		private System.Windows.Forms.Button btnBrowse;
+		private Button btnBrowse;
 		private ToolTip tipBtnBrowse;
-		private System.Windows.Forms.TextBox tbANAFile;
+		private TextBox tbANAFile;
 		private ToolTip tipTbANAFile;
-		private System.Windows.Forms.CheckedListBox chBxCategories;
+		private CheckedListBox chBxCategories;
 		private ToolTip tipChBxCategories;
-		private System.Windows.Forms.TextBox tbAmbigMarker;
+		private TextBox tbAmbigMarker;
 		private ToolTip tipTbAmbigMarker;
-		private System.Windows.Forms.Label lbAmbMkr;
+		private Label lbAmbMkr;
 		// No tool tip for labels
-		private System.Windows.Forms.Label lbOpenDel;
+		private Label lbOpenDel;
 		// No tool tip for labels
-		private System.Windows.Forms.TextBox tbOpenDel;
+		private TextBox tbOpenDel;
 		private ToolTip tipTbOpenDel;
-		private System.Windows.Forms.Label lbCloseDel;
+		private Label lbCloseDel;
 		// No tool tip for labels
-		private System.Windows.Forms.TextBox tbCloseDel;
+		private TextBox tbCloseDel;
 		private ToolTip tipTbCloseDel;
-		private System.Windows.Forms.Label lbAffixSep;
+		private Label lbAffixSep;
 		// No tool tip for labels
-		private System.Windows.Forms.TextBox tbAffixSep;
+		private TextBox tbAffixSep;
 		private ToolTip tipTbAffixSep;
-		private System.Windows.Forms.Button btnSelect;
+		private Button btnSelect;
 		private ToolTip tipBtnSelect;
-		private System.Windows.Forms.Label lbCatAnal;
+		private Label lbCatAnal;
 		// No tool tip for labels
-		private System.Windows.Forms.Label lbANAFile;
+		private Label lbANAFile;
 		// No tool tip for labels
-		private System.Windows.Forms.HelpProvider HelpMeOne;
+		private HelpProvider HelpMeOne;
 		// No tool tip for labels
 		private ToolTip tipBtnOK;
 
@@ -106,12 +108,6 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			// Required for Windows Form Designer support
 			//
 			InitializeComponent();
-		}
-
-		private void CheckDisposed()
-		{
-			if (IsDisposed)
-				throw new ObjectDisposedException(String.Format("'{0}' in use after being disposed.", GetType().Name));
 		}
 
 		/// <summary>
@@ -350,16 +346,16 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			try
 			{
 				reader = new StreamReader(tbANAFile.Text);
-				StringCollection analysisLines = new StringCollection();
-				StringCollection categoryLines = new StringCollection();
-				StringCollection categories = new StringCollection();
-				string line = reader.ReadLine();
+				var analysisLines = new StringCollection();
+				var categoryLines = new StringCollection();
+				var categories = new StringCollection();
+				var line = reader.ReadLine();
 
 				while (line != null)
 				{
 					// If the line contains %0%, then skip it, as it is a failure
 					// and has no useful information in it.
-					bool failure = (line.IndexOf(String.Format("{0}0{1}", AmbiguityMarker, AmbiguityMarker)) > -1);
+					var failure = (line.IndexOf(String.Format("{0}0{1}", AmbiguityMarker, AmbiguityMarker)) > -1);
 					if (line.StartsWith(@"\a")
 						&& !analysisLines.Contains(line)
 						&& !failure)
@@ -374,21 +370,18 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 				reader = null;
 
 				// Process \a lines.
-				foreach (string aLine in analysisLines)
+				foreach (var tokens in from string aLine in analysisLines select aLine.Split(OpenDelimiter[0]))
 				{
-					// \a POS1 < N palabra >
-					// \a %2%IMP CAUS < VA pegar1 >%C CAUS < VA pegar1 >%
-					string[] tokens = aLine.Split(OpenDelimiter[0]);
-					for (int i = 1; i < tokens.Length; ++i)
+					for (var i = 1; i < tokens.Length; ++i)
 					{
-						string str = tokens[i];
+						var str = tokens[i];
 						// Find end of roots.
 						str = str.Substring(0, str.IndexOf(CloseDelimiter[0])).Trim();
 						// It can have compound roots, so get category from each root.
-						string[] roots = str.Split();
-						for (int j = 0; j < roots.Length; j = ++j + 1)
+						var roots = str.Split();
+						for (var j = 0; j < roots.Length; j = ++j + 1)
 						{
-							string category = roots[j];
+							var category = roots[j];
 							if (!categories.Contains(category))
 								categories.Add(category);
 						}
@@ -396,36 +389,29 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 				}
 
 				// Process \cat lines.
-				foreach (string catLine in categoryLines)
+				foreach (var catsMain in from string catLine in categoryLines select catLine.Substring(5).Split(AmbiguityMarker[0]))
 				{
-					// \cat PN -- final category only
-					// \cat %2%V%V% -- final category only
-					// \cat %5%N N%PRT PRT%N N%PRT PRT%N N% -- final category+each morpheme category
-					// \cat %5%N N%ADJ ADJ%N N%V VA/V=VA%V VA/V=VA% -- final category+each morpheme category
-					// \cat V VA/V=VA=V/V -- final category+each morpheme category
-					string[] catsMain = catLine.Substring(5).Split(AmbiguityMarker[0]);
-					for (int i = (catsMain.Length == 1) ? 0 : 2; // Start with 0, if it wasn't ambiguous. otherwise start at 2.
-						i < catsMain.Length;
-						++i)
+					for (var i = (catsMain.Length == 1) ? 0 : 2; // Start with 0, if it wasn't ambiguous. otherwise start at 2.
+						 i < catsMain.Length;
+						 ++i)
 					{
-						string[] catsInner = catsMain[i].Split();
-						for (int j = 0; j < catsInner.Length; ++j)
+						var catsInner = catsMain[i].Split();
+						for (var j = 0; j < catsInner.Length; ++j)
 						{
 							if ((j % 2) == 0)
 							{
 								// Final word-level category
-								string cat = catsInner[j];
+								var cat = catsInner[j];
 								if (!categories.Contains(cat))
 									categories.Add(cat);
 							}
 							else
 							{
 								// We want the root categories, but not affix categories.
-								string[] catsInnermost = catsInner[j].Split('=');
-								foreach (string cat in catsInnermost)
+								var catsInnermost = catsInner[j].Split('=');
+								foreach (var cat in catsInnermost.Where(cat => cat.IndexOf("/") == -1 && !categories.Contains(cat)))
 								{
-									if (cat.IndexOf("/") == -1 && !categories.Contains(cat))
-										categories.Add(cat);
+									categories.Add(cat);
 								}
 							}
 						}
@@ -434,13 +420,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 
 				// Add them to the control,and check them all.
 				// TODO: Add a control to select/unselect all.
-				foreach (string cat in categories)
+				foreach (var idx in from string cat in categories where cat != string.Empty select chBxCategories.Items.Add(cat))
 				{
-					if (cat != string.Empty)
-					{
-						int idx = chBxCategories.Items.Add(cat);
-						chBxCategories.SetItemChecked(idx, true);
-					}
+					chBxCategories.SetItemChecked(idx, true);
 				}
 
 			}
@@ -448,7 +430,6 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			{
 				if (reader != null)
 					reader.Close();
-				reader = null;
 				chBxCategories.EndUpdate();
 			}
 		}
@@ -458,7 +439,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// </summary>
 		/// <param name="textBox"></param>
 		/// <param name="defaultValue"></param>
-		private void ValidateTextBox(TextBox textBox, string defaultValue)
+		private static void ValidateTextBox(Control textBox, string defaultValue)
 		{
 			if (textBox.Text == string.Empty)
 				textBox.Text = defaultValue;
@@ -473,10 +454,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// <param name="e"></param>
 		private void btnBrowse_Click(object sender, System.EventArgs e)
 		{
-			using (OpenFileDialog openDlg = new OpenFileDialog())
+			using (var openDlg = new OpenFileDialog())
 			{
-				openDlg.Filter = "ANA files (*.ana)|*.ana|All files (*.*)|*.*" ;
-				openDlg.Title = "Ample Analysis File";
+				openDlg.Filter = Resources.kFileTypes ;
+				openDlg.Title = Resources.kAmpleAnalysisFile;
 				chBxCategories.Items.Clear();
 				if(openDlg.ShowDialog() == DialogResult.OK)
 				{
@@ -503,14 +484,14 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		private void btnAnal_Click(object sender, System.EventArgs e)
 		{
 			// User Defined parameters.
-			Parameters parms = new Parameters();
+			var parms = new Parameters();
 			m_parametersPathname = (tbANAFile.Text.Split('.'))[0] + ".prm";
 			parms.Marker.Ambiguity = AmbiguityMarker[0];
 			parms.RootDelimiter.OpenDelimiter = OpenDelimiter[0];
 			parms.RootDelimiter.CloseDelimiter = CloseDelimiter[0];
 			parms.Marker.Decomposition = AffixSeparator[0];
-			for (int i = 0; i < chBxCategories.CheckedItems.Count; i++)
-				parms.Categories.Add(new Category(chBxCategories.CheckedItems[i].ToString()));
+			foreach (var t in chBxCategories.CheckedItems)
+				parms.Categories.Add(new Category(t.ToString()));
 			parms.Serialize(m_parametersPathname);
 
 			Close();
@@ -574,7 +555,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		private void btnSelect_Click(object sender, System.EventArgs e)
 		{
 			// Select or unselect them all.
-			bool catChecked = false;
+			bool catChecked;
 
 			if (btnSelect.Text == "Select All")
 			{
@@ -588,7 +569,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			}
 
 			chBxCategories.BeginUpdate();
-			for (int i = 0; i < chBxCategories.Items.Count; ++i)
+			for (var i = 0; i < chBxCategories.Items.Count; ++i)
 			{
 				chBxCategories.SetItemChecked(i, catChecked);
 			}

@@ -26,6 +26,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
@@ -46,39 +47,38 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 		/// </summary>
 		public void Convert()
 		{
-			string outputPathname = null;
-
-			OpenFileDialog openFileDlg = new OpenFileDialog();
-
-			openFileDlg.InitialDirectory = "c:\\";
-			openFileDlg.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-			openFileDlg.FilterIndex = 2;
-			openFileDlg.Multiselect = false;
+			var openFileDlg = new OpenFileDialog
+								{
+									InitialDirectory = "c:\\",
+									Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+									FilterIndex = 2,
+									Multiselect = false
+								};
 
 			if (openFileDlg.ShowDialog() == DialogResult.OK)
 			{
-				string sourcePathname = openFileDlg.FileName;
+				var sourcePathname = openFileDlg.FileName;
 				if (File.Exists(sourcePathname))
 				{
 					// Try to convert it.
-					using (StreamReader reader = new StreamReader(sourcePathname))
+					using (var reader = new StreamReader(sourcePathname))
 					{
-						string line = reader.ReadLine();
-						Dictionary<string, bool> dictPrefixes = new Dictionary<string, bool>();
-						Dictionary<string, bool> dictStems = new Dictionary<string, bool>();
-						Dictionary<string, bool> dictSuffixes = new Dictionary<string, bool>();
+						var line = reader.ReadLine();
+						var dictPrefixes = new Dictionary<string, bool>();
+						var dictStems = new Dictionary<string, bool>();
+						var dictSuffixes = new Dictionary<string, bool>();
 						while (line != null)
 						{
 							line = line.Trim();
 							if (line != String.Empty)
 							{
-								int openAngleLocation = line.IndexOf("<", 0);
+								var openAngleLocation = line.IndexOf("<", 0);
 								if (openAngleLocation < 0)
 									continue;
-								int closeAngleLocation = line.IndexOf(">", openAngleLocation + 1);
+								var closeAngleLocation = line.IndexOf(">", openAngleLocation + 1);
 								if (closeAngleLocation < 0)
 									continue;
-								WordRecord wrdRec = new WordRecord();
+								var wrdRec = new WordRecord();
 								m_gd.WordRecords.Add(wrdRec);
 
 								// Handle prefixes, if any.
@@ -89,34 +89,30 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 								{
 									if (wrdRec.Prefixes == null)
 										wrdRec.Prefixes = new List<Affix>();
-									foreach (string prefix in prefixes.Split('-'))
+									foreach (var prefix in prefixes.Split('-'))
 									{
-										if (prefix != null && prefix != "")
-										{
-											Affix afx = new Affix();
-											afx.MIDREF = prefix;
-											wrdRec.Prefixes.Add(afx);
-											if (!dictPrefixes.ContainsKey(prefix))
-											{
-												m_gd.Morphemes.Add(new Morpheme(MorphemeType.prefix, prefix));
-												dictPrefixes.Add(prefix, true);
-											}
-										}
+										if (string.IsNullOrEmpty(prefix)) continue;
+
+										var afx = new Affix {MIDREF = prefix};
+										wrdRec.Prefixes.Add(afx);
+										if (dictPrefixes.ContainsKey(prefix)) continue;
+
+										m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
+										dictPrefixes.Add(prefix, true);
 									}
 								}
 
 								// Handle stem.
-								string sStem = null;
+								string sStem;
 								// Stem has content, so use it.
 								sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
 								if (sStem.Length == 0)
 									sStem = "stem";
-								Stem stem = new Stem();
-								stem.MIDREF = sStem;
+								var stem = new Stem {MIDREF = sStem};
 								wrdRec.Stem = stem;
 								if (!dictStems.ContainsKey(sStem))
 								{
-									m_gd.Morphemes.Add(new Morpheme(MorphemeType.stem, sStem));
+									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
 									dictStems.Add(sStem, true);
 								}
 
@@ -128,19 +124,16 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 								{
 									if (wrdRec.Suffixes == null)
 										wrdRec.Suffixes = new List<Affix>();
-									foreach (string suffix in suffixes.Split('-'))
+									foreach (var suffix in suffixes.Split('-'))
 									{
-										if (suffix != null && suffix != "")
-										{
-											Affix afx = new Affix();
-											afx.MIDREF = suffix;
-											wrdRec.Suffixes.Add(afx);
-											if (!dictSuffixes.ContainsKey(suffix))
-											{
-												m_gd.Morphemes.Add(new Morpheme(MorphemeType.suffix, suffix));
-												dictSuffixes.Add(suffix, true);
-											}
-										}
+										if (string.IsNullOrEmpty(suffix)) continue;
+
+										var afx = new Affix {MIDREF = suffix};
+										wrdRec.Suffixes.Add(afx);
+										if (dictSuffixes.ContainsKey(suffix)) continue;
+
+										m_gd.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
+										dictSuffixes.Add(suffix, true);
 									}
 								}
 							}
@@ -148,36 +141,36 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 						}
 
 						// Main processing.
-						PositionAnalyzer anal = new PositionAnalyzer();
+						var anal = new PositionAnalyzer();
 						anal.Process(m_gd);
 
 						// Do any post-analysis processing here, if needed.
 						// End of any optional post-processing.
 
 						// Save, so it can be transformed.
-						outputPathname = GetOutputPathname(sourcePathname);
+						var outputPathname = GetOutputPathname(sourcePathname);
 						m_gd.SaveData(outputPathname);
 
 						// Transform.
-						XslCompiledTransform trans = new XslCompiledTransform();
+						var trans = new XslCompiledTransform();
 						try
 						{
 							trans.Load(XSLPathname);
 						}
 						catch
 						{
-							MessageBox.Show("Could not load the XSL file.", "Information");
+							MessageBox.Show(Resources.kCouldNotLoadFile, Resources.kInformation);
 							return;
 						}
 
-						string htmlOutput = Path.GetTempFileName() + ".html";
+						var htmlOutput = Path.GetTempFileName() + ".html";
 						try
 						{
 							trans.Transform(outputPathname, htmlOutput);
 						}
 						catch
 						{
-							MessageBox.Show("Could not transform the input file.", "Information");
+							MessageBox.Show(Resources.kCouldNotTransform, Resources.kInformation);
 							return;
 						}
 						finally
@@ -225,6 +218,5 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 		}
 
 		#endregion IGAFAWSConverter implementation
-
 	}
 }

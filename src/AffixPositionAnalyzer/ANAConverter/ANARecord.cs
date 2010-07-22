@@ -26,9 +26,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 	/// ---------------------------------------------------------------------------------------
 	internal enum LineType
 	{
-		kUnderlyingForm,
-		kDecomposition,
-		kCategory
+		UnderlyingForm,
+		Decomposition,
+		Category
 	};
 
 	/// ---------------------------------------------------------------------------------------
@@ -93,25 +93,13 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		{
 			if (parms == null)
 				return;
-			FileStream parameterReader = null;
-			try
-			{
-				Parameters pams = Parameters.DeSerialize(parms);
-				s_ambiguityCharacter = pams.Marker.Ambiguity;
-				ANAAnalysis.OpenRootDelimiter = pams.RootDelimiter.OpenDelimiter;
-				ANAAnalysis.CloseRootDelimiter = pams.RootDelimiter.CloseDelimiter;
-				ANAAnalysis.SeparatorCharacter = pams.Marker.Decomposition;
-				ANAAnalysis.PartsOfSpeech = pams.Categories;
-			}
-			catch
-			{
-				throw;
-			}
-			finally
-			{
-				if (parameterReader != null)
-					parameterReader.Close();
-			}
+
+			var pams = Parameters.DeSerialize(parms);
+			s_ambiguityCharacter = pams.Marker.Ambiguity;
+			ANAAnalysis.OpenRootDelimiter = pams.RootDelimiter.OpenDelimiter;
+			ANAAnalysis.CloseRootDelimiter = pams.RootDelimiter.CloseDelimiter;
+			ANAAnalysis.SeparatorCharacter = pams.Marker.Decomposition;
+			ANAAnalysis.PartsOfSpeech = pams.Categories;
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -133,8 +121,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal void Convert()
 		{
-			for(int i = 0; i < m_analyses.Count; ++i)
-				m_analyses[i].Convert();
+			foreach (var t in m_analyses)
+				t.Convert();
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -147,8 +135,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		{
 			if (IsCorrectAmbiguityCharacter(line))
 			{
-				string[] contents = TokenizeLine(line, true);
-				for (int i = 2; i < contents.Length - 1; ++i)
+				var contents = TokenizeLine(line, true);
+				for (var i = 2; i < contents.Length - 1; ++i)
 					m_analyses.Add(new ANAAnalysis(contents[i]));
 				return;
 			}
@@ -165,20 +153,18 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 			// Not ambiguous.
 			if (line.Length < 5) // Too short to be ambiguous.
 				return true;
-			char possibleAmbChar = line[line.Length - 1];
+			var possibleAmbChar = line[line.Length - 1];
 			if (possibleAmbChar != line[0]) // First and last not the same.
 				return true;
 			if (!Char.IsDigit(line[1])) // At least one digit
 				return true;
 
 			// Maybe ambiguous - find closing ambig char if there is one.
-			for (int i = 2; i < line.Length - 2; ++i)
+			for (var i = 2; i < line.Length - 2; ++i)
 				if(!Char.IsDigit(line[i]))
 				{
-					if ((line[i] == possibleAmbChar)
-						&& (possibleAmbChar == s_ambiguityCharacter))
-						return true;
-					return false;
+					return (line[i] == possibleAmbChar)
+						   && (possibleAmbChar == s_ambiguityCharacter);
 				}
 			return false;
 		}
@@ -191,8 +177,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal void ProcessWLine(string originalForm)
 		{
-			for(int i = 0; i < m_analyses.Count; ++i)
-				m_analyses[i].OriginalForm = originalForm;
+			foreach (var t in m_analyses)
+				t.OriginalForm = originalForm;
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -204,10 +190,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// -----------------------------------------------------------------------------------
 		internal void ProcessOtherLine(LineType type, string line)
 		{
-			string[] contents = TokenizeLine(line, false);
+			var contents = TokenizeLine(line, false);
 			if (m_analyses.Count != contents.Length - 3)
 				return;
-			for (int i = 0; i < m_analyses.Count; ++i)
+			for (var i = 0; i < m_analyses.Count; ++i)
 				m_analyses[i].ProcessContent(type, contents[i + 2]);
 		}
 
@@ -218,23 +204,22 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// <param name="line">The line to tokenize.</param>
 		/// <param name="isALine">True, if the line being processed is the \a line, otherwise false.</param>
 		/// <returns>An array of tokenized strings.
-		/// [Note: The array is returned, as if it all were ambiguous.]</returns>
+		/// [NB: The array is returned, as if it all were ambiguous.]</returns>
 		/// -----------------------------------------------------------------------------------
 		protected string[] TokenizeLine(string line, bool isALine)
 		{
-			string[] contents = line.Trim().Split(s_ambiguityCharacter);
+			var contents = line.Trim().Split(s_ambiguityCharacter);
 			if (contents.Length == 4 && isALine)
 				contents[2] = null; // Analysis failure.
 			else if (contents.Length == 1)
 			{
 				// Treat it the same as if it were ambiguous.
 				// This makes other processing easier.
-				string tempLine = contents[0];
+				var tempLine = contents[0];
 				contents = new String[4];
 				contents[2] = tempLine;
 			}
 			return contents;
 		}
-
 	}
 }

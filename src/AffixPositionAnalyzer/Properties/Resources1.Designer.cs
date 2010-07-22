@@ -59,5 +59,50 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 				resourceCulture = value;
 			}
 		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Ample Analysis File.
+		/// </summary>
+		internal static string kAmpleAnalysisFile {
+			get {
+				return ResourceManager.GetString("kAmpleAnalysisFile", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Could not load the XSL file..
+		/// </summary>
+		internal static string kCouldNotLoadFile {
+			get {
+				return ResourceManager.GetString("kCouldNotLoadFile", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Could not transform the input file..
+		/// </summary>
+		internal static string kCouldNotTransform {
+			get {
+				return ResourceManager.GetString("kCouldNotTransform", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to ANA files (*.ana)|*.ana|All files (*.*)|*.*.
+		/// </summary>
+		internal static string kFileTypes {
+			get {
+				return ResourceManager.GetString("kFileTypes", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Information.
+		/// </summary>
+		internal static string kInformation {
+			get {
+				return ResourceManager.GetString("kInformation", resourceCulture);
+			}
+		}
 	}
 }

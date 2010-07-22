@@ -13,6 +13,7 @@
 // </remarks>
 //
 // --------------------------------------------------------------------------------------------
+using System;
 using System.IO;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis
@@ -97,6 +98,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// -----------------------------------------------------------------------------------
 		protected string GetOutputPathname(string pathInput)
 		{
+			if (pathInput == null) throw new ArgumentNullException("pathInput");
+
 			return Path.Combine(Path.GetDirectoryName(pathInput),
 				"OUT" + Path.GetFileName(pathInput));
 		}

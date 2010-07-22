@@ -24,77 +24,44 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 	[XmlRootAttribute("ANAConverterOptions", Namespace="", IsNullable=false)]
 	public class Parameters
 	{
-		/// <summary>
-		/// Root Delimiters object.
-		/// </summary>
-		private RootDelimiters m_rootDelimiters;
-
-		/// <summary>
-		/// Markers object.
-		/// </summary>
-		private Markers m_markers;
-
-		/// <summary>
-		/// Categories List.
-		/// </summary>
-		private List<Category> m_categories;
+		private static XmlSerializer s_serializer = new XmlSerializer(typeof(Parameters));
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public Parameters()
 		{
-			m_rootDelimiters = new RootDelimiters();
-			m_markers = new Markers();
-			m_categories = new List<Category>();
+			RootDelimiter = new RootDelimiters();
+			Marker = new Markers();
+			Categories = new List<Category>();
 		}
 
 		/// <summary>
 		/// RootDelimiters
 		/// </summary>
 		[XmlElementAttribute("RootDelimiter", typeof(RootDelimiters))]
-		public RootDelimiters RootDelimiter
-		{
-			set { m_rootDelimiters = value; }
-			get { return m_rootDelimiters; }
-		}
+		public RootDelimiters RootDelimiter { get; set; }
 
 		/// <summary>
 		/// Markers
 		/// </summary>
 		[XmlElementAttribute("Marker", typeof(Markers))]
-		public Markers Marker
-		{
-			set { m_markers = value; }
-			get { return m_markers; }
-		}
+		public Markers Marker { get; set; }
 
 		/// <summary>
 		/// Categories
 		/// </summary>
 		[XmlElementAttribute("Category", typeof(Category))]
-		public List<Category> Categories
-		{
-			set { m_categories = value; }
-			get { return m_categories ; }
-		}
+		public List<Category> Categories { get; set; }
 
 		/// <summary>
 		/// Serialize.
 		/// </summary>
 		public void Serialize(string filename)
 		{
-			try
+			using (var writer = new StreamWriter(filename))
 			{
-				XmlSerializer serializer =
-					new XmlSerializer(typeof(Parameters));
-				TextWriter writer = new StreamWriter(filename);
-				serializer.Serialize(writer, this);
-				writer.Close();
-			}
-			catch
-			{
-				throw;
+				s_serializer.Serialize(writer, this);
 			}
 		}
 
@@ -105,21 +72,11 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// <returns></returns>
 		public static Parameters DeSerialize(string parms)
 		{
-			FileStream parameterReader = null;
-			try
+			using (var parameterReader = new FileStream(parms, FileMode.Open))
 			{
-				XmlSerializer serializer = new XmlSerializer(typeof(Parameters));
-
-				parameterReader = new FileStream(parms, FileMode.Open);
 				if (parameterReader.Length == 0)
 					throw new FileLoadException();
-				Parameters p = new Parameters();
-				return p = (Parameters)serializer.Deserialize(parameterReader);
-			}
-			finally
-			{
-				if (parameterReader != null)
-					parameterReader.Close();
+				return (Parameters)s_serializer.Deserialize(parameterReader);
 			}
 		}
 }
@@ -140,34 +97,16 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		}
 
 		/// <summary>
-		/// m_openDelimiter attribute.
-		/// </summary>
-		private char m_openDelimiter;
-
-		/// <summary>
-		/// m_closeDelimiter attribute.
-		/// </summary>
-		private char m_closeDelimiter;
-
-		/// <summary>
 		/// OpenDelimiter attribute
 		/// </summary>
 		[XmlAttributeAttribute("openDelimiter")]
-		public char OpenDelimiter
-		{
-			set { m_openDelimiter = value; }
-			get { return m_openDelimiter; }
-		}
+		public char OpenDelimiter { get; set; }
 
 		/// <summary>
 		/// CloseDelimiter attribute.
 		/// </summary>
 		[XmlAttributeAttribute("closeDelimiter")]
-		public char CloseDelimiter
-		{
-			set { m_closeDelimiter = value; }
-			get { return m_closeDelimiter; }
-		}
+		public char CloseDelimiter { get; set; }
 	}
 
 	/// <summary>
@@ -175,16 +114,6 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 	/// </summary>
 	public class Markers
 	{
-		/// <summary>
-		/// m_ambiguity member variable.
-		/// </summary>
-		private char m_ambiguity;
-
-		/// <summary>
-		/// m_decomposition member variable.
-		/// </summary>
-		private char m_decomposition;
-
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -198,21 +127,13 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// Ambiguity attribute.
 		/// </summary>
 		[XmlAttributeAttribute("ambiguity")]
-		public char Ambiguity
-		{
-			set { m_ambiguity = value; }
-			get { return m_ambiguity; }
-		}
+		public char Ambiguity { get; set; }
 
 		/// <summary>
 		/// Decomposition attribute.
 		/// </summary>
 		[XmlAttributeAttribute("decomposition")]
-		public char Decomposition
-		{
-			set { m_decomposition = value; }
-			get { return m_decomposition; }
-		}
+		public char Decomposition { get; set; }
 	}
 
 	/// <summary>
@@ -239,16 +160,6 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// Cat attribute.
 		/// </summary>
 		[XmlAttributeAttribute("name")]
-		public string Cat
-		{
-			set { m_name = value; }
-			get { return m_name; }
-		}
-
-		/// <summary>
-		/// m_name member variable.
-		/// </summary>
-		private string m_name;
-
+		public string Cat { get; set; }
 	}
 }

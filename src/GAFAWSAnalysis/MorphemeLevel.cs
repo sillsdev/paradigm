@@ -25,9 +25,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 	/// ---------------------------------------------------------------------------------------
 	public enum MorphemeType
 	{
-		stem,
-		prefix,
-		suffix
+		Stem,
+		Prefix,
+		Suffix
 	};
 
 	public class DataLayerMorpheme
@@ -192,17 +192,17 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			MID = id;
 			switch (mType)
 			{
-				case MorphemeType.prefix:
+				case MorphemeType.Prefix:
 					type = "pfx";
 					break;
-				case MorphemeType.suffix:
+				case MorphemeType.Suffix:
 					type = "sfx";
 					break;
-				case MorphemeType.stem:
+				case MorphemeType.Stem:
 					type = "s";
 					break;
 				default:
-					throw new ArgumentException("Invalid type.", "type");
+					throw new ArgumentException("Invalid type.", "mType");
 			}
 		}
 	}
