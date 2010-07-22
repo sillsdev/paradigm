@@ -12,12 +12,11 @@
 // </remarks>
 //
 // --------------------------------------------------------------------------------------------
-using System;
 using System.Xml.Serialization;
 using System.IO;
 using System.Collections.Generic;
 
-namespace SIL.WordWorks.GAFAWS.ANAConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// <summary>
 	/// Parameters for the converter.

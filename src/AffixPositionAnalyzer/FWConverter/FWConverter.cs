@@ -13,7 +13,6 @@
 // --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,10 +20,9 @@ using System.IO;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-using SIL.WordWorks.GAFAWS;
-
-namespace SIL.WordWorks.GAFAWS.FWConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 {
 	public class FWConverter : GafawsProcessor, IGafawsConverter
 	{

@@ -1,7 +1,7 @@
 
 using System.Windows.Forms;
 
-namespace SIL.WordWorks.GAFAWS.FWConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 {
 	partial class FWConverterDlg
 	{

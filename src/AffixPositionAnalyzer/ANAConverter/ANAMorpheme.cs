@@ -12,13 +12,10 @@
 // </remarks>
 //
 // --------------------------------------------------------------------------------------------
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-using SIL.WordWorks.GAFAWS;
-
-namespace SIL.WordWorks.GAFAWS.ANAConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

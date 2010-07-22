@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace SIL.WordWorks.GAFAWS
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

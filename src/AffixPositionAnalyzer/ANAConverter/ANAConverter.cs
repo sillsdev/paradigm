@@ -12,16 +12,14 @@
 // </remarks>
 //
 // --------------------------------------------------------------------------------------------
-using System;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-using SIL.WordWorks.GAFAWS;
-
-namespace SIL.WordWorks.GAFAWS.ANAConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

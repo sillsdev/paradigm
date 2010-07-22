@@ -16,7 +16,7 @@ using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
-namespace SIL.WordWorks.GAFAWS
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

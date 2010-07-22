@@ -14,7 +14,7 @@
 // <remarks>
 // </remarks>
 // ---------------------------------------------------------------------------------------------
-namespace SIL.GAFAWS.Apps.AffixPositionAnalyzer
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
 	/// ----------------------------------------------------------------------------------------
 	/// <summary>

@@ -11,6 +11,7 @@
 // </remarks>
 // --------------------------------------------------------------------------------------------
 using System.IO;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {

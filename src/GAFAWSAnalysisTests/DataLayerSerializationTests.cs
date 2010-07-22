@@ -15,6 +15,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {

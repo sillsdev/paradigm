@@ -19,7 +19,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace SIL.WordWorks.GAFAWS
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

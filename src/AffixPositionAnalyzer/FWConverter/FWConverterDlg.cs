@@ -1,15 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-using TIData.NetworkSelect;
-
-namespace SIL.WordWorks.GAFAWS.FWConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 {
 	public partial class FWConverterDlg : Form
 	{

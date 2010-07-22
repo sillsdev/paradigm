@@ -16,12 +16,10 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Windows.Forms;
-using SIL.WordWorks.GAFAWS;
-using SIL.WordWorks.GAFAWS.PlainWordlistConverter;
-using SIL.WordWorks.GAFAWS.ANAConverter;
-using SIL.WordWorks.GAFAWS.FWConverter;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-namespace SIL.GAFAWS.Apps.AffixPositionAnalyzer
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
 	/// ----------------------------------------------------------------------------------------
 	/// <summary>
@@ -41,7 +39,7 @@ namespace SIL.GAFAWS.Apps.AffixPositionAnalyzer
 			InitializeComponent();
 
 			// Load up the converters.
-			IGafawsConverter converter = new PlainWordlistConverter();
+			IGafawsConverter converter = new PlainWordlistConverter.PlainWordlistConverter();
 			var lvi = new ListViewItem(converter.Name) {Tag = converter};
 			m_lvConverters.Items.Add(lvi);
 			lvi.Selected = true;

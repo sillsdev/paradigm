@@ -16,8 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-namespace SIL.WordWorks.GAFAWS.ANAConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

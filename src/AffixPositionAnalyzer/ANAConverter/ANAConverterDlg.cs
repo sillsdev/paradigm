@@ -16,19 +16,11 @@
 // </remarks>
 // --------------------------------------------------------------------------------------------
 using System;
-using System.Drawing;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Windows.Forms;
-using System.Data;
-using System.Diagnostics;
 using System.IO;
-using System.Xml.Xsl;
-using System.Xml;
 
-using SIL.WordWorks.GAFAWS;
-
-namespace SIL.WordWorks.GAFAWS.ANAConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 {
 	/// <summary>
 	/// Summary description for ANAConverterDlg.

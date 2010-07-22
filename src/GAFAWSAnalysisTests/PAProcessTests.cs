@@ -16,8 +16,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-namespace SIL.WordWorks.GAFAWS
+namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
 	/// ---------------------------------------------------------------------------------------
 	/// <summary>

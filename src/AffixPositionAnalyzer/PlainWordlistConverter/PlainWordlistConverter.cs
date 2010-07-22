@@ -21,16 +21,14 @@
 // --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
-using SIL.WordWorks.GAFAWS;
-
-namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 {
 	public class PlainWordlistConverter : GafawsProcessor, IGafawsConverter
 	{
