@@ -26,8 +26,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 	/// Main class for analyzing affix positions.
 	/// </summary>
 	/// ---------------------------------------------------------------------------------------
-	public class PositionAnalyzer : GafawsProcessor
+	public class PositionAnalyzer
 	{
+		/// -----------------------------------------------------------------------------------
+		/// <summary>
+		/// An instance of GAFAWSData.
+		/// </summary>
+		/// -----------------------------------------------------------------------------------
+		private GAFAWSData m_gd;
+
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// The prefixes that need to be processed.
@@ -54,6 +61,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// -----------------------------------------------------------------------------------
 		public PositionAnalyzer()
 		{
+			m_gd = GAFAWSData.Create();
 			m_prefixes = new Dictionary<string, MorphemeWrapper>();
 			m_suffixes = new Dictionary<string, MorphemeWrapper>();
 			m_messages = new Dictionary<string, string>();
@@ -61,7 +69,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
-		/// Implements the IGAFAWS interface.
+		/// Process the given input file.
 		/// </summary>
 		/// <param name="pathInput">Pathname to the input data.</param>
 		/// <returns>The pathname for the processed data.</returns>
@@ -74,14 +82,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 				return null;
 
 			Process(gData);
-			var outPath = GetOutputPathname(pathInput);
+
+			var outPath = OutputPathServices.GetOutputPathname(pathInput);
 			m_gd.SaveData(outPath);
 			return outPath;
 		}
 
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
-		/// Implements the IGAFAWS interface.
+		/// Process the given input GAFAWS data object.
 		/// </summary>
 		/// <param name="gData">GAFAWSData to process.</param>
 		/// -----------------------------------------------------------------------------------

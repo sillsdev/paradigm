@@ -37,7 +37,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile("TestA.xml");
+			CheckFile(@"XML\TestA.xml");
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile("TestA1.xml");
+			CheckFile(@"XML\TestA1.xml");
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1A_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile("TestA1A.xml");
+			CheckFile(@"XML\TestA1A.xml");
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestB_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile("TestB.xml");
+			CheckFile(@"XML\TestB.xml");
 		}
 
 		/// -----------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			// has been copied to executing dir during build
 			// p14 fails, but why?
-			CheckFile("TestC.xml");
+			CheckFile(@"XML\TestC.xml");
 		}
 
 		private static void CheckFile(string testFile)

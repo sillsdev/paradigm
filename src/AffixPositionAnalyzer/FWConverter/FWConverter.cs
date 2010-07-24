@@ -26,8 +26,20 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 {
-	public class FWConverter : GafawsProcessor, IGafawsConverter
+	public class FWConverter : IGafawsConverter
 	{
+		/// -----------------------------------------------------------------------------------
+		/// <summary>
+		/// An instance of GAFAWSData.
+		/// </summary>
+		/// -----------------------------------------------------------------------------------
+		private GAFAWSData m_gd;
+
+		internal FWConverter()
+		{
+			m_gd = GAFAWSData.Create();
+		}
+
 		#region IGAFAWSConverter implementation
 
 		/// <summary>

@@ -27,8 +27,15 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 	/// Converts an Ample ANA file into an XML document suitable for input to GAFAWSAnalysis.
 	/// </summary>
 	/// ---------------------------------------------------------------------------------------
-	public class ANAGAFAWSConverter : GafawsProcessor, IGafawsConverter
+	public class ANAGAFAWSConverter : IGafawsConverter
 	{
+		/// -----------------------------------------------------------------------------------
+		/// <summary>
+		/// An instance of GAFAWSData.
+		/// </summary>
+		/// -----------------------------------------------------------------------------------
+		private GAFAWSData m_gd;
+
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
@@ -37,6 +44,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 
 		public ANAGAFAWSConverter()
 		{
+			m_gd = GAFAWSData.Create();
 			ANAObject.Reset();
 		}
 
@@ -125,7 +133,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 						// End of any optional post-processing.
 
 						// Save, so it can be transformed.
-						outputPathname = GetOutputPathname(anaPathname);
+						outputPathname = OutputPathServices.GetOutputPathname(anaPathname);
 						m_gd.SaveData(outputPathname);
 
 						// Transform.

@@ -114,6 +114,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+	<Compile Include="OutputPathServicesTests.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<Compile Include="DataLayerBase.cs" />
 	<Compile Include="DataLayerSerializationTests.cs" />
@@ -167,22 +168,30 @@
 	<None Include="XML\RT-OUTtestA2.xml" />
 	<None Include="XML\RT-OUTtestB.xml" />
 	<None Include="XML\RT-OUTtestC.xml" />
-	<None Include="XML\TestA.xml">
-	</None>
-	<None Include="XML\TestA1.xml">
-	</None>
-	<None Include="XML\TestA1A.xml">
-	</None>
-	<None Include="XML\TestA2.xml" />
-	<None Include="XML\TestB.xml">
-	</None>
-	<None Include="XML\TestC.xml">
-	</None>
+	<Content Include="XML\TestA.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="XML\TestA1.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="XML\TestA1A.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="XML\TestA2.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="XML\TestB.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+	<Content Include="XML\TestC.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
 	<PreBuildEvent>
 	</PreBuildEvent>
-	<PostBuildEvent>copy $(ProjectDir)\XML\Test*.xml $(TargetDir)</PostBuildEvent>
+	<PostBuildEvent>
+	</PostBuildEvent>
   </PropertyGroup>
 </Project>

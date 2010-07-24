@@ -7,27 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysisTests", "GAFA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffixPositionAnalyzer", "AffixPositionAnalyzer\AffixPositionAnalyzer.csproj", "{DE8540D7-7DB6-478F-A599-A0229683D9F7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XML Test Data", "XML Test Data", "{134BDBDD-1C19-40DE-8E72-482C38580D92}"
-	ProjectSection(SolutionItems) = preProject
-		GAFAWSAnalysisTests\XML\AffixPositionChart.xsl = GAFAWSAnalysisTests\XML\AffixPositionChart.xsl
-		GAFAWSAnalysisTests\XML\GAFAWS.xsd = GAFAWSAnalysisTests\XML\GAFAWS.xsd
-		GAFAWSAnalysisTests\XML\hab1.xml = GAFAWSAnalysisTests\XML\hab1.xml
-		GAFAWSAnalysisTests\XML\Old Style.xsl = GAFAWSAnalysisTests\XML\Old Style.xsl
-		GAFAWSAnalysisTests\XML\OUTTestA1.xml = GAFAWSAnalysisTests\XML\OUTTestA1.xml
-		GAFAWSAnalysisTests\XML\RT-OUThab1.xml = GAFAWSAnalysisTests\XML\RT-OUThab1.xml
-		GAFAWSAnalysisTests\XML\RT-OUTtestA.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA.xml
-		GAFAWSAnalysisTests\XML\RT-OUTtestA1.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA1.xml
-		GAFAWSAnalysisTests\XML\RT-OUTtestA2.xml = GAFAWSAnalysisTests\XML\RT-OUTtestA2.xml
-		GAFAWSAnalysisTests\XML\RT-OUTtestB.xml = GAFAWSAnalysisTests\XML\RT-OUTtestB.xml
-		GAFAWSAnalysisTests\XML\RT-OUTtestC.xml = GAFAWSAnalysisTests\XML\RT-OUTtestC.xml
-		GAFAWSAnalysisTests\XML\TestA.xml = GAFAWSAnalysisTests\XML\TestA.xml
-		GAFAWSAnalysisTests\XML\TestA1.xml = GAFAWSAnalysisTests\XML\TestA1.xml
-		GAFAWSAnalysisTests\XML\TestA1A.xml = GAFAWSAnalysisTests\XML\TestA1A.xml
-		GAFAWSAnalysisTests\XML\TestA2.xml = GAFAWSAnalysisTests\XML\TestA2.xml
-		GAFAWSAnalysisTests\XML\TestB.xml = GAFAWSAnalysisTests\XML\TestB.xml
-		GAFAWSAnalysisTests\XML\TestC.xml = GAFAWSAnalysisTests\XML\TestC.xml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

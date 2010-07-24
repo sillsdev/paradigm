@@ -31,13 +31,21 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 {
-	public class PlainWordlistConverter : GafawsProcessor, IGafawsConverter
+	public class PlainWordlistConverter : IGafawsConverter
 	{
+		/// -----------------------------------------------------------------------------------
+		/// <summary>
+		/// An instance of GAFAWSData.
+		/// </summary>
+		/// -----------------------------------------------------------------------------------
+		private GAFAWSData m_gd;
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		internal PlainWordlistConverter()
 		{
+			m_gd = GAFAWSData.Create();
 		}
 
 		#region IGAFAWSConverter implementation
@@ -148,7 +156,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 						// End of any optional post-processing.
 
 						// Save, so it can be transformed.
-						var outputPathname = GetOutputPathname(sourcePathname);
+						var outputPathname = OutputPathServices.GetOutputPathname(sourcePathname);
 						m_gd.SaveData(outputPathname);
 
 						// Transform.
