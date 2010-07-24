@@ -1,0 +1,35 @@
+﻿\a p4 p3 < V sample > s2
+\w p4p3samples2
+
+\a p3 p2 < V sample > s1
+\w p3p2samples1
+
+\a p4 p1 < V sample > s1 s2
+\w p4p1samples1s2
+
+\a p2 p1 < V sample > s2 s3
+\w p2p1samples2s3
+
+\a p4 p23 p1 < V sample > s12 s3
+\w p4p23p1samples12s3
+
+\a p34 p12 < V sample > s1 s23
+\w p34p12samples1s23
+
+\a p3 p12 < V sample >
+\w p3p12sample
+
+\a p34 p2 < V sample >
+\w p34p2sample
+
+\a p4 p13 < V sample > s13
+\w p4p13samples13
+
+\a p24 p1 < V sample >
+\w p24p1sample
+
+\a p14 < V sample >
+\w p14sample
+
+\a p2 p3 p1 < V sample >
+\w p2p3p1sample

@@ -1,0 +1,11 @@
+﻿p4-p3-<sample>-s2
+p3-p2-<sample>-s1
+p4-p1-<sample>-s1-s2
+p2-p1-<sample>-s2-s3
+p4-p23-p1-<sample>-s12-s3
+p34-p12-<sample>-s1-s23
+p3-p12-<sample>
+p34-p2-<sample>
+p4-p13-<sample>-s13
+p24-p1-<sample>
+p14-<sample>

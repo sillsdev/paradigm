@@ -2,13 +2,9 @@
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
-// File: FWConverter.cs
+// File: FW60Converter.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// Implementation of FWConverter.
-// </remarks>
 //
 // --------------------------------------------------------------------------------------------
 using System;
@@ -26,7 +22,7 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 {
-	public class FWConverter : IGafawsConverter
+	public class FW60Converter : IGafawsConverter
 	{
 		/// -----------------------------------------------------------------------------------
 		/// <summary>
@@ -35,7 +31,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 		/// -----------------------------------------------------------------------------------
 		private GAFAWSData m_gd;
 
-		internal FWConverter()
+		internal FW60Converter()
 		{
 			m_gd = GAFAWSData.Create();
 		}
@@ -220,7 +216,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 		/// </summary>
 		public string Name
 		{
-			get { return "FieldWorks converter"; }
+			get { return "FieldWorks 6.0 converter"; }
 		}
 
 		/// <summary>
@@ -228,7 +224,12 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 		/// </summary>
 		public string Description
 		{
-			get { return "Prepare FieldWorks data for processing. Only user-approved analyses that are the selected part of speech are included in the processing."; }
+			get
+			{
+				return "Process data in a FieldWorks (6.0 and older) database."
+					+ Environment.NewLine + Environment.NewLine
+					+ "Only user-approved analyses that are the selected part of speech are included in the processing.";
+			}
 		}
 
 		/// <summary>
@@ -238,9 +239,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.FWConverter
 		{
 			get
 			{
-				return Path.Combine(Path.GetDirectoryName(
-					Assembly.GetExecutingAssembly().CodeBase),
-					"AffixPositionChart_FW.xsl");
+				return Path.Combine(
+					Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase),
+					Path.Combine("FW60Converter", "AffixPositionChart_FW.xsl"));
 			}
 		}
 

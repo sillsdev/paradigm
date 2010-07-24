@@ -12,6 +12,7 @@
 // </remarks>
 //
 // --------------------------------------------------------------------------------------------
+using System;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -188,7 +189,12 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		/// </summary>
 		public string Description
 		{
-			get { return "Prepare a CARLA ANA file for processing."; }
+			get
+			{
+				return "Process an AMPLE ANA output file."
+					+ Environment.NewLine + Environment.NewLine
+					+ "The '\\a' and '\\w' fields are required to be in the ANA file. Other filedes are optional.";
+			}
 		}
 
 		/// <summary>
@@ -198,9 +204,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter
 		{
 			get
 			{
-				return Path.Combine(Path.GetDirectoryName(
-					Assembly.GetExecutingAssembly().CodeBase),
-					"AffixPositionChart_ANA.xsl");
+				return Path.Combine(
+					Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase),
+					Path.Combine("ANAConverter", "AffixPositionChart_ANA.xsl"));
 			}
 		}
 

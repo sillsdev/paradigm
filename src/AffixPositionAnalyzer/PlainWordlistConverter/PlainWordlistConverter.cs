@@ -7,17 +7,6 @@
 // Responsibility: Randy Regnier
 // Last reviewed:
 //
-// <remarks>
-// Converts a plain text analyzed wordlist for use by GAFAWS.
-// The list will be one analyzed word per line, and follow this format:
-// p1-p2-<stem>-s1-s2
-// Prefixes or suffixes are optional, but the boundary <stem> is required.
-// Optional whitespace can separate affixes and the stem.
-// A hyphen is required to mark boundaries between other affixes and the stem.
-// Technically, the optional whitespace can be on either side of the hyphen,
-// or on both sides of it.
-// </remarks>
-//
 // --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
@@ -31,6 +20,20 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 {
+	/// <summary>
+	/// Converts a plain text analyzed wordlist for use by GAFAWS.
+	///
+	/// The list will be one analyzed word per line, and follow this format:
+	/// p1-p2-&lt;stem&gt;-s1-s2
+	///
+	/// Prefixes or suffixes are optional, but the boundary &lt;stem&gt; is required.
+	///
+	/// Optional whitespace can separate affixes and the stem.
+	///
+	/// A hyphen is required to mark boundaries between other affixes and the stem.
+	/// Technically, the optional whitespace can be on either side of the hyphen,
+	/// or on both sides of it.
+	/// </summary>
 	public class PlainWordlistConverter : IGafawsConverter
 	{
 		/// -----------------------------------------------------------------------------------
@@ -58,7 +61,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 			var openFileDlg = new OpenFileDialog
 								{
 									InitialDirectory = "c:\\",
-									Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*",
+									Filter = "Plain Text files (*.txt)|*.txt|All files (*.*)|*.*",
 									FilterIndex = 2,
 									Multiselect = false
 								};
@@ -111,9 +114,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 								}
 
 								// Handle stem.
-								string sStem;
 								// Stem has content, so use it.
-								sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
+								var sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
 								if (sStem.Length == 0)
 									sStem = "stem";
 								var stem = new Stem {MIDREF = sStem};
@@ -209,7 +211,15 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 		/// </summary>
 		public string Description
 		{
-			get { return "Prepare a wordlist for processing.\r\nThe list will follow this pattern:\r\np1-p2-<stem>-s1-s2\r\nAffixes are optional, but the stem/root is not. The content between the stem markers (< and >) is up to the user."; }
+			get
+			{
+				return "Process a wordlist file where each item is on its own line. The list must follow this pattern:"
+				+ Environment.NewLine + Environment.NewLine
+				+ "p1-p2-<stem>-s1-s2"
+				+ Environment.NewLine + Environment.NewLine
+				+ "A hyphen (-) follows each prefix and precedes each suffix."
+				+ Environment.NewLine + Environment.NewLine
+				+ "Affixes are optional, but the stem/root is not. The content between the stem markers (< and >) is up to the user."; }
 		}
 
 		/// <summary>
@@ -219,9 +229,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.PlainWordlistConverter
 		{
 			get
 			{
-				return Path.Combine(Path.GetDirectoryName(
-					Assembly.GetExecutingAssembly().CodeBase),
-					"AffixPositionChart_PWL.xsl");
+				return Path.Combine(
+					Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase),
+					Path.Combine("PlainWordlistConverter", "AffixPositionChart_PWL.xsl"));
 			}
 		}
 

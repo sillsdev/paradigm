@@ -1,7 +1,7 @@
 ﻿// ---------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007-$YEAR, SIL International. All Rights Reserved.
-// <copyright from='2007' to='$YEAR' company='SIL International'>
-//		Copyright (c) 2007-$YEAR, SIL International. All Rights Reserved.
+#region // Copyright (c) 2007-2010, SIL International. All Rights Reserved.
+// <copyright from='2007' to='2010' company='SIL International'>
+//		Copyright (c) 2007-2010, SIL International. All Rights Reserved.
 //
 //		Distributable under the terms of either the Common Public License or the
 //		GNU Lesser General Public License, as specified in the LICENSING.txt file.
@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AffixPositionAnalyzer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SIL")]
-[assembly: AssemblyProduct("SIL FieldWorks")]
+[assembly: AssemblyCompany("SIL International, Inc.")]
+[assembly: AssemblyProduct("SIL GAFAWS Position Analyzer")]
 [assembly: AssemblyCopyright("Copyright © 2007-2010 SIL International")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -37,7 +37,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("0.8.0.*")]
+[assembly: AssemblyVersion("1.0.0.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the

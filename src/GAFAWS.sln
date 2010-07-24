@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysisTests", "GAFA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffixPositionAnalyzer", "AffixPositionAnalyzer\AffixPositionAnalyzer.csproj", "{DE8540D7-7DB6-478F-A599-A0229683D9F7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GAFAWSInstaller", "Installer\Installer.vdproj", "{C9DEFF69-D9C1-44A8-BBA7-C676CEC26FF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,8 @@ Global
 		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE8540D7-7DB6-478F-A599-A0229683D9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9DEFF69-D9C1-44A8-BBA7-C676CEC26FF3}.Debug|Any CPU.ActiveCfg = Debug
+		{C9DEFF69-D9C1-44A8-BBA7-C676CEC26FF3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

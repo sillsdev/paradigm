@@ -49,9 +49,9 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			lvi = new ListViewItem(converter.Name) {Tag = converter};
 			m_lvConverters.Items.Add(lvi);
 
-			//converter = new FWConverter();
-			//lvi = new ListViewItem(converter.Name) {Tag = converter};
-			//m_lvConverters.Items.Add(lvi);
+			converter = new FWConverter.FW60Converter();
+			lvi = new ListViewItem(converter.Name) {Tag = converter};
+			m_lvConverters.Items.Add(lvi);
 
 			// TODO: Load up the other converters.
 		}
