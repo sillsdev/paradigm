@@ -41,7 +41,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>Bin\Debug\</OutputPath>
+	<OutputPath>..\Bin\Debug\</OutputPath>
 	<DefineConstants>DEBUG;TRACE</DefineConstants>
 	<DocumentationFile>
 	</DocumentationFile>
@@ -52,7 +52,7 @@
 	<DebugType>pdbonly</DebugType>
 	<Optimize>true</Optimize>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>Bin\Release\</OutputPath>
+	<OutputPath>..\Bin\Release\</OutputPath>
 	<DefineConstants>TRACE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -79,50 +79,10 @@
 	<Compile Include="AffixPositionAnalyzer.Designer.cs">
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
 	</Compile>
-	<Compile Include="ANAConverter\ANAAnalysis.cs" />
-	<Compile Include="ANAConverter\ANAConverter.cs" />
-	<Compile Include="ANAConverter\ANAMorpheme.cs" />
-	<Compile Include="ANAConverter\ANARecord.cs" />
-	<Compile Include="ANAConverter\ANAConverterDlg.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="ANAConverter\Parameters.cs" />
-	<Compile Include="FW60Converter\AskPassword.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="FW60Converter\CompEnum.cs" />
-	<Compile Include="FW60Converter\FW60Converter.cs" />
-	<Compile Include="FW60Converter\FWConverterDlg.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="FW60Converter\FWConverterDlg.Designer.cs">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
-	</Compile>
-	<Compile Include="FW60Converter\NetworkSelect.cs">
-	  <SubType>UserControl</SubType>
-	</Compile>
-	<Compile Include="FW60Converter\Shares.cs" />
-	<Compile Include="PlainWordlistConverter\PlainWordlistConverter.cs" />
 	<Compile Include="Program.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<EmbeddedResource Include="AffixPositionAnalyzer.resx">
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="ANAConverter\ANAConverterDlg.resx">
-	  <DependentUpon>ANAConverterDlg.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FW60Converter\AskPassword.resx">
-	  <DependentUpon>AskPassword.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FW60Converter\FWConverterDlg.resx">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FW60Converter\NetworkSelect.resx">
-	  <DependentUpon>NetworkSelect.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
 	<EmbeddedResource Include="Properties\Resources.resx">
@@ -130,9 +90,6 @@
 	  <Generator>ResXFileCodeGenerator</Generator>
 	  <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
 	</EmbeddedResource>
-	<Compile Include="Properties\Resources.Designer.cs">
-	  <DependentUpon>Resources.resx</DependentUpon>
-	</Compile>
 	<None Include="Properties\Settings.settings">
 	  <Generator>SettingsSingleFileGenerator</Generator>
 	  <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
@@ -145,54 +102,9 @@
 	<Compile Include="Properties\Settings.Designer.cs">
 	  <DependentUpon>Settings.settings</DependentUpon>
 	</Compile>
-	<Compile Include="Properties\Settings1.Designer.cs">
-	  <AutoGen>True</AutoGen>
-	  <DesignTimeSharedInput>True</DesignTimeSharedInput>
-	  <DependentUpon>Settings.settings</DependentUpon>
-	</Compile>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="ANAConverter\AffixPositionChart_ANA.xsl">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="FW60Converter\AffixPositionChart_FW.xsl">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="ANAConverter\Sample_Good.ana">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="ANAConverter\Sample_Problems.ana">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="FW60Converter\images\Cabinet.ico" />
-	<Content Include="FW60Converter\images\CD.ico" />
-	<Content Include="FW60Converter\images\ClosedFolder.ico" />
-	<Content Include="FW60Converter\images\CompleteNetwork.ico" />
-	<Content Include="FW60Converter\images\Computer.ico" />
-	<Content Include="FW60Converter\images\DontKnow.ico" />
-	<Content Include="FW60Converter\images\File.ico" />
-	<Content Include="FW60Converter\images\Floppy.ico" />
-	<Content Include="FW60Converter\images\IPC.ico" />
-	<Content Include="FW60Converter\images\Key.ico" />
-	<Content Include="FW60Converter\images\Network.ico" />
-	<Content Include="FW60Converter\images\NetworkFolder.ico" />
-	<Content Include="FW60Converter\images\OpenFolder.ico" />
-	<Content Include="FW60Converter\images\Partition.ico" />
-	<Content Include="FW60Converter\images\Planned.ico" />
-	<Content Include="FW60Converter\images\PleaseWait.ico" />
-	<Content Include="FW60Converter\images\Printer.ico" />
-	<Content Include="FW60Converter\images\Server.ico" />
-	<Content Include="FW60Converter\images\Spook.ico" />
 	<None Include="GAFAWS.ico" />
-	<Content Include="PlainWordlistConverter\Sample_Good.txt">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="PlainWordlistConverter\Sample_Problems.txt">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-	<Content Include="PlainWordlistConverter\AffixPositionChart_PWL.xsl">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
   </ItemGroup>
   <ItemGroup>
 	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -222,9 +134,25 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+	<ProjectReference Include="..\ANAConverter\ANAConverter.csproj">
+	  <Project>{85EDD98B-67B0-46A0-80EE-645FC5914CE2}</Project>
+	  <Name>ANAConverter</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\FW60Converter\FW60Converter.csproj">
+	  <Project>{83DB6628-AA11-430B-A213-73F40A301536}</Project>
+	  <Name>FW60Converter</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\FW70Converter\FW70Converter.csproj">
+	  <Project>{150E0D64-58C6-4D4A-81D3-F227382EA1B2}</Project>
+	  <Name>FW70Converter</Name>
+	</ProjectReference>
 	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
 	  <Name>GAFAWSAnalysis</Name>
+	</ProjectReference>
+	<ProjectReference Include="..\PlainWordlistConverter\PlainWordlistConverter.csproj">
+	  <Project>{206F2257-7C03-4FD8-8585-94DEB647EA66}</Project>
+	  <Name>PlainWordlistConverter</Name>
 	</ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

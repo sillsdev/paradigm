@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.FieldWorks.LexText.GAFAWS.Apps.AffixPositionAnalyzer.Properties {
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties{
 
 
 	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

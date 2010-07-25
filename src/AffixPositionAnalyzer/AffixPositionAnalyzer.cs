@@ -16,8 +16,8 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Windows.Forms;
-using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.ANAConverter;
 using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
+using SIL.WordWorks.GAFAWS.ANAConverter;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
@@ -39,21 +39,21 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 		{
 			InitializeComponent();
 
+			// TODO: Load up the converters using StructureMap, and get rid of referecnes to them..
+
 			// Load up the converters.
 			var converter = (IGafawsConverter)new PlainWordlistConverter.PlainWordlistConverter();
-			var lvi = new ListViewItem(converter.Name) {Tag = converter};
+			var lvi = new ListViewItem(converter.Name) { Tag = converter };
 			m_lvConverters.Items.Add(lvi);
 			lvi.Selected = true;
 
 			converter = new ANAGAFAWSConverter();
-			lvi = new ListViewItem(converter.Name) {Tag = converter};
+			lvi = new ListViewItem(converter.Name) { Tag = converter };
 			m_lvConverters.Items.Add(lvi);
 
-			converter = new FWConverter.FW60Converter();
-			lvi = new ListViewItem(converter.Name) {Tag = converter};
+			converter = new FW60Converter.FW60Converter();
+			lvi = new ListViewItem(converter.Name) { Tag = converter };
 			m_lvConverters.Items.Add(lvi);
-
-			// TODO: Load up the other converters.
 		}
 
 		private void m_btnProcess_Click(object sender, EventArgs e)

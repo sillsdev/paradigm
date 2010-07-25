@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
@@ -23,13 +24,20 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// -----------------------------------------------------------------------------------
 		public static string GetOutputPathname(string inputPathname)
 		{
-			if (string.IsNullOrEmpty(inputPathname))
+			if (String.IsNullOrEmpty(inputPathname))
 				throw new ArgumentException("Input is null or an empty string.", "inputPathname");
 			if (!File.Exists(inputPathname))
 				throw new FileNotFoundException("File does not exist.", "inputPathname");
 
 			return Path.Combine(Path.GetDirectoryName(inputPathname),
 				"OUT" + Path.GetFileName(inputPathname));
+		}
+
+		public static string GetXslPathname(string xslFile)
+		{
+			return Path.Combine(
+				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Replace(@"file:///", null)),
+				xslFile);
 		}
 	}
 }
