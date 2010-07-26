@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,9 +9,8 @@
 // <remarks>
 // Information for the GAFAWS position analysis assembly.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 //
@@ -67,11 +65,12 @@ using System.Runtime.InteropServices;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+//[assembly: AssemblyDelaySign(false)]
+//[assembly: AssemblyKeyFile("")]
+//[assembly: AssemblyKeyName("")]
 
 // Setting this to false will, by default, prevent classes from being exported for COM.
 // For classes that should be exported for COM, they should have the ComVisible(true)
 // attribute.
 [assembly: ComVisible(false)]
+[assembly: InternalsVisibleTo("GAFAWSAnalysisTests")]

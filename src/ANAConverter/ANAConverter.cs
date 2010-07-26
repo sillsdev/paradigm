@@ -1,50 +1,40 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: ANAConverter.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// Implementation of ANAGAFAWSConverter.
-// </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Xsl;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Converts an Ample ANA file into an XML document suitable for input to GAFAWSAnalysis.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	public class ANAGAFAWSConverter : IGafawsConverter
+	public class AnaConverter : IGafawsConverter
 	{
-		/// -----------------------------------------------------------------------------------
+		private readonly IPositionAnalyzer m_analyzer;
+
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
-		private GAFAWSData m_gd;
+		private IGafawsData m_gd;
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
-
-		public ANAGAFAWSConverter()
+		public AnaConverter(IPositionAnalyzer analyzer, IGafawsData gd)
 		{
-			m_gd = GAFAWSData.Create();
-			ANAObject.Reset();
+			m_analyzer = analyzer;
+			m_gd = gd;
+			AnaObject.Reset();
 		}
 
 		#region IGAFAWSConverter implementation
@@ -54,7 +44,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		public void Convert()
 		{
-			using (var dlg = new ANAConverterDlg())
+			using (var dlg = new AnaConverterDlg())
 			{
 				dlg.ShowDialog();
 				if (dlg.DialogResult == DialogResult.OK)
@@ -64,13 +54,13 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 					try
 					{
 						parametersPathname = dlg.ParametersPathname;
-						var anaPathname = dlg.ANAPathname;
+						var anaPathname = dlg.AnaPathname;
 						using (var reader = new StreamReader(anaPathname)) // Client to catch any exception.
 						{
-							ANARecord record = null;
+							AnaRecord record = null;
 							var line = reader.ReadLine();
-							ANARecord.SetParameters(parametersPathname);
-							ANAObject.DataLayer = m_gd;
+							AnaRecord.SetParameters(parametersPathname);
+							AnaObject.DataLayer = m_gd;
 
 							// Sanity checks.
 							if (line == null)
@@ -91,7 +81,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 										{
 											if (record != null)
 												record.Convert();
-											record = new ANARecord(line.Substring(3));
+											record = new AnaRecord(line.Substring(3));
 											break;
 										}
 									case "\\w":
@@ -125,8 +115,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 						}
 
 						// Main processing.
-						var anal = new PositionAnalyzer();
-						anal.Process(m_gd);
+						m_analyzer.Process(m_gd);
 
 						// Do any post-analysis processing here, if needed.
 						// End of any optional post-processing.
@@ -143,7 +132,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 						}
 						catch
 						{
-							MessageBox.Show(Resources.kCouldNotLoadFile, Resources.kInformation);
+							MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
 							return;
 						}
 
@@ -154,7 +143,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 						}
 						catch
 						{
-							MessageBox.Show(Resources.kCouldNotTransform, Resources.kInformation);
+							MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
 							return;
 						}
 						Process.Start(htmlOutput);
@@ -170,7 +159,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 
 			// Reset m_gd, in case it gets called for another file.
-			m_gd = GAFAWSData.Create();
+			m_gd.Reset();
 		}
 
 		/// <summary>

@@ -1,21 +1,18 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: PlainWordlistConverter.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Xsl;
-using SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 {
@@ -35,19 +32,20 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 	/// </summary>
 	public class PlainWordlistConverter : IGafawsConverter
 	{
-		/// -----------------------------------------------------------------------------------
+		private readonly IPositionAnalyzer m_analyzer;
+
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
-		private GAFAWSData m_gd;
+		private IGafawsData m_gd;
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public PlainWordlistConverter()
+		public PlainWordlistConverter(IPositionAnalyzer analyzer, IGafawsData gd)
 		{
-			m_gd = GAFAWSData.Create();
+			m_analyzer = analyzer;
+			m_gd = gd;
 		}
 
 		#region IGAFAWSConverter implementation
@@ -59,8 +57,8 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		{
 			var openFileDlg = new OpenFileDialog
 								{
-									InitialDirectory = "c:\\",
-									Filter = "Plain Text files (*.txt)|*.txt|All files (*.*)|*.*",
+									//InitialDirectory = "c:\\",
+									Filter = String.Format("{0} (*.txt)|*.txt|{1} (*.*)|*.*", Resources.kPlainTexFiles, Resources.kAllFiles),
 									FilterIndex = 2,
 									Multiselect = false
 								};
@@ -150,8 +148,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 						}
 
 						// Main processing.
-						var anal = new PositionAnalyzer();
-						anal.Process(m_gd);
+						m_analyzer.Process(m_gd);
 
 						// Do any post-analysis processing here, if needed.
 						// End of any optional post-processing.
@@ -168,7 +165,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 						}
 						catch
 						{
-							MessageBox.Show(Resource.kCouldNotLoadFile, Resource.kInformation);
+							MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
 							return;
 						}
 
@@ -179,7 +176,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 						}
 						catch
 						{
-							MessageBox.Show(Resource.kCouldNotTransform, Resource.kInformation);
+							MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
 							return;
 						}
 						finally
@@ -193,7 +190,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 			}
 
 			// Reset m_gd, in case it gets called for another file.
-			m_gd = GAFAWSData.Create();
+			m_gd.Reset();
 		}
 
 		/// <summary>

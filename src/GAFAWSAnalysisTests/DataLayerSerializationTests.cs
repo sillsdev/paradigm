@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,8 +9,6 @@
 // <remarks>
 // Unit tests for data layer serialization.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.IO;
 using NUnit.Framework;
@@ -19,19 +16,15 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// GAFAWS data layer serialization testing class.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	[TestFixture]
 	public class SerializationTests : DataLayerBase
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// A known set of data.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		private readonly string m_dataBefore = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Environment.NewLine +
 			"<GAFAWSData xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
 				" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine +
@@ -50,24 +43,20 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			"  <Challenges />" + Environment.NewLine +
 			"</GAFAWSData>";
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Initialize a class before each test is run.
 		/// This is called by NUnit before each test.
 		/// It ensures each test will have a brand new GAFAWSData object to work with.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[SetUp]
 		public void Init()
 		{
-			m_gd = GAFAWSData.Create();
+			m_gd = new GafawsData();
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Try to save with null as the pathname.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void SaveDataWithNullPathname()
@@ -75,11 +64,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			m_gd.SaveData(null);
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Save a good set of data.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void SaveData()
 		{
@@ -109,23 +96,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Try loading a null pathname.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		[ExpectedException(typeof(ArgumentNullException))]
 		public void LoadDataWithNullPathname()
 		{
-			m_gd = GAFAWSData.LoadData(null);
+			m_gd = GafawsData.LoadData(null);
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Load good data set.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void LoadGoodData()
 		{
@@ -134,7 +117,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			{
 				Assert.AreEqual(0, m_gd.Morphemes.Count);	// Shouldn't have any at this point.
 				fileName = MakeFile(m_dataBefore);
-				m_gd = GAFAWSData.LoadData(fileName);
+				m_gd = GafawsData.LoadData(fileName);
 				Assert.AreEqual(1, m_gd.Morphemes.Count);	// Should be 1 of them now.
 				Assert.AreEqual(1, m_gd.WordRecords.Count, "Wrong word record count.");
 				var wr = m_gd.WordRecords[0];
@@ -147,11 +130,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Try loading data file that is empty.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		[ExpectedException(typeof(InvalidOperationException))]
 		public void LoadDataWithEmptyFile()
@@ -160,7 +141,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			try
 			{
 				fileName = MakeFile();
-				m_gd = GAFAWSData.LoadData(fileName);
+				m_gd = GafawsData.LoadData(fileName);
 			}
 			catch (System.Xml.XmlException e)
 			{
@@ -176,11 +157,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Try loading XML data that isn't in the right model of data.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		[ExpectedException(typeof(InvalidOperationException))]
 		public void LoadDataWrongXML()
@@ -192,7 +171,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 					"<NOTGAFAWSData xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"" +
 						" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n" +
 					"</NOTGAFAWSData>");
-				m_gd = GAFAWSData.LoadData(fileName);
+				m_gd = GafawsData.LoadData(fileName);
 			}
 			finally
 			{

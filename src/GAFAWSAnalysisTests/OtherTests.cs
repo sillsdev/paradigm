@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,8 +9,6 @@
 // <remarks>
 // Misc. unit tests for the GAFAWS data layer.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
@@ -19,29 +16,25 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Class to do general tests.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	[TestFixture]
 	public class OtherTests : DataLayerBase
 	{
 		private string m_fileName;
 		private string m_otherStuff;
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Initialize a class before each test is run.
 		/// This is called by NUnit before each test.
 		/// It ensures each test will have a brand new GAFAWSData object to work with.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[SetUp]
 		public void Init()
 		{
 			m_fileName = MakeFile();
-			m_gd = GAFAWSData.Create();
+			m_gd = new GafawsData();
 			var otherStuff = new XElement("MyStuff",
 				new XAttribute("val", "true"),
 				new XElement("YourStuff",
@@ -66,7 +59,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			m_gd = null;
 
 			// Make sure it is there.
-			m_gd = GAFAWSData.LoadData(m_fileName);
+			m_gd = GafawsData.LoadData(m_fileName);
 		}
 
 		public void CheckOtherContents()
@@ -78,11 +71,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			Assert.AreEqual("YS1", ys.Attribute("ID").Value, "Wrong value for 'ID'");
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Add some contents to an 'Other'.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void AddOtherToGAFAWSData()
 		{
@@ -102,11 +93,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Add some contents to an 'Other' for Stem.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void AddOtherToStem()
 		{
@@ -130,11 +119,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Add some contents to an 'Other' for Stem.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void AddOtherToAffix()
 		{
@@ -160,11 +147,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Add some contents to an 'Other' for the whole Word record.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void AddOtherToWordRecord()
 		{

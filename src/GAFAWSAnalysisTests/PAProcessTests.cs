@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,8 +9,6 @@
 // <remarks>
 // Unit tests for the PositionAnalyzer class.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -20,19 +17,15 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Test class for PositionAnalyzer class.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	[TestFixture]
 	public class PAProcessTests
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Check the Process method on the TestA xml file.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void Process_TestA_Data()
 		{
@@ -40,11 +33,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckFile(@"XML\TestA.xml");
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Check the Process method on the TestA1 xml file.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void Process_TestA1_Data()
 		{
@@ -52,11 +43,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckFile(@"XML\TestA1.xml");
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Check the Process method on the TestA1A xml file.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void Process_TestA1A_Data()
 		{
@@ -64,11 +53,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckFile(@"XML\TestA1A.xml");
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Check the Process method on the TestB xml file.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		[Test]
 		public void Process_TestB_Data()
 		{
@@ -76,11 +63,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckFile(@"XML\TestB.xml");
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Check the Process method on the TestC xml file.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		//[Test]
 		public void Process_TestC_Data()
 		{

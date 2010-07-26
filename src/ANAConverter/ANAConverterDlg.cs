@@ -1,20 +1,13 @@
-﻿// --------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007, SIL International. All Rights Reserved.
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //		Copyright (c) 2007, SIL International. All Rights Reserved.
 //
 //		Distributable under the terms of either the Common Public License or the
 //		GNU Lesser General Public License, as specified in the LICENSING.txt file.
 // </copyright>
-#endregion
 //
 // File: ANAConverterDlg.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// </remarks>
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Specialized;
 using System.IO;
@@ -24,13 +17,11 @@ using System.Windows.Forms;
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
 	/// <summary>
-	/// Summary description for ANAConverterDlg.
+	/// Summary description for AnaConverterDlg.
 	/// </summary>
-	internal class ANAConverterDlg : Form
+	internal class AnaConverterDlg : Form
 	{
 		#region Data members
-
-		private string m_parametersPathname;
 
 		private Button btnAnal;
 		private ToolTip tipBtnAnal;
@@ -101,7 +92,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Initializes a new instance of the MainWnd class.
 		/// </summary>
-		internal ANAConverterDlg()
+		internal AnaConverterDlg()
 		{
 			//
 			// Required for Windows Form Designer support
@@ -139,7 +130,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ANAConverterDlg));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaConverterDlg));
 			this.btnAnal = new System.Windows.Forms.Button();
 			this.tipBtnAnal = new System.Windows.Forms.ToolTip(this.components);
 			this.btnClose = new System.Windows.Forms.Button();
@@ -317,19 +308,16 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			this.HelpButton = true;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "ANAConverterDlg";
+			this.Name = "AnaConverterDlg";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 		#endregion
 
-		internal string ParametersPathname
-		{
-			get { return m_parametersPathname; }
-		}
+		internal string ParametersPathname { get; private set; }
 
-		internal string ANAPathname
+		internal string AnaPathname
 		{
 			get { return tbANAFile.Text; }
 		}
@@ -484,14 +472,14 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			// User Defined parameters.
 			var parms = new Parameters();
-			m_parametersPathname = (tbANAFile.Text.Split('.'))[0] + ".prm";
+			ParametersPathname = (tbANAFile.Text.Split('.'))[0] + ".prm";
 			parms.Marker.Ambiguity = AmbiguityMarker[0];
 			parms.RootDelimiter.OpenDelimiter = OpenDelimiter[0];
 			parms.RootDelimiter.CloseDelimiter = CloseDelimiter[0];
 			parms.Marker.Decomposition = AffixSeparator[0];
 			foreach (var t in chBxCategories.CheckedItems)
 				parms.Categories.Add(new Category(t.ToString()));
-			parms.Serialize(m_parametersPathname);
+			parms.Serialize(ParametersPathname);
 
 			Close();
 		}
@@ -527,7 +515,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		}
 
 		/// <summary>
-		/// tbOpenDel_Validating - Validate for default opening char "<".
+		/// tbOpenDel_Validating - Validate for default opening char "%lt;".
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -556,15 +544,15 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			// Select or unselect them all.
 			bool catChecked;
 
-			if (btnSelect.Text == "Select All")
+			if (btnSelect.Text == Resources.kSelectAll)
 			{
 				catChecked = true;
-				btnSelect.Text = "DeSelect All";
+				btnSelect.Text = Resources.kDeSelectAll;
 			}
 			else
 			{
 				catChecked = false;
-				btnSelect.Text = "Select All";
+				btnSelect.Text = Resources.kSelectAll;
 			}
 
 			chBxCategories.BeginUpdate();

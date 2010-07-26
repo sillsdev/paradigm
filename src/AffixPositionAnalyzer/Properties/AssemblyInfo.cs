@@ -1,16 +1,9 @@
-﻿// ---------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007-2010, SIL International. All Rights Reserved.
-// <copyright from='2007' to='2010' company='SIL International'>
+﻿// <copyright from='2007' to='2010' company='SIL International'>
 //		Copyright (c) 2007-2010, SIL International. All Rights Reserved.
 //
 //		Distributable under the terms of either the Common Public License or the
 //		GNU Lesser General Public License, as specified in the LICENSING.txt file.
 // </copyright>
-#endregion
-//
-// <remarks>
-// </remarks>
-// ---------------------------------------------------------------------------------------------
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -64,9 +57,9 @@ using System.Runtime.InteropServices;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-[assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("")]
-[assembly: AssemblyKeyName("")]
+//[assembly: AssemblyDelaySign(false)]
+//[assembly: AssemblyKeyFile("")]
+//[assembly: AssemblyKeyName("")]
 
 // Setting this to false will, by default, prevent classes from being exported for COM.
 // For classes that should be exported for COM, they should have the ComVisible(true)

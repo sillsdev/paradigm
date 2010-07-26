@@ -1,29 +1,20 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: ANAMorpheme.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// Implementation of ANAMorpheme, ANAAffix, ANAPrefix, ANASuffix, and ANAStem classes.
-// </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.Linq;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Abstract class of morphemes.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal abstract class ANAMorpheme : ANAObject
+	internal abstract class AnaMorpheme : AnaObject
 	{
 		protected string m_morphname;
 		protected string m_decomposition;
@@ -33,13 +24,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		protected Morpheme m_morpheme;
 		protected MorphemeType m_type;
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="morphname">The morphname of the morpheme.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANAMorpheme(string morphname)
+		internal AnaMorpheme(string morphname)
 		{
 			m_morphname = morphname;
 		}
@@ -52,13 +41,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Adds content from various fields in the ANA record.
 		/// </summary>
 		/// <param name="type">The type of field being processed.</param>
 		/// <param name="form">The individual form being added.</param>
-		/// -----------------------------------------------------------------------------------
 		internal virtual void AddContent(LineType type, string form)
 		{
 			switch (type)
@@ -81,12 +68,10 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// An abstract method used to convert a morpheme.
 		/// Subclasses must override this method to do an appropriate conversion.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal virtual void Convert()
 		{
 			foreach (var m in s_gd.Morphemes.Where(m => m.MID == m_morphname))
@@ -116,30 +101,24 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		}
 	}
 
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// A stem morpheme.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal class ANAStem : ANAMorpheme
+	internal class AnaStem : AnaMorpheme
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="morphname">The morphname of the stem.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANAStem(string morphname)
+		internal AnaStem(string morphname)
 			: base(morphname.Trim().Replace(" ", "_"))
 		{
 			m_type = MorphemeType.Stem;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Convert the stem to the data layer.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal override void Convert()
 		{
 			LastRecord.Stem = new Stem();
@@ -147,23 +126,19 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			base.Convert();
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Get the count of roots in the stem.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal int RootCount
 		{
 			get { return  m_morphname.Split('_').Length/2; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Adds content from various fields in the ANA record.
 		/// </summary>
 		/// <param name="type">The type of field being processed.</param>
 		/// <param name="form">The individual form being added.</param>
-		/// -----------------------------------------------------------------------------------
 		internal override void AddContent(LineType type, string form)
 		{
 			switch (type)
@@ -196,44 +171,36 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		}
 	}
 
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// A prefix or suffix morpheme.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal abstract class ANAAffix : ANAMorpheme
+	internal abstract class AnaAffix : AnaMorpheme
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="morphname">The morphname of the affix.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANAAffix(string morphname)
+		internal AnaAffix(string morphname)
 			: base(morphname)
 		{
 		}
 	}
 
-	internal class ANAPrefix : ANAAffix
+	internal class AnaPrefix : AnaAffix
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="morphname">The morphname of the affix.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANAPrefix(string morphname)
+		internal AnaPrefix(string morphname)
 			: base(morphname)
 		{
 			m_type = MorphemeType.Prefix;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Convert the affix to the data layer.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal override void Convert()
 		{
 			var afx = new Affix();
@@ -242,44 +209,38 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			base.Convert();
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Tokenize the given input, and create affixes.
 		/// </summary>
 		/// <param name="affixes">One or more affixes to process.</param>
 		/// <returns>An array of affixes that have been created.</returns>
-		/// -----------------------------------------------------------------------------------
-		internal static List<ANAPrefix> TokenizeAffixes(string affixes)
+		internal static List<AnaPrefix> TokenizeAffixes(string affixes)
 		{
-			List<ANAPrefix> list = null;
+			List<AnaPrefix> list = null;
 			if (affixes.Length > 0)
 			{
 				var afxes = affixes.Trim().Split();
-				list = afxes.Select(t => new ANAPrefix(t)).ToList();
+				list = afxes.Select(t => new AnaPrefix(t)).ToList();
 			}
 			return list;
 		}
 	}
 
-	internal class ANASuffix : ANAAffix
+	internal class AnaSuffix : AnaAffix
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="morphname">The morphname of the affix.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANASuffix(string morphname)
+		internal AnaSuffix(string morphname)
 			: base(morphname)
 		{
 			m_type = MorphemeType.Suffix;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Convert the affix to the data layer.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal override void Convert()
 		{
 			var afx = new Affix();
@@ -288,20 +249,18 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			base.Convert();
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Tokenize the given input, and create affixes.
 		/// </summary>
 		/// <param name="affixes">One or more affixes to process.</param>
 		/// <returns>An array of affixes that have been created.</returns>
-		/// -----------------------------------------------------------------------------------
-		internal static List<ANASuffix> TokenizeAffixes(string affixes)
+		internal static List<AnaSuffix> TokenizeAffixes(string affixes)
 		{
-			List<ANASuffix> list = null;
+			List<AnaSuffix> list = null;
 			if (affixes.Length > 0)
 			{
 				var afxes = affixes.Trim().Split();
-				list = afxes.Select(t => new ANASuffix(t)).ToList();
+				list = afxes.Select(t => new AnaSuffix(t)).ToList();
 			}
 			return list;
 		}

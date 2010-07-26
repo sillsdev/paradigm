@@ -1,17 +1,10 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: Parameters.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// Parameters Class for serialization.
-// </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;

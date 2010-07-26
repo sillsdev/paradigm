@@ -1,26 +1,15 @@
-// ---------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007, SIL International. All Rights Reserved.
 // <copyright from='2007' to='2010' company='SIL International'>
 //		Copyright (c) 2007, SIL International. All Rights Reserved.
 //
 //		Distributable under the terms of either the Common Public License or the
 //		GNU Lesser General Public License, as specified in the LICENSING.txt file.
 // </copyright>
-#endregion
 //
 // File: AffixPositionAnalyzer.cs
 // Responsibility: Randy Regnier
-//
-// <remarks>
-// </remarks>
-// ---------------------------------------------------------------------------------------------
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
-	/// ----------------------------------------------------------------------------------------
-	/// <summary>
-	///
-	/// </summary>
-	/// ----------------------------------------------------------------------------------------
+	/// <summary></summary>
 	partial class AffixPositionAnalyzer
 	{
 		/// <summary>

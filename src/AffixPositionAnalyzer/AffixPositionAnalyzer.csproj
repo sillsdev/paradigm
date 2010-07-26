@@ -59,6 +59,10 @@
 	<WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+	<Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+	  <SpecificVersion>False</SpecificVersion>
+	  <HintPath>..\..\lib\common\StructureMap.dll</HintPath>
+	</Reference>
 	<Reference Include="System" />
 	<Reference Include="System.Core">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -79,26 +83,27 @@
 	<Compile Include="AffixPositionAnalyzer.Designer.cs">
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
 	</Compile>
+	<Compile Include="AppResources.Designer.cs">
+	  <AutoGen>True</AutoGen>
+	  <DesignTime>True</DesignTime>
+	  <DependentUpon>AppResources.resx</DependentUpon>
+	</Compile>
+	<Compile Include="CoreRegistry.cs" />
 	<Compile Include="Program.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<EmbeddedResource Include="AffixPositionAnalyzer.resx">
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
-	<EmbeddedResource Include="Properties\Resources.resx">
-	  <SubType>Designer</SubType>
+	<EmbeddedResource Include="AppResources.resx">
 	  <Generator>ResXFileCodeGenerator</Generator>
-	  <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+	  <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+	  <SubType>Designer</SubType>
 	</EmbeddedResource>
 	<None Include="Properties\Settings.settings">
 	  <Generator>SettingsSingleFileGenerator</Generator>
 	  <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
 	</None>
-	<Compile Include="Properties\Resources1.Designer.cs">
-	  <AutoGen>True</AutoGen>
-	  <DesignTime>True</DesignTime>
-	  <DependentUpon>Resources.resx</DependentUpon>
-	</Compile>
 	<Compile Include="Properties\Settings.Designer.cs">
 	  <DependentUpon>Settings.settings</DependentUpon>
 	</Compile>
@@ -134,25 +139,9 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\ANAConverter\ANAConverter.csproj">
-	  <Project>{85EDD98B-67B0-46A0-80EE-645FC5914CE2}</Project>
-	  <Name>ANAConverter</Name>
-	</ProjectReference>
-	<ProjectReference Include="..\FW60Converter\FW60Converter.csproj">
-	  <Project>{83DB6628-AA11-430B-A213-73F40A301536}</Project>
-	  <Name>FW60Converter</Name>
-	</ProjectReference>
-	<ProjectReference Include="..\FW70Converter\FW70Converter.csproj">
-	  <Project>{150E0D64-58C6-4D4A-81D3-F227382EA1B2}</Project>
-	  <Name>FW70Converter</Name>
-	</ProjectReference>
 	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
 	  <Name>GAFAWSAnalysis</Name>
-	</ProjectReference>
-	<ProjectReference Include="..\PlainWordlistConverter\PlainWordlistConverter.csproj">
-	  <Project>{206F2257-7C03-4FD8-8585-94DEB647EA66}</Project>
-	  <Name>PlainWordlistConverter</Name>
 	</ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

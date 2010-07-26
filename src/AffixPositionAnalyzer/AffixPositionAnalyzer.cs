@@ -1,59 +1,43 @@
-// ---------------------------------------------------------------------------------------------
-#region // Copyright (c) 2007, SIL International. All Rights Reserved.
 // <copyright from='2007' to='2010' company='SIL International'>
 //		Copyright (c) 2007, SIL International. All Rights Reserved.
 //
 //		Distributable under the terms of either the Common Public License or the
 //		GNU Lesser General Public License, as specified in the LICENSING.txt file.
 // </copyright>
-#endregion
 //
 // File: AffixPositionAnalyzer.cs
 // Responsibility: Randy Regnier
-//
-// <remarks>
-// </remarks>
-// ---------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
-using SIL.WordWorks.GAFAWS.ANAConverter;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
-	/// ----------------------------------------------------------------------------------------
-	/// <summary>
-	///
-	/// </summary>
-	/// ----------------------------------------------------------------------------------------
+	/// <summary></summary>
 	public partial class AffixPositionAnalyzer : Form
 	{
 		private IGafawsConverter m_selectedConverter;
-		/// ------------------------------------------------------------------------------------
+
 		/// <summary>
 		/// Default c'tor
 		/// </summary>
-		/// ------------------------------------------------------------------------------------
 		public AffixPositionAnalyzer()
 		{
 			InitializeComponent();
+		}
 
-			// TODO: Load up the converters using StructureMap, and get rid of referecnes to them..
-
-			// Load up the converters.
-			var converter = (IGafawsConverter)new PlainWordlistConverter.PlainWordlistConverter();
-			var lvi = new ListViewItem(converter.Name) { Tag = converter };
-			m_lvConverters.Items.Add(lvi);
-			lvi.Selected = true;
-
-			converter = new ANAGAFAWSConverter();
-			lvi = new ListViewItem(converter.Name) { Tag = converter };
-			m_lvConverters.Items.Add(lvi);
-
-			converter = new FW60Converter.FW60Converter();
-			lvi = new ListViewItem(converter.Name) { Tag = converter };
-			m_lvConverters.Items.Add(lvi);
+		internal AffixPositionAnalyzer(IEnumerable<IGafawsConverter> converters)
+			: this()
+		{
+			foreach (var lvi in converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) {Tag = gafawsConverter}))
+			{
+				m_lvConverters.Items.Add(lvi);
+			}
+			if (m_lvConverters.Items.Count > 0)
+				m_lvConverters.Items[0].Selected = true;
 		}
 
 		private void m_btnProcess_Click(object sender, EventArgs e)
@@ -68,7 +52,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 			catch
 			{
-				MessageBox.Show("There were problems with the original data, and it could not be processed.", Resources.kInformation);
+				MessageBox.Show(AppResources.kProblemData, PublicResources.kInformation);
 			}
 			finally
 			{

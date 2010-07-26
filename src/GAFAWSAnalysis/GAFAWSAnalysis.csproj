@@ -60,6 +60,7 @@
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
+	<UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 	<OutputPath>..\..\..\..\Output\Release\</OutputPath>
@@ -94,6 +95,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+	<Compile Include="IGafawsData.cs" />
+	<Compile Include="IPositionAnalyzer.cs" />
 	<Compile Include="OutputPathServices.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<Compile Include="ClassAssigner.cs">
@@ -105,9 +108,26 @@
 	<Compile Include="PositionAnalyzer.cs">
 	  <SubType>Code</SubType>
 	</Compile>
+	<Compile Include="Properties\PublicResources.Designer.cs">
+	  <AutoGen>True</AutoGen>
+	  <DesignTime>True</DesignTime>
+	  <DependentUpon>PublicResources.resx</DependentUpon>
+	</Compile>
+	<Compile Include="Properties\StringResources.Designer.cs">
+	  <AutoGen>True</AutoGen>
+	  <DesignTime>True</DesignTime>
+	  <DependentUpon>StringResources.resx</DependentUpon>
+	</Compile>
 	<Compile Include="WordLevel.cs" />
-	<EmbeddedResource Include="StringsResource.resx">
+	<EmbeddedResource Include="Properties\PublicResources.resx">
+	  <Generator>PublicResXFileCodeGenerator</Generator>
+	  <LastGenOutput>PublicResources.Designer.cs</LastGenOutput>
 	  <SubType>Designer</SubType>
+	</EmbeddedResource>
+	<EmbeddedResource Include="Properties\StringResources.resx">
+	  <SubType>Designer</SubType>
+	  <Generator>ResXFileCodeGenerator</Generator>
+	  <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
 	</EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
@@ -10,8 +9,6 @@
 // <remarks>
 // Implementation of ANAAnalysis class.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,17 +17,15 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Summary description for ANAAnalysis.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal class ANAAnalysis : ANAObject
+	internal class AnaAnalysis : AnaObject
 	{
-		private readonly List<ANAPrefix> m_prefixes;
-		private readonly ANAStem m_stem;
+		private readonly List<AnaPrefix> m_prefixes;
+		private readonly AnaStem m_stem;
 		private readonly string m_sstem;
-		private readonly List<ANASuffix> m_suffixes;
+		private readonly List<AnaSuffix> m_suffixes;
 		private string m_originalForm;
 		private string m_wordCategory;
 
@@ -60,54 +55,44 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			get { return s_partsOfSpeech; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Set the open root delimiter property.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal static char OpenRootDelimiter
 		{
 			set { s_openRootDelimiter = value; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Set the close root delimiter property.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal static char CloseRootDelimiter
 		{
 			set { s_closeRootDelimiter = value; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Set the open separator property.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal static char SeparatorCharacter
 		{
 			set { s_separatorCharacter = value; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Gets or sets the original form.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal string OriginalForm
 		{
 			get { return m_originalForm; }
 			set { m_originalForm = value; }
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Process the content from various analysis fields.
 		/// </summary>
 		/// <param name="type">The type of line being processed.</param>
 		/// <param name="form">The form from the ANA field.</param>
-		/// -----------------------------------------------------------------------------------
 		internal void ProcessContent(LineType type, string form)
 		{
 			if (m_stem == null)
@@ -149,11 +134,9 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				m_suffixes[i].AddContent(type, forms[formCnt++]);
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Gets the count of morphemes.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal int MorphemeCount
 		{
 			get
@@ -164,13 +147,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="analysis">An analysis string from the \a field.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANAAnalysis(string analysis)
+		internal AnaAnalysis(string analysis)
 		{
 			m_wordCategory = null;
 			m_originalForm = null;
@@ -187,18 +168,16 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				var morphemes = TokenizeLine(analysis, seps);
 				if (morphemes.Length != 3)
 					throw new ApplicationException("Incorrect delimiters.");
-				m_prefixes = ANAPrefix.TokenizeAffixes(morphemes[0]);
-				m_stem = new ANAStem(morphemes[1]);
+				m_prefixes = AnaPrefix.TokenizeAffixes(morphemes[0]);
+				m_stem = new AnaStem(morphemes[1]);
 				m_sstem = morphemes[1]; // For cat filter
-				m_suffixes = ANASuffix.TokenizeAffixes(morphemes[2]);
+				m_suffixes = AnaSuffix.TokenizeAffixes(morphemes[2]);
 			}
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Convert the analysis and its morphemes.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal void Convert()
 		{
 			if (m_stem == null || (m_prefixes == null && m_suffixes == null))
@@ -264,14 +243,12 @@ label1:
 			return cats.Any(t => PartsOfSpeech.Any(cat => cat.Cat == t));
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Tokenize the given line with the given separators.
 		/// </summary>
 		/// <param name="line">The line to tokenize.</param>
 		/// <param name="seps">The characters used to tokenize the given string.</param>
 		/// <returns>An array of token strings.</returns>
-		/// -----------------------------------------------------------------------------------
 		protected string[] TokenizeLine(string line, char[] seps)
 		{
 			return line.Trim().Split(seps);

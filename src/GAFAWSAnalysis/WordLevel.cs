@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,19 +9,15 @@
 // <remarks>
 // Implementation of WordRecord.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// A word record.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	public sealed class WordRecord
 	{
 		/// <summary>

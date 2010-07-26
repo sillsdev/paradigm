@@ -1,4 +1,3 @@
-// --------------------------------------------------------------------------------------------
 // <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
@@ -10,19 +9,14 @@
 // <remarks>
 // Declaration of the IGafawsConverter interface.
 // </remarks>
-//
-// --------------------------------------------------------------------------------------------
-
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Interface declaration.
 	/// Data converters should implement this interface, if they want to take source data and
 	/// convert it into data to be fed into the PositionAnalyzer class in the GAFAWSAnalysis
 	/// assembly (which does the work of analyzing the affix positions)
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	public interface IGafawsConverter
 	{
 		/// <summary>

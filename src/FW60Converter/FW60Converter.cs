@@ -5,8 +5,6 @@
 // File: FW60Converter.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,23 +14,24 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Xsl;
-using SIL.WordWorks.GAFAWS.FW60Converter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
 	public class FW60Converter : IGafawsConverter
 	{
-		/// -----------------------------------------------------------------------------------
+		private readonly IPositionAnalyzer m_analyzer;
+
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
-		private GAFAWSData m_gd;
+		private IGafawsData m_gd;
 
-		public FW60Converter()
+		public FW60Converter(IPositionAnalyzer analyzer, IGafawsData gd)
 		{
-			m_gd = GAFAWSData.Create();
+			m_analyzer = analyzer;
+			m_gd = gd;
 		}
 
 		#region IGAFAWSConverter implementation
@@ -140,8 +139,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 						try
 						{
 							// Main processing.
-							var anal = new PositionAnalyzer();
-							anal.Process(m_gd);
+							m_analyzer.Process(m_gd);
 
 							// Strip out all the _#### here.
 							foreach (var wr in m_gd.WordRecords)
@@ -176,7 +174,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 							}
 							catch
 							{
-								MessageBox.Show(Resources.kCouldNotLoadFile, Resources.kInformation);
+								MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
 								return;
 							}
 
@@ -187,7 +185,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 							}
 							catch
 							{
-								MessageBox.Show(Resources.kCouldNotTransform, Resources.kInformation);
+								MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
 								return;
 							}
 							Process.Start(htmlOutput);
@@ -206,7 +204,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			}
 
 			// Reset m_gd, in case it gets called for another file.
-			m_gd = GAFAWSData.Create();
+			m_gd.Reset();
 		}
 
 		/// <summary>
@@ -293,7 +291,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			return moreRows;
 		}
 
-		internal void Convert(SqlCommand cmd, GAFAWSData gData,
+		internal void Convert(SqlCommand cmd, IGafawsData gData,
 			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			foreach (var anal in m_analyses)
@@ -345,7 +343,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			}
 		}
 
-		internal void Convert(SqlCommand cmd, GAFAWSData gData, Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
+		internal void Convert(SqlCommand cmd, IGafawsData gData, Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			if (!CanConvert)
 				return;

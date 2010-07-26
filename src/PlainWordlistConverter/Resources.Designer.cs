@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
+namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter {
 	using System;
 
 
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties.Resources", typeof(Resources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.PlainWordlistConverter.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,29 +61,20 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Could not load the XSL file..
+		///   Looks up a localized string similar to All files.
 		/// </summary>
-		internal static string kCouldNotLoadFile {
+		internal static string kAllFiles {
 			get {
-				return ResourceManager.GetString("kCouldNotLoadFile", resourceCulture);
+				return ResourceManager.GetString("kAllFiles", resourceCulture);
 			}
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Could not transform the input file..
+		///   Looks up a localized string similar to Plain Text files.
 		/// </summary>
-		internal static string kCouldNotTransform {
+		internal static string kPlainTexFiles {
 			get {
-				return ResourceManager.GetString("kCouldNotTransform", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Information.
-		/// </summary>
-		internal static string kInformation {
-			get {
-				return ResourceManager.GetString("kInformation", resourceCulture);
+				return ResourceManager.GetString("kPlainTexFiles", resourceCulture);
 			}
 		}
 	}

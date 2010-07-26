@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Properties {
 	using System;
 
 
@@ -22,14 +22,14 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
 	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	internal class Resource {
+	internal class StringResources {
 
 		private static global::System.Resources.ResourceManager resourceMan;
 
 		private static global::System.Globalization.CultureInfo resourceCulture;
 
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-		internal Resource() {
+		internal StringResources() {
 		}
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties.Resource", typeof(Resource).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.PositionAnalysis.Properties.StringResources", typeof(StringResources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,29 +61,20 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Could not load the XSL file..
+		///   Looks up a localized string similar to Prefix data is inconsistent..
 		/// </summary>
-		internal static string kCouldNotLoadFile {
+		internal static string kstidBadPrefixes {
 			get {
-				return ResourceManager.GetString("kCouldNotLoadFile", resourceCulture);
+				return ResourceManager.GetString("kstidBadPrefixes", resourceCulture);
 			}
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Could not transform the input file..
+		///   Looks up a localized string similar to Suffix data is inconsistent..
 		/// </summary>
-		internal static string kCouldNotTransform {
+		internal static string kstidBadSuffixes {
 			get {
-				return ResourceManager.GetString("kCouldNotTransform", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Information.
-		/// </summary>
-		internal static string kInformation {
-			get {
-				return ResourceManager.GetString("kInformation", resourceCulture);
+				return ResourceManager.GetString("kstidBadSuffixes", resourceCulture);
 			}
 		}
 	}

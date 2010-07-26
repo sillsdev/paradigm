@@ -9,7 +9,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 	/// </summary>
 	public static class OutputPathServices
 	{
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Gets the output name, which is based on the original input name.
 		/// </summary>
@@ -21,7 +20,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <exception cref="FileNotFoundException">
 		/// Thrown if <paramref name="inputPathname"/> does not exist.
 		/// </exception>
-		/// -----------------------------------------------------------------------------------
 		public static string GetOutputPathname(string inputPathname)
 		{
 			if (String.IsNullOrEmpty(inputPathname))

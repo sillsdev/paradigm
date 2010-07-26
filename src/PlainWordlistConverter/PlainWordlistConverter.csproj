@@ -17,7 +17,7 @@
 	<DebugSymbols>true</DebugSymbols>
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
-	<OutputPath>bin\Debug\</OutputPath>
+	<OutputPath>..\Bin\Debug\</OutputPath>
 	<DefineConstants>DEBUG;TRACE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 	<DebugType>pdbonly</DebugType>
 	<Optimize>true</Optimize>
-	<OutputPath>bin\Release\</OutputPath>
+	<OutputPath>..\Bin\Release\</OutputPath>
 	<DefineConstants>TRACE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
@@ -44,10 +44,10 @@
   <ItemGroup>
 	<Compile Include="PlainWordlistConverter.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
-	<Compile Include="Properties\Resource.Designer.cs">
+	<Compile Include="Resources.Designer.cs">
 	  <AutoGen>True</AutoGen>
 	  <DesignTime>True</DesignTime>
-	  <DependentUpon>Resource.resx</DependentUpon>
+	  <DependentUpon>Resources.resx</DependentUpon>
 	</Compile>
   </ItemGroup>
   <ItemGroup>
@@ -68,10 +68,10 @@
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
-	<EmbeddedResource Include="Properties\Resource.resx">
-	  <SubType>Designer</SubType>
+	<EmbeddedResource Include="Resources.resx">
 	  <Generator>ResXFileCodeGenerator</Generator>
-	  <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+	  <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  <SubType>Designer</SubType>
 	</EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -83,7 +83,7 @@
   </Target>
   -->
   <PropertyGroup>
-	<PostBuildEvent>copy AffixPositionChart_PWL.xsl $(SolutionDir)Bin\$(ConfigurationName)\
-copy *.txt $(SolutionDir)Bin\$(ConfigurationName)\</PostBuildEvent>
+	<PostBuildEvent>
+	</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,17 +1,10 @@
-﻿// --------------------------------------------------------------------------------------------
-// <copyright from='2003' to='2010' company='SIL International'>
+﻿// <copyright from='2003' to='2010' company='SIL International'>
 //    Copyright (c) 2007, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: ANARecord.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
-//
-// <remarks>
-// Implementation of ANARecord and ANAObject classes.
-// </remarks>
-//
-// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,11 +12,9 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Enumeration of field types that get processed.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
 	internal enum LineType
 	{
 		UnderlyingForm,
@@ -31,21 +22,17 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		Category
 	};
 
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Abstract superclass of all other ANA objects, which serves to hold the data layer.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal abstract class ANAObject
+	internal abstract class AnaObject
 	{
-		static protected GAFAWSData s_gd;
+		static protected IGafawsData s_gd;
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Get or set the data layer object.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
-		internal static GAFAWSData DataLayer
+		internal static IGafawsData DataLayer
 		{
 			set { s_gd = value; }
 			get { return s_gd; }
@@ -54,33 +41,27 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal static void Reset()
 		{
 			s_gd = null;
-			ANARecord.Reset();
-			ANAAnalysis.Reset();
+			AnaRecord.Reset();
+			AnaAnalysis.Reset();
 		}
 	}
 
-	/// ---------------------------------------------------------------------------------------
 	/// <summary>
 	/// Representation of one ANA record in the file.
 	/// </summary>
-	/// ---------------------------------------------------------------------------------------
-	internal class ANARecord : ANAObject
+	internal class AnaRecord : AnaObject
 	{
-
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Ambiguity character, default is: '%'.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		static private char s_ambiguityCharacter = '%';
-		protected List<ANAAnalysis> m_analyses;
+		protected List<AnaAnalysis> m_analyses;
 
 		new internal static void Reset()
 		{
 			s_ambiguityCharacter = '%';
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Set the input parameters.
 		/// </summary>
@@ -88,7 +69,6 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <exception cref="FileLoadException">
 		/// Thrown when the input file is empty.
 		/// </exception>
-		/// -----------------------------------------------------------------------------------
 		internal static void SetParameters(string parms)
 		{
 			if (parms == null)
@@ -96,48 +76,42 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 
 			var pams = Parameters.DeSerialize(parms);
 			s_ambiguityCharacter = pams.Marker.Ambiguity;
-			ANAAnalysis.OpenRootDelimiter = pams.RootDelimiter.OpenDelimiter;
-			ANAAnalysis.CloseRootDelimiter = pams.RootDelimiter.CloseDelimiter;
-			ANAAnalysis.SeparatorCharacter = pams.Marker.Decomposition;
-			ANAAnalysis.PartsOfSpeech = pams.Categories;
+			AnaAnalysis.OpenRootDelimiter = pams.RootDelimiter.OpenDelimiter;
+			AnaAnalysis.CloseRootDelimiter = pams.RootDelimiter.CloseDelimiter;
+			AnaAnalysis.SeparatorCharacter = pams.Marker.Decomposition;
+			AnaAnalysis.PartsOfSpeech = pams.Categories;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="line">The \a field without the field marker.</param>
-		/// -----------------------------------------------------------------------------------
-		internal ANARecord(string line)
+		internal AnaRecord(string line)
 		{
-			m_analyses = new List<ANAAnalysis>();
+			m_analyses = new List<AnaAnalysis>();
 			ProcessALine(line);
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Convert the object to the data layer.
 		/// </summary>
-		/// -----------------------------------------------------------------------------------
 		internal void Convert()
 		{
 			foreach (var t in m_analyses)
 				t.Convert();
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Process the \a field.
 		/// </summary>
 		/// <param name="line">The complete \a field, without the field marker.</param>
-		/// -----------------------------------------------------------------------------------
 		protected void ProcessALine(string line)
 		{
 			if (IsCorrectAmbiguityCharacter(line))
 			{
 				var contents = TokenizeLine(line, true);
 				for (var i = 2; i < contents.Length - 1; ++i)
-					m_analyses.Add(new ANAAnalysis(contents[i]));
+					m_analyses.Add(new AnaAnalysis(contents[i]));
 				return;
 			}
 			throw new ApplicationException("Incorrect ambiguity character.");
@@ -148,7 +122,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
-		private bool IsCorrectAmbiguityCharacter(string line)
+		private static bool IsCorrectAmbiguityCharacter(string line)
 		{
 			// Not ambiguous.
 			if (line.Length < 5) // Too short to be ambiguous.
@@ -169,25 +143,21 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			return false;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Process the \w field.
 		/// </summary>
 		/// <param name="originalForm">The original wordform.</param>
-		/// -----------------------------------------------------------------------------------
 		internal void ProcessWLine(string originalForm)
 		{
 			foreach (var t in m_analyses)
 				t.OriginalForm = originalForm;
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Process the \d, \u, and \cat fields.
 		/// </summary>
 		/// <param name="type">The field being processed.</param>
 		/// <param name="line">The complete line, without the field marker.</param>
-		/// -----------------------------------------------------------------------------------
 		internal void ProcessOtherLine(LineType type, string line)
 		{
 			var contents = TokenizeLine(line, false);
@@ -197,7 +167,6 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				m_analyses[i].ProcessContent(type, contents[i + 2]);
 		}
 
-		/// -----------------------------------------------------------------------------------
 		/// <summary>
 		/// Tokenize the given line.
 		/// </summary>
@@ -205,7 +174,6 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="isALine">True, if the line being processed is the \a line, otherwise false.</param>
 		/// <returns>An array of tokenized strings.
 		/// [NB: The array is returned, as if it all were ambiguous.]</returns>
-		/// -----------------------------------------------------------------------------------
 		protected string[] TokenizeLine(string line, bool isALine)
 		{
 			var contents = line.Trim().Split(s_ambiguityCharacter);
