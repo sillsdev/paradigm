@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter {
+namespace SIL.WordWorks.GAFAWS.ANAConverter.Properties {
 	using System;
 
 
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.PlainWordlistConverter.Resources", typeof(Resources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.ANAConverter.Properties.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,20 +61,38 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to All files.
+		///   Looks up a localized string similar to Ample Analysis File.
 		/// </summary>
-		internal static string kAllFiles {
+		internal static string kAmpleAnalysisFile {
 			get {
-				return ResourceManager.GetString("kAllFiles", resourceCulture);
+				return ResourceManager.GetString("kAmpleAnalysisFile", resourceCulture);
 			}
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Plain Text files.
+		///   Looks up a localized string similar to DeSelect All.
 		/// </summary>
-		internal static string kPlainTexFiles {
+		internal static string kDeSelectAll {
 			get {
-				return ResourceManager.GetString("kPlainTexFiles", resourceCulture);
+				return ResourceManager.GetString("kDeSelectAll", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to ANA files (*.ana)|*.ana|All files (*.*)|*.*.
+		/// </summary>
+		internal static string kFileTypes {
+			get {
+				return ResourceManager.GetString("kFileTypes", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Select All.
+		/// </summary>
+		internal static string kSelectAll {
+			get {
+				return ResourceManager.GetString("kSelectAll", resourceCulture);
 			}
 		}
 	}

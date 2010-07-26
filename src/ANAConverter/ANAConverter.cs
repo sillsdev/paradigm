@@ -25,7 +25,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		private IGafawsData m_gd;
+		private readonly IGafawsData m_gd;
 
 		/// <summary>
 		/// Constructor.

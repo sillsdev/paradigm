@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
-	public partial class FWConverterDlg : Form
+	public partial class FwConverterDlg : Form
 	{
-		public FWConverterDlg()
+		public FwConverterDlg()
 		{
 			InitializeComponent();
 			AccessibleName = GetType().Name;
@@ -25,8 +25,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 		void m_source_SelectedItemChanged(object sender, TreeViewEventArgs e)
 		{
-			var selNode = e.Node;
-			var tag = e.Node.Tag as string;
+			var tag = (string)e.Node.Tag;
 			m_tvPOS.Nodes.Clear();
 			CatInfo = null;
 			m_btnOk.Enabled = false;

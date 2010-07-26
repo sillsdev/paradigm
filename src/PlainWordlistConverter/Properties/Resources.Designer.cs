@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer {
+namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
 	using System;
 
 
@@ -22,14 +22,14 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer {
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
 	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	internal class AppResources {
+	internal class Resources {
 
 		private static global::System.Resources.ResourceManager resourceMan;
 
 		private static global::System.Globalization.CultureInfo resourceCulture;
 
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-		internal AppResources() {
+		internal Resources() {
 		}
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.AppResources", typeof(AppResources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,11 +61,38 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to There were problems with the original data, and it could not be processed..
+		///   Looks up a localized string similar to All files.
 		/// </summary>
-		internal static string kProblemData {
+		internal static string kAllFiles {
 			get {
-				return ResourceManager.GetString("kProblemData", resourceCulture);
+				return ResourceManager.GetString("kAllFiles", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Process a wordlist file where each item is on its own line. The list must follow this pattern:{0}{0}p1-p2-&lt;stem&gt;-s1-s2{0}{0}A hyphen (-) follows each prefix and precedes each suffix.{0}{0}Affixes are optional, but the stem/root is not. The content between the stem markers (&lt; and &gt;) is up to the user..
+		/// </summary>
+		internal static string kDescription {
+			get {
+				return ResourceManager.GetString("kDescription", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Wordlist converter.
+		/// </summary>
+		internal static string kName {
+			get {
+				return ResourceManager.GetString("kName", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Plain Text files.
+		/// </summary>
+		internal static string kPlainTexFiles {
+			get {
+				return ResourceManager.GetString("kPlainTexFiles", resourceCulture);
 			}
 		}
 	}

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 

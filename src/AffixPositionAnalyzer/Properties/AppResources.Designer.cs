@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.ANAConverter {
+namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 	using System;
 
 
@@ -22,14 +22,14 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter {
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
 	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	internal class Resources {
+	internal class AppResources {
 
 		private static global::System.Resources.ResourceManager resourceMan;
 
 		private static global::System.Globalization.CultureInfo resourceCulture;
 
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-		internal Resources() {
+		internal AppResources() {
 		}
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.ANAConverter.Resources", typeof(Resources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties.AppResources", typeof(AppResources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,38 +61,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Ample Analysis File.
+		///   Looks up a localized string similar to There were problems with the original data, and it could not be processed..
 		/// </summary>
-		internal static string kAmpleAnalysisFile {
+		internal static string kProblemData {
 			get {
-				return ResourceManager.GetString("kAmpleAnalysisFile", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to DeSelect All.
-		/// </summary>
-		internal static string kDeSelectAll {
-			get {
-				return ResourceManager.GetString("kDeSelectAll", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to ANA files (*.ana)|*.ana|All files (*.*)|*.*.
-		/// </summary>
-		internal static string kFileTypes {
-			get {
-				return ResourceManager.GetString("kFileTypes", resourceCulture);
-			}
-		}
-
-		/// <summary>
-		///   Looks up a localized string similar to Select All.
-		/// </summary>
-		internal static string kSelectAll {
-			get {
-				return ResourceManager.GetString("kSelectAll", resourceCulture);
+				return ResourceManager.GetString("kProblemData", resourceCulture);
 			}
 		}
 	}

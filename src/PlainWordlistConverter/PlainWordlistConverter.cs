@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Xsl;
+using SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
@@ -37,7 +38,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		private IGafawsData m_gd;
+		private readonly IGafawsData m_gd;
 
 		/// <summary>
 		/// Constructor.
@@ -199,7 +200,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		/// </summary>
 		public string Name
 		{
-			get { return "Wordlist converter"; }
+			get { return Resources.kName; }
 		}
 
 		/// <summary>
@@ -209,13 +210,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		{
 			get
 			{
-				return "Process a wordlist file where each item is on its own line. The list must follow this pattern:"
-				+ Environment.NewLine + Environment.NewLine
-				+ "p1-p2-<stem>-s1-s2"
-				+ Environment.NewLine + Environment.NewLine
-				+ "A hyphen (-) follows each prefix and precedes each suffix."
-				+ Environment.NewLine + Environment.NewLine
-				+ "Affixes are optional, but the stem/root is not. The content between the stem markers (< and >) is up to the user."; }
+				return string.Format(Resources.kDescription, Environment.NewLine); }
 		}
 
 		/// <summary>

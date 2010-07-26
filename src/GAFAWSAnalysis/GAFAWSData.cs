@@ -9,7 +9,6 @@
 // <remarks>
 // Implementation of the main GAFAWSData class, and some of its supporting classes.
 // </remarks>
-using System;
 using System.ComponentModel;
 using System.IO;
 using System.Collections.Generic;

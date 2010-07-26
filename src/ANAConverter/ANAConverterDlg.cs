@@ -13,6 +13,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using SIL.WordWorks.GAFAWS.ANAConverter.Properties;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {

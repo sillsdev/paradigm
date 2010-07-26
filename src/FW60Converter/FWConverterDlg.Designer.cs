@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
-	partial class FWConverterDlg
+	partial class FwConverterDlg
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -120,7 +120,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "FWConverterDlg";
+			this.Name = "FwConverterDlg";
 			this.Text = "FieldWorks Converter";
 			this.ResumeLayout(false);
 			this.PerformLayout();

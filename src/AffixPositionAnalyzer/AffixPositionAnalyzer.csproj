@@ -83,7 +83,7 @@
 	<Compile Include="AffixPositionAnalyzer.Designer.cs">
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
 	</Compile>
-	<Compile Include="AppResources.Designer.cs">
+	<Compile Include="Properties\AppResources.Designer.cs">
 	  <AutoGen>True</AutoGen>
 	  <DesignTime>True</DesignTime>
 	  <DependentUpon>AppResources.resx</DependentUpon>
@@ -95,7 +95,7 @@
 	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
-	<EmbeddedResource Include="AppResources.resx">
+	<EmbeddedResource Include="Properties\AppResources.resx">
 	  <Generator>ResXFileCodeGenerator</Generator>
 	  <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
 	  <SubType>Designer</SubType>
