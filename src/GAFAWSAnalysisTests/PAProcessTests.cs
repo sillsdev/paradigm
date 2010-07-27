@@ -2,7 +2,7 @@
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
 //
-// File: PAProcessTests.cs
+// File: PaProcessTests.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
 //
@@ -21,7 +21,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 	/// Test class for PositionAnalyzer class.
 	/// </summary>
 	[TestFixture]
-	public class PAProcessTests
+	public class PaProcessTests
 	{
 		/// <summary>
 		/// Check the Process method on the TestA xml file.

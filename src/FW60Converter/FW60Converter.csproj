@@ -48,12 +48,12 @@
 	  <SubType>Form</SubType>
 	</Compile>
 	<Compile Include="CompEnum.cs" />
-	<Compile Include="FW60Converter.cs" />
-	<Compile Include="FWConverterDlg.cs">
+	<Compile Include="Fw60Converter.cs" />
+	<Compile Include="FwConverterDlg.cs">
 	  <SubType>Form</SubType>
 	</Compile>
-	<Compile Include="FWConverterDlg.Designer.cs">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
+	<Compile Include="FwConverterDlg.Designer.cs">
+	  <DependentUpon>FwConverterDlg.cs</DependentUpon>
 	</Compile>
 	<Compile Include="NetworkSelect.cs">
 	  <SubType>UserControl</SubType>
@@ -67,9 +67,9 @@
 	<Compile Include="Shares.cs" />
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
+	  <Name>GafawsAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +77,8 @@
 	  <DependentUpon>AskPassword.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
-	<EmbeddedResource Include="FWConverterDlg.resx">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
+	<EmbeddedResource Include="FwConverterDlg.resx">
+	  <DependentUpon>FwConverterDlg.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
 	<EmbeddedResource Include="NetworkSelect.resx">

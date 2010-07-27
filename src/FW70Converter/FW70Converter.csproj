@@ -44,9 +44,9 @@
 	<Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
+	  <Name>GafawsAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

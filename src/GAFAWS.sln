@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysis", "GAFAWSAnalysis\GAFAWSAnalysis.csproj", "{99ADD953-FE50-4A29-8BA0-145FE3425855}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GafawsAnalysis", "GAFAWSAnalysis\GafawsAnalysis.csproj", "{99ADD953-FE50-4A29-8BA0-145FE3425855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysisTests", "GAFAWSAnalysisTests\GAFAWSAnalysisTests.csproj", "{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GafawsAnalysisTests", "GAFAWSAnalysisTests\GafawsAnalysisTests.csproj", "{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffixPositionAnalyzer", "AffixPositionAnalyzer\AffixPositionAnalyzer.csproj", "{DE8540D7-7DB6-478F-A599-A0229683D9F7}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GAFAWSInstaller", "Installer\Installer.vdproj", "{C9DEFF69-D9C1-44A8-BBA7-C676CEC26FF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ANAConverter", "ANAConverter\ANAConverter.csproj", "{85EDD98B-67B0-46A0-80EE-645FC5914CE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnaConverter", "ANAConverter\AnaConverter.csproj", "{85EDD98B-67B0-46A0-80EE-645FC5914CE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FW60Converter", "FW60Converter\FW60Converter.csproj", "{83DB6628-AA11-430B-A213-73F40A301536}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fw60Converter", "FW60Converter\Fw60Converter.csproj", "{83DB6628-AA11-430B-A213-73F40A301536}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainWordlistConverter", "PlainWordlistConverter\PlainWordlistConverter.csproj", "{206F2257-7C03-4FD8-8585-94DEB647EA66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FW70Converter", "FW70Converter\FW70Converter.csproj", "{150E0D64-58C6-4D4A-81D3-F227382EA1B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fw70Converter", "FW70Converter\Fw70Converter.csproj", "{150E0D64-58C6-4D4A-81D3-F227382EA1B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -119,7 +119,7 @@
 	<Compile Include="DataLayerBase.cs" />
 	<Compile Include="DataLayerSerializationTests.cs" />
 	<Compile Include="OtherTests.cs" />
-	<Compile Include="PAProcessTests.cs" />
+	<Compile Include="PaProcessTests.cs" />
   </ItemGroup>
   <ItemGroup>
 	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -149,9 +149,9 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
+	  <Name>GafawsAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>

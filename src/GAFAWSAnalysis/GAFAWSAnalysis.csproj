@@ -11,7 +11,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<AssemblyKeyContainerName>
 	</AssemblyKeyContainerName>
-	<AssemblyName>GAFAWSAnalysis</AssemblyName>
+	<AssemblyName>GafawsAnalysis</AssemblyName>
 	<AssemblyOriginatorKeyFile>
 	</AssemblyOriginatorKeyFile>
 	<DefaultClientScript>JScript</DefaultClientScript>
@@ -102,7 +102,7 @@
 	<Compile Include="ClassAssigner.cs">
 	  <SubType>Code</SubType>
 	</Compile>
-	<Compile Include="GAFAWSData.cs" />
+	<Compile Include="GafawsData.cs" />
 	<Compile Include="IGafawsConverter.cs" />
 	<Compile Include="MorphemeLevel.cs" />
 	<Compile Include="PositionAnalyzer.cs">

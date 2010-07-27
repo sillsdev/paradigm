@@ -35,7 +35,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			m_gd = gd;
 		}
 
-		#region IGAFAWSConverter implementation
+		#region IGafawsConverter implementation
 
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
@@ -59,6 +59,39 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			// Reset m_gd, in case it gets called for another file.
 			m_gd.Reset();
 		}
+
+		/// <summary>
+		/// Gets the name of the converter that is suitable for display in a list
+		/// of other converts.
+		/// </summary>
+		public string Name
+		{
+			get { return Resources.kName; }
+		}
+
+		/// <summary>
+		/// Gets a description of the converter that is suitable for display.
+		/// </summary>
+		public string Description
+		{
+			get
+			{
+				return string.Format(Resources.kDescription, Environment.NewLine);
+			}
+		}
+
+		/// <summary>
+		/// Gets the pathname of the XSL file used to turn the XML into HTML.
+		/// </summary>
+		public string XSLPathname
+		{
+			get
+			{
+				return OutputPathServices.GetXslPathname("AffixPositionChart_FW.xsl");
+			}
+		}
+
+		#endregion IGafawsConverter implementation
 
 		private void ReadAndDataConvert(FwConverterDlg dlg, string catInfo)
 		{
@@ -128,7 +161,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			}
 		}
 
-		private static List<FwWordform> ReadWordforms(SqlCommand cmd)
+		private static IEnumerable<FwWordform> ReadWordforms(SqlCommand cmd)
 		{
 			var wordforms = new List<FwWordform>();
 			using (var reader = cmd.ExecuteReader())
@@ -226,39 +259,6 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			}
 			return htmlOutput;
 		}
-
-		/// <summary>
-		/// Gets the name of the converter that is suitable for display in a list
-		/// of other converts.
-		/// </summary>
-		public string Name
-		{
-			get { return Resources.kName; }
-		}
-
-		/// <summary>
-		/// Gets a description of the converter that is suitable for display.
-		/// </summary>
-		public string Description
-		{
-			get
-			{
-				return string.Format(Resources.kDescription, Environment.NewLine);
-			}
-		}
-
-		/// <summary>
-		/// Gets the pathname of the XSL file used to turn the XML into HTML.
-		/// </summary>
-		public string XSLPathname
-		{
-			get
-			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_FW.xsl");
-			}
-		}
-
-		#endregion IGAFAWSConverter implementation
 
 		private static string EatIds(string input)
 		{
