@@ -70,7 +70,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Process a wordlist file where each item is on its own line. The list must follow this pattern:{0}{0}p1-p2-&lt;stem&gt;-s1-s2{0}{0}A hyphen (-) follows each prefix and precedes each suffix.{0}{0}Affixes are optional, but the stem/root is not. The content between the stem markers (&lt; and &gt;) is up to the user..
+		///   Looks up a localized string similar to Process a wordlist file where each item is on its own line. The list must follow this pattern:{0}{0}p1-p2-&lt;stem&gt;-s1-s2{0}{0}A hyphen (-) follows each prefix and precedes each suffix.{0}{0}Affixes are optional, but the stem/root is not. The content between the stem markers (&lt; and &gt;) is up to the user.{0}{0}An optional comment may be included after the main data. Comments start with a semi-colon (;) and continue to the end of the line..
 		/// </summary>
 		internal static string kDescription {
 			get {

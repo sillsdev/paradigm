@@ -30,22 +30,6 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 	/// </summary>
 	public class PlainWordlistConverter : IGafawsConverter
 	{
-		private readonly IPositionAnalyzer m_analyzer;
-
-		/// <summary>
-		/// An instance of GAFAWSData.
-		/// </summary>
-		private readonly IGafawsData m_gd;
-
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		public PlainWordlistConverter(IPositionAnalyzer analyzer, IGafawsData gd)
-		{
-			m_analyzer = analyzer;
-			m_gd = gd;
-		}
-
 		#region IGAFAWSConverter implementation
 
 		/// <summary>
@@ -74,6 +58,9 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 					var dictSuffixes = new Dictionary<string, bool>();
 					while (line != null)
 					{
+						var parts = line.Split(';');
+						if (parts.Length > 1)
+							line = parts[0];
 						line = line.Trim();
 						if (line != String.Empty)
 						{
@@ -84,7 +71,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							if (closeAngleLocation < 0)
 								continue;
 							var wrdRec = new WordRecord();
-							m_gd.WordRecords.Add(wrdRec);
+							gafawsData.WordRecords.Add(wrdRec);
 
 							// Handle prefixes, if any.
 							string prefixes = null;
@@ -102,7 +89,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 									wrdRec.Prefixes.Add(afx);
 									if (dictPrefixes.ContainsKey(prefix)) continue;
 
-									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
+									gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
 									dictPrefixes.Add(prefix, true);
 								}
 							}
@@ -116,7 +103,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							wrdRec.Stem = stem;
 							if (!dictStems.ContainsKey(sStem))
 							{
-								m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
+								gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
 								dictStems.Add(sStem, true);
 							}
 
@@ -136,7 +123,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 									wrdRec.Suffixes.Add(afx);
 									if (dictSuffixes.ContainsKey(suffix)) continue;
 
-									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
+									gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
 									dictSuffixes.Add(suffix, true);
 								}
 							}
