@@ -1,0 +1,15 @@
+p&-<stem>		; & represents a high back unrounded vocoid
+p&-ka2-<stem>
+ka1-p&-<stem>		; ka1 and ka2 are homophones
+ka1-p&-ka2-<stem>
+m&-<stem>
+m&-ka2-<stem>
+ni-<stem>
+ka1-ni-<stem>
+ka1-ka2-ni-<stem>
+m&-ni-<stem>
+m&-ka2-ni-<stem>
+<stem>
+ka2-<stem>
+ke-<stem>
+ke-ni-<stem>
