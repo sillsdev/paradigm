@@ -17,10 +17,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 				});
 			For<IPositionAnalyzer>()
 				.Singleton()
-				.Use(x => new PositionAnalyzer());
+				.Use<PositionAnalyzer>();  // x => new PositionAnalyzer()
 			For<IGafawsData>()
-				.AlwaysUnique()
-				.Use(x => new GafawsData());
+				.Singleton()
+				.Use<GafawsData>(); // x => new GafawsData()
 		}
 	}
 }

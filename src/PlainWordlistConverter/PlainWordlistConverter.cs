@@ -7,13 +7,10 @@
 // Last reviewed:
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Xsl;
 using SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
-using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 {
@@ -54,144 +51,109 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
 		/// </summary>
-		public void Convert()
+		public string Convert(IGafawsData gafawsData)
 		{
-			var openFileDlg = new OpenFileDialog
-								{
-									//InitialDirectory = "c:\\",
-									Filter = String.Format("{0} (*.txt)|*.txt|{1} (*.*)|*.*", Resources.kPlainTexFiles, Resources.kAllFiles),
-									FilterIndex = 2,
-									Multiselect = false
-								};
-
-			if (openFileDlg.ShowDialog() == DialogResult.OK)
+			using (var openFileDlg = new OpenFileDialog())
 			{
+				openFileDlg.Filter = String.Format("{0} (*.txt)|*.txt|{1} (*.*)|*.*", Resources.kPlainTexFiles, Resources.kAllFiles);
+				openFileDlg.FilterIndex = 2;
+				openFileDlg.Multiselect = false;
+				if (openFileDlg.ShowDialog() != DialogResult.OK)
+					return null;
 				var sourcePathname = openFileDlg.FileName;
-				if (File.Exists(sourcePathname))
+				if (!File.Exists(sourcePathname))
+					return null;
+
+				var outputPathname = OutputPathServices.GetOutputPathname(sourcePathname);
+				// Try to convert it.
+				using (var reader = new StreamReader(sourcePathname))
 				{
-					// Try to convert it.
-					using (var reader = new StreamReader(sourcePathname))
+					var line = reader.ReadLine();
+					var dictPrefixes = new Dictionary<string, bool>();
+					var dictStems = new Dictionary<string, bool>();
+					var dictSuffixes = new Dictionary<string, bool>();
+					while (line != null)
 					{
-						var line = reader.ReadLine();
-						var dictPrefixes = new Dictionary<string, bool>();
-						var dictStems = new Dictionary<string, bool>();
-						var dictSuffixes = new Dictionary<string, bool>();
-						while (line != null)
+						line = line.Trim();
+						if (line != String.Empty)
 						{
-							line = line.Trim();
-							if (line != String.Empty)
+							var openAngleLocation = line.IndexOf("<", 0);
+							if (openAngleLocation < 0)
+								continue;
+							var closeAngleLocation = line.IndexOf(">", openAngleLocation + 1);
+							if (closeAngleLocation < 0)
+								continue;
+							var wrdRec = new WordRecord();
+							m_gd.WordRecords.Add(wrdRec);
+
+							// Handle prefixes, if any.
+							string prefixes = null;
+							if (openAngleLocation > 0)
+								prefixes = line.Substring(0, openAngleLocation);
+							if (prefixes != null)
 							{
-								var openAngleLocation = line.IndexOf("<", 0);
-								if (openAngleLocation < 0)
-									continue;
-								var closeAngleLocation = line.IndexOf(">", openAngleLocation + 1);
-								if (closeAngleLocation < 0)
-									continue;
-								var wrdRec = new WordRecord();
-								m_gd.WordRecords.Add(wrdRec);
-
-								// Handle prefixes, if any.
-								string prefixes = null;
-								if (openAngleLocation > 0)
-									prefixes = line.Substring(0, openAngleLocation);
-								if (prefixes != null)
+								if (wrdRec.Prefixes == null)
+									wrdRec.Prefixes = new List<Affix>();
+								foreach (var prefix in prefixes.Split('-'))
 								{
-									if (wrdRec.Prefixes == null)
-										wrdRec.Prefixes = new List<Affix>();
-									foreach (var prefix in prefixes.Split('-'))
-									{
-										if (string.IsNullOrEmpty(prefix)) continue;
+									if (string.IsNullOrEmpty(prefix)) continue;
 
-										var afx = new Affix {MIDREF = prefix};
-										wrdRec.Prefixes.Add(afx);
-										if (dictPrefixes.ContainsKey(prefix)) continue;
+									var afx = new Affix { MIDREF = prefix };
+									wrdRec.Prefixes.Add(afx);
+									if (dictPrefixes.ContainsKey(prefix)) continue;
 
-										m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
-										dictPrefixes.Add(prefix, true);
-									}
-								}
-
-								// Handle stem.
-								// Stem has content, so use it.
-								var sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
-								if (sStem.Length == 0)
-									sStem = "stem";
-								var stem = new Stem {MIDREF = sStem};
-								wrdRec.Stem = stem;
-								if (!dictStems.ContainsKey(sStem))
-								{
-									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
-									dictStems.Add(sStem, true);
-								}
-
-								// Handle suffixes, if any.
-								string suffixes = null;
-								if (line.Length > closeAngleLocation + 2)
-									suffixes = line.Substring(closeAngleLocation + 1);
-								if (suffixes != null)
-								{
-									if (wrdRec.Suffixes == null)
-										wrdRec.Suffixes = new List<Affix>();
-									foreach (var suffix in suffixes.Split('-'))
-									{
-										if (string.IsNullOrEmpty(suffix)) continue;
-
-										var afx = new Affix {MIDREF = suffix};
-										wrdRec.Suffixes.Add(afx);
-										if (dictSuffixes.ContainsKey(suffix)) continue;
-
-										m_gd.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
-										dictSuffixes.Add(suffix, true);
-									}
+									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
+									dictPrefixes.Add(prefix, true);
 								}
 							}
-							line = reader.ReadLine();
-						}
 
-						// Main processing.
-						m_analyzer.Process(m_gd);
+							// Handle stem.
+							// Stem has content, so use it.
+							var sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
+							if (sStem.Length == 0)
+								sStem = "stem";
+							var stem = new Stem { MIDREF = sStem };
+							wrdRec.Stem = stem;
+							if (!dictStems.ContainsKey(sStem))
+							{
+								m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
+								dictStems.Add(sStem, true);
+							}
 
-						// Do any post-analysis processing here, if needed.
-						// End of any optional post-processing.
+							// Handle suffixes, if any.
+							string suffixes = null;
+							if (line.Length > closeAngleLocation + 2)
+								suffixes = line.Substring(closeAngleLocation + 1);
+							if (suffixes != null)
+							{
+								if (wrdRec.Suffixes == null)
+									wrdRec.Suffixes = new List<Affix>();
+								foreach (var suffix in suffixes.Split('-'))
+								{
+									if (string.IsNullOrEmpty(suffix)) continue;
 
-						// Save, so it can be transformed.
-						var outputPathname = OutputPathServices.GetOutputPathname(sourcePathname);
-						m_gd.SaveData(outputPathname);
+									var afx = new Affix { MIDREF = suffix };
+									wrdRec.Suffixes.Add(afx);
+									if (dictSuffixes.ContainsKey(suffix)) continue;
 
-						// Transform.
-						var trans = new XslCompiledTransform();
-						try
-						{
-							trans.Load(XSLPathname);
+									m_gd.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
+									dictSuffixes.Add(suffix, true);
+								}
+							}
 						}
-						catch
-						{
-							MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
-							return;
-						}
-
-						var htmlOutput = Path.GetTempFileName() + ".html";
-						try
-						{
-							trans.Transform(outputPathname, htmlOutput);
-						}
-						catch
-						{
-							MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
-							return;
-						}
-						finally
-						{
-							if (outputPathname != null && File.Exists(outputPathname))
-								File.Delete(outputPathname);
-						}
-						Process.Start(htmlOutput);
-					} // end 'using'
-				}
+						line = reader.ReadLine();
+					}
+				} // end 'using' for StreamReader
+				return outputPathname;
 			}
+		}
 
-			// Reset m_gd, in case it gets called for another file.
-			m_gd.Reset();
+		/// <summary>
+		/// Optional processing after the conversion and analysis has been done.
+		/// </summary>
+		/// <param name="gafawsData"></param>
+		public void PostAnalysisProcessing(IGafawsData gafawsData)
+		{
 		}
 
 		/// <summary>
@@ -216,7 +178,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		/// <summary>
 		/// Gets the pathname of the XSL file used to turn the XML into HTML.
 		/// </summary>
-		public string XSLPathname
+		public string XslPathname
 		{
 			get
 			{

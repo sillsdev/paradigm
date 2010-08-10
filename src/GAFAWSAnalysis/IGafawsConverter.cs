@@ -22,7 +22,23 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
 		/// </summary>
-		void Convert();
+		/// <param name="gafawsData">
+		/// An empty IGafawsData instance,
+		/// which is where the converted data ends up.
+		/// </param>
+		/// <returns>
+		/// The pathname of the converted data.
+		/// </returns>
+		/// <remarks>
+		/// Implementors may call "Save" on <paramref name="gafawsData"/>, or not, as they choose.
+		/// </remarks>
+		string Convert(IGafawsData gafawsData);
+
+		/// <summary>
+		/// Optional processing after the conversion and analysis has been done.
+		/// </summary>
+		/// <param name="gafawsData"></param>
+		void PostAnalysisProcessing(IGafawsData gafawsData);
 
 		/// <summary>
 		/// Gets the name of the converter that is suitable for display in a list
@@ -44,7 +60,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Gets the pathname of the XSL file used to turn the XML into HTML.
 		/// </summary>
-		string XSLPathname
+		string XslPathname
 		{
 			get;
 		}

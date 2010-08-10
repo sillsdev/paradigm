@@ -27,7 +27,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			Application.SetCompatibleTextRenderingDefault(false);
 			var container = new Container();
 			container.Configure(c=> c.AddRegistry(new CoreRegistry()));
-			Application.Run(new AffixPositionAnalyzer(container.GetAllInstances<IGafawsConverter>()));
+			Application.Run(new AffixPositionAnalyzer(container.GetAllInstances<IGafawsConverter>(), container.GetInstance<IPositionAnalyzer>(), container.GetInstance<IGafawsData>()));
 		}
 	}
 }

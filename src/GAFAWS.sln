@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlainWordlistConverter", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fw70Converter", "FW70Converter\Fw70Converter.csproj", "{150E0D64-58C6-4D4A-81D3-F227382EA1B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fw70ConverterTests", "Fw70ConverterTests\Fw70ConverterTests.csproj", "{252A092A-9A01-4E07-AB54-2C3FB9E72D31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{150E0D64-58C6-4D4A-81D3-F227382EA1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{150E0D64-58C6-4D4A-81D3-F227382EA1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{150E0D64-58C6-4D4A-81D3-F227382EA1B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252A092A-9A01-4E07-AB54-2C3FB9E72D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252A092A-9A01-4E07-AB54-2C3FB9E72D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252A092A-9A01-4E07-AB54-2C3FB9E72D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252A092A-9A01-4E07-AB54-2C3FB9E72D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

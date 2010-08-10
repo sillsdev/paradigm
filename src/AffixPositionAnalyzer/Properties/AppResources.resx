@@ -101,4 +101,7 @@
 	<data name="kProblemData">
 		<value xml:space="preserve">There were problems with the original data, and it could not be processed.</value>
 	</data>
+	<data name="kNothingToShow">
+		<value xml:space="preserve">Nothing to show.</value>
+	</data>
 </root>

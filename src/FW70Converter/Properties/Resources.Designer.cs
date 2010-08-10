@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
+namespace SIL.WordWorks.GAFAWS.FW70Converter.Properties {
 	using System;
 
 
@@ -22,14 +22,14 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
 	[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
 	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	internal class AppResources {
+	internal class Resources {
 
 		private static global::System.Resources.ResourceManager resourceMan;
 
 		private static global::System.Globalization.CultureInfo resourceCulture;
 
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-		internal AppResources() {
+		internal Resources() {
 		}
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 		internal static global::System.Resources.ResourceManager ResourceManager {
 			get {
 				if (object.ReferenceEquals(resourceMan, null)) {
-					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties.AppResources", typeof(AppResources).Assembly);
+					global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SIL.WordWorks.GAFAWS.FW70Converter.Properties.Resources", typeof(Resources).Assembly);
 					resourceMan = temp;
 				}
 				return resourceMan;
@@ -61,20 +61,29 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer.Properties {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Nothing to show..
+		///   Looks up a localized string similar to Process data in a FieldWorks (7.0 and newer) xml file.{0}{0}Only user-approved analyses that are the selected part of speech are included in the processing..
 		/// </summary>
-		internal static string kNothingToShow {
+		internal static string kDescription {
 			get {
-				return ResourceManager.GetString("kNothingToShow", resourceCulture);
+				return ResourceManager.GetString("kDescription", resourceCulture);
 			}
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to There were problems with the original data, and it could not be processed..
+		///   Looks up a localized string similar to FieldWorks 7.0 file.
 		/// </summary>
-		internal static string kProblemData {
+		internal static string kFw7XmlFiles {
 			get {
-				return ResourceManager.GetString("kProblemData", resourceCulture);
+				return ResourceManager.GetString("kFw7XmlFiles", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to FieldWorks 7.0 xml file converter.
+		/// </summary>
+		internal static string kName {
+			get {
+				return ResourceManager.GetString("kName", resourceCulture);
 			}
 		}
 	}

@@ -9,9 +9,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Xsl;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
-using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.ANAConverter
 {
@@ -20,20 +18,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// </summary>
 	public class AnaConverter : IGafawsConverter
 	{
-		private readonly IPositionAnalyzer m_analyzer;
-
-		/// <summary>
-		/// An instance of GAFAWSData.
-		/// </summary>
-		private readonly IGafawsData m_gd;
-
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public AnaConverter(IPositionAnalyzer analyzer, IGafawsData gd)
+		public AnaConverter()
 		{
-			m_analyzer = analyzer;
-			m_gd = gd;
 			AnaObject.Reset();
 		}
 
@@ -42,124 +31,95 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
 		/// </summary>
-		public void Convert()
+		public string Convert(IGafawsData gafawsData)
 		{
 			using (var dlg = new AnaConverterDlg())
 			{
 				dlg.ShowDialog();
-				if (dlg.DialogResult == DialogResult.OK)
+				if (dlg.DialogResult != DialogResult.OK)
+					return null;
+
+				string outputPathname;
+				string parametersPathname = null;
+				try
 				{
-					string outputPathname = null;
-					string parametersPathname = null;
-					try
+					parametersPathname = dlg.ParametersPathname;
+					var anaPathname = dlg.AnaPathname;
+					using (var reader = new StreamReader(anaPathname)) // Client to catch any exception.
 					{
-						parametersPathname = dlg.ParametersPathname;
-						var anaPathname = dlg.AnaPathname;
-						using (var reader = new StreamReader(anaPathname)) // Client to catch any exception.
+						AnaRecord record = null;
+						var line = reader.ReadLine();
+						AnaRecord.SetParameters(parametersPathname);
+						AnaObject.DataLayer = gafawsData;
+
+						// Sanity checks.
+						if (line == null)
+							ThrowFileLoadException(reader, anaPathname, "ANA File is empty");
+
+						while (!line.StartsWith("\\a"))
 						{
-							AnaRecord record = null;
-							var line = reader.ReadLine();
-							AnaRecord.SetParameters(parametersPathname);
-							AnaObject.DataLayer = m_gd;
+							line = line.Trim();
+							if ((line != "") || ((line = reader.ReadLine()) == null))
+								ThrowFileLoadException(reader, anaPathname, "Does not appear to be an ANA file.");
+						}
 
-							// Sanity checks.
-							if (line == null)
-								ThrowFileLoadException(reader, anaPathname, "ANA File is empty");
-
-							while (!line.StartsWith("\\a"))
+						while (line != null)
+						{
+							switch (line.Split()[0])
 							{
-								line = line.Trim();
-								if ((line != "") || ((line = reader.ReadLine()) == null))
-									ThrowFileLoadException(reader, anaPathname, "Does not appear to be an ANA file.");
-							}
-
-							while (line != null)
-							{
-								switch (line.Split()[0])
-								{
-									case "\\a":
-										{
-											if (record != null)
-												record.Convert();
-											record = new AnaRecord(line.Substring(3));
-											break;
-										}
-									case "\\w":
-										{
-											record.ProcessWLine(line.Substring(3));
-											break;
-										}
-									case "\\u":
-										{
-											record.ProcessOtherLine(LineType.UnderlyingForm, line.Substring(3));
-											break;
-										}
-									case "\\d":
-										{
-											record.ProcessOtherLine(LineType.Decomposition, line.Substring(3));
-											break;
-										}
-									case "\\cat":
-										{
-											record.ProcessOtherLine(LineType.Category, line.Substring(5));
-											break;
-										}
-									default:
-										// Eat this line.
+								case "\\a":
+									{
+										if (record != null)
+											record.Convert();
+										record = new AnaRecord(line.Substring(3));
 										break;
-								}
-								line = reader.ReadLine();
+									}
+								case "\\w":
+									{
+										record.ProcessWLine(line.Substring(3));
+										break;
+									}
+								case "\\u":
+									{
+										record.ProcessOtherLine(LineType.UnderlyingForm, line.Substring(3));
+										break;
+									}
+								case "\\d":
+									{
+										record.ProcessOtherLine(LineType.Decomposition, line.Substring(3));
+										break;
+									}
+								case "\\cat":
+									{
+										record.ProcessOtherLine(LineType.Category, line.Substring(5));
+										break;
+									}
+								default:
+									// Eat this line.
+									break;
 							}
-							Debug.Assert(record != null);
-							record.Convert(); // Process last record.
+							line = reader.ReadLine();
 						}
-
-						// Main processing.
-						m_analyzer.Process(m_gd);
-
-						// Do any post-analysis processing here, if needed.
-						// End of any optional post-processing.
-
-						// Save, so it can be transformed.
-						outputPathname = OutputPathServices.GetOutputPathname(anaPathname);
-						m_gd.SaveData(outputPathname);
-
-						// Transform.
-						var trans = new XslCompiledTransform();
-						try
-						{
-							trans.Load(XSLPathname);
-						}
-						catch
-						{
-							MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
-							return;
-						}
-
-						var htmlOutput = Path.GetTempFileName() + ".html";
-						try
-						{
-							trans.Transform(outputPathname, htmlOutput);
-						}
-						catch
-						{
-							MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
-							return;
-						}
-						Process.Start(htmlOutput);
+						Debug.Assert(record != null);
+						record.Convert(); // Process last record.
 					}
-					finally
-					{
-						if (parametersPathname != null && File.Exists(parametersPathname))
-							File.Delete(parametersPathname);
-						if (outputPathname != null && File.Exists(outputPathname))
-							File.Delete(outputPathname);
-					}
+					outputPathname = OutputPathServices.GetOutputPathname(anaPathname);
 				}
+				finally
+				{
+					if (parametersPathname != null && File.Exists(parametersPathname))
+						File.Delete(parametersPathname);
+				}
+				return outputPathname;
 			}
+		}
 
-			// Reset m_gd, in case it gets called for another file.
-			m_gd.Reset();
+		/// <summary>
+		/// Optional processing after the conversion and analysis has been done.
+		/// </summary>
+		/// <param name="gafawsData"></param>
+		public void PostAnalysisProcessing(IGafawsData gafawsData)
+		{
 		}
 
 		/// <summary>
@@ -187,7 +147,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Gets the pathname of the XSL file used to turn the XML into HTML.
 		/// </summary>
-		public string XSLPathname
+		public string XslPathname
 		{
 			get
 			{

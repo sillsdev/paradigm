@@ -9,55 +9,123 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Xsl;
 using SIL.WordWorks.GAFAWS.FW60Converter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
-using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
 namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
 	public class Fw60Converter : IGafawsConverter
 	{
-		private readonly IPositionAnalyzer m_analyzer;
-
-		/// <summary>
-		/// An instance of GAFAWSData.
-		/// </summary>
-		private readonly IGafawsData m_gd;
-
-		public Fw60Converter(IPositionAnalyzer analyzer, IGafawsData gd)
-		{
-			m_analyzer = analyzer;
-			m_gd = gd;
-		}
-
 		#region IGafawsConverter implementation
 
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
 		/// </summary>
-		public void Convert()
+		public string Convert(IGafawsData gafawsData)
 		{
 			using (var dlg = new FwConverterDlg())
 			{
 				dlg.ShowDialog();
-				if (dlg.DialogResult == DialogResult.OK)
+				if (dlg.DialogResult != DialogResult.OK || dlg.CatInfo == null)
+					return null;
+
+				SqlConnection con = null;
+				try
 				{
-					var catInfo = dlg.CatInfo;
-					if (catInfo != null)
+					// 0 is the category id.
+					// 1 is the entire connection string.
+					var parts = dlg.CatInfo.Split('^');
+					con = new SqlConnection(parts[1]);
+					con.Open();
+					using (var cmd = con.CreateCommand())
 					{
-						ReadAndDataConvert(dlg, catInfo);
-						ProcessAndShowResults();
+						cmd.CommandType = CommandType.Text;
+						string catIdQry;
+						if (dlg.IncludeSubcategories)
+						{
+							catIdQry = string.Format("IN ({0}", parts[0]);
+							cmd.CommandText = "SELECT Id\n" +
+											  string.Format("FROM fnGetOwnedIds({0}, 7004, 7004)", parts[0]);
+							using (var reader = cmd.ExecuteReader())
+							{
+								while (reader.Read())
+									catIdQry += string.Format(", {0}", reader.GetInt32(0));
+							}
+							catIdQry += ")";
+						}
+						else
+						{
+							catIdQry = string.Format("= {0}", parts[0]);
+						}
+						cmd.CommandText =
+							"SELECT anal.Owner$ AS Wf_Id,\n" +
+							"	anal.Id AS Anal_Id,\n" +
+							"	mb.OwnOrd$ AS Mb_Ord,\n" +
+							"	Mb.Sense AS Mb_Sense,\n" +
+							"	mb.Morph AS Mb_Morph,\n" +
+							"	mb.Msa AS Mb_Msa, msa.Class$ AS Msa_Class\n" +
+							"FROM WfiAnalysis_ anal\n" +
+							"--) Only use those that are human approved\n" +
+							"JOIN CmAgentEvaluation eval ON eval.Target = anal.Id\n" +
+							"JOIN CmAgent agt ON agt.Human = 1\n" +
+							"JOIN CmAgent_Evaluations j_agt_eval ON agt.Id = j_agt_eval.Src AND j_agt_eval.Dst = eval.Id\n" +
+							"--) Get morph bundles\n" +
+							"JOIN WfiMorphBundle_ mb ON mb.Owner$ = anal.Id\n" +
+							"--) Get MSA class\n" +
+							"LEFT OUTER JOIN MoMorphSynAnalysis_ msa ON mb.msa = msa.Id\n" +
+							String.Format("WHERE anal.Category {0} AND eval.Accepted = 1\n", catIdQry) +
+							"ORDER BY anal.Owner$, anal.Id, mb.OwnOrd$";
+						var wordforms = ReadWordforms(cmd);
+						// Convert all of the wordforms.
+						var prefixes = new Dictionary<string, FwMsa>();
+						var stems = new Dictionary<string, List<FwMsa>>();
+						var suffixes = new Dictionary<string, FwMsa>();
+						foreach (var wf in wordforms)
+							wf.Convert(cmd, gafawsData, prefixes, stems, suffixes);
 					}
 				}
+				catch
+				{
+					// Eat exceptions.
+				}
+				finally
+				{
+					if (con != null)
+						con.Close();
+				}
 			}
+			return Path.GetTempFileName() + ".xml";
+		}
 
-			// Reset m_gd, in case it gets called for another file.
-			m_gd.Reset();
+		/// <summary>
+		/// Optional processing after the conversion and analysis has been done.
+		/// </summary>
+		/// <param name="gafawsData"></param>
+		public void PostAnalysisProcessing(IGafawsData gafawsData)
+		{
+			// Strip out all the _#### here.
+			foreach (var wr in gafawsData.WordRecords)
+			{
+				if (wr.Prefixes != null)
+				{
+					foreach (var afx in wr.Prefixes)
+						afx.MIDREF = EatIds(afx.MIDREF);
+				}
+
+				wr.Stem.MIDREF = EatIds(wr.Stem.MIDREF);
+
+				if (wr.Suffixes == null) continue;
+
+				foreach (var afx in wr.Suffixes)
+					afx.MIDREF = EatIds(afx.MIDREF);
+			}
+			foreach (var morph in gafawsData.Morphemes)
+			{
+				morph.MID = EatIds(morph.MID);
+			}
 		}
 
 		/// <summary>
@@ -83,83 +151,15 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		/// <summary>
 		/// Gets the pathname of the XSL file used to turn the XML into HTML.
 		/// </summary>
-		public string XSLPathname
+		public string XslPathname
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_FW.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart_FW6.0.xsl");
 			}
 		}
 
 		#endregion IGafawsConverter implementation
-
-		private void ReadAndDataConvert(FwConverterDlg dlg, string catInfo)
-		{
-			SqlConnection con = null;
-			try
-			{
-				// 0 is the category id.
-				// 1 is the entire connection string.
-				var parts = catInfo.Split('^');
-				con = new SqlConnection(parts[1]);
-				con.Open();
-				using (var cmd = con.CreateCommand())
-				{
-					cmd.CommandType = CommandType.Text;
-					string catIdQry;
-					if (dlg.IncludeSubcategories)
-					{
-						catIdQry = string.Format("IN ({0}", parts[0]);
-						cmd.CommandText = "SELECT Id\n" +
-										  string.Format("FROM fnGetOwnedIds({0}, 7004, 7004)", parts[0]);
-						using (var reader = cmd.ExecuteReader())
-						{
-							while (reader.Read())
-								catIdQry += string.Format(", {0}", reader.GetInt32(0));
-						}
-						catIdQry += ")";
-					}
-					else
-					{
-						catIdQry = string.Format("= {0}", parts[0]);
-					}
-					cmd.CommandText =
-						"SELECT anal.Owner$ AS Wf_Id,\n" +
-						"	anal.Id AS Anal_Id,\n" +
-						"	mb.OwnOrd$ AS Mb_Ord,\n" +
-						"	Mb.Sense AS Mb_Sense,\n" +
-						"	mb.Morph AS Mb_Morph,\n" +
-						"	mb.Msa AS Mb_Msa, msa.Class$ AS Msa_Class\n" +
-						"FROM WfiAnalysis_ anal\n" +
-						"--) Only use those that are human approved\n" +
-						"JOIN CmAgentEvaluation eval ON eval.Target = anal.Id\n" +
-						"JOIN CmAgent agt ON agt.Human = 1\n" +
-						"JOIN CmAgent_Evaluations j_agt_eval ON agt.Id = j_agt_eval.Src AND j_agt_eval.Dst = eval.Id\n" +
-						"--) Get morph bundles\n" +
-						"JOIN WfiMorphBundle_ mb ON mb.Owner$ = anal.Id\n" +
-						"--) Get MSA class\n" +
-						"LEFT OUTER JOIN MoMorphSynAnalysis_ msa ON mb.msa = msa.Id\n" +
-						String.Format("WHERE anal.Category {0} AND eval.Accepted = 1\n", catIdQry) +
-						"ORDER BY anal.Owner$, anal.Id, mb.OwnOrd$";
-					var wordforms = ReadWordforms(cmd);
-					// Convert all of the wordforms.
-					var prefixes = new Dictionary<string, FwMsa>();
-					var stems = new Dictionary<string, List<FwMsa>>();
-					var suffixes = new Dictionary<string, FwMsa>();
-					foreach (var wf in wordforms)
-						wf.Convert(cmd, m_gd, prefixes, stems, suffixes);
-				}
-			}
-			catch
-			{
-				// Eat exceptions.
-			}
-			finally
-			{
-				if (con != null)
-					con.Close();
-			}
-		}
 
 		private static IEnumerable<FwWordform> ReadWordforms(SqlCommand cmd)
 		{
@@ -185,79 +185,6 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 				}
 			}
 			return wordforms;
-		}
-
-		private void ProcessAndShowResults()
-		{
-			string outputPathname = null;
-			try
-			{
-				// Main processing.
-				m_analyzer.Process(m_gd);
-
-				// Strip out all the _#### here.
-				foreach (var wr in m_gd.WordRecords)
-				{
-					if (wr.Prefixes != null)
-					{
-						foreach (var afx in wr.Prefixes)
-							afx.MIDREF = EatIds(afx.MIDREF);
-					}
-
-					wr.Stem.MIDREF = EatIds(wr.Stem.MIDREF);
-
-					if (wr.Suffixes == null) continue;
-
-					foreach (var afx in wr.Suffixes)
-						afx.MIDREF = EatIds(afx.MIDREF);
-				}
-				foreach (var morph in m_gd.Morphemes)
-				{
-					morph.MID = EatIds(morph.MID);
-				}
-
-				// Save, so it can be transformed.
-				outputPathname = Path.GetTempFileName() + ".xml"; ;
-				m_gd.SaveData(outputPathname);
-
-				var htmlOutput = DoTransform(outputPathname);
-				Process.Start(htmlOutput);
-			}
-			catch
-			{
-				// Eat exceptions.
-			}
-			finally
-			{
-				if (outputPathname != null && File.Exists(outputPathname))
-					File.Delete(outputPathname);
-			}
-		}
-
-		private string DoTransform(string outputPathname)
-		{
-			var htmlOutput = Path.GetTempFileName() + ".html";
-			var trans = new XslCompiledTransform();
-			try
-			{
-				trans.Load(XSLPathname);
-			}
-			catch
-			{
-				MessageBox.Show(PublicResources.kCouldNotLoadFile, PublicResources.kInformation);
-				return htmlOutput;
-			}
-
-			try
-			{
-				trans.Transform(outputPathname, htmlOutput);
-			}
-			catch
-			{
-				MessageBox.Show(PublicResources.kCouldNotTransform, PublicResources.kInformation);
-				return htmlOutput;
-			}
-			return htmlOutput;
 		}
 
 		private static string EatIds(string input)
