@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<languageproject version="7000020">
+<AdditionalFields />
+<rt guid="9719a466-2240-4dea-9722-9fe0746a30a6" class="LangProject">
+<PartsOfSpeech>
+<objsur guid="d72a1748-be3b-4164-9858-bc99de37e434" t="o" />
+</PartsOfSpeech>
+<AnalyzingAgents>
+<objsur guid="9303883a-ad5c-4ccf-97a5-4add391f8dcb" t="o" />
+<objsur guid="1257a971-fcef-4f06-a5e2-c289de5aaf72" t="o" />
+<objsur guid="67e9b8bf-c312-458e-89c3-6e9326e48aa0" t="o" />
+<objsur guid="5093d7d7-4f18-4aad-8c86-88389476df15" t="o" />
+</AnalyzingAgents>
+</rt>
+<rt class="CmPossibilityList" guid="D72A1748-BE3B-4164-9858-BC99DE37E434" ownerguid="9719A466-2240-4DEA-9722-9FE0746A30A6">
+<Possibilities>
+<objsur t="o" guid="BEB1436C-1E98-494D-BB48-7B129B2B4653" />
+<objsur t="o" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Possibilities>
+</rt>
+<rt class="PartOfSpeech" guid="BEB1436C-1E98-494D-BB48-7B129B2B4653" ownerguid="D72A1748-BE3B-4164-9858-BC99DE37E434">
+<Name>
+<AUni ws="en">unused</AUni>
+</Name>
+</rt>
+<rt class="PartOfSpeech" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" ownerguid="D72A1748-BE3B-4164-9858-BC99DE37E434">
+<Name>
+<AUni ws="en">twoSubCats</AUni>
+</Name>
+<SubPossibilities>
+<objsur t="o" guid="A3DE5DA4-B1B0-4E75-B532-D688530D669F" />
+<objsur t="o" guid="CA953940-2A74-40BF-BCDD-89A521EFCED5" />
+</SubPossibilities>
+</rt>
+<rt class="PartOfSpeech" guid="A3DE5DA4-B1B0-4E75-B532-D688530D669F" ownerguid="4A8BEA72-1620-43A1-8883-92DB3492C342">
+<Name>
+<AUni ws="en">subcatOne</AUni>
+</Name>
+</rt>
+<rt class="PartOfSpeech" guid="CA953940-2A74-40BF-BCDD-89A521EFCED5" ownerguid="4A8BEA72-1620-43A1-8883-92DB3492C342">
+<Name>
+<AUni ws="en">subcatTwo</AUni>
+</Name>
+</rt>
+
+<rt class="CmAgent" guid="9303883A-AD5C-4CCF-97A5-4ADD391F8DCB" ownerguid="9719A466-2240-4DEA-9722-9FE0746A30A6">
+<Human val="true" />
+<Name>
+<AUni ws="en">default user</AUni>
+</Name>
+<Approves>
+<objsur t="o" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Approves>
+<Disapproves>
+<objsur t="o" guid="7380b66a-9aaa-44eb-9531-f9281f6cc7f4" />
+</Disapproves>
+</rt>
+<rt class="CmAgentEvaluation" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" ownerguid="9303883a-ad5c-4ccf-97a5-4add391f8dcb" />
+<rt class="CmAgentEvaluation" guid="7380b66a-9aaa-44eb-9531-f9281f6cc7f4" ownerguid="9303883a-ad5c-4ccf-97a5-4add391f8dcb" />
+
+<rt class="CmAgent" guid="1257A971-FCEF-4F06-A5E2-C289DE5AAF72" ownerguid="9719A466-2240-4DEA-9722-9FE0746A30A6">
+<Human val="false" />
+<Version>
+<Uni>Normal</Uni>
+</Version>
+<Name>
+<AUni ws="en">M3Parser</AUni>
+</Name>
+<Approves>
+<objsur t="o" guid="04a78537-990b-4d50-8d9d-9c8002674d2b" />
+</Approves>
+<Disapproves>
+<objsur t="o" guid="ba128f90-e1db-4f7f-811c-b24eb506b1be" />
+</Disapproves>
+</rt>
+<rt class="CmAgentEvaluation" guid="04a78537-990b-4d50-8d9d-9c8002674d2b" ownerguid="1257a971-fcef-4f06-a5e2-c289de5aaf72" />
+<rt class="CmAgentEvaluation" guid="ba128f90-e1db-4f7f-811c-b24eb506b1be" ownerguid="1257a971-fcef-4f06-a5e2-c289de5aaf72" />
+
+<rt class="CmAgent" guid="67E9B8BF-C312-458E-89C3-6E9326E48AA0" ownerguid="9719A466-2240-4DEA-9722-9FE0746A30A6">
+<Human val="false" />
+<Name>
+<AUni ws="en">Computer</AUni>
+</Name>
+<Approves>
+<objsur t="o" guid="b74702fd-44b2-4456-8f69-c1e3ab58679f" />
+</Approves>
+<Disapproves>
+<objsur t="o" guid="ac1caf67-3463-4b7d-a7ea-c9e3e6aadaa3" />
+</Disapproves>
+</rt>
+<rt class="CmAgentEvaluation" guid="b74702fd-44b2-4456-8f69-c1e3ab58679f" ownerguid="67e9b8bf-c312-458e-89c3-6e9326e48aa0" />
+<rt class="CmAgentEvaluation" guid="ac1caf67-3463-4b7d-a7ea-c9e3e6aadaa3" ownerguid="67e9b8bf-c312-458e-89c3-6e9326e48aa0" />
+
+<rt class="CmAgent" guid="5093D7D7-4F18-4AAD-8C86-88389476DF15" ownerguid="9719A466-2240-4DEA-9722-9FE0746A30A6">
+<Human val="false" />
+<Version>
+<Uni>Normal</Uni>
+</Version>
+<Name>
+<AUni ws="en">HCParser</AUni>
+</Name>
+<Approves>
+<objsur t="o" guid="7fb96116-07be-47e6-9aee-a68ce39309fc" />
+</Approves>
+<Disapproves>
+<objsur t="o" guid="b4c93fb5-379b-451b-889b-469fecfb65b9" />
+</Disapproves>
+</rt>
+<rt class="CmAgentEvaluation" guid="7fb96116-07be-47e6-9aee-a68ce39309fc" ownerguid="5093d7d7-4f18-4aad-8c86-88389476df15" />
+<rt class="CmAgentEvaluation" guid="b4c93fb5-379b-451b-889b-469fecfb65b9" ownerguid="5093d7d7-4f18-4aad-8c86-88389476df15" />
+
+<rt class="WfiWordform" guid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Form>
+<AUni ws="x-ezpi">somewordform</AUni>
+</Form>
+<Analyses>
+<objsur t="o" guid="3d9bcbb9-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc3-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc4-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbca-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbd7-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbdd-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbe1-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c5-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c6-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2cd-4a25-11df-9879-0800200c9a66" />
+</Analyses>
+</rt>
+
+<!-- p4-p3-<stem>-s2 : human approved : twoSubCats -->
+<rt class="WfiAnalysis" guid="3d9bcbb9-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9ba4af-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9ba4b0-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9ba4b1-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9ba4b2-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9ba4af-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" /> <!-- p4- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9ba4b0-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9ba4b6-4a25-11df-9879-0800200c9a66" /> <!-- p3- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9ba4b1-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9ba4b2-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9ba4b9-4a25-11df-9879-0800200c9a66" /> <!-- s2- -->
+</Msa>
+</rt>
+
+<!-- p3-p2-<stem>-s1 : human approved : twoSubCats -->
+<rt class="WfiAnalysis" guid="3d9bf2cd-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbba-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbbb-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbbc-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbbd-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbba-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9ba4b6-4a25-11df-9879-0800200c9a66" /> <!-- p3- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbbb-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9ba4bc-4a25-11df-9879-0800200c9a66" /> <!-- p2- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbbc-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbbd-4a25-11df-9879-0800200c9a66" ownerguid="FC5E167A-203B-4A86-BCBA-45E8643ACC0A">
+<Msa>
+<objsur t="r" guid="3d9bcbb6-4a25-11df-9879-0800200c9a66" /> <!-- s1- -->
+</Msa>
+</rt>
+
+<!-- p4-p1-<stem>-s1-s2 : human approved : twoSubCats -->
+<rt class="WfiAnalysis" guid="3d9bcbc3-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbbe-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbbf-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc0-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc1-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc2-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbbe-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc3-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" /> <!-- p4- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbbf-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc3-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" /> <!-- p1- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc0-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc3-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc1-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc3-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb6-4a25-11df-9879-0800200c9a66" /> <!-- s1- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc2-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc3-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4b9-4a25-11df-9879-0800200c9a66" /> <!-- s2- -->
+</Msa>
+</rt>
+
+<!-- p2-p1-<stem>-s2-s3 : human approved : twoSubCats -->
+<rt class="WfiAnalysis" guid="3d9bcbc4-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbc5-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc6-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc7-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc8-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbc9-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc5-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc4-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bc-4a25-11df-9879-0800200c9a66" /> <!-- p2- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc6-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc4-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" /> <!-- p1- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc7-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc4-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc8-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc4-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4b9-4a25-11df-9879-0800200c9a66" /> <!-- s2- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbc9-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbc4-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb3-4a25-11df-9879-0800200c9a66" /> <!-- s3- -->
+</Msa>
+</rt>
+
+<!-- p4-p23-p1-<stem>-s12-s3 -->
+<rt class="WfiAnalysis" guid="3d9bcbca-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbcb-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbcc-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbcd-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbce-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbcf-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbd0-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbcb-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" /> <!-- p4- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbcc-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbd2-4a25-11df-9879-0800200c9a66" /> <!-- p23- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbcd-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" /> <!-- p1- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbce-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbcf-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbd5-4a25-11df-9879-0800200c9a66" /> <!-- -s12 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbd0-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb3-4a25-11df-9879-0800200c9a66" /> <!-- -s3 -->
+</Msa>
+</rt>
+
+<!-- p34-p12-<stem>-s1-s23 -->
+<rt class="WfiAnalysis" guid="3d9bcbd7-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbd8-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbd9-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbda-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbdb-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbdc-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbd8-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd7-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4ce-4a25-11df-9879-0800200c9a66" /> <!-- p34 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbd9-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd7-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4cb-4a25-11df-9879-0800200c9a66" /> <!-- p12 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbda-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd7-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbdb-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd7-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb6-4a25-11df-9879-0800200c9a66" /> <!-- s1 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbdc-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd7-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb0-4a25-11df-9879-0800200c9a66" /> <!-- s23 -->
+</Msa>
+</rt>
+
+<!-- p3-p12-<stem> -->
+<rt class="WfiAnalysis" guid="3d9bcbdd-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbde-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbdf-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbe0-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbde-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbdd-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4b6-4a25-11df-9879-0800200c9a66" /> <!-- p3 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbdf-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbdd-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4cb-4a25-11df-9879-0800200c9a66" /> <!-- p12 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbe0-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbdd-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+
+<!-- p34-p2-<stem> -->
+<rt class="WfiAnalysis" guid="3d9bcbe1-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bcbe2-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bcbe3-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c0-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbe2-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbe1-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4ce-4a25-11df-9879-0800200c9a66" /> <!-- p34 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bcbe3-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbe1-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bc-4a25-11df-9879-0800200c9a66" /> <!-- p2 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c0-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbe1-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+
+<!-- p4-p13-<stem>-s13 -->
+<rt class="WfiAnalysis" guid="3d9bf2c5-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bf2c1-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c2-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c3-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c4-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c1-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c5-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" /> <!-- p4 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c2-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c5-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4c8-4a25-11df-9879-0800200c9a66" /> <!-- p13 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c3-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c5-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c4-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c5-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4d1-4a25-11df-9879-0800200c9a66" /> <!-- s13 -->
+</Msa>
+</rt>
+
+<!-- p24-p1-<stem> -->
+<rt class="WfiAnalysis" guid="3d9bf2c6-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bf2c7-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c8-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2c9-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c7-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c6-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4c5-4a25-11df-9879-0800200c9a66" /> <!-- p24 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c8-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c6-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" /> <!-- p1 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2c9-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2c6-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+
+<!-- p14-<stem> -->
+<rt class="WfiAnalysis" guid="3d9bf2ca-4a25-11df-9879-0800200c9a66" ownerguid="47e0bc0a-2985-4f47-a472-e490e1bae161">
+<Category>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</Category>
+<MorphBundles>
+<objsur t="o" guid="3d9bf2cb-4a25-11df-9879-0800200c9a66" />
+<objsur t="o" guid="3d9bf2cc-4a25-11df-9879-0800200c9a66" />
+</MorphBundles>
+<Evaluations>
+<objsur t="r" guid="d617e675-eb6f-42da-a58f-7bd3f17628de" />
+</Evaluations>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2cb-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2ca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9ba4c2-4a25-11df-9879-0800200c9a66" /> <!-- p14 -->
+</Msa>
+</rt>
+<rt class="WfiMorphBundle" guid="3d9bf2cc-4a25-11df-9879-0800200c9a66" ownerguid="3d9bf2ca-4a25-11df-9879-0800200c9a66">
+<Msa>
+<objsur t="r" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" /> <!-- stem- -->
+</Msa>
+</rt>
+
+<!-- stem entry -->
+<rt class="LexEntry" guid="0875E978-79C5-4F87-95FE-A4235C0711C1" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="68343E9D-4ECC-4163-A1D6-D79666E2BD46" />
+</LexemeForm>
+</rt>
+<rt class="MoStemMsa" guid="3d9bcbb8-4a25-11df-9879-0800200c9a66" ownerguid="0875E978-79C5-4F87-95FE-A4235C0711C1">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoStemAllomorph" guid="68343E9D-4ECC-4163-A1D6-D79666E2BD46" ownerguid="0875E978-79C5-4F87-95FE-A4235C0711C1">
+<Form>
+<AUni ws="x-ezpi">stem</AUni>
+</Form>
+</rt>
+
+<!-- p4 entry -->
+<rt class="LexEntry" guid="3d9ba4b3-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4b4-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="122AFA70-38EA-45E9-B07A-4DB2BD90D80D" ownerguid="3d9ba4b3-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4b4-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4b3-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p4</AUni>
+</Form>
+</rt>
+
+<!-- p3 entry -->
+<rt class="LexEntry" guid="3d9ba4b5-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4b6-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4b7-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4b6-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4b5-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4b7-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4b5-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p3</AUni>
+</Form>
+</rt>
+
+<!-- p2 entry -->
+<rt class="LexEntry" guid="3d9ba4bb-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4bc-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4bd-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4bc-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4bb-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4bd-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4bb-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p2</AUni>
+</Form>
+</rt>
+
+<!-- p1 entry -->
+<rt class="LexEntry" guid="3d9ba4be-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4c0-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4bf-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4be-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4c0-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4be-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p1</AUni>
+</Form>
+</rt>
+
+<!-- p34 entry -->
+<rt class="LexEntry" guid="3d9ba4cd-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4ce-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4cf-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4ce-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4cd-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4cf-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4cd-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p34</AUni>
+</Form>
+</rt>
+
+<!-- p12 entry -->
+<rt class="LexEntry" guid="3d9ba4ca-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4cb-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4cc-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4cb-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4ca-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4cc-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4ca-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p12</AUni>
+</Form>
+</rt>
+
+<!-- p13 entry -->
+<rt class="LexEntry" guid="3d9ba4c7-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4c8-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4c9-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4c8-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c7-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4c9-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c7-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p13</AUni>
+</Form>
+</rt>
+
+<!-- p24 entry -->
+<rt class="LexEntry" guid="3d9ba4c4-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4c5-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4c6-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4c5-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c4-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4c6-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c4-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p24</AUni>
+</Form>
+</rt>
+
+<!-- p23 entry -->
+<rt class="LexEntry" guid="3d9bcbd1-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbd2-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9bcbd3-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9bcbd2-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd1-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9bcbd3-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd1-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p23</AUni>
+</Form>
+</rt>
+
+<!-- p14 entry -->
+<rt class="LexEntry" guid="3d9ba4c1-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4c2-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4c3-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4c2-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c1-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4c3-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4c1-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">p14</AUni>
+</Form>
+</rt>
+
+<!-- s2 entry -->
+<rt class="LexEntry" guid="3d9ba4b8-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4b9-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4ba-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4b9-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4b8-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4ba-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4b8-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s2</AUni>
+</Form>
+</rt>
+
+<!-- s1 entry -->
+<rt class="LexEntry" guid="3d9bcbb5-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbb6-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9bcbb7-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9bcbb6-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbb5-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9bcbb7-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbb5-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s1</AUni>
+</Form>
+</rt>
+
+<!-- s3 entry -->
+<rt class="LexEntry" guid="3d9bcbb2-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbb3-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9bcbb4-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9bcbb3-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbb2-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9bcbb4-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbb2-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s3</AUni>
+</Form>
+</rt>
+
+<!-- s12 entry -->
+<rt class="LexEntry" guid="3d9bcbd4-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbd5-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9bcbd6-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9bcbd5-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd4-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9bcbd6-4a25-11df-9879-0800200c9a66" ownerguid="3d9bcbd4-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s12</AUni>
+</Form>
+</rt>
+
+<!-- s23 entry -->
+<rt class="LexEntry" guid="3d9ba4d3-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9bcbb0-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9bcbb1-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9bcbb0-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4d3-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9bcbb1-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4d3-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s23</AUni>
+</Form>
+</rt>
+
+<!-- s13 entry -->
+<rt class="LexEntry" guid="3d9ba4d0-4a25-11df-9879-0800200c9a66" ownerguid="2D23F428-83A9-44BA-90F1-9E3264B5B982">
+<MorphoSyntaxAnalyses>
+<objsur t="o" guid="3d9ba4d1-4a25-11df-9879-0800200c9a66" />
+</MorphoSyntaxAnalyses>
+<LexemeForm>
+<objsur t="o" guid="3d9ba4d2-4a25-11df-9879-0800200c9a66" />
+</LexemeForm>
+</rt>
+<rt class="MoInflAffMsa" guid="3d9ba4d1-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4d0-4a25-11df-9879-0800200c9a66">
+<PartOfSpeech>
+<objsur t="r" guid="4A8BEA72-1620-43A1-8883-92DB3492C342" />
+</PartOfSpeech>
+</rt>
+<rt class="MoAffixAllomorph" guid="3d9ba4d2-4a25-11df-9879-0800200c9a66" ownerguid="3d9ba4d0-4a25-11df-9879-0800200c9a66">
+<Form>
+<AUni ws="x-ezpi">s13</AUni>
+</Form>
+</rt>
+</languageproject>
