@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Chorus.Utilities;
 using SIL.WordWorks.GAFAWS.FW70Converter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
@@ -17,10 +15,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 	/// </summary>
 	public class Fw70Converter : IGafawsConverter
 	{
-		private static readonly Encoding _utf8 = Encoding.UTF8;
-		private static readonly byte _closeDoubleQuote = _utf8.GetBytes("\"")[0];
-		private static readonly byte _closeSingleQuote = _utf8.GetBytes("'")[0];
-
 		#region Implementation of IGafawsConverter
 
 		/// <summary>
@@ -30,126 +24,50 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		{
 			string outputpathname = null;
 
-			using (var openFileDlg = new OpenFileDialog())
+			List<XElement> wordforms;
+			Dictionary<string, XElement> analyses;
+			Dictionary<string, XElement> morphBundles;
+			Dictionary<string, XElement> msas;
+			Dictionary<string, XElement> entries;
+			Dictionary<string, XElement> forms;
+			HashSet<string> humanApprovedEvalIds;
+			FwPos selectedPos;
+			using (var converterDlg = new Fw70ConverterDlg())
 			{
-				openFileDlg.Filter = String.Format("{0} (*.fwdata)|*.fwdata", Resources.kFw7XmlFiles);
-				openFileDlg.FilterIndex = 2;
-				openFileDlg.Multiselect = false;
-				if (openFileDlg.ShowDialog() != DialogResult.OK) return null;
+				if (converterDlg.ShowDialog() != DialogResult.OK)
+					return outputpathname; // bail out, since nothing was selected.
 
-				// TODO: Switch to Palaso lib, when FastXmlElementSplitter moves there.
-				XElement langProj = null;
-				var lists = new List<XElement>();
-				var cats = new Dictionary<string, XElement>();
-				var wordforms = new List<XElement>();
-				var analyses = new Dictionary<string, XElement>();
-				var morphBundles = new Dictionary<string, XElement>();
-				var msas = new Dictionary<string, XElement>();
-				var entries = new Dictionary<string, XElement>();
-				var forms = new Dictionary<string, XElement>();
-				var humanApprovedEvalIds = new HashSet<string>();
-				using(var splitter = new FastXmlElementSplitter(openFileDlg.FileName))
-				{
-					// We want all PartOfSpeech instances that are owned by the list
-					// that is owned by the LangProj in its "PartsOfSpeech" property.
-					foreach (var element in splitter.GetSecondLevelElementBytes("rt"))
-					{
-						switch (GetClass(element))
-						{
-							default:
-								// Skip it.
-								break;
-							case "LangProject":
-								langProj = XElement.Parse(_utf8.GetString(element));
-								break;
-							case "CmAgent":
-								var agentElement = XElement.Parse(_utf8.GetString(element));
-								var humanElement = agentElement.Element("Human");
-								if (humanElement != null && humanElement.Attribute("val").Value.ToLowerInvariant() == "true")
-									humanApprovedEvalIds.Add(agentElement.Element("Approves").Element("objsur").Attribute("guid").Value.ToLowerInvariant());
-								break;
-							case "CmPossibilityList":
-								lists.Add(XElement.Parse(_utf8.GetString(element)));
-								break;
-							case "WfiWordform":
-								wordforms.Add(XElement.Parse(_utf8.GetString(element)));
-								break;
-							case "PartOfSpeech":
-								AddItem(element, cats);
-								break;
-							case "WfiAnalysis":
-								AddItem(element, analyses);
-								break;
-							case "WfiMorphBundle":
-								AddItem(element, morphBundles);
-								break;
-							case "LexEntry":
-								AddItem(element, entries);
-								break;
-							case "MoStemAllomorph":
-							case "MoAffixProcess":
-							case "MoAffixAllomorph":
-								AddItem(element, forms);
-								break;
-							case "MoUnclassifiedAffixMsa":
-							case "MoDerivAffMsa":
-							case "MoDerivStepMsa":
-							case "MoInflAffMsa":
-							case "MoStemMsa":
-								AddItem(element, msas);
-								break;
-						}
-					}
-				}
-
-				// Only keep relevant cats.
-				var catList = (from list in lists
-							   where list.Attribute("guid").Value.ToLowerInvariant() ==
-									langProj.Element("PartsOfSpeech").Element("objsur").Attribute("guid").Value.ToLowerInvariant()
-							   select list).First();
-				langProj = null;
-				lists.Clear();
-
-				var poses = (from objsur in catList.Element("Possibilities").Elements("objsur")
-							 select cats[objsur.Attribute("guid").Value.ToLowerInvariant()]).Select(posElement => FwPos.Create(posElement, cats)).ToList();
-				cats.Clear();
-
-				// Show cats to user and let them pick one.
-				FwPos selectedPos = null;
-				using (var catDlg = new Fw70PosSelectorDlg())
-				{
-					catDlg.SetupDlg(poses);
-					if (catDlg.ShowDialog() == DialogResult.OK)
-					{
-						selectedPos = catDlg.SelectedPos;
-					}
-					else
-					{
-						return null; // bail out, since nothing was selected.
-					}
-				}
-
-				// Process wordform, et al., data.
-				// Include selectedPos to get filtered list.
-				var wordformsList = new List<FwWordform>(wordforms.Count);
-				wordformsList.AddRange(wordforms.Select(wordform => FwWordform.Create(wordform, analyses, humanApprovedEvalIds, selectedPos.AllIds, morphBundles, msas, entries, forms)));
-				wordforms.Clear();
-				analyses.Clear();
-				humanApprovedEvalIds.Clear();
-				morphBundles.Clear();
-				msas.Clear();
-				entries.Clear();
-				forms.Clear();
-
-				// Convert all of the wordforms.
-				var prefixes = new Dictionary<string, FwMsa>();
-				var stems = new Dictionary<string, List<FwMsa>>();
-				var suffixes = new Dictionary<string, FwMsa>();
-				foreach (var wf in wordformsList)
-					wf.Convert(gafawsData, prefixes, stems, suffixes);
-
-				outputpathname = Path.GetTempFileName() + ".xml";
+				converterDlg.GetReults(out selectedPos,
+					out wordforms,
+					out analyses,
+					out morphBundles,
+					out msas,
+					out entries,
+					out forms,
+					out humanApprovedEvalIds);
 			}
+
+			// Process wordform, et al., data.
+			// Include selectedPos to get filtered list.
+			var wordformsList = new List<FwWordform>(wordforms.Count);
+			wordformsList.AddRange(wordforms.Select(wordform => FwWordform.Create(wordform, analyses, humanApprovedEvalIds, selectedPos.AllIds, morphBundles, msas, entries, forms)));
+			wordforms.Clear();
+			analyses.Clear();
+			humanApprovedEvalIds.Clear();
+			morphBundles.Clear();
+			msas.Clear();
+			entries.Clear();
+			forms.Clear();
+
+			// Convert all of the wordforms.
+			var prefixes = new Dictionary<string, FwMsa>();
+			var stems = new Dictionary<string, List<FwMsa>>();
+			var suffixes = new Dictionary<string, FwMsa>();
+			foreach (var wf in wordformsList)
+				wf.Convert(gafawsData, prefixes, stems, suffixes);
+
+			outputpathname = Path.GetTempFileName() + ".xml";
+
 			return outputpathname;
 		}
 
@@ -214,31 +132,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 		#endregion
 
-		private static void AddItem(byte[] item, IDictionary<string, XElement> holder)
-		{
-			var itemElement = XElement.Parse(_utf8.GetString(item));
-			holder.Add(itemElement.Attribute("guid").Value.ToLowerInvariant(), itemElement);
-		}
-
-		private static string GetClass(byte[] rtElement)
-		{
-			return GetAttribute(_utf8.GetBytes("class=\""), _closeDoubleQuote, rtElement)
-					   ?? GetAttribute(_utf8.GetBytes("class='"), _closeSingleQuote, rtElement);
-		}
-
-		private static string GetAttribute(byte[] name, byte closeQuote, byte[] input)
-		{
-			var start = input.IndexOfSubArray(name);
-			if (start == -1)
-				return null;
-
-			start += name.Length;
-			var end = Array.IndexOf(input, closeQuote, start);
-			return (end == -1)
-					? null
-					: _utf8.GetString(input.SubArray(start, end - start));
-		}
-
 		private static string EatIds(string input)
 		{
 			var output = "";
@@ -249,10 +142,8 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				if (i > 0)
 					spacer = "_";
 				output += (spacer + parts[i]);
-				//output = output.Trim();
 				parts[i + 1] = parts[i + 1].Substring(36).Trim();
 			}
-			//output += parts[parts.Length - 1];
 
 			return output.Trim();
 		}

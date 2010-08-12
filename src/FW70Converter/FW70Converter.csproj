@@ -49,11 +49,11 @@
   </ItemGroup>
   <ItemGroup>
 	<Compile Include="Fw70Converter.cs" />
-	<Compile Include="Fw70PosSelectorDlg.cs">
+	<Compile Include="Fw70ConverterDlg.cs">
 	  <SubType>Form</SubType>
 	</Compile>
-	<Compile Include="Fw70PosSelectorDlg.Designer.cs">
-	  <DependentUpon>Fw70PosSelectorDlg.cs</DependentUpon>
+	<Compile Include="Fw70ConverterDlg.Designer.cs">
+	  <DependentUpon>Fw70ConverterDlg.cs</DependentUpon>
 	</Compile>
 	<Compile Include="FwAnalysis.cs" />
 	<Compile Include="FwMorphBundle.cs" />
@@ -79,8 +79,8 @@
 	</Content>
   </ItemGroup>
   <ItemGroup>
-	<EmbeddedResource Include="Fw70PosSelectorDlg.resx">
-	  <DependentUpon>Fw70PosSelectorDlg.cs</DependentUpon>
+	<EmbeddedResource Include="Fw70ConverterDlg.resx">
+	  <DependentUpon>Fw70ConverterDlg.cs</DependentUpon>
 	  <SubType>Designer</SubType>
 	</EmbeddedResource>
 	<EmbeddedResource Include="Properties\Resources.resx">
