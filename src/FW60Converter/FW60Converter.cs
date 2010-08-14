@@ -19,6 +19,23 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
 	public class Fw60Converter : IGafawsConverter
 	{
+		private readonly IWordRecordFactory _wordRecordFactory;
+		private readonly IAffixFactory _affixFactory;
+		private readonly IStemFactory _stemFactory;
+		private readonly IMorphemeFactory _morphemeFactory;
+
+		public Fw60Converter(
+			IWordRecordFactory wordRecordFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
+			IMorphemeFactory morphemeFactory)
+		{
+			_wordRecordFactory = wordRecordFactory;
+			_affixFactory = affixFactory;
+			_stemFactory = stemFactory;
+			_morphemeFactory = morphemeFactory;
+		}
+
 		#region IGafawsConverter implementation
 
 		/// <summary>
@@ -84,7 +101,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 						var stems = new Dictionary<string, List<FwMsa>>();
 						var suffixes = new Dictionary<string, FwMsa>();
 						foreach (var wf in wordforms)
-							wf.Convert(cmd, gafawsData, prefixes, stems, suffixes);
+							wf.Convert(cmd, gafawsData, _wordRecordFactory, _morphemeFactory, _stemFactory, _affixFactory, prefixes, stems, suffixes);
 					}
 				}
 				catch
@@ -112,19 +129,19 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 				if (wr.Prefixes != null)
 				{
 					foreach (var afx in wr.Prefixes)
-						afx.MIDREF = EatIds(afx.MIDREF);
+						afx.MidRef = EatIds(afx.MidRef);
 				}
 
-				wr.Stem.MIDREF = EatIds(wr.Stem.MIDREF);
+				wr.Stem.MidRef = EatIds(wr.Stem.MidRef);
 
 				if (wr.Suffixes == null) continue;
 
 				foreach (var afx in wr.Suffixes)
-					afx.MIDREF = EatIds(afx.MIDREF);
+					afx.MidRef = EatIds(afx.MidRef);
 			}
 			foreach (var morph in gafawsData.Morphemes)
 			{
-				morph.MID = EatIds(morph.MID);
+				morph.Id = EatIds(morph.Id);
 			}
 		}
 
@@ -237,10 +254,12 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		}
 
 		internal void Convert(SqlCommand cmd, IGafawsData gData,
+			IWordRecordFactory wordRecordFactory,
+			IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory,
 			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			foreach (var anal in m_analyses)
-				anal.Convert(cmd, gData, prefixes, stems, suffixes);
+				anal.Convert(cmd, gData, wordRecordFactory, morphemeFactory, stemFactory, affixFactory, prefixes, stems, suffixes);
 		}
 	}
 
@@ -266,7 +285,6 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 				m_id = analId;
 				while (moreRows && (reader.GetInt32(1) == m_id))
 				{
-					var wfId = reader.GetInt32(0);
 					var ord = reader.GetInt32(2);
 					var msaId = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
 					var msaClass = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
@@ -288,12 +306,15 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			}
 		}
 
-		internal void Convert(SqlCommand cmd, IGafawsData gData, Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
+		internal void Convert(SqlCommand cmd, IGafawsData gData,
+			IWordRecordFactory wordRecordFactory,
+			IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory,
+			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			if (!CanConvert)
 				return;
 
-			var wr = new WordRecord();
+			var wr = wordRecordFactory.Create();
 			// Deal with prefixes, if any.
 			var startStemOrd = 0;
 			foreach (var kvp in m_morphBundles)
@@ -309,13 +330,14 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 				// Add prefix, if not already present.
 				if (wr.Prefixes == null)
-					wr.Prefixes = new List<Affix>();
+					wr.Prefixes = new List<IAffix>();
 				if (!prefixes.ContainsKey(msaKey))
 				{
 					prefixes.Add(msaKey, mb.MSA);
-					gData.Morphemes.Add(new Morpheme(MorphemeType.Prefix, msaKey));
+					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Prefix, msaKey));
 				}
-				var afx = new Affix {MIDREF = msaKey};
+				var afx = affixFactory.Create();
+				afx.MidRef = msaKey;
 				wr.Prefixes.Add(afx);
 			}
 
@@ -336,13 +358,14 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 				// Add suffix, if not already present.
 				if (wr.Suffixes == null)
-					wr.Suffixes = new List<Affix>();
+					wr.Suffixes = new List<IAffix>();
 				if (!suffixes.ContainsKey(msaKey))
 				{
 					suffixes.Add(msaKey, mb.MSA);
-					gData.Morphemes.Add(new Morpheme(MorphemeType.Suffix, msaKey));
+					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Suffix, msaKey));
 				}
-				var afx = new Affix {MIDREF = msaKey};
+				var afx = affixFactory.Create();
+				afx.MidRef = msaKey;
 				wr.Suffixes.Insert(0, afx);
 			}
 
@@ -362,10 +385,11 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			if (!stems.ContainsKey(sStem))
 			{
 				stems.Add(sStem, localStems);
-				gData.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
+				gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Stem, sStem));
 			}
 
-			var stem = new Stem {MIDREF = sStem};
+			var stem = stemFactory.Create();
+			stem.MidRef = sStem;
 			wr.Stem = stem;
 
 			// Add wr.

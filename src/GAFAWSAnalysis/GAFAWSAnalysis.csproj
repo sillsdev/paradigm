@@ -90,19 +90,45 @@
 	<Reference Include="System.Xml">
 	  <Name>System.XML</Name>
 	</Reference>
+	<Reference Include="System.Xml.Linq">
+	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
+	<Compile Include="IMorphemeFactory.cs" />
+	<Compile Include="Impl\Affix.cs" />
+	<Compile Include="Impl\AffixFactory.cs" />
+	<Compile Include="IAffixFactory.cs" />
 	<Compile Include="IGafawsData.cs" />
+	<Compile Include="IDataLayerMorpheme.cs" />
+	<Compile Include="IAffix.cs" />
+	<Compile Include="Impl\Challenge.cs" />
+	<Compile Include="Impl\Class.cs" />
+	<Compile Include="Impl\Classes.cs" />
+	<Compile Include="Impl\DataLayerMorpheme.cs" />
+	<Compile Include="IMorpheme.cs" />
+	<Compile Include="IClass.cs" />
+	<Compile Include="IChallenge.cs" />
+	<Compile Include="IClasses.cs" />
+	<Compile Include="Impl\SerializationServices.cs" />
+	<Compile Include="Impl\Stem.cs" />
+	<Compile Include="IStem.cs" />
+	<Compile Include="IStemFactory.cs" />
+	<Compile Include="Impl\MorphemeFactory.cs" />
+	<Compile Include="MorphemeType.cs" />
+	<Compile Include="IWordRecord.cs" />
+	<Compile Include="IWordRecordFactory.cs" />
+	<Compile Include="Impl\WordRecordFactory.cs" />
 	<Compile Include="IPositionAnalyzer.cs" />
 	<Compile Include="OutputPathServices.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
-	<Compile Include="ClassAssigner.cs">
+	<Compile Include="Impl\ClassAssigner.cs">
 	  <SubType>Code</SubType>
 	</Compile>
-	<Compile Include="GafawsData.cs" />
+	<Compile Include="Impl\GafawsData.cs" />
 	<Compile Include="IGafawsConverter.cs" />
-	<Compile Include="MorphemeLevel.cs" />
-	<Compile Include="PositionAnalyzer.cs">
+	<Compile Include="Impl\Morpheme.cs" />
+	<Compile Include="Impl\PositionAnalyzer.cs">
 	  <SubType>Code</SubType>
 	</Compile>
 	<Compile Include="Properties\PublicResources.Designer.cs">
@@ -115,7 +141,8 @@
 	  <DesignTime>True</DesignTime>
 	  <DependentUpon>StringResources.resx</DependentUpon>
 	</Compile>
-	<Compile Include="WordLevel.cs" />
+	<Compile Include="Impl\WordRecord.cs" />
+	<Compile Include="Impl\StemFactory.cs" />
 	<EmbeddedResource Include="Properties\PublicResources.resx">
 	  <Generator>PublicResXFileCodeGenerator</Generator>
 	  <LastGenOutput>PublicResources.Designer.cs</LastGenOutput>

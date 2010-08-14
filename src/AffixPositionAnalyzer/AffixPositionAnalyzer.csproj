@@ -87,7 +87,7 @@
 	  <DesignTime>True</DesignTime>
 	  <DependentUpon>AppResources.resx</DependentUpon>
 	</Compile>
-	<Compile Include="CoreRegistry.cs" />
+	<Compile Include="AppRegistry.cs" />
 	<Compile Include="Program.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<EmbeddedResource Include="AffixPositionAnalyzer.resx">

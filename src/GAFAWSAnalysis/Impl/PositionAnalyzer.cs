@@ -15,7 +15,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace SIL.WordWorks.GAFAWS.PositionAnalysis
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
 	/// <summary>
 	/// Main class for analyzing affix positions.
@@ -25,17 +25,17 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// An instance of GAFAWSData.
 		/// </summary>
-		private GafawsData m_gd;
+		private GafawsData _gd;
 
 		/// <summary>
 		/// The prefixes that need to be processed.
 		/// </summary>
-		private Dictionary<string, MorphemeWrapper> m_prefixes;
+		private Dictionary<string, MorphemeWrapper> _prefixes;
 
 		/// <summary>
 		/// The suffixes that need to be processed.
 		/// </summary>
-		private Dictionary<string, MorphemeWrapper> m_suffixes;
+		private Dictionary<string, MorphemeWrapper> _suffixes;
 
 		/// <summary>
 		/// Process the given input file.
@@ -53,7 +53,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			Process(gData);
 
 			var outPath = OutputPathServices.GetOutputPathname(pathInput);
-			m_gd.SaveData(outPath);
+			_gd.SaveData(outPath);
 			return outPath;
 		}
 
@@ -64,53 +64,53 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		public void Process(IGafawsData gData)
 		{
 			// Replaces 8 lines in C++.
-			m_gd = (GafawsData)gData;
-			if (m_gd == null)
+			_gd = (GafawsData)gData;
+			if (_gd == null)
 				return;
 
-			m_prefixes = new Dictionary<string, MorphemeWrapper>();
-			m_suffixes = new Dictionary<string, MorphemeWrapper>();
+			_prefixes = new Dictionary<string, MorphemeWrapper>();
+			_suffixes = new Dictionary<string, MorphemeWrapper>();
 
 			// Replaces CJGParadigm::GetAffixesFromDom()
 			// 52 lines in C++.
-			foreach(var m in m_gd.Morphemes)
+			foreach(var m in _gd.Morphemes)
 			{
-				switch (m.type)
+				switch (m.Type)
 				{
 					case "pfx":
-						m_prefixes.Add(m.MID, new MorphemeWrapper(m));
+						_prefixes.Add(m.Id, new MorphemeWrapper(m));
 						break;
 					case "sfx":
-						m_suffixes.Add(m.MID, new MorphemeWrapper(m));
+						_suffixes.Add(m.Id, new MorphemeWrapper(m));
 						break;
 					//case "s":	// Skip stems.
 				}
 			}
-			if ((m_prefixes.Count + m_suffixes.Count) == 0)
+			if ((_prefixes.Count + _suffixes.Count) == 0)
 				return;	// Nothing to do.
 
 			if (!AssignToSets())
 				return;	// Nothing to do.
 
 			// Find the classes for prefixes.
-			var pca = new PrefixClassAssigner(m_gd);
-			if (!pca.AssignClasses(m_prefixes))
+			var pca = new PrefixClassAssigner(_gd);
+			if (!pca.AssignClasses(_prefixes))
 				return;
 			// Find the classes for suffixes.
-			var sca = new SuffixClassAssigner(m_gd);
-			if (!sca.AssignClasses(m_suffixes))
+			var sca = new SuffixClassAssigner(_gd);
+			if (!sca.AssignClasses(_suffixes))
 				return;
 
-			foreach (var kvp in m_prefixes)
+			foreach (var kvp in _prefixes)
 				kvp.Value.SetStartAndEnd();
-			foreach (var kvp in m_suffixes)
+			foreach (var kvp in _suffixes)
 				kvp.Value.SetStartAndEnd();
 
 			// Set date and time.
 			// Replaces 44 lines of C++ code.
-			var dt = DateTime.Now;
-			m_gd.date = dt.ToLongDateString();
-			m_gd.time = dt.ToLongTimeString();
+			var dt = DateTime.Now.ToUniversalTime();
+			_gd.Date = dt.ToLongDateString();
+			_gd.Time = dt.ToLongTimeString();
 		}
 
 		/// <summary>
@@ -120,12 +120,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		protected bool AssignToSets()
 		{
 			// C++ took 79 lines.
-			if (m_gd.WordRecords.Count == 0)
+			if (_gd.WordRecords.Count == 0)
 				return false;	// Nothing to do.
 
-			foreach(var wr in m_gd.WordRecords)
+			foreach(var wr in _gd.WordRecords)
 			{
-				List<Affix> ac = null;
+				List<IAffix> ac = null;
 				Dictionary<string, MorphemeWrapper> affixes = null;
 				for (var i = 0; i < 2; ++i)
 				{
@@ -133,19 +133,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 					{
 						case 0:	// Prefixes
 							ac = wr.Prefixes;
-							affixes = m_prefixes;
+							affixes = _prefixes;
 							break;
 						case 1:	// Suffixes
 							ac = wr.Suffixes;
-							affixes = m_suffixes;
+							affixes = _suffixes;
 							break;
 					}
 					// NB: This will not run through the loop for cases where there is
 					// only one affix, which is right, since it has nothing on either side.
 					for (var iAfx = 1; ac != null && iAfx < ac.Count; ++iAfx)
 					{
-						var prevId = ac[iAfx -1].MIDREF;
-						var curId = ac[iAfx].MIDREF;
+						var prevId = ac[iAfx -1].MidRef;
+						var curId = ac[iAfx].MidRef;
 						affixes[curId].AddAsSuccessor(prevId);
 						affixes[prevId].AddAsPredecessor(curId);
 					}
@@ -168,39 +168,39 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// The real morpheme.
 		/// </summary>
-		private readonly Morpheme m_morpheme;
+		private readonly IMorpheme _morpheme;
 
 		/// <summary>
 		/// List of predecessor affixes.
 		/// </summary>
-		private readonly StringCollection m_predecessors;
+		private readonly StringCollection _predecessors;
 
 		/// <summary>
 		/// List of successor affixes.
 		/// </summary>
-		private readonly StringCollection m_successors;
+		private readonly StringCollection _successors;
 
 		/// <summary>
 		/// Starting class.
 		/// </summary>
-		private Class m_start;
+		private IClass _start;
 
 		/// <summary>
 		/// Ending class.
 		/// </summary>
-		private Class m_end;
+		private IClass _end;
 
 		/// <summary>
 		/// Cosntructor.
 		/// </summary>
 		/// <param name="m">The real morpheme that is wrapped.</param>
-		public MorphemeWrapper(Morpheme m)
+		public MorphemeWrapper(IMorpheme m)
 		{
-			m_morpheme = m;
-			m_predecessors = new StringCollection();
-			m_successors = new StringCollection();
-			m_start = null;
-			m_end = null;
+			_morpheme = m;
+			_predecessors = new StringCollection();
+			_successors = new StringCollection();
+			_start = null;
+			_end = null;
 		}
 
 		/// <summary>
@@ -209,10 +209,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="succ">Affix ID.</param>
 		public void AddAsSuccessor(string succ)
 		{
-			if (m_successors.Cast<string>().Any(t => t == succ))
+			if (_successors.Cast<string>().Any(t => t == succ))
 				return;
 
-			m_successors.Add(succ);
+			_successors.Add(succ);
 		}
 
 		/// <summary>
@@ -221,10 +221,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="pred">Affix ID.</param>
 		public void AddAsPredecessor(string pred)
 		{
-			if (m_predecessors.Cast<string>().Any(t => t == pred))
+			if (_predecessors.Cast<string>().Any(t => t == pred))
 				return;
 
-			m_predecessors.Add(pred);
+			_predecessors.Add(pred);
 		}
 
 		/// <summary>
@@ -233,10 +233,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		public void SetStartAndEnd()
 		{
 			// Replaces 41 lines in C++.
-			if (m_start != null)
-				m_morpheme.StartCLIDREF = m_start.CLID;
-			if (m_end != null)
-				m_morpheme.EndCLIDREF = m_end.CLID;
+			if (_start != null)
+				_morpheme.StartClass = _start.Id;
+			if (_end != null)
+				_morpheme.EndClass = _end.Id;
 		}
 
 		/// <summary>
@@ -245,7 +245,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="pred">The affix ID to remove.</param>
 		public void RemovePredecessor(string pred)
 		{
-			m_predecessors.Remove(pred);
+			_predecessors.Remove(pred);
 		}
 
 		/// <summary>
@@ -254,7 +254,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="succ">The affix ID to remove.</param>
 		public void RemoveSuccessor(string succ)
 		{
-			m_successors.Remove(succ);
+			_successors.Remove(succ);
 		}
 
 		/// <summary>
@@ -271,10 +271,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 					fRetVal = false;
 					break;
 				case ListType.Pred:
-					fRetVal = (m_predecessors.Count == 0);
+					fRetVal = (_predecessors.Count == 0);
 					break;
 				case ListType.Succ:
-					fRetVal = (m_successors.Count == 0);
+					fRetVal = (_successors.Count == 0);
 					break;
 			}
 			return fRetVal;
@@ -286,19 +286,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="isStartPoint">True if the class is the starting class,
 		/// otherwise false.</param>
 		/// <param name="cls">The class to set.</param>
-		public void SetAffixClass(bool isStartPoint, Class cls)
+		public void SetAffixClass(bool isStartPoint, IClass cls)
 		{
 			if (isStartPoint)
 			{
-				if (m_start == null)
-					m_start = cls;
+				if (_start == null)
+					_start = cls;
 				else
 					Debug.Assert(false);
 			}
 			else
 			{
-				if (m_end == null)
-					m_end = cls;
+				if (_end == null)
+					_end = cls;
 				else
 					Debug.Assert(false);
 			}
@@ -310,7 +310,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <returns>The ID of the wrapped morpheme.</returns>
 		public string GetId()
 		{
-			return m_morpheme.MID;
+			return _morpheme.Id;
 		}
 	}
 }

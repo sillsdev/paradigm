@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 
-namespace SIL.WordWorks.GAFAWS.PositionAnalysis
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
 	/// <summary>
 	/// List type enumeration.
@@ -47,7 +47,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Collection of classes.
 		/// </summary>
-		protected List<Class> m_classes;
+		protected List<IClass> m_classes;
 
 		/// <summary>
 		/// The class ID prefix.
@@ -57,7 +57,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// The class that is the unknown group of classes.
 		/// </summary>
-		protected Class m_fogBank;
+		protected IClass m_fogBank;
 
 		/// <summary>
 		/// Constructor.
@@ -75,7 +75,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// </summary>
 		/// <param name="htToCheck">The set of affixes to check.</param>
 		/// <returns>True if the classes were assigned, otherwise false.</returns>
-		public bool AssignClasses(Dictionary<string, MorphemeWrapper> htToCheck)
+		internal bool AssignClasses(Dictionary<string, MorphemeWrapper> htToCheck)
 		{
 			m_toCheck = new Dictionary<string, MorphemeWrapper>(htToCheck);
 			AssignClassesFromStem();
@@ -86,13 +86,13 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 			var i = 1;
 			foreach(var c in m_classes)
 			{
-				switch (c.isFogBank)
+				switch (c.IsFogBank)
 				{
 					case "0":
-						c.CLID = m_classPrefix + i++;
+						c.Id = m_classPrefix + i++;
 						break;
 					case "1":
-						c.CLID = m_classPrefix + "0";
+						c.Id = m_classPrefix + "0";
 						break;
 				}
 			}
@@ -118,7 +118,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		{
 			var listType = GetListType(false);
 			var idxFog = 0;
-			List<Class> oldClasses = null;
+			List<IClass> oldClasses = null;
 
 			if (m_fogBank != null)
 			{
@@ -128,7 +128,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 						break;
 				}
 			}
-			else oldClasses = new List<Class>(m_classes);
+			else oldClasses = new List<IClass>(m_classes);
 
 			AssignClassesCore(listType, false, idxFog, oldClasses);
 		}
@@ -152,7 +152,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="oldClasses">Old set of classes, if working towards stem,
 		/// otherwise null.</param>
 		protected void AssignClassesCore(ListType listType, bool isStartPoint,
-			int idxFog, List<Class> oldClasses)
+			int idxFog, List<IClass> oldClasses)
 		{
 			while (m_toCheck.Count > 0)
 			{
@@ -199,10 +199,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <param name="oldClasses">Old set of classes, if working towards stem,
 		/// otherwise null.</param>
 		/// <returns>The class to use for the assignment.</returns>
-		protected Class GetClass(ListType listType, bool isStartPoint, bool isInFog,
-			int idxFog, List<Class> oldClasses)
+		protected IClass GetClass(ListType listType, bool isStartPoint, bool isInFog,
+			int idxFog, List<IClass> oldClasses)
 		{
-			Class cls = null;
+			IClass cls = null;
 
 			if (isStartPoint)
 			{
@@ -212,10 +212,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 				if (isInFog)
 				{
 					m_fogBank = cls;
-					cls.isFogBank = "1";
+					cls.IsFogBank = "1";
 					var chl = new Challenge();
 					m_gd.Challenges.Add(chl);
-					chl.message = GetMessage();
+					chl.Message = GetMessage();
 				}
 			}
 			else
@@ -260,19 +260,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// otherwise false.</param>
 		/// <param name="cls">The class to set to.</param>
 		protected void DoAssignment(Dictionary<string, MorphemeWrapper> toBeAssigned,
-			ListType listType, bool isStartPoint, Class cls)
+			ListType listType, bool isStartPoint, IClass cls)
 		{
 			foreach (var mr in toBeAssigned.Select(kvp => kvp.Value))
 			{
 				mr.SetAffixClass(isStartPoint, cls);
-				var mid = mr.GetId();
-				m_toCheck.Remove(mid);
+				var id = mr.GetId();
+				m_toCheck.Remove(id);
 				foreach (var kvpInner in m_toCheck)
 				{
 					if (listType == ListType.Succ)
-						kvpInner.Value.RemoveSuccessor(mid);
+						kvpInner.Value.RemoveSuccessor(id);
 					else
-						kvpInner.Value.RemovePredecessor(mid);
+						kvpInner.Value.RemovePredecessor(id);
 				}
 			}
 		}
@@ -299,7 +299,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// Constructor.
 		/// </summary>
 		/// <param name="gd">Main GAFAWS data layer object.</param>
-		public PrefixClassAssigner(IGafawsData gd)
+		internal PrefixClassAssigner(IGafawsData gd)
 			: base(gd)
 		{
 			m_classes = gd.Classes.PrefixClasses;
@@ -336,7 +336,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// Constructor.
 		/// </summary>
 		/// <param name="gd">Main GAFAWS data layer object.</param>
-		public SuffixClassAssigner(IGafawsData gd)
+		internal SuffixClassAssigner(IGafawsData gd)
 			: base(gd)
 		{
 			m_classes = gd.Classes.SuffixClasses;

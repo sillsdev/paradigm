@@ -138,25 +138,31 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			}
 		}
 
-		internal void Convert(IGafawsData gData, Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
+		internal void Convert(IGafawsData gData,
+			IWordRecordFactory wordRecordFactory,
+			IMorphemeFactory morphemeFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
+			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			if (!CanConvert)
 				return;
 
-			var wr = new WordRecord();
+			var wr = wordRecordFactory.Create();
 			// Deal with prefixes, if any.
 			foreach (var prefixMorphBundle in _prefixMorphBundles)
 			{
 				// Add prefix, if not already present.
 				if (wr.Prefixes == null)
-					wr.Prefixes = new List<Affix>();
+					wr.Prefixes = new List<IAffix>();
 				var msaKey = prefixMorphBundle.Msa.Key;
 				if (!prefixes.ContainsKey(msaKey))
 				{
 					prefixes.Add(msaKey, prefixMorphBundle.Msa);
-					gData.Morphemes.Add(new Morpheme(MorphemeType.Prefix, msaKey));
+					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Prefix, msaKey));
 				}
-				var afx = new Affix { MIDREF = msaKey };
+				var afx = affixFactory.Create();
+				afx.MidRef = msaKey;
 				wr.Prefixes.Add(afx);
 			}
 
@@ -165,14 +171,15 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			{
 				// Add suffix, if not already present.
 				if (wr.Suffixes == null)
-					wr.Suffixes = new List<Affix>();
+					wr.Suffixes = new List<IAffix>();
 				var msaKey = suffixMorphBundle.Msa.Key;
 				if (!suffixes.ContainsKey(msaKey))
 				{
 					suffixes.Add(msaKey, suffixMorphBundle.Msa);
-					gData.Morphemes.Add(new Morpheme(MorphemeType.Suffix, msaKey));
+					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Suffix, msaKey));
 				}
-				var afx = new Affix { MIDREF = msaKey };
+				var afx = affixFactory.Create();
+				afx.MidRef = msaKey;
 				wr.Suffixes.Insert(0, afx);
 			}
 			// Deal with stem(s).
@@ -191,9 +198,10 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			if (!stems.ContainsKey(sStem))
 			{
 				stems.Add(sStem, new List<FwMsa>());
-				gData.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
+				gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Stem, sStem));
 			}
-			var stem = new Stem { MIDREF = sStem };
+			var stem = stemFactory.Create();
+			stem.MidRef = sStem;
 			wr.Stem = stem;
 
 			// Add wr.

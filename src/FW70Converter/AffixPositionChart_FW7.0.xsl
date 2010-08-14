@@ -83,7 +83,7 @@ Classes template
 			  <xsl:for-each select="PrefixClasses/Class">
 				<xsl:sort select="position()" order="descending"/>
 				<xsl:choose>
-				  <xsl:when test="@isFogBank = '1'">
+				  <xsl:when test="@isfogbank = '1'">
 					<th>
 					  <xsl:attribute name="style"><xsl:value-of select="$sBackColorAllBad"/></xsl:attribute>
 					  <xsl:value-of select="$sError"/>
@@ -91,7 +91,7 @@ Classes template
 				  </xsl:when>
 				  <xsl:otherwise>
 					<th>
-					  <xsl:value-of select="concat('-', substring-after(@CLID, 'PP'))"/>
+					  <xsl:value-of select="concat('-', substring-after(@id, 'PP'))"/>
 					</th>
 				  </xsl:otherwise>
 				</xsl:choose>
@@ -102,14 +102,14 @@ Classes template
 			  <xsl:for-each select="PrefixClasses/Class">
 				<xsl:sort select="position()" order="descending"/>
 				<xsl:variable name="sCLID">
-				  <xsl:value-of select="@CLID"/>
+				  <xsl:value-of select="@id"/>
 				</xsl:variable>
 				<td align="center" valign="top">
-				  <xsl:variable name="morphs" select="//Morpheme[@StartCLIDREF=$sCLID and @EndCLIDREF=$sCLID]"/>
+				  <xsl:variable name="morphs" select="//Morpheme[@startclass=$sCLID and @endclass=$sCLID]"/>
 				  <xsl:if test="$morphs">
 					<!-- In the following xsl:choose element, we repeat the xsl:attribute in each part so XMLSpy will format it in a legible form;  if we don't, XMLSpy puts it all on the same line and it's a bear to read-->
 					<xsl:choose>
-					  <xsl:when test="@isFogBank='1'">
+					  <xsl:when test="@isfogbank='1'">
 						<xsl:attribute name="style"><xsl:value-of select="$sBackColorAllBad"/></xsl:attribute>
 					  </xsl:when>
 					  <xsl:otherwise>
@@ -118,8 +118,8 @@ Classes template
 					</xsl:choose>
 					<xsl:for-each select="$morphs">
 					  <a>
-						<xsl:attribute name="href">#<xsl:value-of select="@MID"/></xsl:attribute>
-						<xsl:value-of select="@MID"/>
+						<xsl:attribute name="href">#<xsl:value-of select="@id"/></xsl:attribute>
+						<xsl:value-of select="@id"/>
 						<xsl:text>-</xsl:text>
 					  </a>
 					  <br/>
@@ -132,22 +132,22 @@ Classes template
 			<xsl:for-each select="PrefixClasses/Class">
 			  <xsl:sort select="position()" order="descending"/>
 			  <xsl:variable name="sFirstCLID">
-				<xsl:value-of select="@CLID"/>
+				<xsl:value-of select="@id"/>
 			  </xsl:variable>
 			  <xsl:variable name="sFirstIsFogBank">
-				<xsl:value-of select="@isFogBank"/>
+				<xsl:value-of select="@isfogbank"/>
 			  </xsl:variable>
 			  <xsl:variable name="iFirstPosition" select="position()"/>
 			  <xsl:for-each select="preceding-sibling::*">
 				<xsl:sort select="position()" order="descending"/>
 				<xsl:variable name="sThisCLID">
-				  <xsl:value-of select="@CLID"/>
+				  <xsl:value-of select="@id"/>
 				</xsl:variable>
-				<xsl:variable name="morphs" select="//Morpheme[@StartCLIDREF=$sThisCLID and @EndCLIDREF=$sFirstCLID]"/>
+				<xsl:variable name="morphs" select="//Morpheme[@startclass=$sThisCLID and @endclass=$sFirstCLID]"/>
 				<xsl:if test="$morphs">
 				  <!-- Actually have some data to show -->
 				  <xsl:variable name="sThisIsFogBank">
-					<xsl:value-of select="@isFogBank"/>
+					<xsl:value-of select="@isfogbank"/>
 				  </xsl:variable>
 				  <xsl:variable name="iThisPosition" select="position()+1"/>
 				  <xsl:variable name="iTemp" select="$iFirstPosition + $iThisPosition - 1"/>
@@ -168,7 +168,7 @@ Classes template
 						<xsl:when test="$sFirstIsFogBank='1' or $sThisIsFogBank='1'">
 						  <xsl:attribute name="style"><xsl:value-of select="$sBackColorEndIsBad"/></xsl:attribute>
 						</xsl:when>
-						<xsl:when test="following-sibling::*[position() + $iThisPosition - 1 &gt;= $iFirstPosition and @isFogBank='1']">
+						<xsl:when test="following-sibling::*[position() + $iThisPosition - 1 &gt;= $iFirstPosition and @isfogbank='1']">
 						  <xsl:attribute name="style"><xsl:value-of select="$sBackColorSpansBad"/></xsl:attribute>
 						</xsl:when>
 						<xsl:otherwise>
@@ -177,8 +177,8 @@ Classes template
 					  </xsl:choose>
 					  <xsl:for-each select="$morphs">
 						<a>
-						  <xsl:attribute name="href">#<xsl:value-of select="@MID"/></xsl:attribute>
-						  <xsl:value-of select="@MID"/>
+						  <xsl:attribute name="href">#<xsl:value-of select="@id"/></xsl:attribute>
+						  <xsl:value-of select="@id"/>
 						  <xsl:text>-</xsl:text>
 						</a>
 						<br/>
@@ -210,7 +210,7 @@ Classes template
 			<tr>
 			  <xsl:for-each select="SuffixClasses/Class">
 				<xsl:choose>
-				  <xsl:when test="@isFogBank = '1'">
+				  <xsl:when test="@isfogbank = '1'">
 					<th>
 					  <xsl:attribute name="style"><xsl:value-of select="$sBackColorAllBad"/></xsl:attribute>
 					  <xsl:value-of select="$sError"/>
@@ -218,7 +218,7 @@ Classes template
 				  </xsl:when>
 				  <xsl:otherwise>
 					<th>
-					  <xsl:value-of select="substring-after(@CLID, 'SP')"/>
+					  <xsl:value-of select="substring-after(@id, 'SP')"/>
 					</th>
 				  </xsl:otherwise>
 				</xsl:choose>
@@ -228,14 +228,14 @@ Classes template
 			  <!-- suffixes in only one column -->
 			  <xsl:for-each select="SuffixClasses/Class">
 				<xsl:variable name="sCLID">
-				  <xsl:value-of select="@CLID"/>
+				  <xsl:value-of select="@id"/>
 				</xsl:variable>
 				<td align="center" valign="top">
-				  <xsl:variable name="morphs" select="//Morpheme[@StartCLIDREF=$sCLID and @EndCLIDREF=$sCLID]"/>
+				  <xsl:variable name="morphs" select="//Morpheme[@startclass=$sCLID and @endclass=$sCLID]"/>
 				  <xsl:if test="$morphs">
 					<!-- In the following xsl:choose element, we repeat the xsl:attribute in each part so XMLSpy will format it in a legible form;  if we don't, XMLSpy puts it all on the same line and it's a bear to read-->
 					<xsl:choose>
-					  <xsl:when test="@isFogBank='1'">
+					  <xsl:when test="@isfogbank='1'">
 						<xsl:attribute name="style"><xsl:value-of select="$sBackColorAllBad"/></xsl:attribute>
 					  </xsl:when>
 					  <xsl:otherwise>
@@ -244,9 +244,9 @@ Classes template
 					</xsl:choose>
 					<xsl:for-each select="$morphs">
 					  <a>
-						<xsl:attribute name="href">#<xsl:value-of select="@MID"/></xsl:attribute>
+						<xsl:attribute name="href">#<xsl:value-of select="@id"/></xsl:attribute>
 						<xsl:text>-</xsl:text>
-						<xsl:value-of select="@MID"/>
+						<xsl:value-of select="@id"/>
 					  </a>
 					  <br/>
 					</xsl:for-each>
@@ -257,21 +257,21 @@ Classes template
 			<!-- suffixes in more than one column -->
 			<xsl:for-each select="SuffixClasses/Class">
 			  <xsl:variable name="sFirstCLID">
-				<xsl:value-of select="@CLID"/>
+				<xsl:value-of select="@id"/>
 			  </xsl:variable>
 			  <xsl:variable name="sFirstIsFogBank">
-				<xsl:value-of select="@isFogBank"/>
+				<xsl:value-of select="@isfogbank"/>
 			  </xsl:variable>
 			  <xsl:variable name="iFirstPosition" select="position()"/>
 			  <xsl:for-each select="following-sibling::*">
 				<xsl:variable name="sThisCLID">
-				  <xsl:value-of select="@CLID"/>
+				  <xsl:value-of select="@id"/>
 				</xsl:variable>
-				<xsl:variable name="morphs" select="//Morpheme[@StartCLIDREF=$sFirstCLID and @EndCLIDREF=$sThisCLID]"/>
+				<xsl:variable name="morphs" select="//Morpheme[@startclass=$sFirstCLID and @endclass=$sThisCLID]"/>
 				<xsl:if test="$morphs">
 				  <!-- Actually have some data to show -->
 				  <xsl:variable name="sThisIsFogBank">
-					<xsl:value-of select="@isFogBank"/>
+					<xsl:value-of select="@isfogbank"/>
 				  </xsl:variable>
 				  <xsl:variable name="iThisPosition" select="position()+1"/>
 				  <xsl:variable name="iTemp" select="$iFirstPosition + $iThisPosition - 1"/>
@@ -292,7 +292,7 @@ Classes template
 						<xsl:when test="$sFirstIsFogBank='1' or $sThisIsFogBank='1'">
 						  <xsl:attribute name="style"><xsl:value-of select="$sBackColorEndIsBad"/></xsl:attribute>
 						</xsl:when>
-						<xsl:when test="preceding-sibling::*[position() + $iThisPosition - 1 &gt;= $iFirstPosition and @isFogBank='1']">
+						<xsl:when test="preceding-sibling::*[position() + $iThisPosition - 1 &gt;= $iFirstPosition and @isfogbank='1']">
 						  <xsl:attribute name="style"><xsl:value-of select="$sBackColorSpansBad"/></xsl:attribute>
 						</xsl:when>
 						<xsl:otherwise>
@@ -301,9 +301,9 @@ Classes template
 					  </xsl:choose>
 					  <xsl:for-each select="$morphs">
 						<a>
-						  <xsl:attribute name="href">#<xsl:value-of select="@MID"/></xsl:attribute>
+						  <xsl:attribute name="href">#<xsl:value-of select="@id"/></xsl:attribute>
 						  <xsl:text>-</xsl:text>
-						  <xsl:value-of select="@MID"/>
+						  <xsl:value-of select="@id"/>
 						</a>
 						<br/>
 					  </xsl:for-each>
@@ -421,23 +421,23 @@ Morphemes  template
 		<th>Wordforms</th>
 	  </tr>
 	  <xsl:for-each select="Morpheme">
-	  <xsl:sort select="@MID"/>
+	  <xsl:sort select="@id"/>
 		<xsl:variable name="sMorphID">
-		  <xsl:value-of select="@MID"/>
+		  <xsl:value-of select="@id"/>
 		</xsl:variable>
 		<xsl:variable name="morphemeforecolor">
 				<xsl:choose>
-				  <xsl:when test="@StartCLIDREF= 'SP0' and @EndCLIDREF= 'SP0'">Red</xsl:when>
-				  <xsl:when test="@StartCLIDREF= 'SP0'">Purple</xsl:when>
-				  <xsl:when test="@EndCLIDREF= 'SP0'">Orange</xsl:when>
+				  <xsl:when test="@startclass= 'SP0' and @endclass= 'SP0'">Red</xsl:when>
+				  <xsl:when test="@startclass= 'SP0'">Purple</xsl:when>
+				  <xsl:when test="@endclass= 'SP0'">Orange</xsl:when>
 				  <xsl:otherwise>Black</xsl:otherwise>
 				</xsl:choose>
 		</xsl:variable>
 		<tr>
 		  <td valign="top">
-			<xsl:attribute name="id"><xsl:value-of select="@MID"/></xsl:attribute>
+			<xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
 			<xsl:attribute name="style">color:<xsl:value-of select="$morphemeforecolor"/>; font-weight: bold</xsl:attribute>
-			<xsl:value-of select="@MID"/>
+			<xsl:value-of select="@id"/>
 		  </td>
 		  <td valign="top">
 			<xsl:value-of select="@type"/>

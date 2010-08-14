@@ -30,6 +30,23 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 	/// </summary>
 	public class PlainWordlistConverter : IGafawsConverter
 	{
+		private readonly IWordRecordFactory _wordRecordFactory;
+		private readonly IAffixFactory _affixFactory;
+		private readonly IStemFactory _stemFactory;
+		private readonly IMorphemeFactory _morphemeFactory;
+
+		public PlainWordlistConverter(
+			IWordRecordFactory wordRecordFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
+			IMorphemeFactory morphemeFactory)
+		{
+			_wordRecordFactory = wordRecordFactory;
+			_affixFactory = affixFactory;
+			_stemFactory = stemFactory;
+			_morphemeFactory = morphemeFactory;
+		}
+
 		#region IGAFAWSConverter implementation
 
 		/// <summary>
@@ -70,7 +87,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							var closeAngleLocation = line.IndexOf(">", openAngleLocation + 1);
 							if (closeAngleLocation < 0)
 								continue;
-							var wrdRec = new WordRecord();
+							var wrdRec = _wordRecordFactory.Create();
 							gafawsData.WordRecords.Add(wrdRec);
 
 							// Handle prefixes, if any.
@@ -80,16 +97,17 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							if (prefixes != null)
 							{
 								if (wrdRec.Prefixes == null)
-									wrdRec.Prefixes = new List<Affix>();
+									wrdRec.Prefixes = new List<IAffix>();
 								foreach (var prefix in prefixes.Split('-'))
 								{
 									if (string.IsNullOrEmpty(prefix)) continue;
 
-									var afx = new Affix { MIDREF = prefix };
+									var afx = _affixFactory.Create();
+									afx.MidRef = prefix;
 									wrdRec.Prefixes.Add(afx);
 									if (dictPrefixes.ContainsKey(prefix)) continue;
 
-									gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Prefix, prefix));
+									gafawsData.Morphemes.Add(_morphemeFactory.Create(MorphemeType.Prefix, prefix));
 									dictPrefixes.Add(prefix, true);
 								}
 							}
@@ -99,11 +117,12 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							var sStem = line.Substring(openAngleLocation + 1, closeAngleLocation - openAngleLocation - 1);
 							if (sStem.Length == 0)
 								sStem = "stem";
-							var stem = new Stem { MIDREF = sStem };
+							var stem = _stemFactory.Create();
+							stem.MidRef = sStem;
 							wrdRec.Stem = stem;
 							if (!dictStems.ContainsKey(sStem))
 							{
-								gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Stem, sStem));
+								gafawsData.Morphemes.Add(_morphemeFactory.Create(MorphemeType.Stem, sStem));
 								dictStems.Add(sStem, true);
 							}
 
@@ -114,16 +133,17 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							if (suffixes != null)
 							{
 								if (wrdRec.Suffixes == null)
-									wrdRec.Suffixes = new List<Affix>();
+									wrdRec.Suffixes = new List<IAffix>();
 								foreach (var suffix in suffixes.Split('-'))
 								{
 									if (string.IsNullOrEmpty(suffix)) continue;
 
-									var afx = new Affix { MIDREF = suffix };
+									var afx = _affixFactory.Create();
+									afx.MidRef = suffix;
 									wrdRec.Suffixes.Add(afx);
 									if (dictSuffixes.ContainsKey(suffix)) continue;
 
-									gafawsData.Morphemes.Add(new Morpheme(MorphemeType.Suffix, suffix));
+									gafawsData.Morphemes.Add(_morphemeFactory.Create(MorphemeType.Suffix, suffix));
 									dictSuffixes.Add(suffix, true);
 								}
 							}

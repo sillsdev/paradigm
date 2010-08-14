@@ -20,8 +20,8 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		protected string m_decomposition;
 		protected string m_underlyingForm;
 		protected string m_category;
-		protected DataLayerMorpheme m_dataLayerMorpheme;
-		protected Morpheme m_morpheme;
+		protected IDataLayerMorpheme m_dataLayerMorpheme;
+		protected IMorpheme m_morpheme;
 		protected MorphemeType m_type;
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			m_morphname = morphname;
 		}
 
-		protected WordRecord LastRecord
+		protected IWordRecord LastRecord
 		{
 			get
 			{
@@ -72,19 +72,19 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// An abstract method used to convert a morpheme.
 		/// Subclasses must override this method to do an appropriate conversion.
 		/// </summary>
-		internal virtual void Convert()
+		internal virtual void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			foreach (var m in s_gd.Morphemes.Where(m => m.MID == m_morphname))
+			foreach (var m in s_gd.Morphemes.Where(m => m.Id == m_morphname))
 			{
 				m_morpheme = m;
 				break;
 			}
 			if (m_morpheme == null)
 			{
-				m_morpheme = new Morpheme(m_type, m_morphname);
+				m_morpheme = morphemeFactory.Create(m_type, m_morphname);
 				s_gd.Morphemes.Add(m_morpheme);
 			}
-			m_dataLayerMorpheme.MIDREF = m_morpheme.MID;
+			m_dataLayerMorpheme.MidRef = m_morpheme.Id;
 			if (m_underlyingForm != null)
 			{
 				m_morpheme.Other = "<ANAInfo underlyingForm=\'" + m_underlyingForm + "\' />";
@@ -119,11 +119,11 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Convert the stem to the data layer.
 		/// </summary>
-		internal override void Convert()
+		internal override void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			LastRecord.Stem = new Stem();
+			LastRecord.Stem = stemFactory.Create();
 			m_dataLayerMorpheme = LastRecord.Stem;
-			base.Convert();
+			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>
@@ -201,12 +201,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Convert the affix to the data layer.
 		/// </summary>
-		internal override void Convert()
+		internal override void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			var afx = new Affix();
+			var afx = affixFactory.Create();
 			m_dataLayerMorpheme = afx;
 			LastRecord.Prefixes.Add(afx);
-			base.Convert();
+			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>
@@ -241,12 +241,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Convert the affix to the data layer.
 		/// </summary>
-		internal override void Convert()
+		internal override void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			var afx = new Affix();
+			var afx = affixFactory.Create();
 			LastRecord.Suffixes.Add(afx);
 			m_dataLayerMorpheme = afx;
-			base.Convert();
+			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>

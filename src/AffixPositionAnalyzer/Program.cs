@@ -9,7 +9,6 @@
 // Responsibility: Randy Regnier
 using System;
 using System.Windows.Forms;
-using SIL.WordWorks.GAFAWS.PositionAnalysis;
 using StructureMap;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
@@ -26,8 +25,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			var container = new Container();
-			container.Configure(c=> c.AddRegistry(new CoreRegistry()));
-			Application.Run(new AffixPositionAnalyzer(container.GetAllInstances<IGafawsConverter>(), container.GetInstance<IPositionAnalyzer>(), container.GetInstance<IGafawsData>()));
+			container.Configure(c=> c.AddRegistry(new AppRegistry()));
+			Application.Run(container.GetInstance<AffixPositionAnalyzer>());
 		}
 	}
 }

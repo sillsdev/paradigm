@@ -86,5 +86,14 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Properties {
 				return ResourceManager.GetString("kInformation", resourceCulture);
 			}
 		}
+
+		/// <summary>
+		///   Looks up a localized string similar to Invalid type..
+		/// </summary>
+		public static string kInvalidType {
+			get {
+				return ResourceManager.GetString("kInvalidType", resourceCulture);
+			}
+		}
 	}
 }

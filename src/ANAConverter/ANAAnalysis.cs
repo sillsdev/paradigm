@@ -178,7 +178,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Convert the analysis and its morphemes.
 		/// </summary>
-		internal void Convert()
+		internal void Convert(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
 			if (m_stem == null || (m_prefixes == null && m_suffixes == null))
 				return;	// Don't convert a failure or no affixes.
@@ -206,18 +206,18 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 
 label1:
-			DoConversion();
+			DoConversion(wordRecordFactory, morphemeFactory, stemFactory, affixFactory);
 		}
 
-		private void DoConversion()
+		private void DoConversion(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			var wr = new WordRecord();
+			var wr = wordRecordFactory.Create();
 			s_gd.WordRecords.Add(wr);
-			wr.WRID = "WR" + s_idx++;
+			wr.Id = "WR" + s_idx++;
 			if (m_prefixes != null)
-				wr.Prefixes = new List<Affix>();
+				wr.Prefixes = new List<IAffix>();
 			if (m_suffixes != null)
-				wr.Suffixes = new List<Affix>();
+				wr.Suffixes = new List<IAffix>();
 
 			if ((m_originalForm != null) || (m_wordCategory != null))
 			{
@@ -228,10 +228,10 @@ label1:
 			}
 
 			for (var i = 0; m_prefixes != null && i < m_prefixes.Count; ++i)
-				m_prefixes[i].Convert();
-			m_stem.Convert();
+				m_prefixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
+			m_stem.Convert(morphemeFactory, stemFactory, affixFactory);
 			for (var i = 0; m_suffixes != null && i < m_suffixes.Count; ++i)
-				m_suffixes[i].Convert();
+				m_suffixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>

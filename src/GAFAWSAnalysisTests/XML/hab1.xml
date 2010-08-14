@@ -1,45 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <GAFAWSData>
   <WordRecords>
-	<WordRecord WRID="x118">
-	  <Stem MIDREF="mStem"/>
+	<WordRecord id="x118">
+	  <Stem id="mStem"/>
 	  <Suffixes>
-		<Affix MIDREF="x114"/>
+		<Affix id="x114"/>
 	  </Suffixes>
 	</WordRecord>
-	<WordRecord WRID="x130">
+	<WordRecord id="x130">
 	  <Prefixes>
-		<Affix MIDREF="x124"/>
-		<Affix MIDREF="x125"/>
-		<Affix MIDREF="x126"/>
-		<Affix MIDREF="x127"/>
+		<Affix id="x124"/>
+		<Affix id="x125"/>
+		<Affix id="x126"/>
+		<Affix id="x127"/>
 	  </Prefixes>
-	  <Stem MIDREF="mStem"/>
+	  <Stem id="mStem"/>
 	</WordRecord>
-	<WordRecord WRID="x131">
+	<WordRecord id="x131">
 	  <Prefixes>
-		<Affix MIDREF="x124"/>
-		<Affix MIDREF="x125"/>
-		<Affix MIDREF="x126"/>
-		<Affix MIDREF="x127"/>
+		<Affix id="x124"/>
+		<Affix id="x125"/>
+		<Affix id="x126"/>
+		<Affix id="x127"/>
 	  </Prefixes>
-	  <Stem MIDREF="mStem"/>
+	  <Stem id="mStem"/>
 	  <Suffixes>
-		<Affix MIDREF="x129"/>
+		<Affix id="x129"/>
 	  </Suffixes>
 	</WordRecord>
   </WordRecords>
   <Morphemes>
-	<Morpheme MID="mStem" type="s"/>
-	<Morpheme MID="x109" type="pfx"/>
-	<Morpheme MID="x110" type="pfx"/>
-	<Morpheme MID="x114" type="sfx"/>
-	<Morpheme MID="x124" type="pfx"/>
-	<Morpheme MID="x125" type="pfx"/>
-	<Morpheme MID="x126" type="pfx"/>
-	<Morpheme MID="x127" type="pfx"/>
-	<Morpheme MID="x128" type="sfx"/>
-	<Morpheme MID="x129" type="sfx"/>
+	<Morpheme id="mStem" type="s"/>
+	<Morpheme id="x109" type="pfx"/>
+	<Morpheme id="x110" type="pfx"/>
+	<Morpheme id="x114" type="sfx"/>
+	<Morpheme id="x124" type="pfx"/>
+	<Morpheme id="x125" type="pfx"/>
+	<Morpheme id="x126" type="pfx"/>
+	<Morpheme id="x127" type="pfx"/>
+	<Morpheme id="x128" type="sfx"/>
+	<Morpheme id="x129" type="sfx"/>
   </Morphemes>
   <Classes>
 	<PrefixClasses/>

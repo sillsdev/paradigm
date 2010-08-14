@@ -22,10 +22,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Do whatever it takes to convert the input this processor knows about.
 		/// </summary>
-		/// <param name="gafawsData">
-		/// An empty IGafawsData instance,
-		/// which is where the converted data ends up.
-		/// </param>
 		/// <returns>
 		/// The pathname of the converted data.
 		/// </returns>

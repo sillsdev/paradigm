@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Impl;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
@@ -101,9 +102,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				var wr = new WordRecord();
+				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+
+				var wr = new WordRecord { Id = "wr1" };
 				m_gd.WordRecords.Add(wr);
-				var stem = new Stem();
+				var stem = new Stem {MidRef = "S1"};
 				wr.Stem = stem;
 				stem.Other = m_otherStuff;
 
@@ -127,10 +130,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				var wr = new WordRecord();
+				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
+				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+
+				var wr = new WordRecord { Id = "wr1" };
 				m_gd.WordRecords.Add(wr);
-				wr.Prefixes = new List<Affix>();
-				var afx = new Affix();
+				var stem = new Stem { MidRef = "S1" };
+				wr.Stem = stem;
+				wr.Prefixes = new List<IAffix>();
+				var afx = new Affix {MidRef = "A1"};
 				wr.Prefixes.Add(afx);
 
 				afx.Other = m_otherStuff;
@@ -155,10 +163,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				var wr = new WordRecord();
+				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
+				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+
+				var wr = new WordRecord {Id = "wr1"};
 				m_gd.WordRecords.Add(wr);
-				wr.Prefixes = new List<Affix>();
-				var afx = new Affix();
+				wr.Prefixes = new List<IAffix>();
+				var afx = new Affix { MidRef = "A1" };
+				var stem = new Stem { MidRef = "S1" };
+				wr.Stem = stem;
 				wr.Prefixes.Add(afx);
 
 				wr.Other = m_otherStuff;

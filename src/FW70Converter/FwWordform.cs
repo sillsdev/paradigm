@@ -66,10 +66,14 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		}
 
 		internal void Convert(IGafawsData gData,
+			IWordRecordFactory wordRecordFactory,
+			IMorphemeFactory morphemeFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
 			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
 			foreach (var anal in _analyses)
-				anal.Convert(gData, prefixes, stems, suffixes);
+				anal.Convert(gData, wordRecordFactory, morphemeFactory, affixFactory, stemFactory, prefixes, stems, suffixes);
 		}
 	}
 }

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Impl;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
@@ -91,7 +92,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			foreach (var morpheme in root.Element("Morphemes").Elements("Morpheme"))
 			{
 				var classPfx = "";
-				var mid = "";
+				var id = "";
 				string startid;
 				string endid;
 				var currentSet = prefixIds;
@@ -101,14 +102,14 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 						continue;
 					case "pfx":
 						classPfx = "PP";
-						GetMorphemeInfo(morpheme, out mid, out startid, out endid);
+						GetMorphemeInfo(morpheme, out id, out startid, out endid);
 						prefixIds.Add(startid);
 						prefixIds.Add(endid);
 						currentSet = prefixIds;
 						break;
 					case "sfx":
 						classPfx = "SP";
-						GetMorphemeInfo(morpheme, out mid, out startid, out endid);
+						GetMorphemeInfo(morpheme, out id, out startid, out endid);
 						suffixIds.Add(startid);
 						suffixIds.Add(endid);
 						currentSet = suffixIds;
@@ -117,27 +118,27 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 
 				string expectedStartId;
 				string expectedEndId;
-				if (mid.Length == 2)
+				if (id.Length == 2)
 				{
-					// If MID has one digit, then it is the start and end id.
+					// If id has one digit, then it is the start and end id.
 					// NB: One or both actual ids could end with "0" for 'fog bank' results.
-					expectedEndId = expectedStartId = classPfx + mid[1];
+					expectedEndId = expectedStartId = classPfx + id[1];
 				}
 				else
 				{
 					// Otherwise, the first digit is start and the second is end.
 					// NB: One or both actual ids could end with "0" for 'fog bank' results.
-					expectedStartId = classPfx + mid[1];
-					expectedEndId = classPfx + mid[2];
+					expectedStartId = classPfx + id[1];
+					expectedEndId = classPfx + id[2];
 				}
-				var actualStartId = morpheme.Attribute("StartCLIDREF").Value;
+				var actualStartId = morpheme.Attribute("startclass").Value;
 				var okStart = actualStartId[2].ToString() == "0"
 							   || expectedStartId == actualStartId;
 				Assert.IsTrue(okStart);
 				Assert.IsTrue(expectedStartId == actualStartId && currentSet.Contains(expectedStartId)
 					|| expectedStartId != actualStartId && currentSet.Contains(actualStartId));
 
-				var actualEndId = morpheme.Attribute("EndCLIDREF").Value;
+				var actualEndId = morpheme.Attribute("endclass").Value;
 				var okEnd = actualEndId[2].ToString() == "0"
 							   || expectedEndId == actualEndId;
 				Assert.IsTrue(okEnd);
@@ -158,15 +159,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 					.Element("Classes")
 									.Element(elementName)
 									.Elements("Class")
-									.Where(cls => cls.Attribute("CLID").Value == id)).FirstOrDefault());
+									.Where(cls => cls.Attribute("id").Value == id)).FirstOrDefault());
 			}
 		}
 
-		private static void GetMorphemeInfo(XElement morpheme, out string mid, out string startid, out string endid)
+		private static void GetMorphemeInfo(XElement morpheme, out string id, out string startid, out string endid)
 		{
-			mid = morpheme.Attribute("MID").Value;
-			startid = morpheme.Attribute("StartCLIDREF").Value;
-			endid = morpheme.Attribute("EndCLIDREF").Value;
+			id = morpheme.Attribute("id").Value;
+			startid = morpheme.Attribute("startclass").Value;
+			endid = morpheme.Attribute("endclass").Value;
 		}
 	}
 }

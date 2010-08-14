@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GAFAWSData>
   <WordRecords>
-	<WordRecord WRID="x118">
-	  <Stem MIDREF="mStem"/>
+	<WordRecord id="x118">
+	  <Stem id="mStem"/>
 	  <Suffixes>
-		<Affix MIDREF="x114"/>
+		<Affix id="x114"/>
 	  </Suffixes>
 	</WordRecord>
-	<WordRecord WRID="x130">
+	<WordRecord id="x130">
 	  <Prefixes>
-		<Affix MIDREF="x124"/>
-		<Affix MIDREF="x125"/>
-		<Affix MIDREF="x126"/>
-		<Affix MIDREF="x127"/>
+		<Affix id="x124"/>
+		<Affix id="x125"/>
+		<Affix id="x126"/>
+		<Affix id="x127"/>
 	  </Prefixes>
-	  <Stem MIDREF="mStem"/>
+	  <Stem id="mStem"/>
 	</WordRecord>
-	<WordRecord WRID="x131">
+	<WordRecord id="x131">
 	  <Prefixes>
-		<Affix MIDREF="x124"/>
-		<Affix MIDREF="x125"/>
-		<Affix MIDREF="x126"/>
-		<Affix MIDREF="x127"/>
+		<Affix id="x124"/>
+		<Affix id="x125"/>
+		<Affix id="x126"/>
+		<Affix id="x127"/>
 	  </Prefixes>
-	  <Stem MIDREF="mStem"/>
+	  <Stem id="mStem"/>
 	  <Suffixes>
-		<Affix MIDREF="x129"/>
+		<Affix id="x129"/>
 	  </Suffixes>
 	</WordRecord>
   </WordRecords>
   <Morphemes>
-	<Morpheme MID="mStem" type="s"/>
-	<Morpheme MID="x109" type="pfx" StartCLIDREF="PP1" EndCLIDREF="PP4"/>
-	<Morpheme MID="x110" type="pfx" StartCLIDREF="PP1" EndCLIDREF="PP4"/>
-	<Morpheme MID="x114" type="sfx" StartCLIDREF="SP1" EndCLIDREF="SP1"/>
-	<Morpheme MID="x124" type="pfx" StartCLIDREF="PP4" EndCLIDREF="PP4"/>
-	<Morpheme MID="x125" type="pfx" StartCLIDREF="PP3" EndCLIDREF="PP3"/>
-	<Morpheme MID="x126" type="pfx" StartCLIDREF="PP2" EndCLIDREF="PP2"/>
-	<Morpheme MID="x127" type="pfx" StartCLIDREF="PP1" EndCLIDREF="PP1"/>
-	<Morpheme MID="x128" type="sfx" StartCLIDREF="SP1" EndCLIDREF="SP1"/>
-	<Morpheme MID="x129" type="sfx" StartCLIDREF="SP1" EndCLIDREF="SP1"/>
+	<Morpheme id="mStem" type="s"/>
+	<Morpheme id="x109" type="pfx" startclass="PP1" endclass="PP4"/>
+	<Morpheme id="x110" type="pfx" startclass="PP1" endclass="PP4"/>
+	<Morpheme id="x114" type="sfx" startclass="SP1" endclass="SP1"/>
+	<Morpheme id="x124" type="pfx" startclass="PP4" endclass="PP4"/>
+	<Morpheme id="x125" type="pfx" startclass="PP3" endclass="PP3"/>
+	<Morpheme id="x126" type="pfx" startclass="PP2" endclass="PP2"/>
+	<Morpheme id="x127" type="pfx" startclass="PP1" endclass="PP1"/>
+	<Morpheme id="x128" type="sfx" startclass="SP1" endclass="SP1"/>
+	<Morpheme id="x129" type="sfx" startclass="SP1" endclass="SP1"/>
   </Morphemes>
   <Classes>
 	<PrefixClasses>
-	  <Class CLID="PP1"/>
-	  <Class CLID="PP2"/>
-	  <Class CLID="PP3"/>
-	  <Class CLID="PP4"/>
+	  <Class id="PP1"/>
+	  <Class id="PP2"/>
+	  <Class id="PP3"/>
+	  <Class id="PP4"/>
 	</PrefixClasses>
 	<SuffixClasses>
-	  <Class CLID="SP1"/>
+	  <Class id="SP1"/>
 	</SuffixClasses>
   </Classes>
   <Challenges/>

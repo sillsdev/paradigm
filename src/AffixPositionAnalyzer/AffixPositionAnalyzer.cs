@@ -36,7 +36,10 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			InitializeComponent();
 		}
 
-		internal AffixPositionAnalyzer(IEnumerable<IGafawsConverter> converters, IPositionAnalyzer analyzer, IGafawsData gafawsData)
+		public AffixPositionAnalyzer(
+			IEnumerable<IGafawsConverter> converters,
+			IPositionAnalyzer analyzer,
+			IGafawsData gafawsData)
 			: this()
 		{
 			_analyzer = analyzer;

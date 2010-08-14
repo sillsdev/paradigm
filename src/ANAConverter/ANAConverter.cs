@@ -18,11 +18,24 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// </summary>
 	public class AnaConverter : IGafawsConverter
 	{
+		private readonly IWordRecordFactory _wordRecordFactory;
+		private readonly IAffixFactory _affixFactory;
+		private readonly IStemFactory _stemFactory;
+		private readonly IMorphemeFactory _morphemeFactory;
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public AnaConverter()
+		public AnaConverter(
+			IWordRecordFactory wordRecordFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
+			IMorphemeFactory morphemeFactory)
 		{
+			_wordRecordFactory = wordRecordFactory;
+			_affixFactory = affixFactory;
+			_stemFactory = stemFactory;
+			_morphemeFactory = morphemeFactory;
 			AnaObject.Reset();
 		}
 
@@ -70,7 +83,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 								case "\\a":
 									{
 										if (record != null)
-											record.Convert();
+											record.Convert(_wordRecordFactory, _morphemeFactory, _stemFactory, _affixFactory);
 										record = new AnaRecord(line.Substring(3));
 										break;
 									}
@@ -101,7 +114,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 							line = reader.ReadLine();
 						}
 						Debug.Assert(record != null);
-						record.Convert(); // Process last record.
+						record.Convert(_wordRecordFactory, _morphemeFactory, _stemFactory, _affixFactory); // Process last record.
 					}
 					outputPathname = OutputPathServices.GetOutputPathname(anaPathname);
 				}
@@ -162,7 +175,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="reader">The reader to close.</param>
 		/// <param name="pathInput">Input pathname for invalid file.</param>
-		/// <param name="message">The message to use in the exception.</param>
+		/// <param name="message">The Message to use in the exception.</param>
 		private static void ThrowFileLoadException(TextReader reader, string pathInput, string message)
 		{
 			reader.Close();

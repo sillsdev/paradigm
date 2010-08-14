@@ -126,4 +126,7 @@
   <data name="kInformation" xml:space="preserve">
 	<value>Information</value>
   </data>
+	<data name="kInvalidType">
+		<value xml:space="preserve">Invalid type.</value>
+	</data>
 </root>

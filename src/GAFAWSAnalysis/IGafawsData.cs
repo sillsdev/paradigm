@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 {
@@ -8,30 +7,26 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Collection of word records.
 		/// </summary>
-		[XmlArrayItem("WordRecord", IsNullable = false)]
-		List<WordRecord> WordRecords { get; set; }
+		List<IWordRecord> WordRecords { get; }
 
 		/// <summary>
 		/// Collection of morphemes.
 		/// </summary>
-		[XmlArrayItemAttribute("Morpheme", IsNullable = false)]
-		List<Morpheme> Morphemes { get; set; }
+		List<IMorpheme> Morphemes { get; }
 
 		/// <summary>
 		/// Collection of position classes. (Reserved for use by the Paradigm DLL.)
 		/// </summary>
-		Classes Classes { get; set; }
+		IClasses Classes { get; }
 
 		/// <summary>
 		/// Collection of problems. (Reserved for use by the Paradigm DLL.)
 		/// </summary>
-		[XmlArrayItemAttribute("Challenge", IsNullable = false)]
-		List<Challenge> Challenges { get; set; }
+		List<IChallenge> Challenges { get; }
 
 		/// <summary>
 		/// Model-specific data.
 		/// </summary>
-		[XmlIgnore]
 		string Other { get; set; }
 
 		/// <summary>

@@ -15,6 +15,23 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 	/// </summary>
 	public class Fw70Converter : IGafawsConverter
 	{
+		private readonly IWordRecordFactory _wordRecordFactory;
+		private readonly IAffixFactory _affixFactory;
+		private readonly IStemFactory _stemFactory;
+		private readonly IMorphemeFactory _morphemeFactory;
+
+		public Fw70Converter(
+			IWordRecordFactory wordRecordFactory,
+			IAffixFactory affixFactory,
+			IStemFactory stemFactory,
+			IMorphemeFactory morphemeFactory)
+		{
+			_wordRecordFactory = wordRecordFactory;
+			_affixFactory = affixFactory;
+			_stemFactory = stemFactory;
+			_morphemeFactory = morphemeFactory;
+		}
+
 		#region Implementation of IGafawsConverter
 
 		/// <summary>
@@ -64,7 +81,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			var stems = new Dictionary<string, List<FwMsa>>();
 			var suffixes = new Dictionary<string, FwMsa>();
 			foreach (var wf in wordformsList)
-				wf.Convert(gafawsData, prefixes, stems, suffixes);
+				wf.Convert(gafawsData, _wordRecordFactory, _morphemeFactory, _affixFactory, _stemFactory, prefixes, stems, suffixes);
 
 			outputpathname = Path.GetTempFileName() + ".xml";
 
@@ -83,19 +100,19 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				if (wr.Prefixes != null)
 				{
 					foreach (var afx in wr.Prefixes)
-						afx.MIDREF = EatIds(afx.MIDREF);
+						afx.MidRef = EatIds(afx.MidRef);
 				}
 
-				wr.Stem.MIDREF = EatIds(wr.Stem.MIDREF);
+				wr.Stem.MidRef = EatIds(wr.Stem.MidRef);
 
 				if (wr.Suffixes == null) continue;
 
 				foreach (var afx in wr.Suffixes)
-					afx.MIDREF = EatIds(afx.MIDREF);
+					afx.MidRef = EatIds(afx.MidRef);
 			}
 			foreach (var morph in gafawsData.Morphemes)
 			{
-				morph.MID = EatIds(morph.MID);
+				morph.Id = EatIds(morph.Id);
 			}
 		}
 

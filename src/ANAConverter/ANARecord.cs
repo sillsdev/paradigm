@@ -95,10 +95,10 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Convert the object to the data layer.
 		/// </summary>
-		internal void Convert()
+		internal void Convert(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
 			foreach (var t in m_analyses)
-				t.Convert();
+				t.Convert(wordRecordFactory, morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>

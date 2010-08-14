@@ -11,8 +11,10 @@
 // </remarks>
 using System;
 using System.IO;
+using System.Xml;
 using NUnit.Framework;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using SIL.WordWorks.GAFAWS.PositionAnalysis.Impl;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
@@ -25,16 +27,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// <summary>
 		/// A known set of data.
 		/// </summary>
-		private readonly string m_dataBefore = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Environment.NewLine +
-			"<GAFAWSData xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
-				" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">" + Environment.NewLine +
+		private readonly string m_dataBefore = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" + Environment.NewLine +
+			"<GAFAWSData>" + Environment.NewLine +
 			"  <WordRecords>" + Environment.NewLine +
-			"    <WordRecord WRID=\"WR1\">" + Environment.NewLine +
-			"      <Stem MIDREF=\"M1\" />" + Environment.NewLine +
+			"    <WordRecord id=\"WR1\">" + Environment.NewLine +
+			"      <Stem id=\"M1\" />" + Environment.NewLine +
 			"    </WordRecord>" + Environment.NewLine +
 			"  </WordRecords>" + Environment.NewLine +
 			"  <Morphemes>" + Environment.NewLine +
-			"    <Morpheme MID=\"M1\" type=\"s\" />" + Environment.NewLine +
+			"    <Morpheme id=\"M1\" type=\"s\" />" + Environment.NewLine +
 			"  </Morphemes>" + Environment.NewLine +
 			"  <Classes>" + Environment.NewLine +
 			"    <PrefixClasses />" + Environment.NewLine +
@@ -80,8 +81,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				m_gd.Morphemes.Add(m);
 				var wr = new WordRecord();
 				m_gd.WordRecords.Add(wr);
-				wr.WRID = "WR1";
-				wr.Stem = new Stem {MIDREF = m.MID};
+				wr.Id = "WR1";
+				wr.Stem = new Stem {MidRef = m.Id};
 				fileName = MakeFile();
 				m_gd.SaveData(fileName);
 				reader = new StreamReader(fileName);
@@ -134,7 +135,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading data file that is empty.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(InvalidOperationException))]
+		[ExpectedException(typeof(XmlException))]
 		public void LoadDataWithEmptyFile()
 		{
 			string fileName = null;
@@ -142,14 +143,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			{
 				fileName = MakeFile();
 				m_gd = GafawsData.LoadData(fileName);
-			}
-			catch (System.Xml.XmlException e)
-			{
-				// Ugly workaround for Mono bug #460193: mono throws XmlException
-				if (Environment.OSVersion.Platform == PlatformID.Unix)
-					throw new InvalidOperationException(e.Message, e);
-				// If we're not running on Unix (Mono), we just re-throw
-				throw;
 			}
 			finally
 			{
