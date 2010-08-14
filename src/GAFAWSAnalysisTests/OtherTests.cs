@@ -104,9 +104,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			{
 				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
-				var wr = new WordRecord { Id = "wr1" };
+				var wr = new WordRecord("wr1");
 				m_gd.WordRecords.Add(wr);
-				var stem = new Stem {MidRef = "S1"};
+				var stem = new Stem {Id = "S1"};
 				wr.Stem = stem;
 				stem.Other = m_otherStuff;
 
@@ -133,12 +133,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
 				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
-				var wr = new WordRecord { Id = "wr1" };
+				var wr = new WordRecord("wr1");
 				m_gd.WordRecords.Add(wr);
-				var stem = new Stem { MidRef = "S1" };
+				var stem = new Stem { Id = "S1" };
 				wr.Stem = stem;
 				wr.Prefixes = new List<IAffix>();
-				var afx = new Affix {MidRef = "A1"};
+				var afx = new Affix {Id = "A1"};
 				wr.Prefixes.Add(afx);
 
 				afx.Other = m_otherStuff;
@@ -166,11 +166,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
 				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
-				var wr = new WordRecord {Id = "wr1"};
+				var wr = new WordRecord("wr1");
 				m_gd.WordRecords.Add(wr);
 				wr.Prefixes = new List<IAffix>();
-				var afx = new Affix { MidRef = "A1" };
-				var stem = new Stem { MidRef = "S1" };
+				var afx = new Affix { Id = "A1" };
+				var stem = new Stem { Id = "S1" };
 				wr.Stem = stem;
 				wr.Prefixes.Add(afx);
 

@@ -1,5 +1,4 @@
 ﻿using SIL.WordWorks.GAFAWS.PositionAnalysis;
-using SIL.WordWorks.GAFAWS.PositionAnalysis.Impl;
 using StructureMap.Configuration.DSL;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
@@ -11,33 +10,22 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 	{
 		public AppRegistry()
 		{
+			// Main app form class.
 			For<AffixPositionAnalyzer>()
 				.Singleton()
 				.Use<AffixPositionAnalyzer>();
+
 			Scan(scanner =>
 				{
 					scanner.AssembliesFromApplicationBaseDirectory();
+					// Register converters that are in ant assembly.
 					scanner.AddAllTypesOf<IGafawsConverter>();
-				});
-			For<IPositionAnalyzer>()
-				.Singleton()
-				.Use<PositionAnalyzer>();
-			For<IGafawsData>()
-				.Singleton()
-				.Use<GafawsData>();
 
-			For<IWordRecordFactory>()
-				.AlwaysUnique()
-				.Use<WordRecordFactory>();
-			For<IAffixFactory>()
-				.AlwaysUnique()
-				.Use<AffixFactory>();
-			For<IStemFactory>()
-				.AlwaysUnique()
-				.Use<StemFactory>();
-			For<IMorphemeFactory>()
-				.AlwaysUnique()
-				.Use<MorphemeFactory>();
+					// Load up any registries in any assembly.
+					// The main Gafaws assembly has one that deals with all basic stuff.
+					scanner.LookForRegistries();
+				});
+
 		}
 	}
 }

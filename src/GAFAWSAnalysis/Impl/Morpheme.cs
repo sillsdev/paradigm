@@ -13,7 +13,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// An individual morpheme.
 	/// </summary>
-	public sealed class Morpheme : IMorpheme
+	internal sealed class Morpheme : IMorpheme
 	{
 		private string _type;
 

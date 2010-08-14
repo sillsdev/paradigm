@@ -84,7 +84,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				m_morpheme = morphemeFactory.Create(m_type, m_morphname);
 				s_gd.Morphemes.Add(m_morpheme);
 			}
-			m_dataLayerMorpheme.MidRef = m_morpheme.Id;
+			m_dataLayerMorpheme.Id = m_morpheme.Id;
 			if (m_underlyingForm != null)
 			{
 				m_morpheme.Other = "<ANAInfo underlyingForm=\'" + m_underlyingForm + "\' />";

@@ -1,6 +1,6 @@
 ﻿namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
-	public class AffixFactory : IAffixFactory
+	internal class AffixFactory : IAffixFactory
 	{
 		#region Implementation of IAffixFactory
 

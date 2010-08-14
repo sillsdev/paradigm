@@ -5,15 +5,15 @@
 		<xsl:for-each select="WordRecord">
 			<xsl:for-each select="Prefixes">
 				<xsl:for-each select="Affix">
-					<xsl:value-of select="concat(@MidRef, '-')"/>
+					<xsl:value-of select="concat(@Id, '-')"/>
 				</xsl:for-each>
 			</xsl:for-each>
 			<xsl:for-each select="Stem">
-				<xsl:value-of select="@MidRef"/>
+				<xsl:value-of select="@Id"/>
 			</xsl:for-each>
 			<xsl:for-each select="Suffixes">
 				<xsl:for-each select="Affix">
-					<xsl:value-of select="concat('-', @MidRef)"/>
+					<xsl:value-of select="concat('-', @Id)"/>
 				</xsl:for-each>
 			</xsl:for-each>
 			<xsl:text>&#xa;</xsl:text>

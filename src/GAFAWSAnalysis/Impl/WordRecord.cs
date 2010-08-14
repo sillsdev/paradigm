@@ -16,12 +16,17 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// A word record.
 	/// </summary>
-	public sealed class WordRecord : IWordRecord
+	internal sealed class WordRecord : IWordRecord
 	{
+		internal WordRecord(string id)
+		{
+			Id = id;
+		}
+
 		/// <summary>
 		/// Word record ID.
 		/// </summary>
-		public string Id { get; set; }
+		public string Id { get; private set; }
 
 		/// <summary>
 		/// Collection of prefixes.

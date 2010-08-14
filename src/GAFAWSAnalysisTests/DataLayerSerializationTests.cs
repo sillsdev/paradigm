@@ -79,10 +79,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				Assert.IsNotNull(cls);
 				var m = new Morpheme(MorphemeType.Stem, "M1");
 				m_gd.Morphemes.Add(m);
-				var wr = new WordRecord();
+				var wr = new WordRecord("WR1");
 				m_gd.WordRecords.Add(wr);
-				wr.Id = "WR1";
-				wr.Stem = new Stem {MidRef = m.Id};
+				wr.Stem = new Stem {Id = m.Id};
 				fileName = MakeFile();
 				m_gd.SaveData(fileName);
 				reader = new StreamReader(fileName);

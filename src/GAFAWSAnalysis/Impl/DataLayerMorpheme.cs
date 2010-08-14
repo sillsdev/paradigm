@@ -1,11 +1,11 @@
 ﻿namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
-	public abstract class DataLayerMorpheme : IDataLayerMorpheme
+	internal abstract class DataLayerMorpheme : IDataLayerMorpheme
 	{
 		/// <summary>
 		/// Reference to ID of morpheme.
 		/// </summary>
-		public string MidRef { get; set; }
+		public string Id { get; set; }
 
 		/// <summary>
 		/// Model-specific data.

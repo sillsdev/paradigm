@@ -34,7 +34,6 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		static private char s_separatorCharacter = '-';
 		static private char s_categorySeparator = '=';
 		static private List<Category> s_partsOfSpeech;
-		static private int s_idx = 1;
 
 		static new internal void Reset()
 		{
@@ -43,7 +42,6 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			s_separatorCharacter = '-';
 			s_categorySeparator = '=';
 			s_partsOfSpeech = null;
-			s_idx = 1;
 		}
 
 		/// <summary>
@@ -213,7 +211,6 @@ label1:
 		{
 			var wr = wordRecordFactory.Create();
 			s_gd.WordRecords.Add(wr);
-			wr.Id = "WR" + s_idx++;
 			if (m_prefixes != null)
 				wr.Prefixes = new List<IAffix>();
 			if (m_suffixes != null)

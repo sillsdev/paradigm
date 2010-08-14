@@ -3,7 +3,7 @@
 	/// <summary>
 	/// The stem in a word record.
 	/// </summary>
-	public sealed class Stem : DataLayerMorpheme, IStem
+	internal sealed class Stem : DataLayerMorpheme, IStem
 	{
 	}
 }

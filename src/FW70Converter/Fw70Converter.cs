@@ -20,7 +20,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		private readonly IStemFactory _stemFactory;
 		private readonly IMorphemeFactory _morphemeFactory;
 
-		public Fw70Converter(
+		internal Fw70Converter(
 			IWordRecordFactory wordRecordFactory,
 			IAffixFactory affixFactory,
 			IStemFactory stemFactory,
@@ -100,15 +100,15 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				if (wr.Prefixes != null)
 				{
 					foreach (var afx in wr.Prefixes)
-						afx.MidRef = EatIds(afx.MidRef);
+						afx.Id = EatIds(afx.Id);
 				}
 
-				wr.Stem.MidRef = EatIds(wr.Stem.MidRef);
+				wr.Stem.Id = EatIds(wr.Stem.Id);
 
 				if (wr.Suffixes == null) continue;
 
 				foreach (var afx in wr.Suffixes)
-					afx.MidRef = EatIds(afx.MidRef);
+					afx.Id = EatIds(afx.Id);
 			}
 			foreach (var morph in gafawsData.Morphemes)
 			{

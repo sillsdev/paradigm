@@ -3,7 +3,7 @@
 	/// <summary>
 	/// An Affix in a word record.
 	/// </summary>
-	public sealed class Affix : DataLayerMorpheme, IAffix
+	internal sealed class Affix : DataLayerMorpheme, IAffix
 	{
 	}
 }

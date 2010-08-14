@@ -162,7 +162,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Prefix, msaKey));
 				}
 				var afx = affixFactory.Create();
-				afx.MidRef = msaKey;
+				afx.Id = msaKey;
 				wr.Prefixes.Add(afx);
 			}
 
@@ -179,7 +179,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 					gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Suffix, msaKey));
 				}
 				var afx = affixFactory.Create();
-				afx.MidRef = msaKey;
+				afx.Id = msaKey;
 				wr.Suffixes.Insert(0, afx);
 			}
 			// Deal with stem(s).
@@ -201,7 +201,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				gData.Morphemes.Add(morphemeFactory.Create(MorphemeType.Stem, sStem));
 			}
 			var stem = stemFactory.Create();
-			stem.MidRef = sStem;
+			stem.Id = sStem;
 			wr.Stem = stem;
 
 			// Add wr.

@@ -26,7 +26,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Constructor.
 		/// </summary>
-		public AnaConverter(
+		internal AnaConverter(
 			IWordRecordFactory wordRecordFactory,
 			IAffixFactory affixFactory,
 			IStemFactory stemFactory,

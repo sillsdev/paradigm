@@ -1,6 +1,6 @@
 ﻿namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
-	public class MorphemeFactory : IMorphemeFactory
+	internal class MorphemeFactory : IMorphemeFactory
 	{
 		#region Implementation of IMorphemeFactory
 

@@ -35,7 +35,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		private readonly IStemFactory _stemFactory;
 		private readonly IMorphemeFactory _morphemeFactory;
 
-		public PlainWordlistConverter(
+		internal PlainWordlistConverter(
 			IWordRecordFactory wordRecordFactory,
 			IAffixFactory affixFactory,
 			IStemFactory stemFactory,
@@ -103,7 +103,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 									if (string.IsNullOrEmpty(prefix)) continue;
 
 									var afx = _affixFactory.Create();
-									afx.MidRef = prefix;
+									afx.Id = prefix;
 									wrdRec.Prefixes.Add(afx);
 									if (dictPrefixes.ContainsKey(prefix)) continue;
 
@@ -118,7 +118,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 							if (sStem.Length == 0)
 								sStem = "stem";
 							var stem = _stemFactory.Create();
-							stem.MidRef = sStem;
+							stem.Id = sStem;
 							wrdRec.Stem = stem;
 							if (!dictStems.ContainsKey(sStem))
 							{
@@ -139,7 +139,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 									if (string.IsNullOrEmpty(suffix)) continue;
 
 									var afx = _affixFactory.Create();
-									afx.MidRef = suffix;
+									afx.Id = suffix;
 									wrdRec.Suffixes.Add(afx);
 									if (dictSuffixes.ContainsKey(suffix)) continue;
 

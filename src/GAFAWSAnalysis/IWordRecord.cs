@@ -7,7 +7,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		/// <summary>
 		/// Word record ID.
 		/// </summary>
-		string Id { get; set; }
+		string Id { get; }
 
 		/// <summary>
 		/// Collection of prefixes.

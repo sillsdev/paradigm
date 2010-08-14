@@ -20,7 +20,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// Main class for analyzing affix positions.
 	/// </summary>
-	public class PositionAnalyzer : IPositionAnalyzer
+	internal class PositionAnalyzer : IPositionAnalyzer
 	{
 		/// <summary>
 		/// An instance of GAFAWSData.
@@ -144,8 +144,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 					// only one affix, which is right, since it has nothing on either side.
 					for (var iAfx = 1; ac != null && iAfx < ac.Count; ++iAfx)
 					{
-						var prevId = ac[iAfx -1].MidRef;
-						var curId = ac[iAfx].MidRef;
+						var prevId = ac[iAfx -1].Id;
+						var curId = ac[iAfx].Id;
 						affixes[curId].AddAsSuccessor(prevId);
 						affixes[prevId].AddAsPredecessor(curId);
 					}

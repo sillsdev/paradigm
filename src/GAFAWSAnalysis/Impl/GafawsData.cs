@@ -14,7 +14,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// Main class in the GAFAWS data layer.
 	/// </summary>
-	public sealed class GafawsData : IGafawsData
+	internal sealed class GafawsData : IGafawsData
 	{
 		#region Data members
 
@@ -22,7 +22,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 
 		#region Construction
 
-		public GafawsData()
+		internal GafawsData()
 		{
 			WordRecords = new List<IWordRecord>();
 			Morphemes = new List<IMorpheme>();
@@ -101,12 +101,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																													"Affix",
 																													new XAttribute(
 																														"id",
-																														pfx.MidRef),
+																														pfx.Id),
 																														SerializationServices.WriteOtherElement(pfx.Other))),
 																								 new XElement("Stem",
 																											  new XAttribute(
 																												"id",
-																												wr.Stem.MidRef),
+																												wr.Stem.Id),
 																												SerializationServices.WriteOtherElement(wr.Stem.Other)),
 																								 wr.Suffixes == null || wr.Suffixes.Count == 0
 																									? null
@@ -118,7 +118,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																													"Affix",
 																													new XAttribute(
 																														"id",
-																														sfx.MidRef),
+																														sfx.Id),
 																														SerializationServices.WriteOtherElement(sfx.Other))),
 																							SerializationServices.WriteOtherElement(wr.Other))),
 													new XElement("Morphemes", from morph in Morphemes
@@ -169,7 +169,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 						};
 			foreach (var wordRecordElement in root.Element("WordRecords").Elements("WordRecord"))
 			{
-				var wr = new WordRecord {Id = wordRecordElement.Attribute("id").Value};
+				var wr = new WordRecord(wordRecordElement.Attribute("id").Value);
 				if (wordRecordElement.Element("Prefixes") != null)
 				{
 					wr.Prefixes = new List<IAffix>();
@@ -178,7 +178,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 						.Elements("Affix")
 						.Select(pfxElement => new Affix
 												{
-													MidRef = pfxElement.Attribute("id").Value,
+													Id = pfxElement.Attribute("id").Value,
 													Other = SerializationServices.ReadOtherElement(pfxElement.Element("Other"))
 												}))
 					{
@@ -189,7 +189,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				var stemElement = wordRecordElement.Element("Stem");
 				var stem = new Stem
 							{
-								MidRef = stemElement.Attribute("id").Value,
+								Id = stemElement.Attribute("id").Value,
 								Other = SerializationServices.ReadOtherElement(stemElement.Element("Other"))
 							};
 				wr.Stem = stem;
@@ -201,7 +201,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 						.Elements("Affix")
 						.Select(sfxElement => new Affix
 												{
-													MidRef = sfxElement.Attribute("id").Value,
+													Id = sfxElement.Attribute("id").Value,
 													Other = SerializationServices.ReadOtherElement(sfxElement.Element("Other"))
 												}))
 					{

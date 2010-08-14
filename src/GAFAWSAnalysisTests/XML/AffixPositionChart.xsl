@@ -444,7 +444,7 @@ Morphemes  template
 		  </td>
 		  <td>
 			<table border="0" cellpadding="0" cellspacing="0">
-			  <xsl:for-each select="//WordRecord[Prefixes/Affix/@MidRef=$sMorphID or Suffixes/Affix/@MidRef=$sMorphID or Stem/@MidRef=$sMorphID]">
+			  <xsl:for-each select="//WordRecord[Prefixes/Affix/@Id=$sMorphID or Suffixes/Affix/@Id=$sMorphID or Stem/@Id=$sMorphID]">
 				<tr>
 				  <xsl:variable name="sMID">
 					<xsl:value-of select="$sMorphID"/>
@@ -454,7 +454,7 @@ Morphemes  template
 				  <!-- find position of one to highlight -->
 				  <xsl:variable name="iPos">
 					<xsl:for-each select="$nsMorphs">
-					  <xsl:if test="@MidRef = $sMorphID">
+					  <xsl:if test="@Id = $sMorphID">
 						<xsl:value-of select="position()"/>
 					  </xsl:if>
 					</xsl:for-each>
@@ -501,7 +501,7 @@ OutputAffix
 -->
   <xsl:template name="OutputAffix">
 	<!-- this is simple now, but we'll probably change it later -->
-	<xsl:value-of select="@MidRef"/>
+	<xsl:value-of select="@Id"/>
   </xsl:template>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -535,7 +535,7 @@ OutputStem
 -->
   <xsl:template name="OutputStem">
 	<!-- this is simple now, but we'll probably change it later -->
-	&lt;<xsl:value-of select="@MidRef"/>&gt;
+	&lt;<xsl:value-of select="@Id"/>&gt;
   </xsl:template>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
