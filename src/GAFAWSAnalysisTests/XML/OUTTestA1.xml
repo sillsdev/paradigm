@@ -130,9 +130,11 @@
 	<Morpheme id="s13" startclass="SP1" endclass="SP3" type="sfx" />
 	<Morpheme id="s23" startclass="SP2" endclass="SP3" type="sfx" />
   </Morphemes>
-	<AffixCooccurrences />
-	<AffixNonCooccurrences />
-	<DistinctSets />
+	<AffixSets>
+		<AffixCooccurrences />
+		<AffixNonCooccurrences />
+		<DistinctSets />
+	</AffixSets>
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1" />

@@ -32,12 +32,12 @@ Preamble
   <xsl:variable name="sBackColorSpansBad">background-color:lightgreen</xsl:variable>
   <xsl:variable name="sBackColorAffix">background-color:yellow</xsl:variable>
   <!-- section number of the data section -->
-  <xsl:variable name="sDataSectionNumber">
-	<xsl:choose>
-	  <xsl:when test="count(//Challenge) > 0">3</xsl:when>
-	  <xsl:otherwise>2</xsl:otherwise>
-	</xsl:choose>
-  </xsl:variable>
+	<xsl:variable name="sDataSectionNumber">
+		<xsl:choose>
+			<xsl:when test="count(//Challenge) > 0">4</xsl:when>
+			<xsl:otherwise>3</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Main template
@@ -52,6 +52,7 @@ Main template
 		<p align="center" style="font-weight:bold; font-size:250%">Affix Position Chart Results</p>
 		<p align="center">Results of: <xsl:value-of select="@date"/> at: <xsl:value-of select="@time"/></p>
 		<xsl:apply-templates select="Classes"/>
+		  <xsl:apply-templates select="AffixSets" />
 		<xsl:apply-templates select="Challenges"/>
 		<h1>
 		  <xsl:value-of select="$sDataSectionNumber"/> The Data</h1>
@@ -61,6 +62,99 @@ Main template
 	  </body>
 	</html>
   </xsl:template>
+	<!--
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Affix Sets template
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+	<xsl:template match="AffixSets">
+		<h1>2. Affix Sets</h1>
+		<p>The data contained the following affixes:</p>
+		<p>
+			<xsl:attribute name="style">
+				<xsl:value-of select="$sIndent"/>
+			</xsl:attribute>{<xsl:for-each select="../Morphemes/Morpheme[@type='pfx' or @type='sfx']">
+				<xsl:if test="position() &gt; 1">
+					<xsl:text>, </xsl:text>
+				</xsl:if>
+				<a>
+					<xsl:attribute name="href">
+						#<xsl:value-of select="@id"/>
+					</xsl:attribute>
+					<xsl:call-template name="OutputAffix"/>
+				</a>
+			</xsl:for-each>}
+		</p>
+		<h2>2.1. Regular Cooccurrence Sets</h2>
+		<p>For each affix in the above set of affixes, the following shows other affixes that can occur with each:</p>
+		<xsl:for-each select="AffixCooccurrences/AffixCooccurrenceSet">
+			<p>
+				<xsl:attribute name="style">
+					<xsl:value-of select="$sIndent"/>
+				</xsl:attribute>{<xsl:for-each select="Morpheme">
+					<xsl:if test="position() &gt; 1">
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+					<a>
+						<xsl:attribute name="href">
+							#<xsl:value-of select="@id"/>
+						</xsl:attribute>
+						<xsl:call-template name="OutputAffix"/>
+					</a>
+				</xsl:for-each>}
+			</p>
+		</xsl:for-each>
+		<h2>2.2. Non-cooccurrence Sets</h2>
+		<p>
+			For each affix in the above set of affixes, the following shows other affixes that <i>cannot</i> occur with each:
+		</p>
+		<xsl:for-each select="AffixNonCooccurrences/AffixNonCooccurrenceSet">
+			<p>
+				<xsl:attribute name="style">
+					<xsl:value-of select="$sIndent"/>
+				</xsl:attribute>{<xsl:for-each select="Morpheme">
+					<xsl:if test="position() &gt; 1">
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+					<a>
+						<xsl:attribute name="href">
+							#<xsl:value-of select="@id"/>
+						</xsl:attribute>
+						<xsl:call-template name="OutputAffix"/>
+					</a>
+				</xsl:for-each>}
+			</p>
+		</xsl:for-each>
+		<h2>2.3. Distinct Sets of Mutually Exclusive Forms</h2>
+		<p>Analysis of the sets of affixes in 2.2 gives these distinct sets of affixes:</p>
+		<xsl:for-each select="DistinctSets/DistinctSet">
+			<p>
+				<xsl:attribute name="style">
+					<xsl:value-of select="$sIndent"/>
+				</xsl:attribute>{<xsl:for-each select="Morpheme">
+					<xsl:if test="position() &gt; 1">
+						<xsl:text>, </xsl:text>
+					</xsl:if>
+					<a>
+						<xsl:attribute name="href">
+							#<xsl:value-of select="@id"/>
+						</xsl:attribute>
+						<xsl:call-template name="OutputAffix"/>
+					</a>
+				</xsl:for-each>}
+			</p>
+		</xsl:for-each>
+		<p>
+			TODO: See if we can 'borrow' some explanation from
+			<a>
+				<xsl:attribute name="href">
+					<xsl:text>http://www.sil.org/acpub/repository/18632.pdf</xsl:text>
+				</xsl:attribute>
+				<xsl:text>the book</xsl:text>
+			</a> on what a Distinct Set means to the analyst. Also, try to find some free .Net HTML generating widget that can produce the Venn Diagrams of the Distinct Sets.
+		</p>
+		<p>Another TODO: implement the part that discovers hidden distinct sets.</p>
+	</xsl:template>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Classes template
@@ -444,7 +538,7 @@ Morphemes  template
 		  </td>
 		  <td>
 			<table border="0" cellpadding="0" cellspacing="0">
-			  <xsl:for-each select="//WordRecord[Prefixes/Affix/@MIDREF=$sMorphID or Suffixes/Affix/@MIDREF=$sMorphID or Stem/@MIDREF=$sMorphID]">
+			  <xsl:for-each select="//WordRecord[Prefixes/Affix/@id=$sMorphID or Suffixes/Affix/@id=$sMorphID or Stem/@id=$sMorphID]">
 				<tr>
 				  <xsl:variable name="sMID">
 					<xsl:value-of select="$sMorphID"/>
@@ -454,7 +548,7 @@ Morphemes  template
 				  <!-- find position of one to highlight -->
 				  <xsl:variable name="iPos">
 					<xsl:for-each select="$nsMorphs">
-					  <xsl:if test="@MIDREF = $sMorphID">
+					  <xsl:if test="@id = $sMorphID">
 						<xsl:value-of select="position()"/>
 					  </xsl:if>
 					</xsl:for-each>
@@ -501,7 +595,7 @@ OutputAffix
 -->
   <xsl:template name="OutputAffix">
 	<!-- this is simple now, but we'll probably change it later -->
-	<xsl:value-of select="@MIDREF"/>
+	<xsl:value-of select="@id"/>
   </xsl:template>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -535,7 +629,7 @@ OutputStem
 -->
   <xsl:template name="OutputStem">
 	<!-- this is simple now, but we'll probably change it later -->
-	&lt;<xsl:value-of select="@MIDREF"/>&gt;
+	&lt;<xsl:value-of select="@id"/>&gt;
   </xsl:template>
   <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

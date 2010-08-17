@@ -27,7 +27,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// <summary>
 		/// A known set of data.
 		/// </summary>
-		private readonly string m_dataBefore = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" + Environment.NewLine +
+		private readonly string _dataBefore = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" + Environment.NewLine +
 			"<GAFAWSData>" + Environment.NewLine +
 			"  <WordRecords>" + Environment.NewLine +
 			"    <WordRecord id=\"WR1\">" + Environment.NewLine +
@@ -37,9 +37,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			"  <Morphemes>" + Environment.NewLine +
 			"    <Morpheme id=\"M1\" type=\"s\" />" + Environment.NewLine +
 			"  </Morphemes>" + Environment.NewLine +
-			"  <AffixCooccurrences />" + Environment.NewLine +
-			"  <AffixNonCooccurrences />" + Environment.NewLine +
-			"  <DistinctSets />" + Environment.NewLine +
+			"  <AffixSets>" + Environment.NewLine +
+			"    <AffixCooccurrences />" + Environment.NewLine +
+			"    <AffixNonCooccurrences />" + Environment.NewLine +
+			"    <DistinctSets />" + Environment.NewLine +
+			"  </AffixSets>" + Environment.NewLine +
 			"  <Classes>" + Environment.NewLine +
 			"    <PrefixClasses />" + Environment.NewLine +
 			"    <SuffixClasses />" + Environment.NewLine +
@@ -89,7 +91,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				m_gd.SaveData(fileName);
 				reader = new StreamReader(fileName);
 				var dataAfter = reader.ReadToEnd();
-				Assert.AreEqual(m_dataBefore, dataAfter, "Before and After");
+				Assert.AreEqual(_dataBefore, dataAfter, "Before and After");
 			}
 			finally
 			{
@@ -119,7 +121,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			try
 			{
 				Assert.AreEqual(0, m_gd.Morphemes.Count);	// Shouldn't have any at this point.
-				fileName = MakeFile(m_dataBefore);
+				fileName = MakeFile(_dataBefore);
 				m_gd = GafawsData.LoadData(fileName);
 				Assert.AreEqual(1, m_gd.Morphemes.Count);	// Should be 1 of them now.
 				Assert.AreEqual(1, m_gd.WordRecords.Count, "Wrong word record count.");
@@ -157,7 +159,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// </summary>
 		[Test]
 		[ExpectedException(typeof(InvalidOperationException))]
-		public void LoadDataWrongXML()
+		public void LoadDataWrongXml()
 		{
 			string fileName = null;
 			try

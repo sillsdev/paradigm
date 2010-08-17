@@ -167,9 +167,11 @@
 	<Morpheme id="s24" type="sfx"/>
 	<Morpheme id="s34" type="sfx"/>
   </Morphemes>
-	<AffixCooccurrences />
-	<AffixNonCooccurrences />
-	<DistinctSets />
+	<AffixSets>
+		<AffixCooccurrences />
+		<AffixNonCooccurrences />
+		<DistinctSets />
+	</AffixSets>
   <Classes>
 	<PrefixClasses/>
 	<SuffixClasses/>

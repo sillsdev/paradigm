@@ -118,9 +118,11 @@
 	<Morpheme id="p1" type="pfx"/>
 	<Morpheme id="p24" type="pfx"/>
   </Morphemes>
-	<AffixCooccurrences />
-	<AffixNonCooccurrences />
-	<DistinctSets />
+	<AffixSets>
+		<AffixCooccurrences />
+		<AffixNonCooccurrences />
+		<DistinctSets />
+	</AffixSets>
   <Classes>
 	<PrefixClasses/>
 	<SuffixClasses/>

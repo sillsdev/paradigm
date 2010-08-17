@@ -41,9 +41,11 @@
 	<Morpheme id="x128" type="sfx"/>
 	<Morpheme id="x129" type="sfx"/>
   </Morphemes>
-	<AffixCooccurrences />
-	<AffixNonCooccurrences />
-	<DistinctSets />
+	<AffixSets>
+		<AffixCooccurrences />
+		<AffixNonCooccurrences />
+		<DistinctSets />
+	</AffixSets>
   <Classes>
 	<PrefixClasses/>
 	<SuffixClasses/>

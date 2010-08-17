@@ -146,18 +146,19 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																				  morph.StartClass == null ? null : new XAttribute("startclass", morph.StartClass),
 																				  morph.EndClass == null ? null : new XAttribute("endclass", morph.EndClass),
 																				  SerializationServices.WriteOtherElement(morph.Other))),
-													new XElement("AffixCooccurrences", from cooccurSet in AffixCooccurrences
+													new XElement("AffixSets",
+														new XElement("AffixCooccurrences", from cooccurSet in AffixCooccurrences
 																					   select new XElement("AffixCooccurrenceSet", from morph in cooccurSet
 																			  select new XElement("Morpheme",
 																				  new XAttribute("id", morph.Id)))),
-													new XElement("AffixNonCooccurrences", from noncooccurSet in AffixNonCooccurrences
+														new XElement("AffixNonCooccurrences", from noncooccurSet in AffixNonCooccurrences
 																					   select new XElement("AffixNonCooccurrenceSet", from morph in noncooccurSet
 																			  select new XElement("Morpheme",
 																				  new XAttribute("id", morph.Id)))),
-													new XElement("DistinctSets", from distinctSet in DistinctSets
+														new XElement("DistinctSets", from distinctSet in DistinctSets
 																				 select new XElement("DistinctSet", from morph in distinctSet
 																																		 select new XElement("Morpheme",
-																																			 new XAttribute("id", morph.Id)))),
+																																			 new XAttribute("id", morph.Id))))),
 												  new XElement("Classes",
 													  new XElement("PrefixClasses", Classes.PrefixClasses.Count == 0 ? null : from pfxClass in Classes.PrefixClasses
 																															  select new XElement("Class",
@@ -258,7 +259,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 
 			// Load affix cooccurrence sets.
-			var holder = root.Element("AffixCooccurrences");
+			var outerSetElement = root.Element("AffixSets");
+			var holder = outerSetElement.Element("AffixCooccurrences");
 			if (holder.Element("AffixCooccurrenceSet") != null && holder.Elements("AffixCooccurrenceSet").Count() > 0)
 			{
 				foreach (var setHolderElement in  holder.Elements("AffixCooccurrenceSet"))
@@ -274,7 +276,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}
 			}
 			// Load affix non-cooccurrence sets.
-			holder = root.Element("AffixNonCooccurrences");
+			holder = outerSetElement.Element("AffixNonCooccurrences");
 			if (holder.Element("AffixNonCooccurrenceSet") != null && holder.Elements("AffixNonCooccurrenceSet").Count() > 0)
 			{
 				foreach (var setHolderElement in  holder.Elements("AffixNonCooccurrenceSet"))
@@ -290,7 +292,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}
 			}
 			// Load DistinctSets.
-			holder = root.Element("DistinctSets");
+			holder = outerSetElement.Element("DistinctSets");
 			if (holder.Element("DistinctSet") != null && holder.Elements("DistinctSet").Count() > 0)
 			{
 				foreach (var setHolderElement in holder.Elements("DistinctSet"))
