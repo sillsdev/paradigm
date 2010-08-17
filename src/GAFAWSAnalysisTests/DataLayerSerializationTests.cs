@@ -37,6 +37,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			"  <Morphemes>" + Environment.NewLine +
 			"    <Morpheme id=\"M1\" type=\"s\" />" + Environment.NewLine +
 			"  </Morphemes>" + Environment.NewLine +
+			"  <AffixCooccurrences />" + Environment.NewLine +
+			"  <AffixNonCooccurrences />" + Environment.NewLine +
+			"  <DistinctSets />" + Environment.NewLine +
 			"  <Classes>" + Environment.NewLine +
 			"    <PrefixClasses />" + Environment.NewLine +
 			"    <SuffixClasses />" + Environment.NewLine +

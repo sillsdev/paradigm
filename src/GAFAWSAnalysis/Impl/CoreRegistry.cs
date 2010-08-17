@@ -6,9 +6,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	{
 		public CoreRegistry()
 		{
-			For<IPositionAnalyzer>()
+			For<IGafawsAnalyzer>()
 				.Singleton()
-				.Use<PositionAnalyzer>();
+				.Use<GafawsAnalyzer>();
 			For<IGafawsData>()
 				.Singleton()
 				.Use<GafawsData>();

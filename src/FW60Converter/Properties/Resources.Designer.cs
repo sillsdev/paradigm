@@ -61,7 +61,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter.Properties {
 		}
 
 		/// <summary>
-		///   Looks up a localized string similar to Process data in a FieldWorks (6.0 and older) database.{0}{0}Only user-approved analyses that are the selected part of speech are included in the processing..
+		///   Looks up a localized string similar to Analyze data in a FieldWorks (6.0 and older) database.{0}{0}Only user-approved analyses that are the selected part of speech are included in the processing..
 		/// </summary>
 		internal static string kDescription {
 			get {

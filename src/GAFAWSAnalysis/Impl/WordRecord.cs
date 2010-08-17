@@ -2,13 +2,14 @@
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
 //
-// File: WordLevel.cs
+// File: WordRecord.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
 //
 // <remarks>
-// Implementation of WordRecord.
+// Implementation of IWordRecord.
 // </remarks>
+using System;
 using System.Collections.Generic;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
@@ -42,6 +43,22 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// Collection of suffixes.
 		/// </summary>
 		public List<IAffix> Suffixes { get; set; }
+
+		/// <summary>
+		/// A set of affixes (prefixes and suffixes) for the word record, if any.
+		/// </summary>
+		public HashSet<IAffix> AllAffixes
+		{
+			get
+			{
+				var result = new HashSet<IAffix>();
+				if (Prefixes != null && Prefixes.Count > 0)
+					result.UnionWith(Prefixes);
+				if (Suffixes != null && Suffixes.Count > 0)
+					result.UnionWith(Suffixes);
+				return result;
+			}
+		}
 
 		/// <summary>
 		/// Model-specific data.

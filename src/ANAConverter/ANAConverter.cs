@@ -151,7 +151,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			get
 			{
-				return "Process an AMPLE ANA output file."
+				return "Analyze an AMPLE ANA output file."
 					+ Environment.NewLine + Environment.NewLine
 					+ "The '\\a' and '\\w' fields are required to be in the ANA file. Other filedes are optional.";
 			}

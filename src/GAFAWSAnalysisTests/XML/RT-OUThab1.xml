@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GAFAWSData>
+<GAFAWSData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\GAFAWS.xsd">
   <WordRecords>
 	<WordRecord id="x118">
 	  <Stem id="mStem"/>
@@ -41,6 +41,9 @@
 	<Morpheme id="x128" type="sfx" startclass="SP1" endclass="SP1"/>
 	<Morpheme id="x129" type="sfx" startclass="SP1" endclass="SP1"/>
   </Morphemes>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

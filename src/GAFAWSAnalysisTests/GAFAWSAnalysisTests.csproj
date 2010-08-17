@@ -113,7 +113,7 @@
 	<Compile Include="DataLayerBase.cs" />
 	<Compile Include="DataLayerSerializationTests.cs" />
 	<Compile Include="OtherTests.cs" />
-	<Compile Include="PaProcessTests.cs" />
+	<Compile Include="GafawsAnalyzerTests.cs" />
   </ItemGroup>
   <ItemGroup>
 	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -162,6 +162,9 @@
 	<None Include="XML\RT-OUTtestA2.xml" />
 	<None Include="XML\RT-OUTtestB.xml" />
 	<None Include="XML\RT-OUTtestC.xml" />
+	<Content Include="XML\Huichol.xml">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
 	<Content Include="XML\TestA.xml">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</Content>

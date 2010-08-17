@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<GAFAWSData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" date="Friday, October 03, 2003" time="9:48:33 PM">
+<GAFAWSData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\GAFAWS.xsd" date="Friday, October 03, 2003" time="9:48:33 PM">
   <WordRecords>
 	<WordRecord id="WR1">
 	  <Prefixes>
@@ -130,6 +130,9 @@
 	<Morpheme id="s13" startclass="SP1" endclass="SP3" type="sfx" />
 	<Morpheme id="s23" startclass="SP2" endclass="SP3" type="sfx" />
   </Morphemes>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1" />

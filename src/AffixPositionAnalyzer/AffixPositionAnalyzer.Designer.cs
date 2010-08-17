@@ -54,7 +54,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.m_btnProcess.Name = "m_btnProcess";
 			this.m_btnProcess.Size = new System.Drawing.Size(75, 23);
 			this.m_btnProcess.TabIndex = 0;
-			this.m_btnProcess.Text = "Process...";
+			this.m_btnProcess.Text = "Analyze...";
 			this.m_btnProcess.UseVisualStyleBackColor = true;
 			this.m_btnProcess.Click += new System.EventHandler(this.m_btnProcess_Click);
 			//

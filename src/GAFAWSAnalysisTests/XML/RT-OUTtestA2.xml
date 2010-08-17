@@ -167,6 +167,9 @@
 	<Morpheme id="s24" type="sfx" startclass="SP2" endclass="SP4"/>
 	<Morpheme id="s34" type="sfx" startclass="SP0" endclass="SP4"/>
   </Morphemes>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

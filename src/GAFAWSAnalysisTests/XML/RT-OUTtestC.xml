@@ -133,6 +133,9 @@
 	<Morpheme id="s13" type="sfx" startclass="SP1" endclass="SP3"/>
 	<Morpheme id="s23" type="sfx" startclass="SP2" endclass="SP3"/>
   </Morphemes>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

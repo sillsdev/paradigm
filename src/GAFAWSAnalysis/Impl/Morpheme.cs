@@ -82,5 +82,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 
 		internal Morpheme()
 		{}
+
+		public override string ToString()
+		{
+			return Id;
+		}
 	}
 }

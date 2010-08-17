@@ -2,13 +2,14 @@
 //    Copyright (c) 2003, SIL International. All Rights Reserved.
 // </copyright>
 //
-// File: PaProcessTests.cs
+// File: GafawsAnalyzerTests.cs
 // Responsibility: Randy Regnier
 // Last reviewed:
 //
 // <remarks>
-// Unit tests for the PositionAnalyzer class.
+// Unit tests for the GafawsAnalyzer class.
 // </remarks>
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -19,13 +20,13 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis.Impl;
 namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 {
 	/// <summary>
-	/// Test class for PositionAnalyzer class.
+	/// Test class for GafawsAnalyzer class.
 	/// </summary>
 	[TestFixture]
-	public class PaProcessTests
+	public class GafawsAnalyzerTests
 	{
 		/// <summary>
-		/// Check the Process method on the TestA xml file.
+		/// Check the Analyze method on the TestA xml file.
 		/// </summary>
 		[Test]
 		public void Process_TestA_Data()
@@ -35,7 +36,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		}
 
 		/// <summary>
-		/// Check the Process method on the TestA1 xml file.
+		/// Check the Analyze method on the TestA1 xml file.
 		/// </summary>
 		[Test]
 		public void Process_TestA1_Data()
@@ -45,7 +46,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		}
 
 		/// <summary>
-		/// Check the Process method on the TestA1A xml file.
+		/// Check the Analyze method on the TestA1A xml file.
 		/// </summary>
 		[Test]
 		public void Process_TestA1A_Data()
@@ -55,7 +56,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		}
 
 		/// <summary>
-		/// Check the Process method on the TestB xml file.
+		/// Check the Analyze method on the TestB xml file.
 		/// </summary>
 		[Test]
 		public void Process_TestB_Data()
@@ -65,7 +66,86 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		}
 
 		/// <summary>
-		/// Check the Process method on the TestC xml file.
+		/// Check the Analyze method on the TestB xml file.
+		/// </summary>
+		[Test]
+		public void Process_Huichol_Data()
+		{
+			/*
+			Mapping between original affix forms and the test data:
+				ni = p1
+				ka2 = p2
+				p& = p3
+				ka1 = p4
+				ke = p24
+				m& = p34
+			*/
+			// has been copied to executing dir during build
+			// Basic position checking.
+			var outputPathname  = CheckFile(@"XML\Huichol.xml");
+
+			// Distinct sets checking.
+			var gd = GafawsData.LoadData(outputPathname);
+
+			var cooccurrenceSets = gd.AffixCooccurrences;
+			Assert.AreEqual(6, cooccurrenceSets.Count);
+			var sets = new List<List<string>>(cooccurrenceSets.Count)
+				{
+					new List<string>(3) { "p3", "p2", "p4" },
+					new List<string>(5) { "p2", "p3", "p4", "p34", "p1" },
+					new List<string>(4) { "p4", "p3", "p2", "p1" },
+					new List<string>(3) { "p34", "p2", "p1" },
+					new List<string>(5) { "p1", "p2", "p4", "p34", "p24" },
+					new List<string>(2) { "p24", "p1" }
+				};
+			CheckSets(cooccurrenceSets, sets);
+
+			var noncooccurrenceSets = gd.AffixNonCooccurrences;
+			Assert.AreEqual(6, noncooccurrenceSets.Count);
+			sets = new List<List<string>>(cooccurrenceSets.Count)
+				{
+					new List<string>(4) { "p3", "p34", "p1", "p24" },
+					new List<string>(2) { "p2", "p24" },
+					new List<string>(3) { "p4", "p34", "p24" },
+					new List<string>(4) { "p3", "p4", "p34", "p24" },
+					new List<string>(2) { "p3", "p1" },
+					new List<string>(5) { "p3", "p2", "p4", "p34", "p24" }
+				};
+			CheckSets(noncooccurrenceSets, sets);
+
+			var distSets = gd.DistinctSets;
+			Assert.AreEqual(4, distSets.Count);
+			sets = new List<List<string>>(distSets.Count)
+				{
+					new List<string>(3) { "p3", "p34", "p24" }, // Removes p1 from first set, above
+					new List<string>(2) { "p2", "p24" }, // Same as second set, above.
+					new List<string>(3) { "p4", "p34", "p24" }, // Same as third set, above.
+																// Fourth set not present. Were they removed, because they were empty?
+					new List<string>(2) { "p3", "p1" } // Same as fifth set, above,
+																// Sixth set not present. Were they removed, because they were empty?
+				};
+			CheckSets(distSets, sets);
+		}
+
+		private static void CheckSets(IList<HashSet<IMorpheme>> sourceSets, IList<List<string>> sets)
+		{
+			Assert.IsTrue(sourceSets.Count == sets.Count);
+			for (var i = 0; i < sourceSets.Count; i++)
+			{
+				var sourceSet = sourceSets[i];
+				var sourceMorphemeIds = new List<string>(from morpheme in sourceSet
+															 select morpheme.Id);
+				var checkingSet = sets[i];
+				Assert.IsTrue(sourceSet.Count == checkingSet.Count);
+				foreach (var afxId in checkingSet)
+				{
+					Assert.IsTrue(sourceMorphemeIds.Contains(afxId));
+				}
+			}
+		}
+
+		/// <summary>
+		/// Check the Analyze method on the TestC xml file.
 		/// </summary>
 		//[Test]
 		public void Process_TestC_Data()
@@ -75,12 +155,14 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckFile(@"XML\TestC.xml");
 		}
 
-		private static void CheckFile(string testFile)
+		private static string CheckFile(string testFile)
 		{
-			var pa = new PositionAnalyzer();
-			var outputPathname = pa.Process(testFile);
+			var pa = new GafawsAnalyzer();
+			var outputPathname = pa.AnalyzeTestFile(testFile);
 
 			CheckOutput(outputPathname);
+
+			return outputPathname;
 		}
 
 		private static void CheckOutput(string outputPathname)

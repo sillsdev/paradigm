@@ -23,7 +23,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 	/// <summary></summary>
 	public partial class AffixPositionAnalyzer : Form
 	{
-		private readonly IPositionAnalyzer _analyzer;
+		private readonly IGafawsAnalyzer _analyzer;
 		private readonly IGafawsData _gafawsData;
 		private IGafawsConverter _selectedConverter;
 		private string _convertedPathname;
@@ -38,7 +38,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 
 		public AffixPositionAnalyzer(
 			IEnumerable<IGafawsConverter> converters,
-			IPositionAnalyzer analyzer,
+			IGafawsAnalyzer analyzer,
 			IGafawsData gafawsData)
 			: this()
 		{
@@ -68,7 +68,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 				}
 
 				// Main processing.
-				_analyzer.Process(_gafawsData);
+				_analyzer.Analyze(_gafawsData);
 				// Give back to current converter,
 				// in case it wants to do more with it now that it has been analyzed.
 				_selectedConverter.PostAnalysisProcessing(_gafawsData);

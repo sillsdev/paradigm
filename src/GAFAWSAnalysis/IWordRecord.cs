@@ -25,6 +25,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		List<IAffix> Suffixes { get; set; }
 
 		/// <summary>
+		/// A set of affixes (prefixes and suffixes) for the word record, if any.
+		/// </summary>
+		HashSet<IAffix> AllAffixes { get; }
+
+		/// <summary>
 		/// Model-specific data.
 		/// </summary>
 		string Other { get; set; }

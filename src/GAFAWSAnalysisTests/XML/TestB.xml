@@ -127,6 +127,9 @@
 	<Morpheme id="s13" type="sfx"/>
 	<Morpheme id="s23" type="sfx"/>
   </Morphemes>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses/>
 	<SuffixClasses/>

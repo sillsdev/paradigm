@@ -108,29 +108,32 @@
 	  <Stem id="R"/>
 	</WordRecord>
   </WordRecords>
-  <Morphemes>
-	<Morpheme id="R" type="s">
-	  <Other>
-		<clientMorphemeStuff/>
-	  </Other>
-	</Morpheme>
-	<Morpheme id="p1" type="pfx" startclass="PP1" endclass="PP1"/>
-	<Morpheme id="p2" type="pfx" startclass="PP2" endclass="PP2"/>
-	<Morpheme id="p3" type="pfx" startclass="PP3" endclass="PP3"/>
-	<Morpheme id="p4" type="pfx" startclass="PP4" endclass="PP4"/>
-	<Morpheme id="p12" type="pfx" startclass="PP1" endclass="PP2"/>
-	<Morpheme id="p13" type="pfx" startclass="PP1" endclass="PP3"/>
-	<Morpheme id="p14" type="pfx" startclass="PP1" endclass="PP4"/>
-	<Morpheme id="p23" type="pfx" startclass="PP2" endclass="PP3"/>
-	<Morpheme id="p24" type="pfx" startclass="PP2" endclass="PP4"/>
-	<Morpheme id="p34" type="pfx" startclass="PP3" endclass="PP4"/>
-	<Morpheme id="s1" type="sfx" startclass="SP1" endclass="SP1"/>
-	<Morpheme id="s2" type="sfx" startclass="SP2" endclass="SP2"/>
-	<Morpheme id="s3" type="sfx" startclass="SP3" endclass="SP3"/>
-	<Morpheme id="s12" type="sfx" startclass="SP1" endclass="SP2"/>
-	<Morpheme id="s13" type="sfx" startclass="SP1" endclass="SP3"/>
-	<Morpheme id="s23" type="sfx" startclass="SP2" endclass="SP3"/>
-  </Morphemes>
+	<Morphemes>
+		<Morpheme id="R" type="s">
+			<Other>
+				<clientMorphemeStuff/>
+			</Other>
+		</Morpheme>
+		<Morpheme id="p1" type="pfx" startclass="PP1" endclass="PP1"/>
+		<Morpheme id="p2" type="pfx" startclass="PP2" endclass="PP2"/>
+		<Morpheme id="p3" type="pfx" startclass="PP3" endclass="PP3"/>
+		<Morpheme id="p4" type="pfx" startclass="PP4" endclass="PP4"/>
+		<Morpheme id="p12" type="pfx" startclass="PP1" endclass="PP2"/>
+		<Morpheme id="p13" type="pfx" startclass="PP1" endclass="PP3"/>
+		<Morpheme id="p14" type="pfx" startclass="PP1" endclass="PP4"/>
+		<Morpheme id="p23" type="pfx" startclass="PP2" endclass="PP3"/>
+		<Morpheme id="p24" type="pfx" startclass="PP2" endclass="PP4"/>
+		<Morpheme id="p34" type="pfx" startclass="PP3" endclass="PP4"/>
+		<Morpheme id="s1" type="sfx" startclass="SP1" endclass="SP1"/>
+		<Morpheme id="s2" type="sfx" startclass="SP2" endclass="SP2"/>
+		<Morpheme id="s3" type="sfx" startclass="SP3" endclass="SP3"/>
+		<Morpheme id="s12" type="sfx" startclass="SP1" endclass="SP2"/>
+		<Morpheme id="s13" type="sfx" startclass="SP1" endclass="SP3"/>
+		<Morpheme id="s23" type="sfx" startclass="SP2" endclass="SP3"/>
+	</Morphemes>
+  <AffixCooccurrences />
+  <AffixNonCooccurrences />
+	<DistinctSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

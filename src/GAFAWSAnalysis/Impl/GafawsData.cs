@@ -28,6 +28,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			Morphemes = new List<IMorpheme>();
 			Classes = new Classes();
 			Challenges = new List<IChallenge>();
+			DistinctSets = new List<HashSet<IMorpheme>>();
+			AffixCooccurrences = new List<HashSet<IMorpheme>>();
+			AffixNonCooccurrences = new List<HashSet<IMorpheme>>();
 		}
 
 		#endregion // Construction
@@ -43,6 +46,21 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// Collection of morphemes.
 		/// </summary>
 		public List<IMorpheme> Morphemes { get; private set; }
+
+		/// <summary>
+		/// Get the sets of affixes that do cooccur within given data set.
+		/// </summary>
+		public List<HashSet<IMorpheme>> AffixCooccurrences { get; private set; }
+
+		/// <summary>
+		/// Get the sets of affixes that do *not* cooccur within given data set.
+		/// </summary>
+		public List<HashSet<IMorpheme>> AffixNonCooccurrences { get; private set; }
+
+		/// <summary>
+		/// Get the sets of affixes that do not cooccur within given set.
+		/// </summary>
+		public List<HashSet<IMorpheme>> DistinctSets { get; private set; }
 
 		/// <summary>
 		/// Collection of position classes. (Reserved for use by the Paradigm DLL.)
@@ -128,6 +146,18 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																				  morph.StartClass == null ? null : new XAttribute("startclass", morph.StartClass),
 																				  morph.EndClass == null ? null : new XAttribute("endclass", morph.EndClass),
 																				  SerializationServices.WriteOtherElement(morph.Other))),
+													new XElement("AffixCooccurrences", from cooccurSet in AffixCooccurrences
+																					   select new XElement("AffixCooccurrenceSet", from morph in cooccurSet
+																			  select new XElement("Morpheme",
+																				  new XAttribute("id", morph.Id)))),
+													new XElement("AffixNonCooccurrences", from noncooccurSet in AffixNonCooccurrences
+																					   select new XElement("AffixNonCooccurrenceSet", from morph in noncooccurSet
+																			  select new XElement("Morpheme",
+																				  new XAttribute("id", morph.Id)))),
+													new XElement("DistinctSets", from distinctSet in DistinctSets
+																				 select new XElement("DistinctSet", from morph in distinctSet
+																																		 select new XElement("Morpheme",
+																																			 new XAttribute("id", morph.Id)))),
 												  new XElement("Classes",
 													  new XElement("PrefixClasses", Classes.PrefixClasses.Count == 0 ? null : from pfxClass in Classes.PrefixClasses
 																															  select new XElement("Class",
@@ -225,6 +255,55 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}))
 			{
 				gd.Morphemes.Add(morpheme);
+			}
+
+			// Load affix cooccurrence sets.
+			var holder = root.Element("AffixCooccurrences");
+			if (holder.Element("AffixCooccurrenceSet") != null && holder.Elements("AffixCooccurrenceSet").Count() > 0)
+			{
+				foreach (var setHolderElement in  holder.Elements("AffixCooccurrenceSet"))
+				{
+					var newSet = new HashSet<IMorpheme>();
+					foreach (var morphemeInSet in setHolderElement.Elements("Morpheme"))
+					{
+						newSet.Add((from morpheme in gd.Morphemes
+									where morpheme.Id == morphemeInSet.Attribute("id").Value.ToLowerInvariant()
+									select morpheme).First());
+					}
+					gd.AffixCooccurrences.Add(newSet);
+				}
+			}
+			// Load affix non-cooccurrence sets.
+			holder = root.Element("AffixNonCooccurrences");
+			if (holder.Element("AffixNonCooccurrenceSet") != null && holder.Elements("AffixNonCooccurrenceSet").Count() > 0)
+			{
+				foreach (var setHolderElement in  holder.Elements("AffixNonCooccurrenceSet"))
+				{
+					var newSet = new HashSet<IMorpheme>();
+					foreach (var morphemeInSet in setHolderElement.Elements("Morpheme"))
+					{
+						newSet.Add((from morpheme in gd.Morphemes
+								   where morpheme.Id == morphemeInSet.Attribute("id").Value.ToLowerInvariant()
+								   select morpheme).First());
+					}
+					gd.AffixNonCooccurrences.Add(newSet);
+				}
+			}
+			// Load DistinctSets.
+			holder = root.Element("DistinctSets");
+			if (holder.Element("DistinctSet") != null && holder.Elements("DistinctSet").Count() > 0)
+			{
+				foreach (var setHolderElement in holder.Elements("DistinctSet"))
+				{
+					var newSet = new HashSet<IMorpheme>();
+					foreach (var morphemeInSet in setHolderElement.Elements("Morpheme"))
+					{
+						newSet.Add((from morpheme in gd.Morphemes
+									where morpheme.Id == morphemeInSet.Attribute("id").Value.ToLowerInvariant()
+									select morpheme).First());
+					}
+					gd.DistinctSets.Add(newSet);
+				}
 			}
 
 			foreach (var pfxClass in root
