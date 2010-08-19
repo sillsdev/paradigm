@@ -1,88 +1,87 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Randy Regnier (SIL International) -->
 <GAFAWSData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\GAFAWS.xsd">
-
   <WordRecords>
 	<WordRecord id="WR1">
 	  <Prefixes>
-		<Affix id="p3"/>
+		<Affix id="p&amp;"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR2">
 	  <Prefixes>
-		<Affix id="p3"/>
-		<Affix id="p2"/>
+		<Affix id="p&amp;"/>
+		<Affix id="ka2"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR3">
 	  <Prefixes>
-		<Affix id="p4"/>
-		<Affix id="p3"/>
+		<Affix id="ka1"/>
+		<Affix id="p&amp;"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR4">
 	  <Prefixes>
-		<Affix id="p4"/>
-		<Affix id="p3"/>
-		  <Affix id="p2"/>
+		<Affix id="ka1"/>
+		<Affix id="p&amp;"/>
+		  <Affix id="ka2"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR5">
 	  <Prefixes>
-		<Affix id="p34"/>
+		<Affix id="m&amp;"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR6">
 	  <Prefixes>
-		<Affix id="p34"/>
+		<Affix id="m&amp;"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR7">
 	  <Prefixes>
-		<Affix id="p34"/>
-		<Affix id="p2"/>
+		<Affix id="m&amp;"/>
+		<Affix id="ka2"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR8">
 	  <Prefixes>
-		<Affix id="p1"/>
+		<Affix id="ni"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR9">
 	  <Prefixes>
-		<Affix id="p4"/>
-		<Affix id="p1"/>
+		<Affix id="ka1"/>
+		<Affix id="ni"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR10">
 	  <Prefixes>
-		<Affix id="p4"/>
-		<Affix id="p2"/>
-		  <Affix id="p1"/>
+		<Affix id="ka1"/>
+		<Affix id="ka2"/>
+		  <Affix id="ni"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	<WordRecord id="WR11">
 	  <Prefixes>
-		<Affix id="p34"/>
-		  <Affix id="p1"/>
+		<Affix id="m&amp;"/>
+		  <Affix id="ni"/>
 	  </Prefixes>
 	  <Stem id="R"/>
 	</WordRecord>
 	  <WordRecord id="WR12">
 		  <Prefixes>
-			  <Affix id="p34"/>
-			  <Affix id="p2"/>
-			  <Affix id="p1"/>
+			  <Affix id="m&amp;"/>
+			  <Affix id="ka2"/>
+			  <Affix id="ni"/>
 		  </Prefixes>
 		  <Stem id="R"/>
 	  </WordRecord>
@@ -91,32 +90,32 @@
 	  </WordRecord>
 	  <WordRecord id="WR14">
 		  <Prefixes>
-			  <Affix id="p2"/>
+			  <Affix id="ka2"/>
 		  </Prefixes>
 		  <Stem id="R"/>
 	  </WordRecord>
 	  <WordRecord id="WR15">
 		  <Prefixes>
-			  <Affix id="p24"/>
+			  <Affix id="ke"/>
 		  </Prefixes>
 		  <Stem id="R"/>
 	  </WordRecord>
 	  <WordRecord id="WR16">
 		  <Prefixes>
-			  <Affix id="p24"/>
-			  <Affix id="p1"/>
+			  <Affix id="ke"/>
+			  <Affix id="ni"/>
 		  </Prefixes>
 		  <Stem id="R"/>
 	  </WordRecord>
   </WordRecords>
   <Morphemes>
 	<Morpheme id="R" type="s" />
-	<Morpheme id="p3" type="pfx"/>
-	<Morpheme id="p2" type="pfx"/>
-	<Morpheme id="p4" type="pfx"/>
-	<Morpheme id="p34" type="pfx"/>
-	<Morpheme id="p1" type="pfx"/>
-	<Morpheme id="p24" type="pfx"/>
+	<Morpheme id="p&amp;" type="pfx"/>
+	<Morpheme id="ka2" type="pfx"/>
+	<Morpheme id="ka1" type="pfx"/>
+	<Morpheme id="m&amp;" type="pfx"/>
+	<Morpheme id="ni" type="pfx"/>
+	<Morpheme id="ke" type="pfx"/>
   </Morphemes>
 	<AffixSets>
 		<AffixCooccurrences />

@@ -9,7 +9,6 @@
 // <remarks>
 // Implementation of IWordRecord.
 // </remarks>
-using System;
 using System.Collections.Generic;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl

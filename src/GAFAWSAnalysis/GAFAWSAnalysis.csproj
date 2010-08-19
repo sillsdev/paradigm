@@ -186,6 +186,9 @@
 	  <Install>false</Install>
 	</BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+	<None Include="Paradigm.ptp" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
 	<PreBuildEvent>

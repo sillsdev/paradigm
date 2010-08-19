@@ -100,7 +100,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			{
 				foreach (var afx in wordRecord.AllAffixes)
 				{
-					//var currentId = afx.Id;
 					allAffixMorphemeCooccurrences[afx.Id].UnionWith(from affix in wordRecord.AllAffixes
 																	select allAffixMorphemesAsDictionary[affix.Id]);
 				}
@@ -119,42 +118,111 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 			_gd.AffixNonCooccurrences.AddRange(allNonCooccurrences.Values);
 
-			// Need a copy of allNonCooccurrences, since the copy can be modified, but we want to keep the original.
-			var allNonCooccurrencesCopy = new Dictionary<string, HashSet<IMorpheme>>();
-			foreach (var kvp in allNonCooccurrences)
+			var allNonCooccurrencesCopy = GetDistinctSets(allNonCooccurrences);
+			_gd.DistinctSets.AddRange(allNonCooccurrencesCopy);
+
+			return true;
+		}
+
+		private static IEnumerable<HashSet<IMorpheme>> GetDistinctSets(IDictionary<string, HashSet<IMorpheme>> sourceNonCooccurrences)
+		{
+			var allNonCooccurrencesCopy = new List<HashSet<IMorpheme>>();
+			var mayNeedMoreChecking = new Dictionary<string, HashSet<IMorpheme>>();
+			foreach (var kvp in sourceNonCooccurrences)
 			{
+				var currentKey = kvp.Key;
 				var currentSet = kvp.Value;
 				var newValue = new HashSet<IMorpheme>(currentSet);
-				allNonCooccurrencesCopy.Add(kvp.Key, newValue);
+				var moreCheckingSet = new HashSet<IMorpheme>(currentSet);
+				mayNeedMoreChecking.Add(currentKey, moreCheckingSet);
+				allNonCooccurrencesCopy.Add(newValue);
 				foreach (var otherSet in from morpheme in currentSet
 										 where newValue.Contains(morpheme)
-										 select allNonCooccurrences[morpheme.Id])
+										 select sourceNonCooccurrences[morpheme.Id])
 				{
 					newValue.IntersectWith(otherSet);
 				}
+				moreCheckingSet.ExceptWith(newValue);
 			}
-			// Remove duplicate sets.
-			var normalKeys = new List<string>(allNonCooccurrencesCopy.Keys);
-			var dupKeys = new List<string>();
-			for (var i = normalKeys.Count - 1; i > 0; --i)
+
+			var doesNeedMoreChecking = new Dictionary<string, HashSet<IMorpheme>>();
+			var doesNeedMoreProcessing = false;
+			foreach (var kvp in mayNeedMoreChecking)
 			{
-				var currentNormalKey = normalKeys[i];
-				var currentSet = allNonCooccurrencesCopy[currentNormalKey];
+				var currentKey = kvp.Key;
+				var currentSet = kvp.Value;
+				foreach (var currentSetItem in currentSet)
+				{
+					var otherSet = mayNeedMoreChecking[currentSetItem.Id];
+					var matchingItem = (from item in otherSet
+										where item.Id == currentKey
+										select item).FirstOrDefault();
+					if (matchingItem == null)
+						continue;
+
+					doesNeedMoreProcessing = true;
+					if (!doesNeedMoreChecking.ContainsKey(currentKey))
+						doesNeedMoreChecking.Add(currentKey, currentSet);
+					if (!doesNeedMoreChecking.ContainsKey(currentSetItem.Id))
+						doesNeedMoreChecking.Add(currentSetItem.Id, otherSet);
+				}
+			}
+			// See if any changes were made. If not (as can happen in hidden set checking),
+			// Then reset doesNeedMoreProcessing to false.
+			//doesNeedMoreProcessing = doesNeedMoreChecking.Aggregate(doesNeedMoreProcessing, (current, kvp) => current | !sourceNonCooccurrences[kvp.Key].SetEquals(kvp.Value));
+			var eachSetIsEqual = true;
+			foreach (var kvp in doesNeedMoreChecking)
+			{
+				var currentKey = kvp.Key;
+				var currentSet = kvp.Value;
+				foreach (var otherSet in sourceNonCooccurrences[currentKey])
+				{
+					if (sourceNonCooccurrences[kvp.Key].SetEquals(currentSet))
+						continue;
+
+					// Sets are not the same, so something happened.
+					eachSetIsEqual = false;
+					break;
+				}
+				if (!eachSetIsEqual)
+					break;
+			}
+			if (eachSetIsEqual)
+				doesNeedMoreProcessing = false;
+
+			if (doesNeedMoreProcessing)
+			{
+				// Remove items in sets that have no key in dictionary.
+				foreach (var kvp in doesNeedMoreChecking)
+				{
+					var goners = kvp.Value.Where(item => !doesNeedMoreChecking.ContainsKey(item.Id)).ToList();
+					foreach (var morpheme in goners)
+					{
+						kvp.Value.Remove(morpheme);
+					}
+				}
+
+				var hiddenSets = GetDistinctSets(doesNeedMoreChecking);
+			}
+
+			// Remove duplicate sets.
+			var duplicatesByIndex = new List<int>();
+			for (var i = allNonCooccurrencesCopy.Count - 1; i > 0; --i)
+			{;
+				var currentSet = allNonCooccurrencesCopy[i];
 				for (var j = 0; j < i; ++j)
 				{
-					var earlierKey = normalKeys[j];
-					var earlierSet = allNonCooccurrencesCopy[earlierKey];
+					var earlierSet = allNonCooccurrencesCopy[j];
 					if (!earlierSet.SetEquals(currentSet))
 						continue;
-					dupKeys.Add(currentNormalKey);
+					duplicatesByIndex.Add(i);
 					break;
 				}
 			}
-			foreach (var dupKey in dupKeys)
-				allNonCooccurrencesCopy.Remove(dupKey);
-			_gd.DistinctSets.AddRange(allNonCooccurrencesCopy.Values);
+			foreach (var dupKey in duplicatesByIndex)
+				allNonCooccurrencesCopy.RemoveAt(dupKey);
 
-			return true;
+			return allNonCooccurrencesCopy;
 		}
 
 		private bool AnalyzePositions()

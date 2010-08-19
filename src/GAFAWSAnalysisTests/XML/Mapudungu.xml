@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<GAFAWSData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation=".\GAFAWS.xsd">
+  <WordRecords>
+	<WordRecord id="WR1">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="a" />
+		<Affix id="l" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR2">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="la" />
+		<Affix id="a" />
+	  </Suffixes>
+</WordRecord>
+	<WordRecord id="WR3">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="no" />
+		<Affix id="a" />
+		<Affix id="l" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR4">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="lle" />
+		<Affix id="a" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR5">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="lle" />
+		<Affix id="l" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR6">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="chi" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR7">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="ki...l" />
+		<Affix id="chi" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR8">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="ki...l" />
+		<Affix id="no" />
+		<Affix id="chi" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR9">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="lle" />
+		<Affix id="chi" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR10">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="lle" />
+		<Affix id="no" />
+		<Affix id="l" />
+	  </Suffixes>
+	</WordRecord>
+	<WordRecord id="WR11">
+	  <Stem id="amu" />
+	  <Suffixes>
+		<Affix id="lle" />
+		<Affix id="la" />
+	  </Suffixes>
+	</WordRecord>
+  </WordRecords>
+  <Morphemes>
+	<Morpheme id="amu" type="s" />
+	<Morpheme id="a" type="sfx" />
+	<Morpheme id="l" type="sfx" />
+	<Morpheme id="la" type="sfx" />
+	<Morpheme id="no" type="sfx" />
+	<Morpheme id="lle" type="sfx" />
+	<Morpheme id="chi" type="sfx" />
+	<Morpheme id="ki...l" type="sfx" />
+  </Morphemes>
+  <AffixSets>
+	<AffixCooccurrences />
+	<AffixNonCooccurrences />
+	<DistinctSets />
+  </AffixSets>
+  <Classes>
+	<PrefixClasses />
+	<SuffixClasses />
+  </Classes>
+  <Challenges />
+</GAFAWSData>

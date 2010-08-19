@@ -66,23 +66,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		}
 
 		/// <summary>
-		/// Check the Analyze method on the TestB xml file.
+		/// Check the Analyze method on the Huichol xml file.
 		/// </summary>
 		[Test]
 		public void Process_Huichol_Data()
 		{
-			/*
-			Mapping between original affix forms and the test data:
-				ni = p1
-				ka2 = p2
-				p& = p3
-				ka1 = p4
-				ke = p24
-				m& = p34
-			*/
 			// has been copied to executing dir during build
-			// Basic position checking.
-			var outputPathname  = CheckFile(@"XML\Huichol.xml");
+			// skip position checking, and just test cooccurrences.
+			var pa = new GafawsAnalyzer();
+			var outputPathname = pa.AnalyzeTestFile(@"XML\Huichol.xml");
 
 			// Distinct sets checking.
 			var gd = GafawsData.LoadData(outputPathname);
@@ -91,12 +83,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			Assert.AreEqual(6, cooccurrenceSets.Count);
 			var sets = new List<List<string>>(cooccurrenceSets.Count)
 				{
-					new List<string>(3) { "p3", "p2", "p4" },
-					new List<string>(5) { "p2", "p3", "p4", "p34", "p1" },
-					new List<string>(4) { "p4", "p3", "p2", "p1" },
-					new List<string>(3) { "p34", "p2", "p1" },
-					new List<string>(5) { "p1", "p2", "p4", "p34", "p24" },
-					new List<string>(2) { "p24", "p1" }
+					new List<string>(3) { "p&", "ka2", "ka1" },
+					new List<string>(5) { "ka2", "p&", "ka1", "m&", "ni" },
+					new List<string>(4) { "ka1", "p&", "ka2", "ni" },
+					new List<string>(3) { "m&", "ka2", "ni" },
+					new List<string>(5) { "ni", "ka2", "ka1", "m&", "ke" },
+					new List<string>(2) { "ke", "ni" }
 				};
 			CheckSets(cooccurrenceSets, sets);
 
@@ -104,12 +96,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			Assert.AreEqual(6, noncooccurrenceSets.Count);
 			sets = new List<List<string>>(cooccurrenceSets.Count)
 				{
-					new List<string>(4) { "p3", "p34", "p1", "p24" },
-					new List<string>(2) { "p2", "p24" },
-					new List<string>(3) { "p4", "p34", "p24" },
-					new List<string>(4) { "p3", "p4", "p34", "p24" },
-					new List<string>(2) { "p3", "p1" },
-					new List<string>(5) { "p3", "p2", "p4", "p34", "p24" }
+					new List<string>(4) { "p&", "m&", "ni", "ke" },
+					new List<string>(2) { "ka2", "ke" },
+					new List<string>(3) { "ka1", "m&", "ke" },
+					new List<string>(4) { "p&", "ka1", "m&", "ke" },
+					new List<string>(2) { "p&", "ni" },
+					new List<string>(5) { "p&", "ka2", "ka1", "m&", "ke" }
 				};
 			CheckSets(noncooccurrenceSets, sets);
 
@@ -117,12 +109,68 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			Assert.AreEqual(4, distSets.Count);
 			sets = new List<List<string>>(distSets.Count)
 				{
-					new List<string>(3) { "p3", "p34", "p24" }, // Removes p1 from first set, above
-					new List<string>(2) { "p2", "p24" }, // Same as second set, above.
-					new List<string>(3) { "p4", "p34", "p24" }, // Same as third set, above.
+					new List<string>(3) { "p&", "m&", "ke" }, // Removes p1 from first set, above
+					new List<string>(2) { "ka2", "ke" }, // Same as second set, above.
+					new List<string>(3) { "ka1", "m&", "ke" }, // Same as third set, above.
 																// Fourth set not present. Were they removed, because they were empty?
-					new List<string>(2) { "p3", "p1" } // Same as fifth set, above,
+					new List<string>(2) { "p&", "ni" } // Same as fifth set, above,
 																// Sixth set not present. Were they removed, because they were empty?
+				};
+			CheckSets(distSets, sets);
+		}
+
+		/// <summary>
+		/// Check the Analyze method on the Mapudungu xml file.
+		/// </summary>
+		[Test]
+		public void Process_Mapudungu_Data()
+		{
+			// has been copied to executing dir during build
+			// skip position checking, and just test cooccurrences.
+			var pa = new GafawsAnalyzer();
+			var outputPathname = pa.AnalyzeTestFile(@"XML\Mapudungu.xml");
+
+			// Distinct sets checking.
+			var gd = GafawsData.LoadData(outputPathname);
+
+			var cooccurrenceSets = gd.AffixCooccurrences;
+			Assert.AreEqual(7, cooccurrenceSets.Count);
+			var sets = new List<List<string>>(cooccurrenceSets.Count)
+				{
+					new List<string>(5) { "a", "l", "la", "no", "lle" },
+					new List<string>(4) { "a", "l", "no", "lle" },
+					new List<string>(3) { "la", "a", "lle" },
+					new List<string>(6) { "no", "a", "l", "ki...l", "chi", "lle" },
+					new List<string>(6) { "lle", "a", "l", "chi", "no", "la" },
+					new List<string>(4) { "chi", "ki...l", "no", "lle" },
+					new List<string>(3) { "ki...l", "chi", "no" }
+				};
+			CheckSets(cooccurrenceSets, sets);
+
+			var noncooccurrenceSets = gd.AffixNonCooccurrences;
+			Assert.AreEqual(7, noncooccurrenceSets.Count);
+			sets = new List<List<string>>(cooccurrenceSets.Count)
+				{
+					new List<string>(3) { "chi", "ki...l", "a" },
+					new List<string>(4) { "la", "chi", "ki...l", "l" },
+					new List<string>(5) { "l", "no", "chi", "ki...l", "la" },
+					new List<string>(2) { "la", "no" },
+					new List<string>(2) { "ki...l", "lle" },
+					new List<string>(4) { "a", "l", "la", "chi" },
+					new List<string>(5) { "a", "l", "la", "lle", "ki...l" }
+				};
+			CheckSets(noncooccurrenceSets, sets);
+
+			var distSets = gd.DistinctSets;
+			Assert.AreEqual(6, distSets.Count);
+			sets = new List<List<string>>(distSets.Count)
+				{
+					new List<string>(2) { "chi", "a" },
+					new List<string>(3) { "la", "chi", "l" },
+					new List<string>(2) { "la", "no" },
+					new List<string>(2) { "ki...l", "lle" },
+					new List<string>(2) { "a", "ki...l" },
+					new List<string>(3) { "l", "la", "ki...l" }
 				};
 			CheckSets(distSets, sets);
 		}
