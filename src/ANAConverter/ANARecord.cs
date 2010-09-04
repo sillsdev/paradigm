@@ -1,5 +1,5 @@
 ﻿// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2007, SIL International. All Rights Reserved.
+//    Copyright (c) 2010, SIL International. All Rights Reserved.
 // </copyright>
 //
 // File: ANARecord.cs
