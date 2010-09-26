@@ -1,1 +1,976 @@
-﻿
+xC#"/Type xx to start/"
+
+@0
+	2cqPARADIGM.PTP Version 2.209^M^J$
+#
+
+"Positional and cooccurrence analysis"
+"Joseph E. Grimes, 78 June 1 to 79 Jan 6"
+"Positions J. Albert Bickford 79 Nov 15 to 80 Sep 5"
+"Redesigned JEG 82 Feb 10 to 82 Jul 28"
+
+"Channels"
+" 1 printer"
+" 2 screen"
+" 3 input tape"
+" 4 list of morphemes to analyze"
+
+"Buffers"
+" 8 blank data vector"
+" 9 page heading"
+" 10 morphemes"
+" 14 precedence matrix, union vectors"
+" 15 data vectors"
+" 16 scratch buffer"
+
+"Variables"
+" 1 number of morphemes in B1O list"
+" 2 morpheme index, L"
+" 3 morpheme length, L; row sum, W; column sum, F"
+" 4 index of preceding morpheme, L; lowest nonzero sum, F"
+" 5 local use"
+" 6 local use"
+" 7 padding width"
+" 10 count of unassigned rows"
+" 11 current position class"
+" 12 1= class assignment made, 0= no"
+" 18 column width, 12 or more"
+" 19 first tab stop, initially 5"
+" 20 characters left in line, d"
+" 21 lines left on page"
+" 22 characters per line (55)"
+" 23 lines per page (60)"
+" 24 line break zone (10)"
+" 28 1= print matrix, 0= no"
+" 29 1= first page printed, 0= not yet"
+" 30 1= analyze all morphemes, 0= some"
+" 31 1= complete printout including data, 0= no"
+" 33 1= position analysis, 0= no"
+" 35 1= distinct sets of mutually exclusive forms, 0= no"
+" 36 1= subgraphs, 0= no"
+" 37 1= monitor processes, 0= no"
+" 38 1= hidden set found, 0= no"
+" 39 number of reductions"
+" 40 buffer index, B; variable index, i; buffer to sort, S"
+" 45 number of position classes, Q"
+" 48 1= printer, 2= tape"
+" 49 1= positional ambiguity, 0= none"
+" 50 1= terminate, 0= continue"
+#
+
+@C "MAIN PROCEDURE"
+"	SETUP"
+("Initialize"xi
+"Read in forms"xf
+
+"	PROCESS"
+"positional analysis"xo
+"Distinct sets"xm
+"Component subgraphs"xs
+
+"	CLEANUP"
+("IF no abnormal termination"b50pz?
+	"THEN"2cqA11 requests completed.^M^J$;
+	"ELSE"2cqRun terminated abnormally.^M^J$)
+"Beep"2cq^G$
+"End output page"cq^L$
+"Close channels"1cc2cc3cc)
+#
+
+"SUBROUTINES FOLLOW IN ALPHABETICAL ORDER"
+
+@A"Change list to one morpheme per line (from I,M,r)"
+("Beginning of line" u
+("REPEAT: "
+	[("IF left parenthesis" pi($/)$a?
+		"AND right parenthesis" gpi($ps)$?
+	"THEN delete in between" \
+		("IF noninitial" pb'?
+			"AND not preceded by hyphen" jpi-$k'?
+		"THEN put in hyphen" /-$)
+		"Replace" /STEM-$
+		("IF followed by hyphen" pi-$?
+		"THEN delete it" s;
+		"ELSE if at end" (pi^M$?;pm')?
+		"THEN delete the new one" a)
+		"Exit as true" pt;
+	"ELSE test next character" k)]
+"UNTIL stem found" ?;
+	"OR end" pm'?;:)
+
+"Beginning of line"u
+("WHILE morphemes remain"pm?
+	("IF separator"pw -^M$?
+	"THEN new line"o^M$
+		("WHILE other separators follow"pw -^M$?
+			"Delete them"s:);
+	"ELSE IF gloss" (pi;$)?
+	"THEN delete the rest of the line" w
+		("WHILE spaces precede" jpi $k?
+			"Delete" a:);
+	"ELSE advance"k):)
+
+("IF no final <RETURN>"jpi^M$k'?
+"THEN add one"/^M$))
+#
+
+@B"Clear buffers, close channels (from i)"
+("Save index"40<
+"Start with B7"40v7z
+10("WHILE buffers remain"
+	"Top of buffer"40^b
+	"Clear it"xb
+	"Next buffer"+)
+"Close channels"1cc2cc3cc>)
+#
+
+ @b"Clear a buffer (from B,i,J,m,o,r,s,V,>,<)"
+ ("WHILE lines remain"pm?
+	"Clear a reasonable number"20w:)
+#
+
+@D"End a line on the screen and the printer"
+	"(from f,I,j,K,m,N,o,P,s,Z,<,=,\,~)"
+(2cq^M^J$
+cq^M^J$
+"Left margin, 10 spaces"10(cq $)
+"Decrement line count"21v-
+("IF end of page"0pe?
+"THEN new page"xP))
+#
+
+@d"Print a buffer from BP on (from f,M,r,Z)"
+"	SETUP"
+("Save character counter"20<
+"	PROCESS"
+("WHILE lines remain"pm?
+	"Print the line" xN
+	"Next line"i:)>)
+#
+
+@E"Print a form and a line (from f,Z)"
+"	SETUP"
+("Top of matrix" 1^uu
+"Auxiliary on names" [g10bt
+"	PROCESS"
+("WHILE lines remain" pm?
+	"Set local padding count" 6v7^z
+	"Get name list" t
+	("WHILE no end" pi^M$'?
+		"Print" cp2cp
+		"Count down" -k:)
+	"Add padding" 6^(cq $)6^(2cq $)
+	"Back to matrix" t
+	"Print line" xN
+	"Next line and morpheme" itit:)])
+#
+
+@F"Find lowest column sum over data vectors (from s)"
+"	SETUP"
+("Save index and weight variables"2<3<5<
+"Column index"2v0z
+"Column with lowest nonzero sum and its weight"4v0z5v5000z
+"Column sums"14b
+"	PROCESS"
+("WHILE column sums remain"pm?
+	"Get the sum in V3"3v4n
+	("IF not zero"0pe'?
+	"THEN"
+		("IF the sum is least"5v3pu?
+		"THEN reset index of lowest nonzero sum"4v2^z
+			"Reset lowest nonzero value"5v3^z
+			("IF monitoring"37pz'?
+			"THEN"(2cqLowest column sum$)2cw2cq^M^J$)))
+	"Next sum"2v+i:)>>>)
+#
+
+@f"Read in forms (from C)"
+("IF coninuing"50pz?
+"THEN"
+	("IF printout wanted"31pz'?
+	"THEN start page"xP
+		cqData to be analyzed$2(xD))
+	"Distinguish case"pd
+	("WHILE data lines remain"xr?
+		"Look up morphemes and build tables"xL:)
+
+	("IF no data"1pz?
+	"THEN say so"cqNo data to be analyzed$xD
+		"Set the termination switch"50v1z;
+	"ELSE sort the data vectors" 40v15zxS
+		"Padding counter" 7v0z
+		"On morpheme list" 10b
+		("WHILE morphemes remain" pm?
+			"Local variable" 5v0z
+			("WHILE characters remain" pi^M$'?
+				"Count and advance" +k:)
+			("IF largest" 7pu?
+			"THEN update padding" 7v5^z)
+			"Next morpheme" i:)
+		"Add 3 to padding" 7v3+)
+("IF printout wanted"31pz'?
+	"and no termination"50pz?
+"THEN print the morpheme list"xM)
+("IF matrices are to be printed" 28pz'?
+"THEN"xDcqData vectors$2(xD)
+	"Data vectors"15bxd3(xD)
+	("IF positional analysis" 33pz'?
+	"THEN"cqPrecedence matrix for positional ana1ysis$2(xD)
+	"Print" 14bxE3(xD))))
+#
+
+@G"Put morphemes for the vector at SAVE into B16 (from k)"
+"	SETUP"
+("Auxiliary on morpheme list"[10bg
+"Bottom of B16"16bps%%$
+"Back to vector"e
+"	PROCESS"
+l^("WHILE positions remain in the vector"
+	("IF there is a morpheme"pi1$?
+	"THEN get it from the morpheme 1ist"trt
+		"Change its <RETURN> to <SPACE>"ejo $e)
+	"Next morpheme in list"tit
+	"Next position"k)
+"	CLEANUP"
+"End of 1ine"e
+("WHILE spaces remain"jpi $k?
+	"Trim"a:)
+"Final <RETURN>"/^M$
+"Set save back on the next vector"ed])
+#
+
+@g"Get a character string from the keyboard (from I, i)"
+("REPEAT: get one character"1j
+	("IF <DELETE>"pi$?
+	"THEN erase it and the one before"sa)
+"UNTIL <RETURN> (erase it when found)"pi^M$?s;k:)
+#
+
+@H"Open an output device (from i)"
+("Ignore case"pq
+("REPEAT"2cqOutput to printer or tape (P or T)? $
+"UNTIL acceptable"1j2cq^M^J$pwPT$?;s:)
+("IF printer"48vpiP$s?
+"THEN"1z2cqTurn the printer on, then press <RETURN>.$
+	"Wait" 1a2cq^M^J$
+	"Open the printer"(coLP:$);
+"ELSE"2z2cqTape for output in place, then press <RETURN>. $
+	"Wait"1a2cq^M^J$
+	"Channel l"co$))
+#
+
+@I"Find what morphemes to analyze (from i)"
+("IF"2cqAnalyze all morphemes in the data? $30vxy?
+"THEN V30 = 1 and B8 is empty"8b/^M$;
+"ELSE"
+	("IF"2cqIs the list of morphemes to analyze in a file?^M^J$2vxy?
+	"THEN read them into B10"10b4cl$;
+	"ELSE get them from the keyboard"
+		2cqEnter the morphemes to analyze, separated by spaces^M^J$
+		2cqand followed by <RETURN>^M^J$
+		"Get the list"10bxg)
+	"Upper and lower case different in data"pd
+	"Put each morpheme on a line by itself"10bxA
+	"Morpheme counter is V1 throughout program"v
+	"Top of list"(10upb?;:)
+	("IF the list is not empty"pi^M$'?
+	"THEN"
+		("WHILE morphemes remain"pm?
+		"Look at the following morphemes"gi
+		("WHILE others remain"pm?
+			("IF a duplicate"pl?
+			"THEN eliminate it"w;
+			"ELSE next morpheme"i):)
+			"Next morpheme to compare"ti+:))
+		("IF there were elements in the list"pz'?
+		"THEN set up a blank array for them"8b^(/0$)/^M$
+			"Blank precedence matrix in B14"ug14b^(y);
+		"ELSE"xD(cqNo morphemes given in the list to analyze.^M^J$
+				cqAll will be processed.^M^J$)
+			"Reset the switch for all morphemes"30v1z
+			"Clear the list buffer"8bxb/^M$))
+#
+
+@i"Initialize (from C)"
+"	SETUP"
+("Clear buffers"xB
+"Open the screen"2cott:$
+"Program name on screen"x0
+"Morpheme counter zero"1v0z
+"Termination switch off"50v0z
+"Characters per line"22v55z
+"Lines per page"23v60z
+"Line break"24v10z
+"First page switch"29v0z
+"Initial tab stop"19v5z
+"Ignore case"pq
+"	PROCESS"
+"Open the output device"xH
+("IF printing"48v1pe?
+"THEN clear heading buffer"9bxbm
+	(2cqType the page heading, then press <RETURN>.^M^J$
+	2cqTITLE	DATE	TIME^M^J$)
+	"Get the heading from the keyboard"xg
+	"Add a page number"/	000$)
+	"Find what morphemes to analyze" xI
+	"Find what processes to use" xJ)
+#
+
+@J"Find what processes to use (from i)"
+("IF termination is not set"50pz?
+"THEN display empty buffer"16bxbm
+	2cqTape for input in right hand slot, then press <RETURN>.$1a2cq^M^J$
+	(2cqData source file:^M^J$)
+	"Open the input file"3ci$
+
+	"Ignore case" pq
+	"Ask about processing options"
+	2cqCompiete processing? $
+	("IF complete printout wanted"31vxy?
+	"THEN set all switches on"40v32z5
+		(40^v1z40v+);
+	"ELSE ask about each"2cqAre the input data to be printed? $31vxy
+		2cqPositionai analysis (Language 43: 437-444, 1967)?^M^J $33vxy
+		2cqDistinct sets of mutually exclusive forms? $35vxy
+		2cqSpecifications for component subgraphs^M^J$
+		2cq (Anthropological Linguistics 20:167-183, 1978)?^M^J	$36vxy)
+	2cq^JMonitor the processes on the screen?^M$
+	2cq^J (WARNING: slow) $37vxy
+	2cqPrint the internal matrix representations? $28vxy)
+#
+
+@j"Specifications for subgraph from column in V4 (from s)"
+"	SETUP"
+("Extra line"xD
+"Clear work buffer" 16b(pm?w:)
+"Auxiliary on morpheme"10b4^ig
+"Print its name" cq SUBGRAPH FOR $xN
+"Go back" tg
+"First data vector"15b
+"	PROCEBB"
+("WHILE data vectors remain"pm?
+	"Save the place"d
+	("IF the morpheme is in the vector" 4^kpi1$?
+	"THEN beginning" of vector"ed
+		("IF monitoring"37pz'?
+		"THEN"(2cqSubgraph: $)2cw)
+
+		"Remove the row counter"ps $a3su
+		"Get the morpheme shapes" xk
+
+		"In B16" [g16b
+		"Print the line of shapes" xN
+
+		"Erase it" uw
+		"Back to the row" t]
+
+		"Delete that vector"qs;
+	"ELSE skip it"i):))
+#
+
+@K"Test for zero vector and print it (from s)"
+("IF data vector is blank"ps $pi000$u?
+"THEN print it"xD(cq---$)xD
+"	CLEANUP"
+	"Erase it"w
+	"Exit as true"pt)
+#
+
+@k"Print the morpheme in B10 that has auxiliary and its associated vector that has save (from j, Z)"
+"	SETUP"
+("Test the vector" e
+"Switch off" 5v0z
+"	PROCESS"
+("WHILE still off" 0pe?
+	"AND not at end" pi^M$'?
+
+	("IF a set member" pi1$?
+	"THEN switch on" 1z)
+
+	"Next component" k:)
+
+"Back to earlier place" kue
+("IF data present" 1pe?
+"THEN get morphemes that match the vector"xG;
+"ELSE go back" e))
+#
+
+@L"Look up morphemes then set precedence and data vectors (from f)"
+"	SETUP"
+("Add a blank data vector"15bxz
+"Auxiliary on it"ug
+"Set index for preceding element null"4v0z
+"	PROCESS"
+("IF there are morphemes in the data line"16bpi^M$'?
+"THEN"
+	("WHILE morphemes remain in it"pm?
+		"Auxiliary and save on the morpheme in B16"[gd
+		("IF this morpheme (index in V2) is new"xn?
+		"THEN"
+			("IF all morphemes are included"30pz'?
+			"THEN add it to the list"xppt)')]
+		("IF old or just added"'?
+		"THEN set it in the data vector"tku2^kjo1$ut
+			("IF anything precedes it"4pz'?
+			"THEN set the precedence matrix"14b
+				"Row of preceding morpheme"4^iu
+				"Column of this one"2^kjo1$)
+			"Reset the preceding element"4v2^z)
+		"Next morpheme"ei:))
+
+("IF monitoring"37pz'?
+"THEN" (2cq	$tku2cwt)))
+#
+
+@M"Print the morpheme list (from f)"
+"	SETUP"
+("Use V5"5<
+"Morpheme list"10b
+"Number of morphemes in V5 less one"5v^z-
+"Change returns to spaces"5^(ijo $)
+"	PROCESS"
+"Header"3(xD)cqMorphemes to be analyzed$
+"Set up a counter"11bxb/ (000)$2j1^&u
+"Print the count"cww2(xD)
+"Print the list"10bxd2(xD)
+"	CLEANUP"
+"Restore the list to one element per line"10bxA>)
+#
+
+@m"Distinct sets (from C)"
+"	SETUP"
+("IF continuing"50pz?
+	"and requested"35pz'?
+"THEN clear the scratch buffer"16bxbm
+	2cqDistinct sets of mutually exclusive forms^M^J$
+	"New page"xP
+	cqDISTINCT SETS OF MUTUALLY EXCLUSIVE FORMS$2(xD)
+"	PROCESS"
+"Fill the union matrix"xV
+"Top of matrix"1^uu
+"Row index" 2v0z
+("WHILE rows remain"pm?
+	"Set identity"2ko1$
+	"Advance index and pointer"+i:)
+"Find and print the sets"xZ
+"	CLEANUP"
+("WHILE there are any hidden sets left" 38pz'?
+	"Blank line" xD
+	"Form a reduced matrix" xR
+	"Find and print the sets" xZ:))
+#
+
+@N"Print a line (from d,E,j)"
+("Reset character count"20v22^z
+("WHILE not end of line" (pi^M$;
+	"OR end of buffer" pm')'?
+	("IF monitoring" 37pz'?
+	"THEN show" 2cp)
+
+	"Print and advance" cpk
+	"Count down"20v-
+
+	(IF in the end zone"24po?
+		"AND on a separator"pw -$?
+	"THEN"
+		("IF monitoring" 37pz'?
+		"THEN show" 2cp)
+
+		"Print and advance" cpk
+		"Break the 1ine"x~;
+	"ELSE IF end of 1ine"20v0pe?
+	"THEN"
+		("IF monitoring" 37pz'?
+		"THEN show break" 2cq =$)
+
+		"Tag and break" cq =$x~):)
+"Print line end"xD)
+#
+
+@n"Test if a morpheme is in the list (from L)"
+"	SETUP"
+("Initialize V2 to 1"2v1z
+"Morpheme 1ist"10b
+"	PROCESS"
+("REPEAT UNTIL end of list (true)"pm'?;
+	"or match (false) "pl?';
+	"Next morpheme"i+:))
+#
+
+@o"Positiona1 analysis (from C)"
+"	SETUP"
+("IF continuing"50pz?
+	"and requested"33pz'?
+"THEN clear the scratch buffer"16bxb
+	2cqPosition c1asses^M^J$
+	"New page"xP
+	cqPOSITION CLASSES$xD
+	cq	Predecessor and successor numbering is arbitrary.$xD
+	cq	Combine the two to identify spans, then$xD
+	cq	number the relative orders out from the stem.$2(xD)
+	cq	...	-3	-2	-1	|	0	|	1	2	3	...$xD
+	cq	----------------+-------+----------------$xD
+	cq	Prefixes	|	STEM	|	Suffixes$xD
+	"Precedence matrix"14b
+"	PROCESS"
+"Analyze predecessors"x>
+"Analyze successors"x<)
+#
+
+@P"New page (from D,f,m,o,s)"
+(("IF first page not started yet"29v0pe?
+"THEN set its switch"1z
+"ELSE IF not top of page" 21v23pv'?
+"THEN form feed"cq^L$)
+"Three blank lines at top"3(cq^M^J$)
+"Margin" 10(cq $)
+"Reset the line counter"21v23^z
+"Save the place" [g
+"Increment page number in heading"9bij&u
+"Print the heading"cw2(xD)
+"Back"t])
+#
+
+@p"Add a new morpheme (from L)"
+("Put it on the morpheme list"y
+"Extend the blank vector"8b/0$
+"In the precedence matrix"14b
+1^("WHILE rows remain"
+	"Add zero to the end"ij/0$k)
+"Add a blank row at the end"xz
+"In the data vectors"15b
+("WHILE vectors remain"ps^M$?
+	"Add zero to the end" j/0$k:)
+"Increase the morpheme count"v+)
+#
+
+@R"Form a reduced matrix (from m)"
+"	SETUP"
+("Top of matrix" 14b
+"Reduction count at zero" 39v0z
+"	PROCESS"
+("WHILE rows remain" pm?
+	("IF the row contains a hidden set" pi3$?
+	"THEN leave it in" i;
+	"ELSE IF no hidden set in the row" pi^M$?
+	"THEN beginning of row" u
+		("WHILE positions remain" pi^M$'?
+			"Change to minus" o-$:)
+		"Reduction count" +
+		"Next row" i;
+	"ELSE advance" k):)
+"	CLEANUP"
+"Back to the top" 1^uu
+("IF hidden sets remain" 38pz'?
+"THEN"
+	("IF no reduction" 39pz?
+	"THEN show error condition" m
+		2cqHidden sets cannot be eliminated. <SPACE> to continue.$
+		"Wait"1a;
+	"ELSE eliminate columns" xT)))
+#
+
+@r"Read one line of data (from f)"
+"	SETUP"
+("Clear a scratch buffer"16bxb
+"Left end of line"=2cqData : $
+"	PROCESS"
+("IF a line cannot be read"3cr'?
+"THEN exit as false"';
+"ELSE back to beginning"u
+	("IF it is to be printed"31pz'?
+	"THEN print it"xd)
+	"Display it"2cw
+	"Break it up into one morpheme per line"xA
+	"Exit as true"pt))
+#
+
+@S"Sort the buffer whose number is in V40 (from f,Z)"
+"Major lines begin with a nonb1ank character"
+"Minor lines begin with blank and follow major lines"
+"	SETUP"
+("Top of the buffer to sort"[40^b
+"Second major line"(ipi $'?;:)
+"	PROCESS"
+("REPEAT: auxiliary on the new line"
+	gij14mu(2cq	Sorting...$)
+	"Compare with the lines above"(20upb?;:)
+	("WHILE lines are minor"(pi $?;
+		"OR too large"tpgt)?
+		"Advance"i:)
+
+	("IF auxiliary"px?
+	"THEN no change, so next line"(ipi $'?;:);
+	"ELSE set counter"5v1z
+	"Set auxiliary"[g
+	("WHILE minor lines follow"ipi $?
+		"Increase the count"+:)
+	"Back to major line"t]
+	("IF full duplicate"5^pl?
+	"THEN erase"t5^wt;
+	"ELSE insert lines"5^y
+		"Erase where they came from"t5^wt))
+"UNTIL end"pm'?;:)
+"Back"(20upb?;:)m])
+#
+
+@s"Component subgraph specifications (from C)"
+"	SETUP"
+("IF continuing"50pz?
+	"and subgraphs requested"36pz'?
+"THEN V4 for column index"4<
+	"New page"xP
+	cqSPECIFICATIONS FOR COMPONENT SUBGRAPHS$2(xD)
+	"Clear the scratch buffer"16bxb
+	"Clear B14 for column sums"14bxb
+	"Set blank column sums"1^(/0000^M$)
+	"Go through data vectors"15b
+	("WHILE data vectors remain"pm?
+			"Add a row counter with auxiliary on it"ij/ 000$jg
+			"Beginning of vector"u
+		1^("WHILE positions remain"
+			("IF one"pi1$?
+			"THEN count"t&t)
+			"Next position"k)
+			("IF monitoring"37pz'?
+			"THEN"(2cqRow sums: $)ku2cw)
+			"Next vector"i:)
+"	PROCESS"
+("WHILE data vectors remain"15bpm?
+	("IF only one vector is left"ipmu'?
+	"THEN see if it is all zeros" xK)
+
+	("IF nonzero vectors remain"'?
+	"THEN count the weight of each column"xW
+		"Find the lowest column sum"xF
+		"Print specs for that column"15bxj
+		"Blank line"xD)
+	"Next pass":)>)
+#
+
+@T"Eliminate columns from a reduced matrix (from R)"
+"	SETUP"
+("Column index" 5v0z
+"	PROCESS"
+("WHILE not at end" 1^uu5^kpi^M$5^j'?
+	"Local hidden set switch off" 6v0z
+	("WHILE rows remain" pm?
+		("IF this column contains a hidden set" 5^kpi3$?
+		"THEN hidden set switch on" 6v1z
+			"Jump to the end" 1^ii;
+		"ELSE next row" i):)
+	("IF no hidden set in the column" 6pz?
+	"THEN top of buffer" 1^uu
+		("WHILE rows remain" pm?
+			"Make cell a minus" 5^ko-$
+			"Next row" i:))
+	"Index on next column" 5v+:)
+"	CLEANUP"
+"Top of buffer" 1^uu
+("IF monitoring" 37pz'?
+"THEN display" ijmu
+	2cqReduce the matrix^M^J$)
+("WHILE cells remain" pm?
+	("IF changed" pw23$?
+	"THEN change back" o1$;
+	"ELSE advance" k):)
+"Back to top" 1^uu)
+#
+
+@V"Fill the union matrix (from m)"
+"	SETUP"
+("V2 is position index"2<
+"Clear the precedence array"14bxb
+"Blank union matrix"g8bt1^(y)
+"	PROCESS"
+"Data vectors"15b
+("WHILE vectors remain"pm?
+		"Zero the position index"2v0z
+	1^("WHILE positions remain In the vector"
+		("IF filled"pi1$?
+		"THEN save the place"[g
+		"Union vectors"[g14b
+
+		("IF monitoring"37pz'?
+		"THEN display"ijmu
+			2cqData vectors to union vectors^M^J$)
+		"Find the union vector for the position"2^i
+		"Back to position"t
+		"Beginning of data vector"ku
+	1^("WHILE positions remain"
+			("IF one"pi1$t?
+			"THEN unite"o1$;
+			"ELSE advance"k)
+			"Next position"tk)]
+		"Back to position"t])
+	"Next position"+k)
+	"Next vector"i:)
+"	CLEANUP"
+"Complement the union vector"xw>)
+#
+
+@W"Calculate the column sums (from s)"
+"	SETUP"
+("V3 holds row count"3<3v
+"Zero column sums"14b1^(o0000$i)
+"Auxiliary at top"1^uug
+"Data vectors"15b
+"	PROCESS"
+("WHILE data vectors remain"pm?
+		"Get the row count"ps $3n
+		"Auxiliary on first column sum"t1^uut
+		"Beginning of row"u
+	1^("WHILE positions remain"
+		("IF one"pi1$?
+		"THEN get that column counter"t
+			"Increment it"3k3^&t)
+		"Next position"k
+		"Next column counter"tit)
+	("IF monitoring"37pz'?
+	"THEN display from top"t1^uu14mt
+		2cqColumn sums^M^J$)
+	"Next data vector"i:)>)
+#
+
+@w"Complement the union vector (from V)"
+"	SETUP"
+("Top of matrix"14b
+"	PROCESS"
+1^("WHILE rows remain"
+	1^("WHILE positions remain"
+		("IF zero" pi0$?
+		"THEN one"o1$;
+		"ELSE complement to zero"o0$))
+	("IF monitoring"37pz'?
+	"THEN display"14m
+		2cqComplement of union vector^M^J$)
+	"Next row"i))
+#
+
+@Y"Search for hidden distinct sets (from Z)"
+"	SETUP"
+("Top of matrix" 14b
+"Hidden set switch off" 38v0z
+"Row index" 4v0z
+"	PROCESS"
+("WHILE rows remain" pm?
+	"Index for row" 2v0z
+	("WHILE positions remain" pi^M$'?
+		("IF in an intersection" pi2$?
+		"THEN save the place" d
+			"Top of matrix" 4^uu
+			"Symmetric position" 2^i4^k
+
+			("IF it is in an intersection too" pi2$?
+			"THEN it is hidden, so make it a 3" &
+				"Make the other a 3 too" e&
+				"Hidden set switch on" 38v1z;
+			"ELSE back" e))
+		"Advance" 2v+k:)
+	("IF monitoring" 37pz'?
+	"THEN display" 14m
+		2cqFind hidden sets (3)^M^J$)
+	"Next row" 4v+i:))
+#
+
+@y"Set a yes-or-no option flag (from I,J)"
+((2cq Y for yes, N for no: $)
+"Get a one-character answer"1j
+"End the screen line"2cq^J^M$
+("IF the answer was Y"piy$s?
+"THEN set the variable designated earlier on (true)"1z;
+"ELSE off (false)"0z))
+#
+
+@Z"Distinct sets of mutually exclusive forms (from m)"
+"	SETUP"
+("Use V2, V4"2<4<
+"Union matrix" 14b
+"Row index"4v0z
+"	PROCESS"
+("WHILE rows remain"pm?
+	"Index on row beginning"2v0z
+	("WHILE positions remain"pi^M$'?
+		("IF one"pi1$?
+			"and not an identity"4^pe'?
+		"THEN save place"d
+			"Auxiliary on first position"[kug
+			"position indicates which row to compare with the current row" u4^u2^i
+			"Main pointer on current row, auxiliary on comparison row"t
+			("WHILE positions remain"pi^M$'?
+				("IF current row has l"pi1$?
+					"and comparison row has 0"tpi0$t?
+				"THEN tag the l as intersecting with another set" o2$j)
+				"Advance" ktkt:)]
+			"Back to current row"e)
+		"Next position"k+:)
+	("IF monitoring"37pz'?
+	"THEN display"14m
+		2cqFind intersections (2)^M^J$)
+	"Next row"4v+i:)
+
+"Search for hidden complete sets" xY
+
+"Clear work buffer" 16b(pm?5w:)
+"Save pointer on union matrix" 14bd
+"Auxiliary on list of morphemes"10bg
+
+1^("WHILE rows remain"
+	"Print the subset for that row" xk
+	"Next union row"id
+	"Next morpheme"tig)
+
+"Sort the output list" 40v16zxS
+"Print the subsets" [g16bxdt]
+"New lines" 2(xD)
+("IF matrices are being printed" 28pz'?
+"THEN"xDcqComplemented unions of data vectors or each morpheme$xD
+	cq with identity matrix added. 2=intersecting, 3=hidden$2(xD)
+	"Print names and lines" 14bxE3(xD))>>)
+#
+
+@z"Add a row of zeros (from L,p)"
+("End of this buffer"ps%%$
+"Set the auxiliary there"[g
+"Transfer from the blank row"8bty])
+#
+
+@>"Analyze predecessors (from 0)"
+"	SETUP"
+("Zero the position class counter"11v0z
+1^("WHILE rows remain"
+	"Add a register for class number"/000 $i)
+"Class number model with auxiliary on it"[g11bxb/000$ut
+"	PROCESS"
+("REPEAT: zero a counter of unassigned rows"10v0z
+		"Top of matrix"1^uu
+		"Next position class number"11v+
+		"Assignment switch off"12v0z
+	1^("WHILE rows remain"
+		("IF unassigned"pi000$?
+		"THEN count it"10v+
+			"Auxiliary on class number register"[2kg2k
+			("REPEAT UNTIL end of row (true) "pi^M$?;
+				"or successor found (false) "pi1$?';k:)
+			("IF the row has no successors in it"?
+			"THEN give it this position class"t11^&t
+				"Assignment switch on"12v1z
+				("IF monitoring"37pz'?
+				"THEN display"14m
+					2cqPredecessor class assignment^M^J$))])
+			"Next row"i)
+"UNTIL no rows can be assigned (true)"10pz?;
+	"or no assignment can be made (false)"12pz?';
+	"Set successors in the assigned columns to 2"x1
+	"Print the class"xDcqPREDECESSOR CLASS $x=:)
+"	CLEANUP"
+"Report inconsistent data if any"x\]
+"Top of matrix"1^uu
+1^("WHILE rows remain"
+		"Clear the class number register"o000$k
+	1^("WHILE positions remain"
+		("IF set to 2"pi2$?
+		"THEN reset to 1"o1$;
+		"ELSE advance"k))i)
+"Back to top"1^uu)
+#
+
+@<"Successor analysis (from 0)"
+"	SETUP"
+("Extra spaces"2(xD)
+"Zero the position class counter"11v0z
+"Class number model with auxiliary on it" [g11bxb/000$ut
+"	PROCESS"
+("REPEAT: zero the counter for unassigned columns"10v0z
+		"Top of matrix"1^uu
+		"Next position class number"11v+
+		"Assignment switch off"12v0z
+		"Zero row index"5v0z
+	1^("WHILE rows remain"
+		"Set save"d
+		("IF unassigned"pi000$?
+		"THEN count it"10v+
+			"Auxiliary on class number register"[2kg
+			"Position index = row + 4"6v5^z4+
+			"Top of matrix"5^uu
+			("REPEAT UNTIL bottom of matrix (true)"pm'?;
+						"or predecessor found (false)"6^kpi1$?';
+					"Advance"ji:)
+				("IF the column contains no predecessors"?
+				"THEN give it this position class"t11^&t
+					"Assignment switch on"12v1z
+				("IF monitoring"37pz'?
+				"THEN display"14m
+					2cqSuccessor class assignment^M^J$))])
+			"Next row"5v+ei)
+"UNTIL no columns can be assigned (true)"10pz?;
+		"or no assignment can be made (false)"12pz?';
+	"Set predecessors in the assigned rows to 2" 2
+	"Print the class"xDcqSUCCESSOR CLASS $x=:)
+"	CLEANUP"
+"Report inconsistent data if any"x\])
+#
+
+@="Print a position class (from <,>,\)"
+"	SETUP"
+("Print the number"tcwtxD
+"Top of matrix"1^uu
+"Save at top of morpheme list"d10be
+"	PROCESS"
+1^("WHILE rows remain"
+	("IF in the current position class"3pc?
+	"THEN get the morpheme"e
+		"Hanging indentation"5(cq $)
+		"Print up to <RETURN>"(pi^M$'?cpk:)kuxD
+		"Back to matrix"e)
+	"Next row, both pointers"ieie))
+#
+
+@\"Report inconsistent data if any (from <,>)"
+("IF no assignment could be made"'?
+"THEN"2cq*** INCONSISTENT DATA ***^M^J$
+	2(xD)cqINCONSISTENT DATA$xD
+	cqHOMOGRAPHS? LAYERING? ALTERNATE ORDERS?$xD
+	cq	The following morphemes could not be ordered successfully$xD
+	cq	and are assigned arbitrarily to position class $
+	"Set class number model to zero"to000$ut
+"Print the rest"x=)
+#
+
+@~"Break a line being printed (from N)"
+("End the line"xD
+"Hanging indentation"19^(cq $)
+"Character count for short line"20v22^z19^-)
+#
+
+@1"Set successors in the assigned columns to 2 (from >)"
+"	SETUP"
+("Top of matrix"1^uu
+"Set class number model"to000$j11^&ut
+"Zero row index"5v0z
+"	PROCESS"
+1^("WHILE rows remain"
+	("IF in the current position class"3pc?
+	"THEN set save"d
+		"Position index = row + 4"6v5^z4+
+		"Top of matrix"5^uu
+	1^("WHILE rows remain"
+		("IF a one"6^kpi1$?
+		"THEN convert to 2"&)i)
+		"Back to the row"ed)
+	"Next row"5v+i))
+#
+
+@2"Set predecessors in the assigned rows to 2 (from <)"
+"	SETUP"
+("Top of matrix"1^uu
+"Set class number model"to000$j11^&ut
+"	PROCESS"
+1^("WHILE rows remain"
+	("IF in the current position class"3pc?
+	"THEN on row"4k
+	1^("WHILE positions remain"
+		("IF a one"pi1$?
+		"THEN convert to 2"&)k))
+	"Next row"i))
+#
