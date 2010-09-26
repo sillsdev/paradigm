@@ -1,0 +1,84 @@
+	The conceptually significant subroutine structure is as follows. Other subroutine calls not listed here are for output or for general housekeeping.
+C Main procedure
+	i Initialize
+		B Clear buffers
+		H Open output
+		I Find which morphemes to analyze
+		J Find which processes to use
+	f Read in forms
+		r Read one data line
+		L Look up a morpheme and build tables
+			n Test if new
+			p Add to list
+		M Print the morpheme list
+	o Positional analysis
+		> Analyze predecessors
+			1 Flag assigned columns
+		< Analyze successors
+			2 Flag assigned rows
+	m Distinct sets
+		V Fill the union matrix
+			w Complement the union vector
+		Z Distinct sets
+			Y Hidden complete sets
+		R Form a reduced matrix
+			T Eliminate columns
+	s Component subgraph specifications
+		K Look for a zero vector
+		W Count the weight of each column
+		F Find the lowest column sum
+		j Print specifications for that column
+
+*************
+
+Intermodule connections
+
+	The following table of subroutine calls was prepared by Alan L. Teubner.
+
+Name	Calls			Called by
+C		i,f,o,m,s		none
+A		none			I,M,r
+B		b				i
+b		none			B,i,J,m,o,r,s,V,<,>
+D		p				f,I,j,K,M,m,N,o,P,s,Z,<,=,\,~
+d		N				f,M,r,Z
+E		N				f,Z
+F		none			s
+f		D,d,E,L,M,P,r,S	C
+G		none			k
+g		none			I,i
+H		none			i
+I		A,D,g,y			i
+i		B,b,g,H,I,J,O	C
+J		b,y				i
+j		D,k,N			s
+K		D				s
+k		G				j,Z
+L		n,p,z			f
+M		A,D,d			f
+m		b,D,P,R,V,Z		C
+N		D,~				d,E,j
+n		none			L
+o		b,D,P,<,>		C
+P		D				D,f,m,o,s
+p		z				L
+R		T				m
+r		A,b,d			f
+S		none			R
+s		b,D,F,j,K,P,W	C
+T		none			R
+V		b,w				m
+W		none			s
+w		none			V
+Y		none			Z
+y		none			I,J
+Z		D,d,E,k,S,Y		m
+z		none			L,p
+<		b,D,2,=,\		o
+>		b,l,=,\			o
+=		D				<,>,\
+\		D,=				<,>
+~		D				N
+0		none			i
+1		none			>
+2		none			<
