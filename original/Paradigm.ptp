@@ -249,7 +249,7 @@ l^("WHILE positions remain in the vector"
 @H"Open an output device (from i)"
 ("Ignore case"pq
 ("REPEAT"2cqOutput to printer or tape (P or T)? $
-"UNTIL acceptable"1j2cq^M^J$pwPT$?;s:)
+"UNTIL acceptable"lj2cq^M^J$pwPT$?;s:)
 ("IF printer"48vpiP$s?
 "THEN"1z2cqTurn the printer on, then press <RETURN>.$
 	"Wait" 1a2cq^M^J$
