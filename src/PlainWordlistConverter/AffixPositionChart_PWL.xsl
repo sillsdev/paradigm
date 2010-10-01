@@ -144,7 +144,6 @@ Affix Sets template
 				</xsl:attribute>
 				<xsl:text>the book</xsl:text>
 			</a> on what a Distinct Set means to the analyst. Also, try to find some free .Net HTML generating widget that can produce the Venn Diagrams of the Distinct Sets.</p>
-		<p>Another TODO: implement the part that discovers hidden distinct sets.</p>
 	</xsl:template>
 <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
