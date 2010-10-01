@@ -93,6 +93,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			Morphemes.Clear();
 			Classes = new Classes();
 			Challenges.Clear();
+			DistinctSets.Clear();
+			AffixCooccurrences.Clear();
+			AffixNonCooccurrences.Clear();
 		}
 
 		#region Serialization
