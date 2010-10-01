@@ -156,103 +156,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}
 			}
 
-			// @Z Distinct Sets
-			for (var currentRow = 0; currentRow < workChart.Rows; ++currentRow)
-			{
-				for (var currentColumn = 0; currentColumn < workChart.Cols; ++currentColumn)
-				{
-					if (currentRow == currentColumn)
-						continue; // Skip Identity cell.
-					var currentValue = workChart[currentRow, currentColumn];
-					if (currentValue == 2)
-						continue;
-					if (currentValue == 1)
-					{
-						// "Untagged 1"
-						var otherRow = currentColumn;
-						for (var otherColumn = 0; otherColumn < workChart.Cols; ++otherColumn)
-						{
-							// If corresponding column (otherColumn) in current row (currentRow) is 1, AND
-							// corresponding column (otherColumn) in other row (otherRow) is 0,
-							// then set corresponding column (otherColumn) in current row (currentRow) to 2.
-							if (workChart[currentRow, otherColumn] == 1 && workChart[otherRow, otherColumn] == 0)
-								workChart[currentRow, otherColumn] = 2;
-						}
-					}
-				}
-			}
-
-			// Identify potentially hidden sets (2s), and mark them with pairs of 3s.
-			var conserveRows = new SortedList<int, int>();
-			var conserveColumns = new SortedList<int, int>();
-			var hiddenAffixMorphemesAsList = new SortedList<int, IMorpheme>();
-			//var foundHiddenSet = false;
-			for (var currentRow = 0; currentRow < workChart.Rows; ++currentRow)
-			{
-				for (var currentColumn = 0; currentColumn < workChart.Cols; ++currentColumn)
-				{
-					var currentValue = workChart[currentRow, currentColumn];
-					var symmetricValue = workChart[currentColumn, currentRow];
-
-					if (currentValue <= 1 || (symmetricValue <= 1))
-						continue;
-
-					// Hidden set member.
-					if (!hiddenAffixMorphemesAsList.ContainsKey(currentRow))
-						hiddenAffixMorphemesAsList.Add(currentRow, allAffixMorphemesAsList[currentRow]);
-					workChart[currentRow, currentColumn] = 3;
-					workChart[currentColumn, currentRow] = 3;
-
-					if (!conserveRows.ContainsKey(currentRow))
-						conserveRows.Add(currentRow, 0);
-					if (!conserveRows.ContainsKey(currentColumn))
-						conserveRows.Add(currentColumn, 0);
-
-					if (!conserveColumns.ContainsKey(currentColumn))
-						conserveColumns.Add(currentColumn, 0);
-					if (!conserveColumns.ContainsKey(currentRow))
-						conserveColumns.Add(currentRow, 0);
-				}
-			}
-
-			// If foundHiddenSet is true, then get the reduced matrix and recurse,
-			// until no more hidden sets are found.
-			// Add hidden sets to 'distinctSets' somehow.
-			var hasZero = false;
-			var hiddenSetMatrix = new Matrix(conserveRows.Count, conserveColumns.Count);
-			for (var row = 0; row < conserveRows.Count; ++ row)
-			{
-				for (var col = 0; col < conserveColumns.Count; ++col)
-				{
-					hiddenSetMatrix[row, col] = workChart[conserveRows.Keys[row], conserveColumns.Keys[col]];
-					var currentValue = hiddenSetMatrix[row, col];
-					if (currentValue > 1)
-						hiddenSetMatrix[row, col] = 1;
-					else if (currentValue == 0)
-						hasZero = true;
-				}
-			}
-
-			// Get Distinct Sets (not counting hidden sets).
-			// These are the cells in each row that now have 1s in them.
-			var distinctSets = new List<HashSet<IMorpheme>>();
-			GetDistinctSets(allAffixMorphemesAsList, workChart, distinctSets);
-
-			if (hasZero)
-			{
-				// TODO: Recurse.
-			}
-			else
-			{
-				// Load up hidden sets.
-				if (hiddenSetMatrix.Size > 0)
-					GetDistinctSets(hiddenAffixMorphemesAsList.Values, hiddenSetMatrix, distinctSets);
-			}
-
-			// Remove duplicate sets.
-			RemoveDuplicateSets(distinctSets);
-
-			_gd.DistinctSets.AddRange(distinctSets);
+			_gd.DistinctSets.AddRange(GetDistinctSets(workChart, allAffixMorphemesAsList));
 #else
 			var allNonCooccurrences = new Dictionary<string, HashSet<IMorpheme>>(allAffixMorphemeCooccurrences.Count);
 			foreach (var kvp in allAffixMorphemeCooccurrences)
@@ -274,19 +178,103 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		}
 
 #if USEMATRIXFORDISTINCTSETS
-		private static void GetDistinctSets(IList<IMorpheme> allAffixMorphemesAsList, Matrix inputMatrix, ICollection<HashSet<IMorpheme>> distinctSets)
+		private static IEnumerable<HashSet<IMorpheme>> GetDistinctSets(Matrix currentMatrix, IList<IMorpheme> affixMorphemes)
 		{
-			for (var row = 0; row < inputMatrix.Rows; ++row)
+			var distinctSets = new List<HashSet<IMorpheme>>();
+			for (var currentRow = 0; currentRow < currentMatrix.Rows; ++currentRow)
+			{
+				for (var currentColumn = 0; currentColumn < currentMatrix.Cols; ++currentColumn)
+				{
+					if (currentRow == currentColumn)
+						continue; // Skip Identity cell.
+					var currentValue = currentMatrix[currentRow, currentColumn];
+					if (currentValue != 1)
+						continue;
+
+					// "Untagged 1s"
+					var otherRow = currentColumn;
+					for (var otherColumn = 0; otherColumn < currentMatrix.Cols; ++otherColumn)
+					{
+						// If corresponding column (otherColumn) in current row (currentRow) is 1,
+						// AND corresponding column (otherColumn) in other row (otherRow) is 0,
+						// then set corresponding column (otherColumn) in current row (currentRow) to 2.
+						if (currentMatrix[currentRow, otherColumn] == 1 && currentMatrix[otherRow, otherColumn] == 0)
+							currentMatrix[currentRow, otherColumn] = 2; // "Tag" the 1 by making it a 2.
+					}
+				}
+			}
+
+			// Get Distinct Sets (not counting hidden sets).
+			// These are the cells in each row that now have 1s in them.
+			for (var row = 0; row < currentMatrix.Rows; ++row)
 			{
 				var distinctSet = new HashSet<IMorpheme>();
 				distinctSets.Add(distinctSet);
-				for (var col = 0; col < inputMatrix.Cols; ++col)
+				for (var col = 0; col < currentMatrix.Cols; ++col)
 				{
-					var currentValue = inputMatrix[row, col];
+					var currentValue = currentMatrix[row, col];
 					if (currentValue == 1)
-						distinctSet.Add(allAffixMorphemesAsList[col]);
+						distinctSet.Add(affixMorphemes[col]);
 				}
 			}
+
+			// Identify potentially hidden sets (2s), and mark them with pairs of 3s.
+			var conserveRows = new SortedList<int, int>();
+			var conserveColumns = new SortedList<int, int>();
+			var hiddenAffixMorphemesAsList = new SortedList<int, IMorpheme>();
+			for (var currentRow = 0; currentRow < currentMatrix.Rows; ++currentRow)
+			{
+				for (var currentColumn = 0; currentColumn < currentMatrix.Cols; ++currentColumn)
+				{
+					var currentValue = currentMatrix[currentRow, currentColumn];
+					var symmetricValue = currentMatrix[currentColumn, currentRow];
+
+					if (currentValue <= 1 || (symmetricValue <= 1))
+						continue;
+
+					// Hidden set member.
+					if (!hiddenAffixMorphemesAsList.ContainsKey(currentRow))
+						hiddenAffixMorphemesAsList.Add(currentRow, affixMorphemes[currentRow]);
+					currentMatrix[currentRow, currentColumn] = 3;
+					currentMatrix[currentColumn, currentRow] = 3;
+
+					if (!conserveRows.ContainsKey(currentRow))
+						conserveRows.Add(currentRow, 0);
+					if (!conserveRows.ContainsKey(currentColumn))
+						conserveRows.Add(currentColumn, 0);
+
+					if (!conserveColumns.ContainsKey(currentColumn))
+						conserveColumns.Add(currentColumn, 0);
+					if (!conserveColumns.ContainsKey(currentRow))
+						conserveColumns.Add(currentRow, 0);
+				}
+			}
+
+			// If hiddenAffixMorphemesAsList count is > 0,
+			// then get the reduced matrix and recurse,
+			// until no more hidden sets are found.
+			if (hiddenAffixMorphemesAsList.Count > 0)
+			{
+				var hiddenSetMatrix = new Matrix(conserveRows.Count, conserveColumns.Count);
+				for (var row = 0; row < conserveRows.Count; ++row)
+				{
+					for (var col = 0; col < conserveColumns.Count; ++col)
+					{
+						hiddenSetMatrix[row, col] = currentMatrix[conserveRows.Keys[row], conserveColumns.Keys[col]];
+						var currentValue = hiddenSetMatrix[row, col];
+						if (currentValue > 1)
+							hiddenSetMatrix[row, col] = 1;
+					}
+				}
+
+				// Add hidden sets, recursively.
+				distinctSets.AddRange(GetDistinctSets(hiddenSetMatrix, hiddenAffixMorphemesAsList.Values));
+			}
+
+			// Remove duplicate sets.
+			RemoveDuplicateSets(distinctSets);
+
+			return distinctSets;
 		}
 #else
 		private static IEnumerable<HashSet<IMorpheme>> GetDistinctSets(IDictionary<string, HashSet<IMorpheme>> sourceNonCooccurrences)
