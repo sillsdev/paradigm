@@ -48,7 +48,7 @@
 	<BaseAddress>285212672</BaseAddress>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
-	<DefineConstants>DEBUG;TRACE</DefineConstants>
+	<DefineConstants>TRACE;DEBUG;USEMATRIXFORDISTINCTSETS</DefineConstants>
 	<DocumentationFile>
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
@@ -67,7 +67,7 @@
 	<BaseAddress>285212672</BaseAddress>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
-	<DefineConstants>TRACE</DefineConstants>
+	<DefineConstants>TRACE;USEMATRIXFORDISTINCTSETS</DefineConstants>
 	<DocumentationFile>
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
@@ -114,6 +114,9 @@
 	<Compile Include="IClass.cs" />
 	<Compile Include="IChallenge.cs" />
 	<Compile Include="IClasses.cs" />
+	<Compile Include="Impl\Matrix.cs" />
+	<Compile Include="Impl\MatrixError.cs" />
+	<Compile Include="Impl\MatrixMath.cs" />
 	<Compile Include="Impl\MorphemeWrapper.cs" />
 	<Compile Include="Impl\SerializationServices.cs" />
 	<Compile Include="Impl\Stem.cs" />
@@ -185,9 +188,6 @@
 	  <ProductName>.NET Framework 3.5 SP1</ProductName>
 	  <Install>false</Install>
 	</BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-	<None Include="Paradigm.ptp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

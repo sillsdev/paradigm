@@ -170,7 +170,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 					new List<string>(2) { "la", "no" },
 					new List<string>(2) { "ki...l", "lle" },
 					new List<string>(2) { "a", "ki...l" },
-					new List<string>(3) { "l", "la", "ki...l" }
+					new List<string>(3) { "l", "la", "ki...l" } // Hidden set
 				};
 			CheckSets(distSets, sets);
 		}

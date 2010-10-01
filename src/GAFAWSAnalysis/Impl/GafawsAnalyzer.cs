@@ -106,6 +106,154 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 			_gd.AffixCooccurrences.AddRange(allAffixMorphemeCooccurrences.Values);
 
+#if USEMATRIXFORDISTINCTSETS
+			var masterChart = new Matrix(allAffixMorphemes.Count, allAffixMorphemes.Count);
+
+			// @V: Fill union matrix
+			for (var row = 0; row < allAffixMorphemesAsList.Count; ++row)
+			{
+				var currentMorpheme = allAffixMorphemesAsList[row];
+				foreach (var col in allAffixMorphemeCooccurrences[currentMorpheme.Id].Select(cooccurrance => allAffixMorphemesAsList.IndexOf(cooccurrance)))
+					if (row == col)
+						masterChart[row, col] = 0; // Same afx does not cooccur with itself.
+					else
+						masterChart[row, col] = 1;
+			}
+
+			// Extra: Noncooccurrances.
+			var nonCooccurrances = new List<HashSet<IMorpheme>>();
+			for (var row = 0; row < masterChart.Rows; ++row)
+			{
+				var noCoo = new HashSet<IMorpheme>();
+				nonCooccurrances.Add(noCoo);
+				for (var col = 0; col < masterChart.Cols; ++col)
+				{
+					if (masterChart[row, col] == 0)
+						noCoo.Add(allAffixMorphemesAsList[col]);
+				}
+				noCoo.Add(allAffixMorphemesAsList[row]);
+			}
+			_gd.AffixNonCooccurrences.AddRange(nonCooccurrances);
+
+			// @w: Complement union matrix. (aka Work Chart in book).
+			var workChart = masterChart.Clone();
+			for (var row = 0; row < masterChart.Rows; ++row)
+			{
+				for (var col = 0; col < masterChart.Cols; ++col)
+				{
+					if (row == col)
+					{
+						workChart[row, col] = 1; // Identity.
+					}
+					else
+					{
+						// Switch 1s and 0s.
+						if (masterChart[row, col] == 1)
+							workChart[row, col] = 0;
+						else
+							workChart[row, col] = 1;
+					}
+				}
+			}
+
+			// @Z Distinct Sets
+			for (var currentRow = 0; currentRow < workChart.Rows; ++currentRow)
+			{
+				for (var currentColumn = 0; currentColumn < workChart.Cols; ++currentColumn)
+				{
+					if (currentRow == currentColumn)
+						continue; // Skip Identity cell.
+					var currentValue = workChart[currentRow, currentColumn];
+					if (currentValue == 2)
+						continue;
+					if (currentValue == 1)
+					{
+						// "Untagged 1"
+						var otherRow = currentColumn;
+						for (var otherColumn = 0; otherColumn < workChart.Cols; ++otherColumn)
+						{
+							// If corresponding column (otherColumn) in current row (currentRow) is 1, AND
+							// corresponding column (otherColumn) in other row (otherRow) is 0,
+							// then set corresponding column (otherColumn) in current row (currentRow) to 2.
+							if (workChart[currentRow, otherColumn] == 1 && workChart[otherRow, otherColumn] == 0)
+								workChart[currentRow, otherColumn] = 2;
+						}
+					}
+				}
+			}
+
+			// Identify potentially hidden sets (2s), and mark them with pairs of 3s.
+			var conserveRows = new SortedList<int, int>();
+			var conserveColumns = new SortedList<int, int>();
+			var hiddenAffixMorphemesAsList = new SortedList<int, IMorpheme>();
+			//var foundHiddenSet = false;
+			for (var currentRow = 0; currentRow < workChart.Rows; ++currentRow)
+			{
+				for (var currentColumn = 0; currentColumn < workChart.Cols; ++currentColumn)
+				{
+					var currentValue = workChart[currentRow, currentColumn];
+					var symmetricValue = workChart[currentColumn, currentRow];
+
+					if (currentValue <= 1 || (symmetricValue <= 1))
+						continue;
+
+					// Hidden set member.
+					if (!hiddenAffixMorphemesAsList.ContainsKey(currentRow))
+						hiddenAffixMorphemesAsList.Add(currentRow, allAffixMorphemesAsList[currentRow]);
+					workChart[currentRow, currentColumn] = 3;
+					workChart[currentColumn, currentRow] = 3;
+
+					if (!conserveRows.ContainsKey(currentRow))
+						conserveRows.Add(currentRow, 0);
+					if (!conserveRows.ContainsKey(currentColumn))
+						conserveRows.Add(currentColumn, 0);
+
+					if (!conserveColumns.ContainsKey(currentColumn))
+						conserveColumns.Add(currentColumn, 0);
+					if (!conserveColumns.ContainsKey(currentRow))
+						conserveColumns.Add(currentRow, 0);
+				}
+			}
+
+			// If foundHiddenSet is true, then get the reduced matrix and recurse,
+			// until no more hidden sets are found.
+			// Add hidden sets to 'distinctSets' somehow.
+			var hasZero = false;
+			var hiddenSetMatrix = new Matrix(conserveRows.Count, conserveColumns.Count);
+			for (var row = 0; row < conserveRows.Count; ++ row)
+			{
+				for (var col = 0; col < conserveColumns.Count; ++col)
+				{
+					hiddenSetMatrix[row, col] = workChart[conserveRows.Keys[row], conserveColumns.Keys[col]];
+					var currentValue = hiddenSetMatrix[row, col];
+					if (currentValue > 1)
+						hiddenSetMatrix[row, col] = 1;
+					else if (currentValue == 0)
+						hasZero = true;
+				}
+			}
+
+			// Get Distinct Sets (not counting hidden sets).
+			// These are the cells in each row that now have 1s in them.
+			var distinctSets = new List<HashSet<IMorpheme>>();
+			GetDistinctSets(allAffixMorphemesAsList, workChart, distinctSets);
+
+			if (hasZero)
+			{
+				// TODO: Recurse.
+			}
+			else
+			{
+				// Load up hidden sets.
+				if (hiddenSetMatrix.Size > 0)
+					GetDistinctSets(hiddenAffixMorphemesAsList.Values, hiddenSetMatrix, distinctSets);
+			}
+
+			// Remove duplicate sets.
+			RemoveDuplicateSets(distinctSets);
+
+			_gd.DistinctSets.AddRange(distinctSets);
+#else
 			var allNonCooccurrences = new Dictionary<string, HashSet<IMorpheme>>(allAffixMorphemeCooccurrences.Count);
 			foreach (var kvp in allAffixMorphemeCooccurrences)
 			{
@@ -121,13 +269,31 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			var allNonCooccurrencesCopy = GetDistinctSets(allNonCooccurrences);
 			_gd.DistinctSets.AddRange(allNonCooccurrencesCopy);
 
+#endif
 			return true;
 		}
 
+#if USEMATRIXFORDISTINCTSETS
+		private static void GetDistinctSets(IList<IMorpheme> allAffixMorphemesAsList, Matrix inputMatrix, ICollection<HashSet<IMorpheme>> distinctSets)
+		{
+			for (var row = 0; row < inputMatrix.Rows; ++row)
+			{
+				var distinctSet = new HashSet<IMorpheme>();
+				distinctSets.Add(distinctSet);
+				for (var col = 0; col < inputMatrix.Cols; ++col)
+				{
+					var currentValue = inputMatrix[row, col];
+					if (currentValue == 1)
+						distinctSet.Add(allAffixMorphemesAsList[col]);
+				}
+			}
+		}
+#else
 		private static IEnumerable<HashSet<IMorpheme>> GetDistinctSets(IDictionary<string, HashSet<IMorpheme>> sourceNonCooccurrences)
 		{
 			var allNonCooccurrencesCopy = new List<HashSet<IMorpheme>>();
 			var mayNeedMoreChecking = new Dictionary<string, HashSet<IMorpheme>>();
+			var allNewValuesAreEmptySets = true;
 			foreach (var kvp in sourceNonCooccurrences)
 			{
 				var currentKey = kvp.Key;
@@ -141,8 +307,16 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 										 select sourceNonCooccurrences[morpheme.Id])
 				{
 					newValue.IntersectWith(otherSet);
+					if (newValue.Count > 0)
+						allNewValuesAreEmptySets = false;
 				}
 				moreCheckingSet.ExceptWith(newValue);
+			}
+
+			// If allNonCooccurrencesCopy has sets that are all empty, then just return the union of all input data.
+			if (allNewValuesAreEmptySets)
+			{
+
 			}
 
 			var doesNeedMoreChecking = new Dictionary<string, HashSet<IMorpheme>>();
@@ -206,13 +380,21 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 
 			// Remove duplicate sets.
+			RemoveDuplicateSets(allNonCooccurrencesCopy);
+
+			return allNonCooccurrencesCopy;
+		}
+#endif
+
+		private static void RemoveDuplicateSets(IList<HashSet<IMorpheme>> sets)
+		{
 			var duplicatesByIndex = new List<int>();
-			for (var i = allNonCooccurrencesCopy.Count - 1; i > 0; --i)
+			for (var i = sets.Count - 1; i > 0; --i)
 			{;
-				var currentSet = allNonCooccurrencesCopy[i];
+				var currentSet = sets[i];
 				for (var j = 0; j < i; ++j)
 				{
-					var earlierSet = allNonCooccurrencesCopy[j];
+					var earlierSet = sets[j];
 					if (!earlierSet.SetEquals(currentSet))
 						continue;
 					duplicatesByIndex.Add(i);
@@ -220,9 +402,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}
 			}
 			foreach (var dupKey in duplicatesByIndex)
-				allNonCooccurrencesCopy.RemoveAt(dupKey);
-
-			return allNonCooccurrencesCopy;
+				sets.RemoveAt(dupKey);
 		}
 
 		private bool AnalyzePositions()
