@@ -78,17 +78,155 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			if (!AnalyzeCooccurrences())
 				return;
 
+			if (!AnalyzeCompontentSubgraphs())
+				return;
+
 			// Set date and time. (Local date and tiome is fine.)
 			var dt = DateTime.Now;
 			_gd.Date = dt.ToLongDateString();
 			_gd.Time = dt.ToLongTimeString();
 		}
 
+		private bool AnalyzeCompontentSubgraphs()
+		{
+			// Get unique sets of affixes from the wordforms.
+			// That is, if multiple wordforms have the same set of affixes,
+			// then only use one set of them for this part of the analysis.
+			// NB: 'key' is a concatenation of the afx ids.
+			var affixesFromWordforms = new Dictionary<string, HashSet<IMorpheme>>();
+			foreach (var wordRecord in _gd.WordRecords)
+			{
+				var afxSet = new HashSet<IMorpheme>();
+				var key = "";
+				foreach (var afxId in wordRecord.AllAffixes.Select(affix => affix.Id))
+				{
+					var id = afxId;
+					key += id;
+					afxSet.Add((from m in _gd.Morphemes
+								where m.Id == id
+								select m).First());
+				}
+				if (!affixesFromWordforms.ContainsKey(key))
+					affixesFromWordforms.Add(key, afxSet);
+			}
+			if (!affixesFromWordforms.ContainsKey(""))
+				affixesFromWordforms.Add("", new HashSet<IMorpheme>()); // Make sure it has an empty set.
+
+			Dictionary<string, IMorpheme> allAffixMorphemesAsDictionary;
+			List<IMorpheme> allAffixMorphemesAsList;
+			var allAffixMorphemes = GetAllAffixMorphemes(out allAffixMorphemesAsDictionary, out allAffixMorphemesAsList);
+
+#if USEMATRIXFORDISTINCTSETS
+			// allAffixMorphemesAsList.Count + 1 is where we put the 'row sum'.
+			// allAffixMorphemesAsList.Count + 2 is where we put the sub graph number.
+			var maxColumns = allAffixMorphemesAsList.Count + 2;
+			var dataMatrix = new Matrix(affixesFromWordforms.Count, maxColumns);
+
+			// Set up main matrix.
+			for (var col = 0; col < allAffixMorphemesAsList.Count; ++col)
+			{
+				var currentAfx = allAffixMorphemesAsList[col];
+				for (var row = 0; row < affixesFromWordforms.Count; ++row)
+				{
+					var currentWfAffixes = affixesFromWordforms.Values.ElementAt(row);
+					if (currentWfAffixes.Contains(currentAfx))
+						dataMatrix[row, col] = 1;
+				}
+			}
+
+			// Set 'row sum' column counts.
+			var rowSumCol = allAffixMorphemesAsList.Count;
+			for (var row = 0; row < affixesFromWordforms.Count; ++row)
+			{
+				for (var col = 0; col < allAffixMorphemesAsList.Count; ++col)
+				{
+					if (dataMatrix[row, col] == 1)
+						dataMatrix[row, rowSumCol] = dataMatrix[row, rowSumCol] + 1;
+				}
+			}
+
+			// Column Sums
+			long colSumTotal = 0;
+			var columnSum = new Matrix(1, allAffixMorphemesAsList.Count);
+			uint currentSubGraph = 1;;
+			var subGraphCol = allAffixMorphemesAsList.Count + 1;
+			while (true)
+			{
+				var smallestColIdx = 0;
+				var smallestColumnTotal = uint.MaxValue;
+				// Add the column sum.
+				for (var col = 0; col < allAffixMorphemesAsList.Count; ++col)
+				{
+					var currentValue = columnSum[0, col];
+					for (var row = 0; row < affixesFromWordforms.Count; ++row)
+					{
+						if (dataMatrix[row, col] == 1 && dataMatrix[row, subGraphCol] == 0)
+							columnSum[0, col] = currentValue + dataMatrix[row, rowSumCol];
+						currentValue = columnSum[0, col];
+						colSumTotal += currentValue;
+					}
+					if (currentValue == 0 || currentValue >= smallestColumnTotal)
+						continue;
+
+					smallestColIdx = col;
+					smallestColumnTotal = currentValue;
+				}
+
+				// Figure out the subgraph stuff.
+				if (colSumTotal == 0)
+				{
+					for (var row = 0; row < affixesFromWordforms.Count; ++row)
+					{
+						// But skip rows that already have been classified.
+						if (dataMatrix[row, subGraphCol] > 0)
+							continue;
+						dataMatrix[row, subGraphCol] = currentSubGraph;
+					}
+					break;
+				}
+
+				for (var row = 0; row < affixesFromWordforms.Count; ++row)
+				{
+					// 1. Look for 1s in the 'smallestColIdx' column.
+					if (dataMatrix[row, smallestColIdx] != 1)
+						continue;
+					// But skip rows that already have been classified.
+					if (dataMatrix[row, subGraphCol] > 0)
+						continue;
+
+					// 2. Stuff the currentSubGraph number for each '1' out in the rightmost cell of dataMatrix.
+					dataMatrix[row, subGraphCol] = currentSubGraph;
+					// 3. Substract the 'row sum' of the the row with the 1 in it from the col sum and put the new col sum in place in columnSum.
+					columnSum[0, smallestColIdx] = columnSum[0, smallestColIdx] - dataMatrix[row, rowSumCol];
+				}
+				currentSubGraph++; // Get ready for the next sub graph.
+				colSumTotal = 0;
+				columnSum = new Matrix(1, allAffixMorphemesAsList.Count);
+			}
+
+			var subgraphSets = new SortedList<int, List<HashSet<IMorpheme>>>();
+			for (var row = 0; row < affixesFromWordforms.Count; ++row)
+			{
+				var subGraphNumber = (int)dataMatrix[row, subGraphCol];
+				List<HashSet<IMorpheme>> currentSubGraphSets;
+				if (!subgraphSets.TryGetValue(subGraphNumber, out currentSubGraphSets))
+				{
+					currentSubGraphSets = new List<HashSet<IMorpheme>>();
+					subgraphSets.Add(subGraphNumber, currentSubGraphSets);
+				}
+				currentSubGraphSets.Add(affixesFromWordforms.ElementAt(row).Value);
+			}
+#endif
+			_gd.ElementarySubGraphs.AddRange(subgraphSets.Values);
+
+			return true;
+		}
+
 		private bool AnalyzeCooccurrences()
 		{
-			var allAffixMorphemes = new HashSet<IMorpheme>(_gd.Morphemes.Select(m => m).Where(m => m.Type != "s"));
-			var allAffixMorphemesAsList = new List<IMorpheme>(allAffixMorphemes);
-			var allAffixMorphemesAsDictionary = new Dictionary<string, IMorpheme>(allAffixMorphemes.Count);
+			Dictionary<string, IMorpheme> allAffixMorphemesAsDictionary;
+			List<IMorpheme> allAffixMorphemesAsList;
+			var allAffixMorphemes = GetAllAffixMorphemes(out allAffixMorphemesAsDictionary, out allAffixMorphemesAsList);
 			var allAffixMorphemeCooccurrences = new Dictionary<string, HashSet<IMorpheme>>(allAffixMorphemes.Count);
 			foreach (var morpheme in allAffixMorphemes)
 			{
@@ -175,6 +313,14 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 
 #endif
 			return true;
+		}
+
+		private HashSet<IMorpheme> GetAllAffixMorphemes(out Dictionary<string, IMorpheme> allAffixMorphemesAsDictionary, out List<IMorpheme> allAffixMorphemesAsList)
+		{
+			var allAffixMorphemes = new HashSet<IMorpheme>(_gd.Morphemes.Select(m => m).Where(m => m.Type != "s"));
+			allAffixMorphemesAsList = new List<IMorpheme>(allAffixMorphemes);
+			allAffixMorphemesAsDictionary = new Dictionary<string, IMorpheme>(allAffixMorphemes.Count);
+			return allAffixMorphemes;
 		}
 
 #if USEMATRIXFORDISTINCTSETS

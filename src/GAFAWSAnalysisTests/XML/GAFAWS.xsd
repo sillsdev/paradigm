@@ -116,6 +116,29 @@
 						</xsd:sequence>
 					</xsd:complexType>
 				</xsd:element>
+				<xsd:element name="SubGraphSets">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="SubGraphSet" minOccurs="0" maxOccurs="unbounded">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="SubGraph"  minOccurs="1" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="Morpheme"  minOccurs="1" maxOccurs="unbounded">
+														<xsd:complexType>
+															<xsd:attribute name="id" type="xsd:IDREF"/>
+														</xsd:complexType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
 				<xsd:element name="Classes">
 					<xsd:complexType>
 						<xsd:sequence>
