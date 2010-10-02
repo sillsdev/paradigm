@@ -118,12 +118,73 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 				};
 			CheckSets(distSets, sets);
 
-			// Check Component Subgqraphs
+			// Check Component Subgraphs
 			var subGraphSets = gd.ElementarySubgraphs;
 			Assert.AreEqual(7, subGraphSets.Count);
 
-			// For now, just cause the test to fail, to get the new branch created.
-			Assert.Fail("Intentional component subgraph failure");
+			var currentSubgraphSet = subGraphSets["ke"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(1) { "ke" },
+					new List<string>(2) { "ni", "ke" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["p&"];
+			Assert.AreEqual(4, currentSubgraphSet.Count);
+			sets = new List<List<string>>(4)
+				{
+					new List<string>(1) { "p&" },
+					new List<string>(2) { "p&", "ka2" },
+					new List<string>(2) { "p&", "ka1" },
+					new List<string>(3) { "p&", "ka2", "ka1" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ka1"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(2) { "ni", "ka1" },
+					new List<string>(3) { "ni", "ka1", "ka2" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ka2"];
+			Assert.AreEqual(3, currentSubgraphSet.Count);
+			sets = new List<List<string>>(3)
+				{
+					new List<string>(2) { "m&", "ka2" },
+					new List<string>(3) { "m&", "ka2",  "ni" },
+					new List<string>(1) { "ka2" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["m&"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(1) { "m&" },
+					new List<string>(3) { "m&", "ni" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ni"];
+			Assert.AreEqual(1, currentSubgraphSet.Count);
+			sets = new List<List<string>>(1)
+				{
+					new List<string>(1) { "ni" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["xxx"];
+			Assert.AreEqual(1, currentSubgraphSet.Count);
+			sets = new List<List<string>>(1)
+				{
+					new List<string>(1) { "xxx" }
+				};
+			CheckSets(currentSubgraphSet, sets);
 		}
 
 		/// <summary>

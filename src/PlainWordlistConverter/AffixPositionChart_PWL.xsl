@@ -73,15 +73,30 @@ Elemental Subgraph Sets template
 		<p>The data contained the following elemental subgraph sets:</p>
 		<xsl:for-each select="SubgraphSet">
 			<p>
-				<xsl:attribute name="style">
-					<xsl:value-of select="$sIndent"/>
-				</xsl:attribute>[
-			<xsl:apply-templates select="Subgraph"/>]
+				Subgraph for
+				<xsl:choose>
+					<xsl:when test="@id = 'xxx'">
+						<xsl:value-of select="@id"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<a>
+							<xsl:attribute name="href">
+								#<xsl:value-of select="@id"/>
+							</xsl:attribute>
+							<xsl:call-template name="OutputAffix"/>
+						</a>
+					</xsl:otherwise>
+				</xsl:choose>:
+				<xsl:apply-templates select="Subgraph"/>
 			</p>
 		</xsl:for-each>
 		<p>Please follow the instructions in the book (Chap. 3, pp 26-28) to complete the part that has to be done by hand.</p>
 	</xsl:template>
 	<xsl:template match="Subgraph" >
+		<p>
+			<xsl:attribute name="style">
+				<xsl:value-of select="$sIndent"/>
+			</xsl:attribute>
 		{<xsl:for-each select="Morpheme">
 				<xsl:if test="position() &gt; 1">
 					<xsl:text>, </xsl:text>
@@ -100,6 +115,7 @@ Elemental Subgraph Sets template
 				</xsl:otherwise>
 			</xsl:choose>
 			</xsl:for-each>}
+		</p>
 	</xsl:template>
 <!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

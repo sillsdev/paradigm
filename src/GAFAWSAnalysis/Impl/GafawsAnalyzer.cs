@@ -116,6 +116,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			Dictionary<string, IMorpheme> allAffixMorphemesAsDictionary;
 			List<IMorpheme> allAffixMorphemesAsList;
 			var allAffixMorphemes = GetAllAffixMorphemes(out allAffixMorphemesAsDictionary, out allAffixMorphemesAsList);
+			var subgraphSets = new Dictionary<string, List<HashSet<IMorpheme>>>();
 
 #if USEMATRIXFORDISTINCTSETS
 			// allAffixMorphemesAsList.Count + 1 is where we put the 'row sum'.
@@ -149,8 +150,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			// Column Sums
 			long colSumTotal = 0;
 			var columnSum = new Matrix(1, allAffixMorphemesAsList.Count);
-			uint currentSubGraph = 1;;
+			uint currentSubGraph = 1;
 			var subGraphCol = allAffixMorphemesAsList.Count + 1;
+			var subgraphNumberToSmallestColMap = new List<KeyValuePair<uint, int>>();
+			uint emptySubgraph;
 			while (true)
 			{
 				var smallestColIdx = 0;
@@ -176,6 +179,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				// Figure out the subgraph stuff.
 				if (colSumTotal == 0)
 				{
+					emptySubgraph = currentSubGraph;
 					for (var row = 0; row < affixesFromWordforms.Count; ++row)
 					{
 						// But skip rows that already have been classified.
@@ -197,28 +201,42 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 
 					// 2. Stuff the currentSubGraph number for each '1' out in the rightmost cell of dataMatrix.
 					dataMatrix[row, subGraphCol] = currentSubGraph;
-					// 3. Substract the 'row sum' of the the row with the 1 in it from the col sum and put the new col sum in place in columnSum.
-					columnSum[0, smallestColIdx] = columnSum[0, smallestColIdx] - dataMatrix[row, rowSumCol];
+				//	// 3. Substract the 'row sum' of the the row with the 1 in it from the col sum and put the new col sum in place in columnSum.
+				//	columnSum[0, smallestColIdx] = columnSum[0, smallestColIdx] - dataMatrix[row, rowSumCol];
 				}
+				subgraphSets.Add(allAffixMorphemesAsList[smallestColIdx].Id, new List<HashSet<IMorpheme>>());
+				subgraphNumberToSmallestColMap.Add(new KeyValuePair<uint, int>(currentSubGraph, smallestColIdx));
 				currentSubGraph++; // Get ready for the next sub graph.
 				colSumTotal = 0;
 				columnSum = new Matrix(1, allAffixMorphemesAsList.Count);
 			}
 
-			var subgraphSets = new SortedList<int, List<HashSet<IMorpheme>>>();
 			for (var row = 0; row < affixesFromWordforms.Count; ++row)
 			{
-				var subGraphNumber = (int)dataMatrix[row, subGraphCol];
+				string key;
+				var subGraphNumber = dataMatrix[row, subGraphCol];
 				List<HashSet<IMorpheme>> currentSubGraphSets;
-				if (!subgraphSets.TryGetValue(subGraphNumber, out currentSubGraphSets))
+				if (subGraphNumber == emptySubgraph)
+				{
+					key = "xxx";
+				}
+				else
+				{
+					var idx = (from kvp in subgraphNumberToSmallestColMap
+						   where kvp.Key == subGraphNumber
+						   select kvp.Value).First();
+					key = allAffixMorphemesAsList[idx].Id;
+				}
+				if (!subgraphSets.TryGetValue(key, out currentSubGraphSets))
 				{
 					currentSubGraphSets = new List<HashSet<IMorpheme>>();
-					subgraphSets.Add(subGraphNumber, currentSubGraphSets);
+					subgraphSets.Add(key, currentSubGraphSets);
 				}
 				currentSubGraphSets.Add(affixesFromWordforms.ElementAt(row).Value);
 			}
 #endif
-			_gd.ElementarySubgraphs.AddRange(subgraphSets.Values);
+			foreach (var kvp in subgraphSets)
+				_gd.ElementarySubgraphs.Add(kvp.Key, kvp.Value);
 
 			return true;
 		}
@@ -525,7 +543,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		{
 			var duplicatesByIndex = new List<int>();
 			for (var i = sets.Count - 1; i > 0; --i)
-			{;
+			{
 				var currentSet = sets[i];
 				for (var j = 0; j < i; ++j)
 				{

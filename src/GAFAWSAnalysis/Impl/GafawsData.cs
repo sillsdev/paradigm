@@ -33,7 +33,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			DistinctSets = new List<HashSet<IMorpheme>>();
 			AffixCooccurrences = new List<HashSet<IMorpheme>>();
 			AffixNonCooccurrences = new List<HashSet<IMorpheme>>();
-			ElementarySubgraphs = new List<List<HashSet<IMorpheme>>>();
+			ElementarySubgraphs = new Dictionary<string, List<HashSet<IMorpheme>>>();
 		}
 
 		#endregion // Construction
@@ -68,7 +68,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// <summary>
 		/// Get the basic subgraph building blocks.
 		/// </summary>
-		public List<List<HashSet<IMorpheme>>> ElementarySubgraphs { get; private set; }
+		public Dictionary<string, List<HashSet<IMorpheme>>> ElementarySubgraphs { get; private set; }
 
 		/// <summary>
 		/// Collection of position classes. (Reserved for use by the Paradigm DLL.)
@@ -171,10 +171,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																				 select new XElement("DistinctSet", from morph in distinctSet
 																																		 select new XElement("Morpheme",
 																																			 new XAttribute("id", morph.Id))))),
-													new XElement("SubgraphSets", from mainSubgraphSet in ElementarySubgraphs
-																				 select new XElement("SubgraphSet", from subgraph in mainSubgraphSet
-																													select new XElement("Subgraph", from morph in subgraph
-																																						select new XElement("Morpheme", new XAttribute("id", morph.Id))))),
+													new XElement("SubgraphSets", from mainSubgraphSetKvp in ElementarySubgraphs
+																				 select new XElement("SubgraphSet",
+																					 new XAttribute("id", mainSubgraphSetKvp.Key),
+																					 from subgraph in mainSubgraphSetKvp.Value
+																					 select new XElement("Subgraph", from morph in subgraph
+																													 select new XElement("Morpheme", new XAttribute("id", morph.Id))))),
 												  new XElement("Classes",
 													  new XElement("PrefixClasses", Classes.PrefixClasses.Count == 0 ? null : from pfxClass in Classes.PrefixClasses
 																															  select new XElement("Class",
@@ -329,24 +331,30 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			holder = root.Element("SubgraphSets");
 			if (holder.Element("SubgraphSet") != null && holder.Elements("SubgraphSet").Count() > 0)
 			{
-				foreach (var setHolderElement in holder.Elements("SubgraphSet"))
+				foreach (var subgraphSetElement in holder.Elements("SubgraphSet"))
 				{
+					var key = subgraphSetElement.Attribute("id").Value;
 					var newList = new List<HashSet<IMorpheme>>();
-					foreach (var subgraph in setHolderElement.Elements("Subgraph"))
+					foreach (var subgraph in subgraphSetElement.Elements("Subgraph"))
 					{
 						var newSet = new HashSet<IMorpheme>();
 						foreach (var morphemeInSet in subgraph.Elements("Morpheme"))
 						{
 							var morp = morphemeInSet;
-							newSet.Add((from morpheme in gd.Morphemes
-										where morpheme.Id == morp.Attribute("id").Value.ToLowerInvariant()
-										select morpheme).FirstOrDefault());
+							if (key == "xxx")
+							{
+								newSet.Add(gd.NothingMorpheme);
+							}
+							else
+							{
+								newSet.Add((from morpheme in gd.Morphemes
+											where morpheme.Id == morp.Attribute("id").Value.ToLowerInvariant()
+											select morpheme).First());
+							}
 						}
-						if (newSet.Count == 0)
-							newSet.Add(gd.NothingMorpheme);
 						newList.Add(newSet);
 					}
-					gd.ElementarySubgraphs.Add(newList);
+					gd.ElementarySubgraphs.Add(key, newList);
 				}
 			}
 

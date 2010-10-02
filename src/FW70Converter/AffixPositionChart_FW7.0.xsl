@@ -34,8 +34,8 @@ Preamble
   <!-- section number of the data section -->
 	<xsl:variable name="sDataSectionNumber">
 		<xsl:choose>
-			<xsl:when test="count(//Challenge) > 0">4</xsl:when>
-			<xsl:otherwise>3</xsl:otherwise>
+			<xsl:when test="count(//Challenge) > 0">5</xsl:when>
+			<xsl:otherwise>4</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
   <!--
@@ -53,6 +53,7 @@ Main template
 		<p align="center">Results of: <xsl:value-of select="@date"/> at: <xsl:value-of select="@time"/></p>
 		<xsl:apply-templates select="Classes"/>
 		  <xsl:apply-templates select="AffixSets" />
+		  <xsl:apply-templates select="SubgraphSets" />
 		<xsl:apply-templates select="Challenges"/>
 		<h1>
 		  <xsl:value-of select="$sDataSectionNumber"/> The Data</h1>
@@ -62,6 +63,60 @@ Main template
 	  </body>
 	</html>
   </xsl:template>
+	<!--
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Elemental Subgraph Sets template
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+-->
+	<xsl:template match="SubgraphSets" >
+		<h1>3. Specifications for component subgraphs</h1>
+		<p>The data contained the following elemental subgraph sets:</p>
+		<xsl:for-each select="SubgraphSet">
+			<p>
+				Subgraph for
+				<xsl:choose>
+					<xsl:when test="@id = 'xxx'">
+						<xsl:value-of select="@id"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<a>
+							<xsl:attribute name="href">
+								#<xsl:value-of select="@id"/>
+							</xsl:attribute>
+							<xsl:call-template name="OutputAffix"/>
+						</a>
+					</xsl:otherwise>
+				</xsl:choose>:
+				<xsl:apply-templates select="Subgraph"/>
+			</p>
+		</xsl:for-each>
+		<p>Please follow the instructions in the book (Chap. 3, pp 26-28) to complete the part that has to be done by hand.</p>
+	</xsl:template>
+	<xsl:template match="Subgraph" >
+		<p>
+			<xsl:attribute name="style">
+				<xsl:value-of select="$sIndent"/>
+			</xsl:attribute>
+			{<xsl:for-each select="Morpheme">
+				<xsl:if test="position() &gt; 1">
+					<xsl:text>, </xsl:text>
+				</xsl:if>
+				<xsl:choose>
+					<xsl:when test="@id = 'xxx'">
+						<xsl:value-of select="@id"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<a>
+							<xsl:attribute name="href">
+								#<xsl:value-of select="@id"/>
+							</xsl:attribute>
+							<xsl:call-template name="OutputAffix"/>
+						</a>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:for-each>}
+		</p>
+	</xsl:template>
 	<!--
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Affix Sets template
