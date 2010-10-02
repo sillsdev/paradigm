@@ -117,6 +117,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 																// Sixth set not present. Were they removed, because they were empty?
 				};
 			CheckSets(distSets, sets);
+
+			// Check Component Subgqraphs
+			// For now, just cause the test to fail, to get the new branch created.
+			Assert.Fail("Intentional component subgraph failure");
 		}
 
 		/// <summary>
