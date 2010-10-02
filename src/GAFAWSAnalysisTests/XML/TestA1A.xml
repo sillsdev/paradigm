@@ -129,7 +129,7 @@
 		<AffixNonCooccurrences />
 		<DistinctSets />
 	</AffixSets>
-	<SubGraphSets />
+	<SubgraphSets />
   <Classes>
 	<PrefixClasses/>
 	<SuffixClasses/>

@@ -138,7 +138,7 @@
 		<AffixNonCooccurrences />
 		<DistinctSets />
 	</AffixSets>
-	<SubGraphSets />
+	<SubgraphSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

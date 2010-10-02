@@ -111,6 +111,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 			if (!affixesFromWordforms.ContainsKey(""))
 				affixesFromWordforms.Add("", new HashSet<IMorpheme>()); // Make sure it has an empty set.
+			affixesFromWordforms[""].Add(_gd.NothingMorpheme);
 
 			Dictionary<string, IMorpheme> allAffixMorphemesAsDictionary;
 			List<IMorpheme> allAffixMorphemesAsList;
@@ -217,7 +218,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				currentSubGraphSets.Add(affixesFromWordforms.ElementAt(row).Value);
 			}
 #endif
-			_gd.ElementarySubGraphs.AddRange(subgraphSets.Values);
+			_gd.ElementarySubgraphs.AddRange(subgraphSets.Values);
 
 			return true;
 		}

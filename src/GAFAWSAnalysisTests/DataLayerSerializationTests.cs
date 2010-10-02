@@ -42,7 +42,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			"    <AffixNonCooccurrences />" + Environment.NewLine +
 			"    <DistinctSets />" + Environment.NewLine +
 			"  </AffixSets>" + Environment.NewLine +
-			"  <SubGraphSets />" + Environment.NewLine +
+			"  <SubgraphSets />" + Environment.NewLine +
 			"  <Classes>" + Environment.NewLine +
 			"    <PrefixClasses />" + Environment.NewLine +
 			"    <SuffixClasses />" + Environment.NewLine +

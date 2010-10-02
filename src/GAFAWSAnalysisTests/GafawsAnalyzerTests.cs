@@ -119,7 +119,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			CheckSets(distSets, sets);
 
 			// Check Component Subgqraphs
-			var subGraphSets = gd.ElementarySubGraphs;
+			var subGraphSets = gd.ElementarySubgraphs;
 			Assert.AreEqual(7, subGraphSets.Count);
 
 			// For now, just cause the test to fail, to get the new branch created.
