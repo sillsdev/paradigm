@@ -152,7 +152,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_FW7.0.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 

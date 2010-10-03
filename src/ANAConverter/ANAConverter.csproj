@@ -64,11 +64,6 @@
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="AffixPositionChart_ANA.xsl">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
-  </ItemGroup>
-  <ItemGroup>
 	<None Include="Sample_Good.ana">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>

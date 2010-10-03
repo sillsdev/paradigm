@@ -88,9 +88,6 @@
 	</EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-	<Content Include="AffixPositionChart_FW6.0.xsl">
-	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
 	<Content Include="images\Cabinet.ico" />
 	<Content Include="images\CD.ico" />
 	<Content Include="images\ClosedFolder.ico" />

@@ -164,7 +164,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_ANA.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 

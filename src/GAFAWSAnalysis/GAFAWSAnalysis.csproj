@@ -189,6 +189,11 @@
 	  <Install>false</Install>
 	</BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+	<Content Include="AffixPositionChart.xsl">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
 	<PreBuildEvent>

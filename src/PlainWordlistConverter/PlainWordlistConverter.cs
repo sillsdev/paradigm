@@ -189,7 +189,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_PWL.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 

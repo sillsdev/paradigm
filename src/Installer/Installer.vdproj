@@ -33,12 +33,6 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_3B3394B085264392A67D323BABC7FCCE"
-		"OwnerKey" = "8:_UNDEFINED"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
 		"MsmKey" = "8:_41B0CE0A647843EC8C4A060C10F9933D"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
@@ -69,13 +63,13 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_5E7EB273A2B645D7BC3742B884AE452B"
+		"MsmKey" = "8:_5A55ECE3DD964AD6B05424E77FDC47B8"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_6A12FA993D7A4E8A94CFE1803A3A654E"
+		"MsmKey" = "8:_5E7EB273A2B645D7BC3742B884AE452B"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
 		}
@@ -177,19 +171,7 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_F062B202733F423E98EA88ED26D28CB5"
-		"OwnerKey" = "8:_UNDEFINED"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
 		"MsmKey" = "8:_FB2EDA0C0ED74BD4AAFB1EB49C27F417"
-		"OwnerKey" = "8:_UNDEFINED"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_FC1FC1B852FD453584FCC88A2EEBA47C"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
 		}
@@ -409,26 +391,6 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B3394B085264392A67D323BABC7FCCE"
-			{
-			"SourcePath" = "8:..\\FW70Converter\\AffixPositionChart_FW7.0.xsl"
-			"TargetName" = "8:AffixPositionChart_FW7.0.xsl"
-			"Tag" = "8:"
-			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
-			"Condition" = "8:"
-			"Transitive" = "11:FALSE"
-			"Vital" = "11:TRUE"
-			"ReadOnly" = "11:FALSE"
-			"Hidden" = "11:FALSE"
-			"System" = "11:FALSE"
-			"Permanent" = "11:FALSE"
-			"SharedLegacy" = "11:FALSE"
-			"PackageAs" = "3:1"
-			"Register" = "3:1"
-			"Exclude" = "11:FALSE"
-			"IsDependency" = "11:FALSE"
-			"IsolateTo" = "8:"
-			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_41B0CE0A647843EC8C4A060C10F9933D"
 			{
 			"SourcePath" = "8:..\\ANAConverter\\Sample_Problems.ana"
@@ -469,10 +431,10 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E7EB273A2B645D7BC3742B884AE452B"
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A55ECE3DD964AD6B05424E77FDC47B8"
 			{
-			"SourcePath" = "8:..\\PlainWordlistConverter\\Mapudungu.txt"
-			"TargetName" = "8:Mapudungu.txt"
+			"SourcePath" = "8:..\\GAFAWSAnalysis\\AffixPositionChart.xsl"
+			"TargetName" = "8:AffixPositionChart.xsl"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
 			"Condition" = "8:"
@@ -489,10 +451,10 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A12FA993D7A4E8A94CFE1803A3A654E"
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E7EB273A2B645D7BC3742B884AE452B"
 			{
-			"SourcePath" = "8:..\\PlainWordlistConverter\\AffixPositionChart_PWL.xsl"
-			"TargetName" = "8:AffixPositionChart_PWL.xsl"
+			"SourcePath" = "8:..\\PlainWordlistConverter\\Mapudungu.txt"
+			"TargetName" = "8:Mapudungu.txt"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
 			"Condition" = "8:"
@@ -573,14 +535,9 @@
 			{
 			"AssemblyRegister" = "3:1"
 			"AssemblyIsInGAC" = "11:FALSE"
-			"AssemblyAsmDisplayName" = "8:GafawsAnalysis, Version=2.0.0.36200, Culture=neutral, processorArchitecture=MSIL"
+			"AssemblyAsmDisplayName" = "8:GafawsAnalysis, Version=2.0.0.20026, Culture=neutral, processorArchitecture=MSIL"
 				"ScatterAssemblies"
 				{
-					"_95E9E6B821FE9BF4BDD93680276E27EE"
-					{
-					"Name" = "8:GafawsAnalysis.dll"
-					"Attributes" = "3:512"
-					}
 				}
 			"SourcePath" = "8:GafawsAnalysis.dll"
 			"TargetName" = "8:"
@@ -651,50 +608,10 @@
 			"IsDependency" = "11:TRUE"
 			"IsolateTo" = "8:"
 			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F062B202733F423E98EA88ED26D28CB5"
-			{
-			"SourcePath" = "8:..\\FW60Converter\\AffixPositionChart_FW6.0.xsl"
-			"TargetName" = "8:AffixPositionChart_FW6.0.xsl"
-			"Tag" = "8:"
-			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
-			"Condition" = "8:"
-			"Transitive" = "11:FALSE"
-			"Vital" = "11:TRUE"
-			"ReadOnly" = "11:FALSE"
-			"Hidden" = "11:FALSE"
-			"System" = "11:FALSE"
-			"Permanent" = "11:FALSE"
-			"SharedLegacy" = "11:FALSE"
-			"PackageAs" = "3:1"
-			"Register" = "3:1"
-			"Exclude" = "11:FALSE"
-			"IsDependency" = "11:FALSE"
-			"IsolateTo" = "8:"
-			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB2EDA0C0ED74BD4AAFB1EB49C27F417"
 			{
 			"SourcePath" = "8:..\\PlainWordlistConverter\\Huichol.txt"
 			"TargetName" = "8:Huichol.txt"
-			"Tag" = "8:"
-			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
-			"Condition" = "8:"
-			"Transitive" = "11:FALSE"
-			"Vital" = "11:TRUE"
-			"ReadOnly" = "11:FALSE"
-			"Hidden" = "11:FALSE"
-			"System" = "11:FALSE"
-			"Permanent" = "11:FALSE"
-			"SharedLegacy" = "11:FALSE"
-			"PackageAs" = "3:1"
-			"Register" = "3:1"
-			"Exclude" = "11:FALSE"
-			"IsDependency" = "11:FALSE"
-			"IsolateTo" = "8:"
-			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC1FC1B852FD453584FCC88A2EEBA47C"
-			{
-			"SourcePath" = "8:..\\ANAConverter\\AffixPositionChart_ANA.xsl"
-			"TargetName" = "8:AffixPositionChart_ANA.xsl"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
 			"Condition" = "8:"
