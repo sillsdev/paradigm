@@ -114,6 +114,15 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			{
 				morph.Id = EatIds(morph.Id);
 			}
+			var newSets = new Dictionary<string, List<HashSet<IMorpheme>>>();
+			foreach (var kvp in gafawsData.ElementarySubgraphs)
+			{
+				var oldKey = kvp.Key;
+				newSets.Add(oldKey == "xxx" ? oldKey : EatIds(oldKey), kvp.Value);
+			}
+			gafawsData.ElementarySubgraphs.Clear();
+			foreach (var kvp in newSets)
+				gafawsData.ElementarySubgraphs.Add(kvp.Key, kvp.Value);
 		}
 
 		/// <summary>
