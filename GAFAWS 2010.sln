@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "original", "original", "{4C4E0030-7800-4984-ACAB-93CE0ACFF445}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GafawsAnalysis", "src\GAFAWSAnalysis\GafawsAnalysis.csproj", "{99ADD953-FE50-4A29-8BA0-145FE3425855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GafawsAnalysisTests", "src\GAFAWSAnalysisTests\GafawsAnalysisTests.csproj", "{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}"
