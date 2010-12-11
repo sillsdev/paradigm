@@ -43,7 +43,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>..\Bin\Debug\</OutputPath>
+	<OutputPath>..\..\output\Debug\</OutputPath>
 	<DefineConstants>DEBUG;TRACE</DefineConstants>
 	<DocumentationFile>
 	</DocumentationFile>
@@ -56,7 +56,7 @@
 	<DebugType>pdbonly</DebugType>
 	<Optimize>true</Optimize>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>..\Bin\Release\</OutputPath>
+	<OutputPath>..\..\output\Release\</OutputPath>
 	<DefineConstants>TRACE</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>

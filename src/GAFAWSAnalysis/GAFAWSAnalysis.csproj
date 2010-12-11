@@ -46,7 +46,7 @@
 	<BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<OutputPath>..\..\..\..\Output\Debug\</OutputPath>
+	<OutputPath>..\..\output\Debug\</OutputPath>
 	<BaseAddress>285212672</BaseAddress>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
@@ -66,7 +66,7 @@
 	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<OutputPath>..\..\..\..\Output\Release\</OutputPath>
+	<OutputPath>..\..\output\Release\</OutputPath>
 	<BaseAddress>285212672</BaseAddress>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
