@@ -24,9 +24,11 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			var container = new Container();
-			container.Configure(c=> c.AddRegistry(new AppRegistry()));
-			Application.Run(container.GetInstance<AffixPositionAnalyzer>());
+			using (var container = new Container())
+			{
+				container.Configure(c=> c.AddRegistry(new AppRegistry()));
+				Application.Run(container.GetInstance<AffixPositionAnalyzer>());
+			}
 		}
 	}
 }

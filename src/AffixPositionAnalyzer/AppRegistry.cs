@@ -18,7 +18,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			Scan(scanner =>
 				{
 					scanner.AssembliesFromApplicationBaseDirectory();
-					// Register converters that are in ant assembly.
+					// Register converters that are in any assembly.
 					scanner.AddAllTypesOf<IGafawsConverter>();
 
 					// Load up any registries in any assembly.

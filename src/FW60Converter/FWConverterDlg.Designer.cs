@@ -31,7 +31,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.m_source = new NetworkSelect();
+			this.m_source = new SIL.WordWorks.GAFAWS.FW60Converter.NetworkSelect();
 			this.label1 = new System.Windows.Forms.Label();
 			this.m_tvPOS = new System.Windows.Forms.TreeView();
 			this.label2 = new System.Windows.Forms.Label();
@@ -81,7 +81,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			this.m_btnOk.Name = "m_btnOk";
 			this.m_btnOk.Size = new System.Drawing.Size(75, 23);
 			this.m_btnOk.TabIndex = 4;
-			this.m_btnOk.Text = "Convert";
+			this.m_btnOk.Text = "Analyze";
 			this.m_btnOk.UseVisualStyleBackColor = true;
 			//
 			// m_btnCancel
@@ -105,7 +105,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			this.m_cbIncludeSubcategories.Text = "Include subcategories";
 			this.m_cbIncludeSubcategories.UseVisualStyleBackColor = true;
 			//
-			// FWConverterDlg
+			// FwConverterDlg
 			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
