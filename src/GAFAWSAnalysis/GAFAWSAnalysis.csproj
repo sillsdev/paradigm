@@ -85,12 +85,10 @@
 	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-	  <HintPath>..\..\lib\common\StructureMap.dll</HintPath>
-	</Reference>
 	<Reference Include="System">
 	  <Name>System</Name>
 	</Reference>
+	<Reference Include="System.ComponentModel.Composition" />
 	<Reference Include="System.Core">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
 	</Reference>
@@ -112,7 +110,6 @@
 	<Compile Include="Impl\Challenge.cs" />
 	<Compile Include="Impl\Class.cs" />
 	<Compile Include="Impl\Classes.cs" />
-	<Compile Include="Impl\CoreRegistry.cs" />
 	<Compile Include="Impl\DataLayerMorpheme.cs" />
 	<Compile Include="IMorpheme.cs" />
 	<Compile Include="IClass.cs" />

@@ -8,8 +8,10 @@
 // File: Program.cs
 // Responsibility: Randy Regnier
 using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.IO;
 using System.Windows.Forms;
-using StructureMap;
 
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
@@ -24,10 +26,20 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			using (var container = new Container())
+
+			//An aggregate catalog that combines multiple catalogs
+			using (var catalog = new AggregateCatalog())
 			{
-				container.Configure(c=> c.AddRegistry(new AppRegistry()));
-				Application.Run(container.GetInstance<AffixPositionAnalyzer>());
+				//catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
+				catalog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(typeof (Program).Assembly.CodeBase.Substring(8))));
+
+				//Create the CompositionContainer with the parts in the catalog
+				using (var container = new CompositionContainer(catalog))
+				{
+					var mainWind = new AffixPositionAnalyzer();
+					container.ComposeParts(mainWind); // Import parts for main window.
+					Application.Run(mainWind);
+				}
 			}
 		}
 	}

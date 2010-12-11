@@ -64,10 +64,8 @@
 	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-	  <HintPath>..\..\lib\common\StructureMap.dll</HintPath>
-	</Reference>
 	<Reference Include="System" />
+	<Reference Include="System.ComponentModel.Composition" />
 	<Reference Include="System.Core">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
 	</Reference>
@@ -87,7 +85,6 @@
 	  <DesignTime>True</DesignTime>
 	  <DependentUpon>AppResources.resx</DependentUpon>
 	</Compile>
-	<Compile Include="AppRegistry.cs" />
 	<Compile Include="Program.cs" />
 	<Compile Include="Properties\AssemblyInfo.cs" />
 	<None Include="Properties\Settings1.Designer.cs">

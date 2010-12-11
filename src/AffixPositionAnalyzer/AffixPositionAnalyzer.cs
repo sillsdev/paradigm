@@ -9,6 +9,7 @@
 // Responsibility: Randy Regnier
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,10 +22,15 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
 	/// <summary></summary>
+	[Export(typeof(AffixPositionAnalyzer))]
 	public partial class AffixPositionAnalyzer : Form
 	{
-		private readonly IGafawsAnalyzer _analyzer;
-		private readonly IGafawsData _gafawsData;
+		[Import(typeof(IGafawsAnalyzer))]
+		private IGafawsAnalyzer _analyzer;
+		[Import(typeof(IGafawsData))]
+		private IGafawsData _gafawsData;
+		[ImportMany]
+		private IEnumerable<IGafawsConverter> _converters;
 		private IGafawsConverter _selectedConverter;
 		private string _convertedPathname;
 
@@ -34,22 +40,6 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 		public AffixPositionAnalyzer()
 		{
 			InitializeComponent();
-		}
-
-		public AffixPositionAnalyzer(
-			IEnumerable<IGafawsConverter> converters,
-			IGafawsAnalyzer analyzer,
-			IGafawsData gafawsData)
-			: this()
-		{
-			_analyzer = analyzer;
-			_gafawsData = gafawsData;
-			foreach (var lvi in converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) {Tag = gafawsConverter}))
-			{
-				m_lvConverters.Items.Add(lvi);
-			}
-			if (m_lvConverters.Items.Count > 0)
-				m_lvConverters.Items[0].Selected = true;
 		}
 
 		private void m_btnProcess_Click(object sender, EventArgs e)
@@ -140,6 +130,16 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			if (m_lvConverters.SelectedItems.Count <= 0) return;
 
 			_selectedConverter = (IGafawsConverter)m_lvConverters.SelectedItems[0].Tag;
+		}
+
+		private void AffixPositionAnalyzer_Load(object sender, EventArgs e)
+		{
+			foreach (var lvi in _converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) { Tag = gafawsConverter }))
+			{
+				m_lvConverters.Items.Add(lvi);
+			}
+			if (m_lvConverters.Items.Count > 0)
+				m_lvConverters.Items[0].Selected = true;
 		}
 	}
 }
