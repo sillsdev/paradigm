@@ -65,7 +65,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try to save with null as the pathname.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
+		[ExpectedException(typeof(ArgumentNullException)), Category("SkipOnTeamCity")]
 		public void SaveDataWithNullPathname()
 		{
 			m_gd.SaveData(null);
@@ -106,7 +106,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading a null pathname.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
+		[ExpectedException(typeof(ArgumentNullException)), Category("SkipOnTeamCity")]
 		public void LoadDataWithNullPathname()
 		{
 			m_gd = GafawsData.LoadData(null);
@@ -140,7 +140,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading data file that is empty.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(XmlException))]
+		[ExpectedException(typeof(XmlException)), Category("SkipOnTeamCity")]
 		public void LoadDataWithEmptyFile()
 		{
 			string fileName = null;
@@ -159,7 +159,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading XML data that isn't in the right model of data.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(InvalidOperationException))]
+		[ExpectedException(typeof(InvalidOperationException)), Category("SkipOnTeamCity")]
 		public void LoadDataWrongXml()
 		{
 			string fileName = null;
