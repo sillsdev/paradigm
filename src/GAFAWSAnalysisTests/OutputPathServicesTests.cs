@@ -33,7 +33,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[Test]
 		public void GoodFileStartsWithOUT()
 		{
-			var srcPathname = Assembly.GetExecutingAssembly().CodeBase.Replace(@"file:///", null);
+			var srcPathname = OutputPathServices.RemoveFileFromUrl(Assembly.GetExecutingAssembly().CodeBase);
 			var outputPathname = OutputPathServices.GetOutputPathname(srcPathname);
 
 			var srcFilename = Path.GetFileName(srcPathname);

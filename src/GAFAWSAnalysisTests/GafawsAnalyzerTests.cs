@@ -32,7 +32,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA.xml");
+			CheckFile(@"XML/TestA.xml");
 		}
 
 		/// <summary>
@@ -42,7 +42,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA1.xml");
+			CheckFile(@"XML/TestA1.xml");
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1A_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA1A.xml");
+			CheckFile(@"XML/TestA1A.xml");
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestB_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestB.xml");
+			CheckFile(@"XML/TestB.xml");
 		}
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			// has been copied to executing dir during build
 			// skip position checking, and just test cooccurrences.
 			var pa = new GafawsAnalyzer();
-			var outputPathname = pa.AnalyzeTestFile(@"XML\Huichol.xml");
+			var outputPathname = pa.AnalyzeTestFile(@"XML/Huichol.xml");
 
 			// Distinct sets checking.
 			var gd = GafawsData.LoadData(outputPathname);
@@ -196,7 +196,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			// has been copied to executing dir during build
 			// skip position checking, and just test cooccurrences.
 			var pa = new GafawsAnalyzer();
-			var outputPathname = pa.AnalyzeTestFile(@"XML\Mapudungu.xml");
+			var outputPathname = pa.AnalyzeTestFile(@"XML/Mapudungu.xml");
 
 			// Distinct sets checking.
 			var gd = GafawsData.LoadData(outputPathname);
@@ -268,7 +268,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			// has been copied to executing dir during build
 			// p14 fails, but why?
-			CheckFile(@"XML\TestC.xml");
+			CheckFile(@"XML/TestC.xml");
 		}
 
 		private static string CheckFile(string testFile)

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
 	<ProjectType>Local</ProjectType>
@@ -10,13 +10,9 @@
 	<SccProvider>MSSCCI:Perforce SCM</SccProvider>
 	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ApplicationIcon>
-	</ApplicationIcon>
 	<AssemblyKeyContainerName>
 	</AssemblyKeyContainerName>
 	<AssemblyName>GAFAWSAnalysisTests</AssemblyName>
-	<AssemblyOriginatorKeyFile>
-	</AssemblyOriginatorKeyFile>
 	<DefaultClientScript>JScript</DefaultClientScript>
 	<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
 	<DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -24,8 +20,6 @@
 	<OutputType>Library</OutputType>
 	<RootNamespace>SIL.WordWorks.GAFAWS.PositionAnalyser</RootNamespace>
 	<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-	<StartupObject>
-	</StartupObject>
 	<FileUpgradeFlags>
 	</FileUpgradeFlags>
 	<UpgradeBackupLocation>
@@ -50,9 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	<OutputPath>..\..\Output\Debug\</OutputPath>
-	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
-	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
 	<DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -60,21 +52,17 @@
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
 	<FileAlignment>4096</FileAlignment>
-	<NoStdLib>false</NoStdLib>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
 	<Optimize>false</Optimize>
 	<RegisterForComInterop>false</RegisterForComInterop>
 	<RemoveIntegerChecks>false</RemoveIntegerChecks>
-	<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 	<OutputPath>..\..\Output\Release\</OutputPath>
-	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
-	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
 	<DefineConstants>TRACE</DefineConstants>
@@ -82,21 +70,15 @@
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
 	<FileAlignment>4096</FileAlignment>
-	<NoStdLib>false</NoStdLib>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
 	<Optimize>true</Optimize>
 	<RegisterForComInterop>false</RegisterForComInterop>
 	<RemoveIntegerChecks>false</RemoveIntegerChecks>
-	<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-	  <SpecificVersion>False</SpecificVersion>
-	  <HintPath>..\..\lib\common\nunit.framework.dll</HintPath>
-	</Reference>
 	<Reference Include="System.Xml.Linq">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
 	</Reference>
@@ -105,6 +87,10 @@
 	</Reference>
 	<Reference Include="System.Xml">
 	  <Name>System.XML</Name>
+	</Reference>
+	<Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+	  <SpecificVersion>False</SpecificVersion>
+	  <HintPath>..\..\lib\common\nunit.framework.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +129,9 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GafawsAnalysis</Name>
+	  <Name>GAFAWSAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
