@@ -12,22 +12,22 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 	[TestFixture]
 	public class OutputPathServicesTests
 	{
-		[Test, ExpectedException(typeof(ArgumentException)), Category("SkipOnTeamCity")]
+		[Test]
 		public void NullArgumentThrows()
 		{
-			OutputPathServices.GetOutputPathname(null);
+			Assert.Throws<ArgumentException>(() => OutputPathServices.GetOutputPathname(null));
 		}
 
-		[Test, ExpectedException(typeof(ArgumentException)), Category("SkipOnTeamCity")]
+		[Test]
 		public void EmptyStringArgumentThrows()
 		{
-			OutputPathServices.GetOutputPathname("");
+			Assert.Throws<ArgumentException>(() => OutputPathServices.GetOutputPathname(""));
 		}
 
-		[Test, ExpectedException(typeof(FileNotFoundException)), Category("SkipOnTeamCity")]
+		[Test]
 		public void NonExistingFileThrows()
 		{
-			OutputPathServices.GetOutputPathname("Bogus.txt");
+			Assert.Throws<FileNotFoundException>(() => OutputPathServices.GetOutputPathname("Bogus.txt"));
 		}
 
 		[Test]
