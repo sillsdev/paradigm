@@ -54,7 +54,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				if (converterDlg.ShowDialog() != DialogResult.OK)
 					return outputpathname; // bail out, since nothing was selected.
 
-				converterDlg.GetReults(out selectedPos,
+				converterDlg.GetResults(out selectedPos,
 					out wordforms,
 					out analyses,
 					out morphBundles,

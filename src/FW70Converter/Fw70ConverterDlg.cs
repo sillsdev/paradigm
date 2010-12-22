@@ -14,7 +14,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		private static readonly Encoding _utf8 = Encoding.UTF8;
 		private static readonly byte _closeDoubleQuote = _utf8.GetBytes("\"")[0];
 		private static readonly byte _closeSingleQuote = _utf8.GetBytes("'")[0];
-
+		private FwPos _selectedPos;
 		private readonly List<XElement> _wordforms = new List<XElement>();
 		private readonly Dictionary<string, XElement> _analyses = new Dictionary<string, XElement>();
 		private readonly Dictionary<string, XElement> _morphBundles = new Dictionary<string, XElement>();
@@ -48,6 +48,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 		private void BtnCloseClick(object sender, EventArgs e)
 		{
+			_selectedPos = (FwPos) _tvPoses.SelectedNode.Tag;
 			Close();
 		}
 
@@ -58,10 +59,10 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 		internal FwPos SelectedPos
 		{
-			get { return (FwPos) _tvPoses.SelectedNode.Tag; }
+			get { return _selectedPos; }
 		}
 
-		internal void GetReults(
+		internal void GetResults(
 			out FwPos selectedPos,
 			out List<XElement> wordforms,
 			out Dictionary<string, XElement> analyses,
@@ -71,7 +72,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			out Dictionary<string, XElement> forms,
 			out HashSet<string> humanApprovedEvalIds)
 		{
-			selectedPos = (FwPos)_tvPoses.SelectedNode.Tag;
+			selectedPos = _selectedPos;
 			wordforms = _wordforms;
 			analyses = _analyses;
 			morphBundles = _morphBundles;
