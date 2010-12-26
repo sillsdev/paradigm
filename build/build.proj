@@ -30,14 +30,14 @@
   </Target>
 
   <Target Name="CreateDirectories">
-	<MakeDir Directories="$(teamcity_build_checkoutDir)\output\"/>
-	<MakeDir Directories="$(teamcity_build_checkoutDir)\output\common\"/>
-	<MakeDir Directories="$(teamcity_build_checkoutDir)\output\Release\"/>
-	<MakeDir Directories="$(teamcity_build_checkoutDir)\output\Installer\"/>
+	<MakeDir Directories="$(teamcity_build_checkoutDir)/output/"/>
+	<MakeDir Directories="$(teamcity_build_checkoutDir)/output/common/"/>
+	<MakeDir Directories="$(teamcity_build_checkoutDir)/output/Release/"/>
+	<MakeDir Directories="$(teamcity_build_checkoutDir)/output/Installer/"/>
   </Target>
 
   <Target Name="Build" DependsOnTargets="SetAssemblyVersion">
-	<MSBuild Projects="$(teamcity_build_checkoutDir)/GAFAWS 2008.sln" Targets="Rebuild"
+	<MSBuild Projects="$(teamcity_build_checkoutDir)/GAFAWS 2008.sln" Targets="Compile"
 	  Properties="Configuration=Release"/>
 	<Message Text="Build Complete"/>
   </Target>
@@ -50,7 +50,7 @@
   </Target>
 
 <Target Name="Clean">
-<RemoveDir Directories="$(teamcity_build_checkoutDir)\output" />
+<RemoveDir Directories="$(teamcity_build_checkoutDir)/output" />
 </Target>
 
 
