@@ -49,6 +49,10 @@
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
   </Target>
 
+<Target Name="Clean">
+<RemoveDir Directories="$(teamcity_build_checkoutDir)\output" />
+</Target>
+
 
   <!-- ****************** Installer stuff ********************* -->
 
