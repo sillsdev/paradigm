@@ -43,7 +43,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.m_btnProcess = new System.Windows.Forms.Button();
 			this.m_btnClose = new System.Windows.Forms.Button();
 			this.m_lvConverters = new System.Windows.Forms.ListView();
-			this.m_chConverter = new System.Windows.Forms.ColumnHeader();
+			this.m_chConverter = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label1 = new System.Windows.Forms.Label();
 			this.m_tbDescription = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
@@ -125,6 +125,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AffixPositionAnalyzer";
 			this.Text = "Affix Position Analyzer";
+			this.Load += new System.EventHandler(this.AffixPositionAnalyzer_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -6,6 +6,7 @@
 // Responsibility: Randy Regnier
 // Last reviewed:
 using System;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -16,28 +17,20 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// <summary>
 	/// Converts an Ample ANA file into an XML document suitable for input to GAFAWSAnalysis.
 	/// </summary>
+	[Export(typeof(IGafawsConverter))]
 	public class AnaConverter : IGafawsConverter
 	{
-		private readonly IWordRecordFactory _wordRecordFactory;
-		private readonly IAffixFactory _affixFactory;
-		private readonly IStemFactory _stemFactory;
-		private readonly IMorphemeFactory _morphemeFactory;
+		[Import(typeof(IWordRecordFactory))]
+		private IWordRecordFactory _wordRecordFactory;
+		[Import(typeof(IAffixFactory))]
+		private IAffixFactory _affixFactory;
+		[Import(typeof(IStemFactory))]
+		private IStemFactory _stemFactory;
+		[Import(typeof(IMorphemeFactory))]
+		private IMorphemeFactory _morphemeFactory;
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		internal AnaConverter(
-			IWordRecordFactory wordRecordFactory,
-			IAffixFactory affixFactory,
-			IStemFactory stemFactory,
-			IMorphemeFactory morphemeFactory)
-		{
-			_wordRecordFactory = wordRecordFactory;
-			_affixFactory = affixFactory;
-			_stemFactory = stemFactory;
-			_morphemeFactory = morphemeFactory;
-			AnaObject.Reset();
-		}
+		internal AnaConverter()
+		{}
 
 		#region IGAFAWSConverter implementation
 

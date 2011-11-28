@@ -7,6 +7,7 @@
 // Last reviewed:
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -17,24 +18,20 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
 namespace SIL.WordWorks.GAFAWS.FW60Converter
 {
+	[Export(typeof(IGafawsConverter))]
 	public class Fw60Converter : IGafawsConverter
 	{
-		private readonly IWordRecordFactory _wordRecordFactory;
-		private readonly IAffixFactory _affixFactory;
-		private readonly IStemFactory _stemFactory;
-		private readonly IMorphemeFactory _morphemeFactory;
+		[Import(typeof(IWordRecordFactory))]
+		private IWordRecordFactory _wordRecordFactory;
+		[Import(typeof(IAffixFactory))]
+		private IAffixFactory _affixFactory;
+		[Import(typeof(IStemFactory))]
+		private IStemFactory _stemFactory;
+		[Import(typeof(IMorphemeFactory))]
+		private IMorphemeFactory _morphemeFactory;
 
-		internal Fw60Converter(
-			IWordRecordFactory wordRecordFactory,
-			IAffixFactory affixFactory,
-			IStemFactory stemFactory,
-			IMorphemeFactory morphemeFactory)
-		{
-			_wordRecordFactory = wordRecordFactory;
-			_affixFactory = affixFactory;
-			_stemFactory = stemFactory;
-			_morphemeFactory = morphemeFactory;
-		}
+		internal Fw60Converter()
+		{}
 
 		#region IGafawsConverter implementation
 

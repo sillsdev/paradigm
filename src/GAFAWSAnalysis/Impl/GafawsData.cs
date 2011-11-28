@@ -6,6 +6,7 @@
 // Responsibility: Randy Regnier
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -14,6 +15,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// Main class in the GAFAWS data layer.
 	/// </summary>
+	[Export(typeof(IGafawsData))]
 	internal sealed class GafawsData : IGafawsData
 	{
 		#region Data members

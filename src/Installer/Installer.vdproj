@@ -15,14 +15,44 @@
 	{
 		"Entry"
 		{
-		"MsmKey" = "8:_1E71FA2A84F86D994DBE502D11D5FA3F"
+		"MsmKey" = "8:_320B752AC102478EA40836D1943FE041"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
 		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_320B752AC102478EA40836D1943FE041"
-		"OwnerKey" = "8:_UNDEFINED"
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
@@ -81,12 +111,6 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_6FE2BCC3A23F489EA7D8ED1DEFA3CBF2"
-		"OwnerKey" = "8:_UNDEFINED"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
 		"MsmKey" = "8:_747023CF2FA44A66BC53A79675B799B1"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
@@ -99,32 +123,8 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
-		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
+		"MsmKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
 		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
-		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
-		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
-		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
@@ -135,38 +135,50 @@
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_C244C618D44C88EC31C83F6535C66212"
-		"OwnerKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
+		"MsmKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
+		"OwnerKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_EF55D60694AF4B7681EC9F55C57CE4E8"
+		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
@@ -196,13 +208,25 @@
 		"Entry"
 		{
 		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
 		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
 		"MsmKey" = "8:_UNDEFINED"
-		"OwnerKey" = "8:_1E71FA2A84F86D994DBE502D11D5FA3F"
+		"OwnerKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
@@ -226,13 +250,7 @@
 		"Entry"
 		{
 		"MsmKey" = "8:_UNDEFINED"
-		"OwnerKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
-		"MsmSig" = "8:_UNDEFINED"
-		}
-		"Entry"
-		{
-		"MsmKey" = "8:_UNDEFINED"
-		"OwnerKey" = "8:_C244C618D44C88EC31C83F6535C66212"
+		"OwnerKey" = "8:_364A18A091E98003D7C276E38006D6BE"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 	}
@@ -243,7 +261,7 @@
 		"DisplayName" = "8:Debug"
 		"IsDebugOnly" = "11:TRUE"
 		"IsReleaseOnly" = "11:FALSE"
-		"OutputFilename" = "8:Debug\\GAFAWS.msi"
+		"OutputFilename" = "8:..\\..\\output\\Installer\\Debug\\GAFAWS.msi"
 		"PackageFilesAs" = "3:2"
 		"PackageFileSize" = "3:-2147483648"
 		"CabType" = "3:1"
@@ -262,10 +280,15 @@
 			"ComponentsUrl" = "8:"
 				"Items"
 				{
-					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
 					{
-					"Name" = "8:.NET Framework 3.5"
-					"ProductCode" = "8:Microsoft.Net.Framework.3.5"
+					"Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+					"ProductCode" = "8:.NETFramework,Version=v4.0"
+					}
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+					{
+					"Name" = "8:.NET Framework 3.5 SP1"
+					"ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
 					}
 					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
 					{
@@ -280,7 +303,7 @@
 		"DisplayName" = "8:Release"
 		"IsDebugOnly" = "11:FALSE"
 		"IsReleaseOnly" = "11:TRUE"
-		"OutputFilename" = "8:Release\\GAFAWS.msi"
+		"OutputFilename" = "8:..\\..\\output\\Installer\\Release\\GAFAWS.msi"
 		"PackageFilesAs" = "3:2"
 		"PackageFileSize" = "3:-2147483648"
 		"CabType" = "3:1"
@@ -332,7 +355,7 @@
 				{
 				"Name" = "8:.NET Framework"
 				"Message" = "8:[VSDNETMSG]"
-				"Version" = "8:3.5.21022"
+				"FrameworkVersion" = "8:.NETFramework,Version=v4.0"
 				"AllowLaterVersions" = "11:FALSE"
 				"InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
 				}
@@ -340,37 +363,6 @@
 		}
 		"File"
 		{
-			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1E71FA2A84F86D994DBE502D11D5FA3F"
-			{
-			"AssemblyRegister" = "3:1"
-			"AssemblyIsInGAC" = "11:FALSE"
-			"AssemblyAsmDisplayName" = "8:LibChorus, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
-				"ScatterAssemblies"
-				{
-					"_1E71FA2A84F86D994DBE502D11D5FA3F"
-					{
-					"Name" = "8:LibChorus.dll"
-					"Attributes" = "3:512"
-					}
-				}
-			"SourcePath" = "8:LibChorus.dll"
-			"TargetName" = "8:"
-			"Tag" = "8:"
-			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
-			"Condition" = "8:"
-			"Transitive" = "11:FALSE"
-			"Vital" = "11:TRUE"
-			"ReadOnly" = "11:FALSE"
-			"Hidden" = "11:FALSE"
-			"System" = "11:FALSE"
-			"Permanent" = "11:FALSE"
-			"SharedLegacy" = "11:FALSE"
-			"PackageAs" = "3:1"
-			"Register" = "3:1"
-			"Exclude" = "11:FALSE"
-			"IsDependency" = "11:TRUE"
-			"IsolateTo" = "8:"
-			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_320B752AC102478EA40836D1943FE041"
 			{
 			"SourcePath" = "8:..\\AffixPositionAnalyzer\\GAFAWS.ico"
@@ -389,6 +381,37 @@
 			"Register" = "3:1"
 			"Exclude" = "11:FALSE"
 			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_364A18A091E98003D7C276E38006D6BE"
+			{
+			"AssemblyRegister" = "3:1"
+			"AssemblyIsInGAC" = "11:FALSE"
+			"AssemblyAsmDisplayName" = "8:StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL"
+				"ScatterAssemblies"
+				{
+					"_364A18A091E98003D7C276E38006D6BE"
+					{
+					"Name" = "8:StructureMap.dll"
+					"Attributes" = "3:512"
+					}
+				}
+			"SourcePath" = "8:StructureMap.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:TRUE"
 			"IsolateTo" = "8:"
 			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_41B0CE0A647843EC8C4A060C10F9933D"
@@ -491,26 +514,6 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FE2BCC3A23F489EA7D8ED1DEFA3CBF2"
-			{
-			"SourcePath" = "8:License.rtf"
-			"TargetName" = "8:License.rtf"
-			"Tag" = "8:"
-			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
-			"Condition" = "8:"
-			"Transitive" = "11:FALSE"
-			"Vital" = "11:TRUE"
-			"ReadOnly" = "11:FALSE"
-			"Hidden" = "11:FALSE"
-			"System" = "11:FALSE"
-			"Permanent" = "11:FALSE"
-			"SharedLegacy" = "11:FALSE"
-			"PackageAs" = "3:1"
-			"Register" = "3:1"
-			"Exclude" = "11:FALSE"
-			"IsDependency" = "11:FALSE"
-			"IsolateTo" = "8:"
-			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_747023CF2FA44A66BC53A79675B799B1"
 			{
 			"SourcePath" = "8:..\\FW70Converter\\Sample_Problems.fwdata"
@@ -531,15 +534,20 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95E9E6B821FE9BF4BDD93680276E27EE"
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9C61B12EB0B9510D7CEAA29598C013FE"
 			{
 			"AssemblyRegister" = "3:1"
 			"AssemblyIsInGAC" = "11:FALSE"
-			"AssemblyAsmDisplayName" = "8:GafawsAnalysis, Version=2.0.0.20026, Culture=neutral, processorArchitecture=MSIL"
+			"AssemblyAsmDisplayName" = "8:LibChorus, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
 				"ScatterAssemblies"
 				{
+					"_9C61B12EB0B9510D7CEAA29598C013FE"
+					{
+					"Name" = "8:LibChorus.dll"
+					"Attributes" = "3:512"
+					}
 				}
-			"SourcePath" = "8:GafawsAnalysis.dll"
+			"SourcePath" = "8:LibChorus.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -577,20 +585,20 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C244C618D44C88EC31C83F6535C66212"
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE0E513D8F7D3812F3715628C26AE2AD"
 			{
 			"AssemblyRegister" = "3:1"
 			"AssemblyIsInGAC" = "11:FALSE"
-			"AssemblyAsmDisplayName" = "8:StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL"
+			"AssemblyAsmDisplayName" = "8:GafawsAnalysis, Version=2.0.0.26491, Culture=neutral, processorArchitecture=MSIL"
 				"ScatterAssemblies"
 				{
-					"_C244C618D44C88EC31C83F6535C66212"
+					"_BE0E513D8F7D3812F3715628C26AE2AD"
 					{
-					"Name" = "8:StructureMap.dll"
+					"Name" = "8:GafawsAnalysis.dll"
 					"Attributes" = "3:512"
 					}
 				}
-			"SourcePath" = "8:StructureMap.dll"
+			"SourcePath" = "8:GafawsAnalysis.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -606,6 +614,57 @@
 			"Register" = "3:1"
 			"Exclude" = "11:FALSE"
 			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CAB19B915ADB56E902110AB7A641F5C0"
+			{
+			"AssemblyRegister" = "3:1"
+			"AssemblyIsInGAC" = "11:FALSE"
+			"AssemblyAsmDisplayName" = "8:Autofac, Version=1.4.4.561, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL"
+				"ScatterAssemblies"
+				{
+					"_CAB19B915ADB56E902110AB7A641F5C0"
+					{
+					"Name" = "8:Autofac.dll"
+					"Attributes" = "3:512"
+					}
+				}
+			"SourcePath" = "8:Autofac.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF55D60694AF4B7681EC9F55C57CE4E8"
+			{
+			"SourcePath" = "8:..\\..\\DistFiles\\License.rtf"
+			"TargetName" = "8:License.rtf"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
 			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB2EDA0C0ED74BD4AAFB1EB49C27F417"
@@ -747,8 +806,9 @@
 		"Name" = "8:Microsoft Visual Studio"
 		"ProductName" = "8:GAFAWS 2.0 RC1"
 		"ProductCode" = "8:{3CB71ACA-223A-44CB-8078-CC05F350D52E}"
-		"PackageCode" = "8:{35F5A234-D5F9-4A79-9C57-89215C4DBBCD}"
+		"PackageCode" = "8:{400D4D90-CB1C-45C6-A34E-97BBA89E2F50}"
 		"UpgradeCode" = "8:{F9A1D79F-6416-4515-B167-3DD9C7D5488B}"
+		"AspNetVersion" = "8:4.0.30319.0"
 		"RestartWWWService" = "11:FALSE"
 		"RemovePreviousVersions" = "11:FALSE"
 		"DetectNewerInstalledVersion" = "11:TRUE"
@@ -1223,7 +1283,7 @@
 							"ContextData" = "8:"
 							"Attributes" = "3:0"
 							"Setting" = "3:2"
-							"Value" = "8:_6FE2BCC3A23F489EA7D8ED1DEFA3CBF2"
+							"Value" = "8:_EF55D60694AF4B7681EC9F55C57CE4E8"
 							"UsePlugInResources" = "11:TRUE"
 							}
 							"Sunken"
@@ -1356,7 +1416,7 @@
 		{
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_38CFA51476D4447AA3804951D2098273"
 			{
-			"SourcePath" = "8:..\\AffixPositionAnalyzer\\obj\\Release\\AffixPositionAnalyzer.exe"
+			"SourcePath" = "8:..\\AffixPositionAnalyzer\\obj\\Debug\\AffixPositionAnalyzer.exe"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -1384,7 +1444,7 @@
 			}
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_457FB1C4509D45E28D0D270406DAC4AD"
 			{
-			"SourcePath" = "8:..\\FW60Converter\\obj\\Release\\FW60Converter.dll"
+			"SourcePath" = "8:..\\FW60Converter\\obj\\Debug\\FW60Converter.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -1412,7 +1472,7 @@
 			}
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
 			{
-			"SourcePath" = "8:..\\PlainWordlistConverter\\obj\\Release\\PlainWordlistConverter.dll"
+			"SourcePath" = "8:..\\PlainWordlistConverter\\obj\\Debug\\PlainWordlistConverter.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -1440,7 +1500,7 @@
 			}
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_558FE97FF0634203BEB58F943F3BCC98"
 			{
-			"SourcePath" = "8:..\\ANAConverter\\obj\\Release\\ANAConverter.dll"
+			"SourcePath" = "8:..\\ANAConverter\\obj\\Debug\\ANAConverter.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -1468,7 +1528,7 @@
 			}
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7991D16C4900407E91DD602B61D318F5"
 			{
-			"SourcePath" = "8:..\\FW70Converter\\obj\\Release\\FW70Converter.dll"
+			"SourcePath" = "8:..\\FW70Converter\\obj\\Debug\\FW70Converter.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
 	<ProjectType>Local</ProjectType>
 	<ProductVersion>9.0.21022</ProductVersion>
@@ -10,9 +10,13 @@
 	<SccProvider>MSSCCI:Perforce SCM</SccProvider>
 	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ApplicationIcon>
+	</ApplicationIcon>
 	<AssemblyKeyContainerName>
 	</AssemblyKeyContainerName>
 	<AssemblyName>GAFAWSAnalysisTests</AssemblyName>
+	<AssemblyOriginatorKeyFile>
+	</AssemblyOriginatorKeyFile>
 	<DefaultClientScript>JScript</DefaultClientScript>
 	<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
 	<DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -20,12 +24,17 @@
 	<OutputType>Library</OutputType>
 	<RootNamespace>SIL.WordWorks.GAFAWS.PositionAnalyser</RootNamespace>
 	<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	<StartupObject>
+	</StartupObject>
 	<FileUpgradeFlags>
 	</FileUpgradeFlags>
 	<UpgradeBackupLocation>
 	</UpgradeBackupLocation>
-	<OldToolsVersion>2.0</OldToolsVersion>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<OldToolsVersion>3.5</OldToolsVersion>
+	<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+	<IsWebBootstrapper>false</IsWebBootstrapper>
+	<TargetFrameworkProfile>
+	</TargetFrameworkProfile>
 	<PublishUrl>publish\</PublishUrl>
 	<Install>true</Install>
 	<InstallFrom>Disk</InstallFrom>
@@ -38,13 +47,14 @@
 	<MapFileExtensions>true</MapFileExtensions>
 	<ApplicationRevision>0</ApplicationRevision>
 	<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-	<IsWebBootstrapper>false</IsWebBootstrapper>
 	<UseApplicationTrust>false</UseApplicationTrust>
 	<BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	<OutputPath>..\..\Output\Debug\</OutputPath>
+	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
+	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
 	<DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -52,17 +62,22 @@
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
 	<FileAlignment>4096</FileAlignment>
+	<NoStdLib>false</NoStdLib>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
 	<Optimize>false</Optimize>
 	<RegisterForComInterop>false</RegisterForComInterop>
 	<RemoveIntegerChecks>false</RemoveIntegerChecks>
+	<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 	<OutputPath>..\..\Output\Release\</OutputPath>
+	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
+	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
 	<ConfigurationOverrideFile>
 	</ConfigurationOverrideFile>
 	<DefineConstants>TRACE</DefineConstants>
@@ -70,15 +85,23 @@
 	</DocumentationFile>
 	<DebugSymbols>true</DebugSymbols>
 	<FileAlignment>4096</FileAlignment>
+	<NoStdLib>false</NoStdLib>
 	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
 	<Optimize>true</Optimize>
 	<RegisterForComInterop>false</RegisterForComInterop>
 	<RemoveIntegerChecks>false</RemoveIntegerChecks>
+	<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+	<Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+	  <SpecificVersion>False</SpecificVersion>
+	  <HintPath>..\..\lib\common\nunit.framework.dll</HintPath>
+	</Reference>
+	<Reference Include="System" />
 	<Reference Include="System.Xml.Linq">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
 	</Reference>
@@ -87,10 +110,6 @@
 	</Reference>
 	<Reference Include="System.Xml">
 	  <Name>System.XML</Name>
-	</Reference>
-	<Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
-	  <SpecificVersion>False</SpecificVersion>
-	  <HintPath>..\..\lib\common\nunit.framework.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -104,7 +123,7 @@
   <ItemGroup>
 	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
 	  <Visible>False</Visible>
-	  <ProductName>.NET Framework Client Profile</ProductName>
+	  <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
 	  <Install>false</Install>
 	</BootstrapperPackage>
 	<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -129,9 +148,9 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
+	  <Name>GafawsAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,8 @@
-﻿namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
+﻿using System.ComponentModel.Composition;
+
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
+	[Export(typeof(IWordRecordFactory))]
 	internal class WordRecordFactory : IWordRecordFactory
 	{
 		private int _idx = 1;
