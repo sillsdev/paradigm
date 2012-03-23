@@ -150,12 +150,6 @@
 	</BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
-	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
-	</ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
 	<None Include="XML\GAFAWS.xsd" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +187,12 @@
 	<Content Include="XML\TestC.xml">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</Content>
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
+	  <Name>GAFAWSAnalysis</Name>
+	</ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
