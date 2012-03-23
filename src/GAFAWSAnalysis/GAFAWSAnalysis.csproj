@@ -236,6 +236,13 @@
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</Content>
   </ItemGroup>
+  <ItemGroup>
+	<None Include="..\GAFAWSAnalysisTests\XML\GAFAWS.xsd">
+	  <Link>GAFAWS.xsd</Link>
+	  <SubType>Designer</SubType>
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
 	<PreBuildEvent>

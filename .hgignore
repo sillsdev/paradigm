@@ -41,3 +41,5 @@ src/ANAConverter/AnaConverter.csproj.DotSettings.user
 src/AffixPositionAnalyzer/AffixPositionAnalyzer.csproj.DotSettings.user
 src/GAFAWSAnalysis/GafawsAnalysis.csproj.DotSettings.user
 src/PlainWordlistConverter/PlainWordlistConverter.csproj.DotSettings.user
+syntax: regexp
+Output/*.*
