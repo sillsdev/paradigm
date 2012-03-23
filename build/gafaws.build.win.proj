@@ -26,7 +26,7 @@
   <Target Name="CreateDirectories">
 	<MakeDir Directories="$(RootDir)/output/"/>
 	<MakeDir Directories="$(RootDir)/output/common/"/>
-	<MakeDir Directories="$(RootDir)/output/Release/"/>
+	<MakeDir Directories="$(RootDir)/output/$(Configuration)/"/>
 	<MakeDir Directories="$(RootDir)/output/Installer/"/>
   </Target>
 
@@ -40,12 +40,12 @@
 
   <Target Name="Compile" >
 	<MSBuild Projects="$(RootDir)/$(Solution)" Targets="Build"
-	  Properties="Configuration=Release"/>
+	  Properties="Configuration=$(Configuration)"/>
 	<Message Text="Build Complete"/>
   </Target>
 
 	<ItemGroup>
-	  <TestAssemblies Include="$(RootDir)/output/Release/*Tests.dll"  Exclude="**\obj\**" />
+	  <TestAssemblies Include="$(RootDir)/output/$(Configuration)/*Tests.dll"  Exclude="**\obj\**" />
 	</ItemGroup>
   <Target Name="Test" DependsOnTargets ="Build">
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
