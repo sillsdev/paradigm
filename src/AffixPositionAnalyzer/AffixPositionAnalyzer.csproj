@@ -159,6 +159,6 @@
   </Target>
   -->
   <PropertyGroup>
-	<PostBuildEvent>copy $(SolutionDir)src\GAFAWSAnalysisTests\XML\GAFAWS.xsd $(TargetDir)</PostBuildEvent>
+	<PostBuildEvent>copy $(SolutionDir)src/GAFAWSAnalysisTests/XML/GAFAWS.xsd $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
