@@ -18,27 +18,32 @@
 
   <Import Project="$(RootDir)/build/gafaws.build.common.proj"/>
 
-  <Target Name="CreateDirectories">
-	<MakeDir Directories="$(RootDir)/output/"/>
-	<MakeDir Directories="$(RootDir)/output/common/"/>
-	<MakeDir Directories="$(RootDir)/output/Release/"/>
-  </Target>
-
-  <Target Name="Build" DependsOnTargets="SetAssemblyVersion">
-	<MSBuild Projects="$(RootDir)/$(Solution)" Targets="Build"
-	  Properties="Configuration=Release"/>
+  <Target Name="Build">
+	<CallTarget Targets="Clean"/>
+	<CallTarget Targets="CreateDirectories"/>
+	<CallTarget Targets="SetAssemblyVersion"/>
+	<CallTarget Targets="Compile"/>
 	<Message Text="Build Complete"/>
-  </Target>
-
-  <Target Name="Test" DependsOnTargets ="Build">
-	<CreateItem Include="$(RootDir)/output/$(Configuration)/*Tests.dll">
-	  <Output ItemName="TestAssemblies" TaskParameter="Include"/>
-	</CreateItem>
-	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" NUnitVersion="NUnit-2.5.5" />
   </Target>
 
 <Target Name="Clean">
 <RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
 </Target>
+
+  <Target Name="CreateDirectories">
+	<MakeDir Directories="$(RootDir)/output/"/>
+	<MakeDir Directories="$(RootDir)/output/$(Configuration)/"/>
+  </Target>
+
+  <Target Name="Compile" >
+	<MSBuild Projects="$(RootDir)/$(Solution)" Targets="Build" Properties="Configuration=$(Configuration)"/>
+  </Target>
+
+  <Target Name="Test" DependsOnTargets="Build">
+	<CreateItem Include="$(RootDir)/output/$(Configuration)/*Tests.dll">
+	  <Output ItemName="TestAssemblies" TaskParameter="Include"/>
+	</CreateItem>
+	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity;UnknownMonoIssue" NUnitVersion="NUnit-2.5.5"/>
+  </Target>
 
 </Project>

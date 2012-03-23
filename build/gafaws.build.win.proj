@@ -19,6 +19,10 @@
 
   <Import Project="$(RootDir)/build/gafaws.build.common.proj"/>
 
+<Target Name="Clean">
+<RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
+</Target>
+
   <Target Name="CreateDirectories">
 	<MakeDir Directories="$(RootDir)/output/"/>
 	<MakeDir Directories="$(RootDir)/output/common/"/>
@@ -26,22 +30,26 @@
 	<MakeDir Directories="$(RootDir)/output/Installer/"/>
   </Target>
 
-  <Target Name="Build" DependsOnTargets="SetAssemblyVersion">
+  <Target Name="Build">
+	<CallTarget Targets="Clean"/>
+	<CallTarget Targets="CreateDirectories"/>
+	<CallTarget Targets="SetAssemblyVersion"/>
+	<CallTarget Targets="Compile"/>
+	<Message Text="Build Complete"/>
+  </Target>
+
+  <Target Name="Compile" >
 	<MSBuild Projects="$(RootDir)/$(Solution)" Targets="Build"
 	  Properties="Configuration=Release"/>
 	<Message Text="Build Complete"/>
   </Target>
 
 	<ItemGroup>
-	  <TestAssemblies Include="$(RootDir)/output/Release/*Tests.dll;"  Exclude="**\obj\**" />
+	  <TestAssemblies Include="$(RootDir)/output/Release/*Tests.dll"  Exclude="**\obj\**" />
 	</ItemGroup>
   <Target Name="Test" DependsOnTargets ="Build">
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
   </Target>
-
-<Target Name="Clean">
-<RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
-</Target>
 
 
   <!-- ****************** Installer stuff ********************* -->
