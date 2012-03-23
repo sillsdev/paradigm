@@ -36,8 +36,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		/// </summary>
 		public string Convert(IGafawsData gafawsData)
 		{
-			string outputpathname = null;
-
 			List<XElement> wordforms;
 			Dictionary<string, XElement> analyses;
 			Dictionary<string, XElement> morphBundles;
@@ -49,7 +47,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			using (var converterDlg = new Fw70ConverterDlg())
 			{
 				if (converterDlg.ShowDialog() != DialogResult.OK)
-					return outputpathname; // bail out, since nothing was selected.
+					return null; // bail out, since nothing was selected.
 
 				converterDlg.GetResults(out selectedPos,
 					out wordforms,
@@ -80,9 +78,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			foreach (var wf in wordformsList)
 				wf.Convert(gafawsData, _wordRecordFactory, _morphemeFactory, _affixFactory, _stemFactory, prefixes, stems, suffixes);
 
-			outputpathname = Path.GetTempFileName() + ".xml";
-
-			return outputpathname;
+			return Path.GetTempFileName() + ".xml";
 		}
 
 		/// <summary>

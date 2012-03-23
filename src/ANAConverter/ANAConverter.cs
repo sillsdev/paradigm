@@ -7,7 +7,9 @@
 // Last reviewed:
 using System;
 using System.ComponentModel.Composition;
+#if DEBUG
 using System.Diagnostics;
+#endif
 using System.IO;
 using System.Windows.Forms;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
@@ -100,13 +102,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 										record.ProcessOtherLine(LineType.Category, line.Substring(5));
 										break;
 									}
-								default:
-									// Eat this line.
-									break;
 							}
 							line = reader.ReadLine();
 						}
+#if DEBUG
 						Debug.Assert(record != null);
+#endif
 						record.Convert(_wordRecordFactory, _morphemeFactory, _stemFactory, _affixFactory); // Process last record.
 					}
 					outputPathname = OutputPathServices.GetOutputPathname(anaPathname);

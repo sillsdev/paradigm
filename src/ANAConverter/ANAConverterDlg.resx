@@ -118,521 +118,521 @@
 	<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnAnal.Enabled" type="System.Boolean, mscorlib">
+  <data name="_btnAnal.Enabled" type="System.Boolean, mscorlib">
 	<value>False</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnAnal.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_btnAnal.Location" type="System.Drawing.Point, System.Drawing">
 	<value>205, 224</value>
   </data>
-  <data name="btnAnal.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_btnAnal.Size" type="System.Drawing.Size, System.Drawing">
 	<value>80, 23</value>
   </data>
-  <data name="btnAnal.TabIndex" type="System.Int32, mscorlib">
+  <data name="_btnAnal.TabIndex" type="System.Int32, mscorlib">
 	<value>0</value>
   </data>
-  <data name="btnAnal.Text" xml:space="preserve">
+  <data name="_btnAnal.Text" xml:space="preserve">
 	<value>&amp;Analyze</value>
   </data>
-  <metadata name="tipBtnAnal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipBtnAnal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>935, 17</value>
   </metadata>
-  <data name="btnAnal.ToolTip" xml:space="preserve">
+  <data name="_btnAnal.ToolTip" xml:space="preserve">
 	<value>Choose to Analyze</value>
   </data>
-  <data name="&gt;&gt;btnAnal.Name" xml:space="preserve">
-	<value>btnAnal</value>
+  <data name="&gt;&gt;_btnAnal.Name" xml:space="preserve">
+	<value>_btnAnal</value>
   </data>
-  <data name="&gt;&gt;btnAnal.Type" xml:space="preserve">
+  <data name="&gt;&gt;_btnAnal.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnAnal.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_btnAnal.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;btnAnal.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_btnAnal.ZOrder" xml:space="preserve">
 	<value>15</value>
   </data>
-  <metadata name="HelpMeOne.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_helpMeOne.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>17, 17</value>
   </metadata>
-  <data name="btnClose.HelpString" xml:space="preserve">
+  <data name="_btnClose.HelpString" xml:space="preserve">
 	<value>Exit</value>
   </data>
-  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_btnClose.Location" type="System.Drawing.Point, System.Drawing">
 	<value>205, 256</value>
   </data>
-  <data name="btnClose.ShowHelp" type="System.Boolean, mscorlib">
+  <data name="_btnClose.ShowHelp" type="System.Boolean, mscorlib">
 	<value>True</value>
   </data>
-  <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_btnClose.Size" type="System.Drawing.Size, System.Drawing">
 	<value>80, 23</value>
   </data>
-  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
+  <data name="_btnClose.TabIndex" type="System.Int32, mscorlib">
 	<value>1</value>
   </data>
-  <data name="btnClose.Text" xml:space="preserve">
+  <data name="_btnClose.Text" xml:space="preserve">
 	<value>&amp;Cancel</value>
   </data>
-  <data name="btnClose.ToolTip" xml:space="preserve">
+  <data name="_btnClose.ToolTip" xml:space="preserve">
 	<value>Exit the program.</value>
   </data>
-  <metadata name="tipBtnClose.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipBtnClose.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>828, 17</value>
   </metadata>
-  <data name="btnClose.ToolTip1" xml:space="preserve">
+  <data name="_btnClose.ToolTip1" xml:space="preserve">
 	<value>Exit the program.</value>
   </data>
-  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
-	<value>btnClose</value>
+  <data name="&gt;&gt;_btnClose.Name" xml:space="preserve">
+	<value>_btnClose</value>
   </data>
-  <data name="&gt;&gt;btnClose.Type" xml:space="preserve">
+  <data name="&gt;&gt;_btnClose.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnClose.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_btnClose.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_btnClose.ZOrder" xml:space="preserve">
 	<value>14</value>
   </data>
-  <data name="tbANAFile.Enabled" type="System.Boolean, mscorlib">
+  <data name="_tbAnaFile.Enabled" type="System.Boolean, mscorlib">
 	<value>False</value>
   </data>
-  <data name="tbANAFile.HelpString" xml:space="preserve">
+  <data name="_tbAnaFile.HelpString" xml:space="preserve">
 	<value>Enter Path and File Name of Analysis Data File</value>
   </data>
-  <data name="tbANAFile.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_tbAnaFile.Location" type="System.Drawing.Point, System.Drawing">
 	<value>7, 24</value>
   </data>
-  <data name="tbANAFile.ShowHelp" type="System.Boolean, mscorlib">
+  <data name="_tbAnaFile.ShowHelp" type="System.Boolean, mscorlib">
 	<value>True</value>
   </data>
-  <data name="tbANAFile.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tbAnaFile.Size" type="System.Drawing.Size, System.Drawing">
 	<value>188, 20</value>
   </data>
-  <data name="tbANAFile.TabIndex" type="System.Int32, mscorlib">
+  <data name="_tbAnaFile.TabIndex" type="System.Int32, mscorlib">
 	<value>2</value>
   </data>
-  <data name="tbANAFile.ToolTip" xml:space="preserve">
+  <data name="_tbAnaFile.ToolTip" xml:space="preserve">
 	<value>Directory and path of ANA file.</value>
   </data>
-  <metadata name="tipTbANAFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipTbAnaFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>17, 54</value>
   </metadata>
-  <data name="tbANAFile.ToolTip1" xml:space="preserve">
+  <data name="_tbAnaFile.ToolTip1" xml:space="preserve">
 	<value>Directory and path of ANA file.</value>
   </data>
-  <data name="tbANAFile.WordWrap" type="System.Boolean, mscorlib">
+  <data name="_tbAnaFile.WordWrap" type="System.Boolean, mscorlib">
 	<value>False</value>
   </data>
-  <data name="&gt;&gt;tbANAFile.Name" xml:space="preserve">
-	<value>tbANAFile</value>
+  <data name="&gt;&gt;_tbAnaFile.Name" xml:space="preserve">
+	<value>_tbAnaFile</value>
   </data>
-  <data name="&gt;&gt;tbANAFile.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tbAnaFile.Type" xml:space="preserve">
 	<value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbANAFile.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_tbAnaFile.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;tbANAFile.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_tbAnaFile.ZOrder" xml:space="preserve">
 	<value>8</value>
   </data>
-  <data name="btnBrowse.HelpString" xml:space="preserve">
+  <data name="_btnBrowse.HelpString" xml:space="preserve">
 	<value>Browse for an Analysis Data File from Ample</value>
   </data>
-  <data name="btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_btnBrowse.Location" type="System.Drawing.Point, System.Drawing">
 	<value>205, 24</value>
   </data>
-  <data name="btnBrowse.ShowHelp" type="System.Boolean, mscorlib">
+  <data name="_btnBrowse.ShowHelp" type="System.Boolean, mscorlib">
 	<value>True</value>
   </data>
-  <data name="btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_btnBrowse.Size" type="System.Drawing.Size, System.Drawing">
 	<value>80, 23</value>
   </data>
-  <data name="btnBrowse.TabIndex" type="System.Int32, mscorlib">
+  <data name="_btnBrowse.TabIndex" type="System.Int32, mscorlib">
 	<value>3</value>
   </data>
-  <data name="btnBrowse.Text" xml:space="preserve">
+  <data name="_btnBrowse.Text" xml:space="preserve">
 	<value>Browse...</value>
   </data>
-  <data name="btnBrowse.ToolTip" xml:space="preserve">
+  <data name="_btnBrowse.ToolTip" xml:space="preserve">
 	<value>Browse to an ANA file.</value>
   </data>
-  <metadata name="tipBtnBrowse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipBtnBrowse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>275, 54</value>
   </metadata>
-  <data name="btnBrowse.ToolTip1" xml:space="preserve">
+  <data name="_btnBrowse.ToolTip1" xml:space="preserve">
 	<value>Browse to an ANA file.</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Name" xml:space="preserve">
-	<value>btnBrowse</value>
+  <data name="&gt;&gt;_btnBrowse.Name" xml:space="preserve">
+	<value>_btnBrowse</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Type" xml:space="preserve">
+  <data name="&gt;&gt;_btnBrowse.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_btnBrowse.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;btnBrowse.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_btnBrowse.ZOrder" xml:space="preserve">
 	<value>13</value>
   </data>
-  <data name="tbAmbigMarker.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_tbAmbigMarker.Location" type="System.Drawing.Point, System.Drawing">
 	<value>250, 54</value>
   </data>
-  <data name="tbAmbigMarker.MaxLength" type="System.Int32, mscorlib">
+  <data name="_tbAmbigMarker.MaxLength" type="System.Int32, mscorlib">
 	<value>1</value>
   </data>
-  <data name="tbAmbigMarker.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tbAmbigMarker.Size" type="System.Drawing.Size, System.Drawing">
 	<value>24, 20</value>
   </data>
-  <data name="tbAmbigMarker.TabIndex" type="System.Int32, mscorlib">
+  <data name="_tbAmbigMarker.TabIndex" type="System.Int32, mscorlib">
 	<value>5</value>
   </data>
-  <data name="tbAmbigMarker.Text" xml:space="preserve">
+  <data name="_tbAmbigMarker.Text" xml:space="preserve">
 	<value>%</value>
   </data>
-  <data name="tbAmbigMarker.ToolTip" xml:space="preserve">
+  <data name="_tbAmbigMarker.ToolTip" xml:space="preserve">
 	<value>Choose an Ambiguity Marker. Default is %.</value>
   </data>
-  <metadata name="tipTbAmbigMarker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipTbAmbigMarker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>132, 54</value>
   </metadata>
-  <data name="tbAmbigMarker.ToolTip1" xml:space="preserve">
+  <data name="_tbAmbigMarker.ToolTip1" xml:space="preserve">
 	<value>Choose an Ambiguity Marker. Default is %.</value>
   </data>
-  <data name="&gt;&gt;tbAmbigMarker.Name" xml:space="preserve">
-	<value>tbAmbigMarker</value>
+  <data name="&gt;&gt;_tbAmbigMarker.Name" xml:space="preserve">
+	<value>_tbAmbigMarker</value>
   </data>
-  <data name="&gt;&gt;tbAmbigMarker.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tbAmbigMarker.Type" xml:space="preserve">
 	<value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbAmbigMarker.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_tbAmbigMarker.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;tbAmbigMarker.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_tbAmbigMarker.ZOrder" xml:space="preserve">
 	<value>7</value>
   </data>
-  <data name="tbOpenDel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_tbOpenDel.Location" type="System.Drawing.Point, System.Drawing">
 	<value>106, 79</value>
   </data>
-  <data name="tbOpenDel.MaxLength" type="System.Int32, mscorlib">
+  <data name="_tbOpenDel.MaxLength" type="System.Int32, mscorlib">
 	<value>1</value>
   </data>
-  <data name="tbOpenDel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tbOpenDel.Size" type="System.Drawing.Size, System.Drawing">
 	<value>24, 20</value>
   </data>
-  <data name="tbOpenDel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_tbOpenDel.TabIndex" type="System.Int32, mscorlib">
 	<value>7</value>
   </data>
-  <data name="tbOpenDel.Text" xml:space="preserve">
+  <data name="_tbOpenDel.Text" xml:space="preserve">
 	<value>&lt;</value>
   </data>
-  <data name="tbOpenDel.ToolTip" xml:space="preserve">
+  <data name="_tbOpenDel.ToolTip" xml:space="preserve">
 	<value>Choose an Open Delimiter. Default is &lt;.</value>
   </data>
-  <metadata name="tipTbOpenDel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipTbOpenDel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>709, 17</value>
   </metadata>
-  <data name="tbOpenDel.ToolTip1" xml:space="preserve">
+  <data name="_tbOpenDel.ToolTip1" xml:space="preserve">
 	<value>Choose an Open Delimiter. Default is &lt;.</value>
   </data>
-  <data name="&gt;&gt;tbOpenDel.Name" xml:space="preserve">
-	<value>tbOpenDel</value>
+  <data name="&gt;&gt;_tbOpenDel.Name" xml:space="preserve">
+	<value>_tbOpenDel</value>
   </data>
-  <data name="&gt;&gt;tbOpenDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tbOpenDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbOpenDel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_tbOpenDel.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;tbOpenDel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_tbOpenDel.ZOrder" xml:space="preserve">
 	<value>6</value>
   </data>
-  <data name="lbANAFile.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbAnaFile.Location" type="System.Drawing.Point, System.Drawing">
 	<value>7, 6</value>
   </data>
-  <data name="lbANAFile.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbAnaFile.Size" type="System.Drawing.Size, System.Drawing">
 	<value>48, 16</value>
   </data>
-  <data name="lbANAFile.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbAnaFile.TabIndex" type="System.Int32, mscorlib">
 	<value>4</value>
   </data>
-  <data name="lbANAFile.Text" xml:space="preserve">
+  <data name="_lbAnaFile.Text" xml:space="preserve">
 	<value>ANA file</value>
   </data>
-  <data name="&gt;&gt;lbANAFile.Name" xml:space="preserve">
-	<value>lbANAFile</value>
+  <data name="&gt;&gt;_lbAnaFile.Name" xml:space="preserve">
+	<value>_lbAnaFile</value>
   </data>
-  <data name="&gt;&gt;lbANAFile.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbAnaFile.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbANAFile.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbAnaFile.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbANAFile.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbAnaFile.ZOrder" xml:space="preserve">
 	<value>12</value>
   </data>
-  <data name="lbAmbMkr.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbAmbMkr.Location" type="System.Drawing.Point, System.Drawing">
 	<value>140, 54</value>
   </data>
-  <data name="lbAmbMkr.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbAmbMkr.Size" type="System.Drawing.Size, System.Drawing">
 	<value>104, 24</value>
   </data>
-  <data name="lbAmbMkr.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbAmbMkr.TabIndex" type="System.Int32, mscorlib">
 	<value>6</value>
   </data>
-  <data name="lbAmbMkr.Text" xml:space="preserve">
+  <data name="_lbAmbMkr.Text" xml:space="preserve">
 	<value>Ambiguity Marker:</value>
   </data>
-  <data name="&gt;&gt;lbAmbMkr.Name" xml:space="preserve">
-	<value>lbAmbMkr</value>
+  <data name="&gt;&gt;_lbAmbMkr.Name" xml:space="preserve">
+	<value>_lbAmbMkr</value>
   </data>
-  <data name="&gt;&gt;lbAmbMkr.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbAmbMkr.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbAmbMkr.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbAmbMkr.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbAmbMkr.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbAmbMkr.ZOrder" xml:space="preserve">
 	<value>11</value>
   </data>
-  <data name="lbOpenDel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbOpenDel.Location" type="System.Drawing.Point, System.Drawing">
 	<value>7, 79</value>
   </data>
-  <data name="lbOpenDel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbOpenDel.Size" type="System.Drawing.Size, System.Drawing">
 	<value>104, 23</value>
   </data>
-  <data name="lbOpenDel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbOpenDel.TabIndex" type="System.Int32, mscorlib">
 	<value>8</value>
   </data>
-  <data name="lbOpenDel.Text" xml:space="preserve">
+  <data name="_lbOpenDel.Text" xml:space="preserve">
 	<value>Left Root Delimiter:</value>
   </data>
-  <data name="&gt;&gt;lbOpenDel.Name" xml:space="preserve">
-	<value>lbOpenDel</value>
+  <data name="&gt;&gt;_lbOpenDel.Name" xml:space="preserve">
+	<value>_lbOpenDel</value>
   </data>
-  <data name="&gt;&gt;lbOpenDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbOpenDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbOpenDel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbOpenDel.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbOpenDel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbOpenDel.ZOrder" xml:space="preserve">
 	<value>10</value>
   </data>
-  <data name="tbCloseDel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_tbCloseDel.Location" type="System.Drawing.Point, System.Drawing">
 	<value>250, 79</value>
   </data>
-  <data name="tbCloseDel.MaxLength" type="System.Int32, mscorlib">
+  <data name="_tbCloseDel.MaxLength" type="System.Int32, mscorlib">
 	<value>1</value>
   </data>
-  <data name="tbCloseDel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tbCloseDel.Size" type="System.Drawing.Size, System.Drawing">
 	<value>24, 20</value>
   </data>
-  <data name="tbCloseDel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_tbCloseDel.TabIndex" type="System.Int32, mscorlib">
 	<value>9</value>
   </data>
-  <data name="tbCloseDel.Text" xml:space="preserve">
+  <data name="_tbCloseDel.Text" xml:space="preserve">
 	<value>&gt;</value>
   </data>
-  <data name="tbCloseDel.ToolTip" xml:space="preserve">
+  <data name="_tbCloseDel.ToolTip" xml:space="preserve">
 	<value>Choose a Close Delimiter. Default is &gt;.</value>
   </data>
-  <metadata name="tipTbCloseDel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipTbCloseDel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>243, 17</value>
   </metadata>
-  <data name="tbCloseDel.ToolTip1" xml:space="preserve">
+  <data name="_tbCloseDel.ToolTip1" xml:space="preserve">
 	<value>Choose a Close Delimiter. Default is &gt;.</value>
   </data>
-  <data name="&gt;&gt;tbCloseDel.Name" xml:space="preserve">
-	<value>tbCloseDel</value>
+  <data name="&gt;&gt;_tbCloseDel.Name" xml:space="preserve">
+	<value>_tbCloseDel</value>
   </data>
-  <data name="&gt;&gt;tbCloseDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tbCloseDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbCloseDel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_tbCloseDel.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;tbCloseDel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_tbCloseDel.ZOrder" xml:space="preserve">
 	<value>5</value>
   </data>
-  <data name="tbAffixSep.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_tbAffixSep.Location" type="System.Drawing.Point, System.Drawing">
 	<value>106, 54</value>
   </data>
-  <data name="tbAffixSep.MaxLength" type="System.Int32, mscorlib">
+  <data name="_tbAffixSep.MaxLength" type="System.Int32, mscorlib">
 	<value>1</value>
   </data>
-  <data name="tbAffixSep.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_tbAffixSep.Size" type="System.Drawing.Size, System.Drawing">
 	<value>24, 20</value>
   </data>
-  <data name="tbAffixSep.TabIndex" type="System.Int32, mscorlib">
+  <data name="_tbAffixSep.TabIndex" type="System.Int32, mscorlib">
 	<value>13</value>
   </data>
-  <data name="tbAffixSep.Text" xml:space="preserve">
+  <data name="_tbAffixSep.Text" xml:space="preserve">
 	<value>-</value>
   </data>
-  <data name="tbAffixSep.ToolTip" xml:space="preserve">
+  <data name="_tbAffixSep.ToolTip" xml:space="preserve">
 	<value>Choose an Affix Seperator. Default is -.</value>
   </data>
-  <metadata name="tipTbAffixSep.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipTbAffixSep.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>126, 17</value>
   </metadata>
-  <data name="tbAffixSep.ToolTip1" xml:space="preserve">
+  <data name="_tbAffixSep.ToolTip1" xml:space="preserve">
 	<value>Choose an Affix Seperator. Default is -.</value>
   </data>
-  <data name="&gt;&gt;tbAffixSep.Name" xml:space="preserve">
-	<value>tbAffixSep</value>
+  <data name="&gt;&gt;_tbAffixSep.Name" xml:space="preserve">
+	<value>_tbAffixSep</value>
   </data>
-  <data name="&gt;&gt;tbAffixSep.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tbAffixSep.Type" xml:space="preserve">
 	<value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tbAffixSep.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_tbAffixSep.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;tbAffixSep.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_tbAffixSep.ZOrder" xml:space="preserve">
 	<value>4</value>
   </data>
-  <data name="btnSelect.Enabled" type="System.Boolean, mscorlib">
+  <data name="_btnSelect.Enabled" type="System.Boolean, mscorlib">
 	<value>False</value>
   </data>
-  <data name="btnSelect.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_btnSelect.Location" type="System.Drawing.Point, System.Drawing">
 	<value>186, 125</value>
   </data>
-  <data name="btnSelect.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_btnSelect.Size" type="System.Drawing.Size, System.Drawing">
 	<value>88, 24</value>
   </data>
-  <data name="btnSelect.TabIndex" type="System.Int32, mscorlib">
+  <data name="_btnSelect.TabIndex" type="System.Int32, mscorlib">
 	<value>17</value>
   </data>
-  <data name="btnSelect.Text" xml:space="preserve">
+  <data name="_btnSelect.Text" xml:space="preserve">
 	<value>DeSelect All</value>
   </data>
-  <data name="btnSelect.ToolTip" xml:space="preserve">
+  <data name="_btnSelect.ToolTip" xml:space="preserve">
 	<value>Select or Unselect all categories to be search for.</value>
   </data>
-  <metadata name="tipBtnSelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipBtnSelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>599, 17</value>
   </metadata>
-  <data name="btnSelect.ToolTip1" xml:space="preserve">
+  <data name="_btnSelect.ToolTip1" xml:space="preserve">
 	<value>Select or Unselect all categories to be search for.</value>
   </data>
-  <data name="&gt;&gt;btnSelect.Name" xml:space="preserve">
-	<value>btnSelect</value>
+  <data name="&gt;&gt;_btnSelect.Name" xml:space="preserve">
+	<value>_btnSelect</value>
   </data>
-  <data name="&gt;&gt;btnSelect.Type" xml:space="preserve">
+  <data name="&gt;&gt;_btnSelect.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnSelect.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_btnSelect.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;btnSelect.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_btnSelect.ZOrder" xml:space="preserve">
 	<value>0</value>
   </data>
-  <data name="lbCloseDel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbCloseDel.Location" type="System.Drawing.Point, System.Drawing">
 	<value>140, 79</value>
   </data>
-  <data name="lbCloseDel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbCloseDel.Size" type="System.Drawing.Size, System.Drawing">
 	<value>112, 23</value>
   </data>
-  <data name="lbCloseDel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbCloseDel.TabIndex" type="System.Int32, mscorlib">
 	<value>10</value>
   </data>
-  <data name="lbCloseDel.Text" xml:space="preserve">
+  <data name="_lbCloseDel.Text" xml:space="preserve">
 	<value>Right Root Delimiter:</value>
   </data>
-  <data name="&gt;&gt;lbCloseDel.Name" xml:space="preserve">
-	<value>lbCloseDel</value>
+  <data name="&gt;&gt;_lbCloseDel.Name" xml:space="preserve">
+	<value>_lbCloseDel</value>
   </data>
-  <data name="&gt;&gt;lbCloseDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbCloseDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbCloseDel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbCloseDel.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbCloseDel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbCloseDel.ZOrder" xml:space="preserve">
 	<value>9</value>
   </data>
-  <data name="chBxCategories.Enabled" type="System.Boolean, mscorlib">
+  <data name="_chBxCategories.Enabled" type="System.Boolean, mscorlib">
 	<value>False</value>
   </data>
-  <data name="chBxCategories.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_chBxCategories.Location" type="System.Drawing.Point, System.Drawing">
 	<value>10, 125</value>
   </data>
-  <data name="chBxCategories.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_chBxCategories.Size" type="System.Drawing.Size, System.Drawing">
 	<value>167, 154</value>
   </data>
-  <data name="chBxCategories.TabIndex" type="System.Int32, mscorlib">
+  <data name="_chBxCategories.TabIndex" type="System.Int32, mscorlib">
 	<value>15</value>
   </data>
-  <metadata name="tipChBxCategories.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipChBxCategories.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>362, 17</value>
   </metadata>
-  <data name="chBxCategories.ToolTip" xml:space="preserve">
+  <data name="_chBxCategories.ToolTip" xml:space="preserve">
 	<value>Choose categories to analyze.</value>
   </data>
-  <data name="chBxCategories.ToolTip1" xml:space="preserve">
+  <data name="_chBxCategories.ToolTip1" xml:space="preserve">
 	<value>Choose categories to analyze.</value>
   </data>
-  <data name="&gt;&gt;chBxCategories.Name" xml:space="preserve">
-	<value>chBxCategories</value>
+  <data name="&gt;&gt;_chBxCategories.Name" xml:space="preserve">
+	<value>_chBxCategories</value>
   </data>
-  <data name="&gt;&gt;chBxCategories.Type" xml:space="preserve">
+  <data name="&gt;&gt;_chBxCategories.Type" xml:space="preserve">
 	<value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;chBxCategories.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_chBxCategories.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;chBxCategories.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_chBxCategories.ZOrder" xml:space="preserve">
 	<value>2</value>
   </data>
-  <data name="lbAffixSep.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbAffixSep.Location" type="System.Drawing.Point, System.Drawing">
 	<value>7, 54</value>
   </data>
-  <data name="lbAffixSep.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbAffixSep.Size" type="System.Drawing.Size, System.Drawing">
 	<value>104, 23</value>
   </data>
-  <data name="lbAffixSep.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbAffixSep.TabIndex" type="System.Int32, mscorlib">
 	<value>14</value>
   </data>
-  <data name="lbAffixSep.Text" xml:space="preserve">
+  <data name="_lbAffixSep.Text" xml:space="preserve">
 	<value>Affix Separator:</value>
   </data>
-  <data name="&gt;&gt;lbAffixSep.Name" xml:space="preserve">
-	<value>lbAffixSep</value>
+  <data name="&gt;&gt;_lbAffixSep.Name" xml:space="preserve">
+	<value>_lbAffixSep</value>
   </data>
-  <data name="&gt;&gt;lbAffixSep.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbAffixSep.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbAffixSep.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbAffixSep.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbAffixSep.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbAffixSep.ZOrder" xml:space="preserve">
 	<value>3</value>
   </data>
-  <data name="lbCatAnal.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_lbCatAnal.Location" type="System.Drawing.Point, System.Drawing">
 	<value>10, 109</value>
   </data>
-  <data name="lbCatAnal.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_lbCatAnal.Size" type="System.Drawing.Size, System.Drawing">
 	<value>136, 16</value>
   </data>
-  <data name="lbCatAnal.TabIndex" type="System.Int32, mscorlib">
+  <data name="_lbCatAnal.TabIndex" type="System.Int32, mscorlib">
 	<value>16</value>
   </data>
-  <data name="lbCatAnal.Text" xml:space="preserve">
+  <data name="_lbCatAnal.Text" xml:space="preserve">
 	<value>Categories to Analyze</value>
   </data>
-  <data name="&gt;&gt;lbCatAnal.Name" xml:space="preserve">
-	<value>lbCatAnal</value>
+  <data name="&gt;&gt;_lbCatAnal.Name" xml:space="preserve">
+	<value>_lbCatAnal</value>
   </data>
-  <data name="&gt;&gt;lbCatAnal.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lbCatAnal.Type" xml:space="preserve">
 	<value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbCatAnal.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_lbCatAnal.Parent" xml:space="preserve">
 	<value>$this</value>
   </data>
-  <data name="&gt;&gt;lbCatAnal.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_lbCatAnal.ZOrder" xml:space="preserve">
 	<value>1</value>
   </data>
-  <metadata name="tipBtnOK.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_tipBtnOk.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
 	<value>504, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -647,76 +647,76 @@
   <data name="$this.Text" xml:space="preserve">
 	<value>ANA Position Analysis</value>
   </data>
-  <data name="&gt;&gt;tipBtnAnal.Name" xml:space="preserve">
-	<value>tipBtnAnal</value>
+  <data name="&gt;&gt;_tipBtnAnal.Name" xml:space="preserve">
+	<value>_tipBtnAnal</value>
   </data>
-  <data name="&gt;&gt;tipBtnAnal.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipBtnAnal.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipBtnClose.Name" xml:space="preserve">
-	<value>tipBtnClose</value>
+  <data name="&gt;&gt;_tipBtnClose.Name" xml:space="preserve">
+	<value>_tipBtnClose</value>
   </data>
-  <data name="&gt;&gt;tipBtnClose.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipBtnClose.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipTbANAFile.Name" xml:space="preserve">
-	<value>tipTbANAFile</value>
+  <data name="&gt;&gt;_tipTbAnaFile.Name" xml:space="preserve">
+	<value>_tipTbAnaFile</value>
   </data>
-  <data name="&gt;&gt;tipTbANAFile.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipTbAnaFile.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipBtnBrowse.Name" xml:space="preserve">
-	<value>tipBtnBrowse</value>
+  <data name="&gt;&gt;_tipBtnBrowse.Name" xml:space="preserve">
+	<value>_tipBtnBrowse</value>
   </data>
-  <data name="&gt;&gt;tipBtnBrowse.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipBtnBrowse.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipTbAmbigMarker.Name" xml:space="preserve">
-	<value>tipTbAmbigMarker</value>
+  <data name="&gt;&gt;_tipTbAmbigMarker.Name" xml:space="preserve">
+	<value>_tipTbAmbigMarker</value>
   </data>
-  <data name="&gt;&gt;tipTbAmbigMarker.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipTbAmbigMarker.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipTbOpenDel.Name" xml:space="preserve">
-	<value>tipTbOpenDel</value>
+  <data name="&gt;&gt;_tipTbOpenDel.Name" xml:space="preserve">
+	<value>_tipTbOpenDel</value>
   </data>
-  <data name="&gt;&gt;tipTbOpenDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipTbOpenDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipTbCloseDel.Name" xml:space="preserve">
-	<value>tipTbCloseDel</value>
+  <data name="&gt;&gt;_tipTbCloseDel.Name" xml:space="preserve">
+	<value>_tipTbCloseDel</value>
   </data>
-  <data name="&gt;&gt;tipTbCloseDel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipTbCloseDel.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipTbAffixSep.Name" xml:space="preserve">
-	<value>tipTbAffixSep</value>
+  <data name="&gt;&gt;_tipTbAffixSep.Name" xml:space="preserve">
+	<value>_tipTbAffixSep</value>
   </data>
-  <data name="&gt;&gt;tipTbAffixSep.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipTbAffixSep.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipChBxCategories.Name" xml:space="preserve">
-	<value>tipChBxCategories</value>
+  <data name="&gt;&gt;_tipChBxCategories.Name" xml:space="preserve">
+	<value>_tipChBxCategories</value>
   </data>
-  <data name="&gt;&gt;tipChBxCategories.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipChBxCategories.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipBtnSelect.Name" xml:space="preserve">
-	<value>tipBtnSelect</value>
+  <data name="&gt;&gt;_tipBtnSelect.Name" xml:space="preserve">
+	<value>_tipBtnSelect</value>
   </data>
-  <data name="&gt;&gt;tipBtnSelect.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipBtnSelect.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;HelpMeOne.Name" xml:space="preserve">
-	<value>HelpMeOne</value>
+  <data name="&gt;&gt;_helpMeOne.Name" xml:space="preserve">
+	<value>_helpMeOne</value>
   </data>
-  <data name="&gt;&gt;HelpMeOne.Type" xml:space="preserve">
+  <data name="&gt;&gt;_helpMeOne.Type" xml:space="preserve">
 	<value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tipBtnOK.Name" xml:space="preserve">
-	<value>tipBtnOK</value>
+  <data name="&gt;&gt;_tipBtnOk.Name" xml:space="preserve">
+	<value>_tipBtnOk</value>
   </data>
-  <data name="&gt;&gt;tipBtnOK.Type" xml:space="preserve">
+  <data name="&gt;&gt;_tipBtnOk.Type" xml:space="preserve">
 	<value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

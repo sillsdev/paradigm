@@ -232,8 +232,8 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 	internal class FwWordform
 	{
-		private int m_id;
-		private readonly List<FwAnalysis> m_analyses = new List<FwAnalysis>();
+		private int _id;
+		private readonly List<FwAnalysis> _analyses = new List<FwAnalysis>();
 
 		/// <summary>
 		/// Load one wordform from DB 'reader'.
@@ -245,15 +245,15 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		internal bool LoadFromDB(SqlDataReader reader)
 		{
 			var moreRows = true; // Start on the optimistic side.
-			if (m_id == 0)
+			if (_id == 0)
 			{
 				var id = reader.GetInt32(0);
-				m_id = id;
-				while (moreRows && (reader.GetInt32(0) == m_id))
+				_id = id;
+				while (moreRows && (reader.GetInt32(0) == _id))
 				{
 					var anal = new FwAnalysis();
 					moreRows = anal.LoadFromDB(reader);
-					m_analyses.Add(anal);
+					_analyses.Add(anal);
 				}
 			}
 			return moreRows;
@@ -264,15 +264,15 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory,
 			Dictionary<string, FwMsa> prefixes, Dictionary<string, List<FwMsa>> stems, Dictionary<string, FwMsa> suffixes)
 		{
-			foreach (var anal in m_analyses)
+			foreach (var anal in _analyses)
 				anal.Convert(cmd, gData, wordRecordFactory, morphemeFactory, stemFactory, affixFactory, prefixes, stems, suffixes);
 		}
 	}
 
 	internal class FwAnalysis
 	{
-		private int m_id;
-		private readonly SortedDictionary<int, FwMorphBundle> m_morphBundles = new SortedDictionary<int, FwMorphBundle>();
+		private int _id;
+		private readonly SortedDictionary<int, FwMorphBundle> _morphBundles = new SortedDictionary<int, FwMorphBundle>();
 
 		/// <summary>
 		/// Load one wordform from DB 'reader'.
@@ -285,18 +285,18 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		{
 			var moreRows = true; // Start on the optimistic side.
 
-			if (m_id == 0)
+			if (_id == 0)
 			{
 				var analId = reader.GetInt32(1);
-				m_id = analId;
-				while (moreRows && (reader.GetInt32(1) == m_id))
+				_id = analId;
+				while (moreRows && (reader.GetInt32(1) == _id))
 				{
 					var ord = reader.GetInt32(2);
 					var msaId = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
 					var msaClass = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
 					var mb = new FwMorphBundle(new FwMsa(msaId, msaClass));
 					moreRows = reader.Read();
-					m_morphBundles.Add(ord, mb);
+					_morphBundles.Add(ord, mb);
 				}
 			}
 
@@ -307,8 +307,8 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 		{
 			get
 			{
-				return !m_morphBundles.Values.Any(mb => mb.MSA.Id == 0) &&
-					   ((m_morphBundles.Count != 1 || m_morphBundles[1].MSA.Class == 5001) && m_morphBundles.Count > 0);
+				return !_morphBundles.Values.Any(mb => mb.MSA.Id == 0) &&
+					   ((_morphBundles.Count != 1 || _morphBundles[1].MSA.Class == 5001) && _morphBundles.Count > 0);
 			}
 		}
 
@@ -323,7 +323,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			var wr = wordRecordFactory.Create();
 			// Deal with prefixes, if any.
 			var startStemOrd = 0;
-			foreach (var kvp in m_morphBundles)
+			foreach (var kvp in _morphBundles)
 			{
 				var mb = kvp.Value;
 				var msaKey = mb.GetMsaKey(cmd);
@@ -351,9 +351,9 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			// Work through the suffixes from the end of the word.
 			// We stop when we hit the stem or a derivational suffix.
 			var endStemOrd = 0;
-			for (var i = m_morphBundles.Count; i > 0; --i)
+			for (var i = _morphBundles.Count; i > 0; --i)
 			{
-				var mb = m_morphBundles[i];
+				var mb = _morphBundles[i];
 				var msaKey = mb.GetMsaKey(cmd);
 				if (mb.MSA.Class == 5001 || mb.MSA.Class == 5031 || mb.MSA.Class == 5032 || mb.MSA.Class == 5117) // What about 5117-MoUnclassifiedAffixMsa?
 				{
@@ -378,7 +378,7 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 			// Deal with stem.
 			var localStems = new List<FwMsa>();
 			var sStem = "";
-			foreach (var kvp in m_morphBundles)
+			foreach (var kvp in _morphBundles)
 			{
 				var mb = kvp.Value;
 				var currentOrd = kvp.Key;
@@ -405,26 +405,26 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 	internal class FwMorphBundle
 	{
-		private readonly FwMsa m_msa;
+		private readonly FwMsa _msa;
 
 		internal FwMorphBundle(FwMsa msa)
 		{
-			m_msa = msa;
+			_msa = msa;
 		}
 
 		internal FwMsa MSA
 		{
-			get { return m_msa; }
+			get { return _msa; }
 		}
 
 		internal string GetMsaKey(SqlCommand cmd)
 		{
-			var msaBase = "_" + m_msa.Id;
+			var msaBase = "_" + _msa.Id;
 			cmd.CommandText = "SELECT mff.Txt\n" +
 				"FROM CmObject msa\n" +
 				"JOIN LexEntry_LexemeForm j_entry_form ON msa.Owner$ = j_entry_form.Src\n" +
 				"JOIN MoForm_Form mff ON mff.Obj = j_entry_form.Dst\n" +
-				"WHERE msa.Id =" + m_msa.Id;
+				"WHERE msa.Id =" + _msa.Id;
 			var txt = (string)cmd.ExecuteScalar();
 			if (string.IsNullOrEmpty(txt))
 				txt = "???";
@@ -434,23 +434,23 @@ namespace SIL.WordWorks.GAFAWS.FW60Converter
 
 	internal class FwMsa
 	{
-		private readonly int m_id;
-		private readonly int m_msaClass;
+		private readonly int _id;
+		private readonly int _msaClass;
 
 		internal FwMsa(int id, int msaClass)
 		{
-			m_id = id;
-			m_msaClass = msaClass;
+			_id = id;
+			_msaClass = msaClass;
 		}
 
 		internal int Class
 		{
-			get { return m_msaClass; }
+			get { return _msaClass; }
 		}
 
 		internal int Id
 		{
-			get { return m_id; }
+			get { return _id; }
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	[XmlRoot("ANAConverterOptions", Namespace="", IsNullable=false)]
 	public class Parameters
 	{
-		private static XmlSerializer s_serializer = new XmlSerializer(typeof(Parameters));
+		private static XmlSerializer _serializer = new XmlSerializer(typeof(Parameters));
 
 		/// <summary>
 		/// Constructor.
@@ -54,7 +54,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			using (var writer = new StreamWriter(filename))
 			{
-				s_serializer.Serialize(writer, this);
+				_serializer.Serialize(writer, this);
 			}
 		}
 
@@ -69,7 +69,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			{
 				if (parameterReader.Length == 0)
 					throw new FileLoadException();
-				return (Parameters)s_serializer.Deserialize(parameterReader);
+				return (Parameters)_serializer.Deserialize(parameterReader);
 			}
 		}
 }

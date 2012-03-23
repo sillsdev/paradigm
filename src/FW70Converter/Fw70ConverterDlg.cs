@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Chorus.Utilities;
+using Palaso.Extensions;
+using Palaso.Xml;
 using SIL.WordWorks.GAFAWS.FW70Converter.Properties;
 
 namespace SIL.WordWorks.GAFAWS.FW70Converter
 {
 	public partial class Fw70ConverterDlg : Form
 	{
-		private static readonly Encoding _utf8 = Encoding.UTF8;
-		private static readonly byte _closeDoubleQuote = _utf8.GetBytes("\"")[0];
-		private static readonly byte _closeSingleQuote = _utf8.GetBytes("'")[0];
+		private static readonly Encoding Utf8 = Encoding.UTF8;
+		private static readonly byte CloseDoubleQuote = Utf8.GetBytes("\"")[0];
+		private static readonly byte CloseSingleQuote = Utf8.GetBytes("'")[0];
 		private FwPos _selectedPos;
 		private readonly List<XElement> _wordforms = new List<XElement>();
 		private readonly Dictionary<string, XElement> _analyses = new Dictionary<string, XElement>();
@@ -82,7 +83,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			humanApprovedEvalIds = _humanApprovedEvalIds;
 		}
 
-		private void BrowseBtn_Click(object sender, EventArgs e)
+		private void BrowseBtnClick(object sender, EventArgs e)
 		{
 			Cursor = Cursors.WaitCursor;
 			try
@@ -110,23 +111,21 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 					{
 						switch (GetClass(element))
 						{
-							default:
 								// Skip it.
-								break;
 							case "LangProject":
-								langProj = XElement.Parse(_utf8.GetString(element));
+								langProj = XElement.Parse(Utf8.GetString(element));
 								break;
 							case "CmAgent":
-								var agentElement = XElement.Parse(_utf8.GetString(element));
+								var agentElement = XElement.Parse(Utf8.GetString(element));
 								var humanElement = agentElement.Element("Human");
 								if (humanElement != null && humanElement.Attribute("val").Value.ToLowerInvariant() == "true")
 									_humanApprovedEvalIds.Add(agentElement.Element("Approves").Element("objsur").Attribute("guid").Value.ToLowerInvariant());
 								break;
 							case "CmPossibilityList":
-								lists.Add(XElement.Parse(_utf8.GetString(element)));
+								lists.Add(XElement.Parse(Utf8.GetString(element)));
 								break;
 							case "WfiWordform":
-								_wordforms.Add(XElement.Parse(_utf8.GetString(element)));
+								_wordforms.Add(XElement.Parse(Utf8.GetString(element)));
 								break;
 							case "PartOfSpeech":
 								AddItem(element, cats);
@@ -161,7 +160,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 							   where list.Attribute("guid").Value.ToLowerInvariant() ==
 									 langProj.Element("PartsOfSpeech").Element("objsur").Attribute("guid").Value.ToLowerInvariant()
 							   select list).First();
-				langProj = null;
 				lists.Clear();
 				var poses = (from objsur in catList.Element("Possibilities").Elements("objsur")
 							 select cats[objsur.Attribute("guid").Value.ToLowerInvariant()]).Select(posElement => FwPos.Create(posElement, cats)).ToList();
@@ -194,14 +192,14 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 		private static void AddItem(byte[] item, IDictionary<string, XElement> holder)
 		{
-			var itemElement = XElement.Parse(_utf8.GetString(item));
+			var itemElement = XElement.Parse(Utf8.GetString(item));
 			holder.Add(itemElement.Attribute("guid").Value.ToLowerInvariant(), itemElement);
 		}
 
 		private static string GetClass(byte[] rtElement)
 		{
-			return GetAttribute(_utf8.GetBytes("class=\""), _closeDoubleQuote, rtElement)
-					   ?? GetAttribute(_utf8.GetBytes("class='"), _closeSingleQuote, rtElement);
+			return GetAttribute(Utf8.GetBytes("class=\""), CloseDoubleQuote, rtElement)
+					   ?? GetAttribute(Utf8.GetBytes("class='"), CloseSingleQuote, rtElement);
 		}
 
 		private static string GetAttribute(byte[] name, byte closeQuote, byte[] input)
@@ -214,7 +212,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			var end = Array.IndexOf(input, closeQuote, start);
 			return (end == -1)
 					? null
-					: _utf8.GetString(input.SubArray(start, end - start));
+					: Utf8.GetString(input.SubArray(start, end - start));
 		}
 	}
 }

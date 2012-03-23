@@ -42,7 +42,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			InitializeComponent();
 		}
 
-		private void m_btnProcess_Click(object sender, EventArgs e)
+		private void BtnProcessClick(object sender, EventArgs e)
 		{
 			if (_selectedConverter == null)
 				return;
@@ -95,7 +95,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 			catch (Exception err)
 			{
-				Console.WriteLine("Crash. :-(");
+				Console.WriteLine(AppResources.kCrash);
 				MessageBox.Show(AppResources.kProblemData, PublicResources.kInformation);
 			}
 			finally
@@ -106,19 +106,19 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 		}
 
-		private void m_btnClose_Click(object sender, EventArgs e)
+		private void BtnCloseClick(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void m_lvConverters_SelectedIndexChanged(object sender, EventArgs e)
+		private void ConvertersSelectedIndexChanged(object sender, EventArgs e)
 		{
 			SetSelectedConverter();
 			if (_selectedConverter != null)
 				m_tbDescription.Text = _selectedConverter.Description;
 		}
 
-		private void m_lvConverters_DoubleClick(object sender, EventArgs e)
+		private void ConvertersDoubleClick(object sender, EventArgs e)
 		{
 			SetSelectedConverter();
 			m_btnProcess.PerformClick();
@@ -132,7 +132,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			_selectedConverter = (IGafawsConverter)m_lvConverters.SelectedItems[0].Tag;
 		}
 
-		private void AffixPositionAnalyzer_Load(object sender, EventArgs e)
+		private void AffixPositionAnalyzerLoad(object sender, EventArgs e)
 		{
 			foreach (var lvi in _converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) { Tag = gafawsConverter }))
 			{

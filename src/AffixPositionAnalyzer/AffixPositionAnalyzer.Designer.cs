@@ -56,7 +56,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.m_btnProcess.TabIndex = 0;
 			this.m_btnProcess.Text = "Analyze...";
 			this.m_btnProcess.UseVisualStyleBackColor = true;
-			this.m_btnProcess.Click += new System.EventHandler(this.m_btnProcess_Click);
+			this.m_btnProcess.Click += new System.EventHandler(this.BtnProcessClick);
 			//
 			// m_btnClose
 			//
@@ -67,7 +67,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.m_btnClose.TabIndex = 1;
 			this.m_btnClose.Text = "Close";
 			this.m_btnClose.UseVisualStyleBackColor = true;
-			this.m_btnClose.Click += new System.EventHandler(this.m_btnClose_Click);
+			this.m_btnClose.Click += new System.EventHandler(this.BtnCloseClick);
 			//
 			// m_lvConverters
 			//
@@ -83,8 +83,8 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.m_lvConverters.TabIndex = 2;
 			this.m_lvConverters.UseCompatibleStateImageBehavior = false;
 			this.m_lvConverters.View = System.Windows.Forms.View.Details;
-			this.m_lvConverters.SelectedIndexChanged += new System.EventHandler(this.m_lvConverters_SelectedIndexChanged);
-			this.m_lvConverters.DoubleClick += new System.EventHandler(this.m_lvConverters_DoubleClick);
+			this.m_lvConverters.SelectedIndexChanged += new System.EventHandler(this.ConvertersSelectedIndexChanged);
+			this.m_lvConverters.DoubleClick += new System.EventHandler(this.ConvertersDoubleClick);
 			//
 			// m_chConverter
 			//
@@ -125,7 +125,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AffixPositionAnalyzer";
 			this.Text = "Affix Position Analyzer";
-			this.Load += new System.EventHandler(this.AffixPositionAnalyzer_Load);
+			this.Load += new System.EventHandler(this.AffixPositionAnalyzerLoad);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

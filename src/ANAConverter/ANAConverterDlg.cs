@@ -10,6 +10,7 @@
 // Last reviewed:
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,43 +25,43 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	{
 		#region Data members
 
-		private Button btnAnal;
-		private ToolTip tipBtnAnal;
-		private Button btnClose;
-		private ToolTip tipBtnClose;
-		private Button btnBrowse;
-		private ToolTip tipBtnBrowse;
-		private TextBox tbANAFile;
-		private ToolTip tipTbANAFile;
-		private CheckedListBox chBxCategories;
-		private ToolTip tipChBxCategories;
-		private TextBox tbAmbigMarker;
-		private ToolTip tipTbAmbigMarker;
-		private Label lbAmbMkr;
+		private Button _btnAnal;
+		private ToolTip _tipBtnAnal;
+		private Button _btnClose;
+		private ToolTip _tipBtnClose;
+		private Button _btnBrowse;
+		private ToolTip _tipBtnBrowse;
+		private TextBox _tbAnaFile;
+		private ToolTip _tipTbAnaFile;
+		private CheckedListBox _chBxCategories;
+		private ToolTip _tipChBxCategories;
+		private TextBox _tbAmbigMarker;
+		private ToolTip _tipTbAmbigMarker;
+		private Label _lbAmbMkr;
 		// No tool tip for labels
-		private Label lbOpenDel;
+		private Label _lbOpenDel;
 		// No tool tip for labels
-		private TextBox tbOpenDel;
-		private ToolTip tipTbOpenDel;
-		private Label lbCloseDel;
+		private TextBox _tbOpenDel;
+		private ToolTip _tipTbOpenDel;
+		private Label _lbCloseDel;
 		// No tool tip for labels
-		private TextBox tbCloseDel;
-		private ToolTip tipTbCloseDel;
-		private Label lbAffixSep;
+		private TextBox _tbCloseDel;
+		private ToolTip _tipTbCloseDel;
+		private Label _lbAffixSep;
 		// No tool tip for labels
-		private TextBox tbAffixSep;
-		private ToolTip tipTbAffixSep;
-		private Button btnSelect;
-		private ToolTip tipBtnSelect;
-		private Label lbCatAnal;
+		private TextBox _tbAffixSep;
+		private ToolTip _tipTbAffixSep;
+		private Button _btnSelect;
+		private ToolTip _tipBtnSelect;
+		private Label _lbCatAnal;
 		// No tool tip for labels
-		private Label lbANAFile;
+		private Label _lbAnaFile;
 		// No tool tip for labels
-		private HelpProvider HelpMeOne;
+		private HelpProvider _helpMeOne;
 		// No tool tip for labels
-		private ToolTip tipBtnOK;
+		private ToolTip _tipBtnOk;
 
-		private System.ComponentModel.IContainer components;
+		private IContainer components;
 
 		#endregion Data members
 
@@ -68,22 +69,22 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 
 		private string AmbiguityMarker
 		{
-			get { return tbAmbigMarker.Text; }
+			get { return _tbAmbigMarker.Text; }
 		}
 
 		private string AffixSeparator
 		{
-			get { return tbAffixSep.Text; }
+			get { return _tbAffixSep.Text; }
 		}
 
 		private string OpenDelimiter
 		{
-			get { return tbOpenDel.Text; }
+			get { return _tbOpenDel.Text; }
 		}
 
 		private string CloseDelimiter
 		{
-			get { return tbCloseDel.Text; }
+			get { return _tbCloseDel.Text; }
 		}
 
 		#endregion Properties
@@ -132,179 +133,179 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaConverterDlg));
-			this.btnAnal = new System.Windows.Forms.Button();
-			this.tipBtnAnal = new System.Windows.Forms.ToolTip(this.components);
-			this.btnClose = new System.Windows.Forms.Button();
-			this.tbANAFile = new System.Windows.Forms.TextBox();
-			this.tipBtnClose = new System.Windows.Forms.ToolTip(this.components);
-			this.btnBrowse = new System.Windows.Forms.Button();
-			this.tipTbANAFile = new System.Windows.Forms.ToolTip(this.components);
-			this.tipBtnBrowse = new System.Windows.Forms.ToolTip(this.components);
-			this.tbAmbigMarker = new System.Windows.Forms.TextBox();
-			this.tbOpenDel = new System.Windows.Forms.TextBox();
-			this.lbANAFile = new System.Windows.Forms.Label();
-			this.tipTbAmbigMarker = new System.Windows.Forms.ToolTip(this.components);
-			this.lbAmbMkr = new System.Windows.Forms.Label();
-			this.lbOpenDel = new System.Windows.Forms.Label();
-			this.tipTbOpenDel = new System.Windows.Forms.ToolTip(this.components);
-			this.tbCloseDel = new System.Windows.Forms.TextBox();
-			this.tbAffixSep = new System.Windows.Forms.TextBox();
-			this.btnSelect = new System.Windows.Forms.Button();
-			this.lbCloseDel = new System.Windows.Forms.Label();
-			this.tipTbCloseDel = new System.Windows.Forms.ToolTip(this.components);
-			this.chBxCategories = new System.Windows.Forms.CheckedListBox();
-			this.lbAffixSep = new System.Windows.Forms.Label();
-			this.tipTbAffixSep = new System.Windows.Forms.ToolTip(this.components);
-			this.tipChBxCategories = new System.Windows.Forms.ToolTip(this.components);
-			this.lbCatAnal = new System.Windows.Forms.Label();
-			this.tipBtnSelect = new System.Windows.Forms.ToolTip(this.components);
-			this.HelpMeOne = new System.Windows.Forms.HelpProvider();
-			this.tipBtnOK = new System.Windows.Forms.ToolTip(this.components);
+			this._btnAnal = new System.Windows.Forms.Button();
+			this._tipBtnAnal = new System.Windows.Forms.ToolTip(this.components);
+			this._btnClose = new System.Windows.Forms.Button();
+			this._tbAnaFile = new System.Windows.Forms.TextBox();
+			this._tipBtnClose = new System.Windows.Forms.ToolTip(this.components);
+			this._btnBrowse = new System.Windows.Forms.Button();
+			this._tipTbAnaFile = new System.Windows.Forms.ToolTip(this.components);
+			this._tipBtnBrowse = new System.Windows.Forms.ToolTip(this.components);
+			this._tbAmbigMarker = new System.Windows.Forms.TextBox();
+			this._tbOpenDel = new System.Windows.Forms.TextBox();
+			this._lbAnaFile = new System.Windows.Forms.Label();
+			this._tipTbAmbigMarker = new System.Windows.Forms.ToolTip(this.components);
+			this._lbAmbMkr = new System.Windows.Forms.Label();
+			this._lbOpenDel = new System.Windows.Forms.Label();
+			this._tipTbOpenDel = new System.Windows.Forms.ToolTip(this.components);
+			this._tbCloseDel = new System.Windows.Forms.TextBox();
+			this._tbAffixSep = new System.Windows.Forms.TextBox();
+			this._btnSelect = new System.Windows.Forms.Button();
+			this._lbCloseDel = new System.Windows.Forms.Label();
+			this._tipTbCloseDel = new System.Windows.Forms.ToolTip(this.components);
+			this._chBxCategories = new System.Windows.Forms.CheckedListBox();
+			this._lbAffixSep = new System.Windows.Forms.Label();
+			this._tipTbAffixSep = new System.Windows.Forms.ToolTip(this.components);
+			this._tipChBxCategories = new System.Windows.Forms.ToolTip(this.components);
+			this._lbCatAnal = new System.Windows.Forms.Label();
+			this._tipBtnSelect = new System.Windows.Forms.ToolTip(this.components);
+			this._helpMeOne = new System.Windows.Forms.HelpProvider();
+			this._tipBtnOk = new System.Windows.Forms.ToolTip(this.components);
 			this.SuspendLayout();
 			//
 			// btnAnal
 			//
-			this.btnAnal.DialogResult = System.Windows.Forms.DialogResult.OK;
-			resources.ApplyResources(this.btnAnal, "btnAnal");
-			this.btnAnal.Name = "btnAnal";
-			this.tipBtnAnal.SetToolTip(this.btnAnal, resources.GetString("btnAnal.ToolTip"));
-			this.btnAnal.Click += new System.EventHandler(this.btnAnal_Click);
+			this._btnAnal.DialogResult = System.Windows.Forms.DialogResult.OK;
+			resources.ApplyResources(this._btnAnal, "_btnAnal");
+			this._btnAnal.Name = "_btnAnal";
+			this._tipBtnAnal.SetToolTip(this._btnAnal, resources.GetString("btnAnal.ToolTip"));
+			this._btnAnal.Click += new System.EventHandler(this.BtnAnalClick);
 			//
 			// btnClose
 			//
-			this.btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-			this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.HelpMeOne.SetHelpString(this.btnClose, resources.GetString("btnClose.HelpString"));
-			resources.ApplyResources(this.btnClose, "btnClose");
-			this.btnClose.Name = "btnClose";
-			this.HelpMeOne.SetShowHelp(this.btnClose, ((bool)(resources.GetObject("btnClose.ShowHelp"))));
-			this.tipBtnAnal.SetToolTip(this.btnClose, resources.GetString("btnClose.ToolTip"));
-			this.tipBtnClose.SetToolTip(this.btnClose, resources.GetString("btnClose.ToolTip1"));
-			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			this._btnClose.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+			this._btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this._helpMeOne.SetHelpString(this._btnClose, resources.GetString("btnClose.HelpString"));
+			resources.ApplyResources(this._btnClose, "_btnClose");
+			this._btnClose.Name = "_btnClose";
+			this._helpMeOne.SetShowHelp(this._btnClose, ((bool)(resources.GetObject("btnClose.ShowHelp"))));
+			this._tipBtnAnal.SetToolTip(this._btnClose, resources.GetString("btnClose.ToolTip"));
+			this._tipBtnClose.SetToolTip(this._btnClose, resources.GetString("btnClose.ToolTip1"));
+			this._btnClose.Click += new System.EventHandler(this.BtnCloseClick);
 			//
 			// tbANAFile
 			//
-			this.tbANAFile.AcceptsReturn = true;
-			resources.ApplyResources(this.tbANAFile, "tbANAFile");
-			this.HelpMeOne.SetHelpString(this.tbANAFile, resources.GetString("tbANAFile.HelpString"));
-			this.tbANAFile.Name = "tbANAFile";
-			this.HelpMeOne.SetShowHelp(this.tbANAFile, ((bool)(resources.GetObject("tbANAFile.ShowHelp"))));
-			this.tipBtnAnal.SetToolTip(this.tbANAFile, resources.GetString("tbANAFile.ToolTip"));
-			this.tipTbANAFile.SetToolTip(this.tbANAFile, resources.GetString("tbANAFile.ToolTip1"));
+			this._tbAnaFile.AcceptsReturn = true;
+			resources.ApplyResources(this._tbAnaFile, "_tbAnaFile");
+			this._helpMeOne.SetHelpString(this._tbAnaFile, resources.GetString("tbANAFile.HelpString"));
+			this._tbAnaFile.Name = "_tbAnaFile";
+			this._helpMeOne.SetShowHelp(this._tbAnaFile, ((bool)(resources.GetObject("tbANAFile.ShowHelp"))));
+			this._tipBtnAnal.SetToolTip(this._tbAnaFile, resources.GetString("tbANAFile.ToolTip"));
+			this._tipTbAnaFile.SetToolTip(this._tbAnaFile, resources.GetString("tbANAFile.ToolTip1"));
 			//
 			// btnBrowse
 			//
-			this.HelpMeOne.SetHelpString(this.btnBrowse, resources.GetString("btnBrowse.HelpString"));
-			resources.ApplyResources(this.btnBrowse, "btnBrowse");
-			this.btnBrowse.Name = "btnBrowse";
-			this.HelpMeOne.SetShowHelp(this.btnBrowse, ((bool)(resources.GetObject("btnBrowse.ShowHelp"))));
-			this.tipBtnClose.SetToolTip(this.btnBrowse, resources.GetString("btnBrowse.ToolTip"));
-			this.tipBtnBrowse.SetToolTip(this.btnBrowse, resources.GetString("btnBrowse.ToolTip1"));
-			this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+			this._helpMeOne.SetHelpString(this._btnBrowse, resources.GetString("btnBrowse.HelpString"));
+			resources.ApplyResources(this._btnBrowse, "_btnBrowse");
+			this._btnBrowse.Name = "_btnBrowse";
+			this._helpMeOne.SetShowHelp(this._btnBrowse, ((bool)(resources.GetObject("btnBrowse.ShowHelp"))));
+			this._tipBtnClose.SetToolTip(this._btnBrowse, resources.GetString("btnBrowse.ToolTip"));
+			this._tipBtnBrowse.SetToolTip(this._btnBrowse, resources.GetString("btnBrowse.ToolTip1"));
+			this._btnBrowse.Click += new System.EventHandler(this.BtnBrowseClick);
 			//
 			// tbAmbigMarker
 			//
-			resources.ApplyResources(this.tbAmbigMarker, "tbAmbigMarker");
-			this.tbAmbigMarker.Name = "tbAmbigMarker";
-			this.tipBtnBrowse.SetToolTip(this.tbAmbigMarker, resources.GetString("tbAmbigMarker.ToolTip"));
-			this.tipTbAmbigMarker.SetToolTip(this.tbAmbigMarker, resources.GetString("tbAmbigMarker.ToolTip1"));
-			this.tbAmbigMarker.Validating += new System.ComponentModel.CancelEventHandler(this.tbAmbigMarker_Validating);
+			resources.ApplyResources(this._tbAmbigMarker, "_tbAmbigMarker");
+			this._tbAmbigMarker.Name = "_tbAmbigMarker";
+			this._tipBtnBrowse.SetToolTip(this._tbAmbigMarker, resources.GetString("tbAmbigMarker.ToolTip"));
+			this._tipTbAmbigMarker.SetToolTip(this._tbAmbigMarker, resources.GetString("tbAmbigMarker.ToolTip1"));
+			this._tbAmbigMarker.Validating += new System.ComponentModel.CancelEventHandler(this.TbAmbigMarkerValidating);
 			//
 			// tbOpenDel
 			//
-			resources.ApplyResources(this.tbOpenDel, "tbOpenDel");
-			this.tbOpenDel.Name = "tbOpenDel";
-			this.tipBtnBrowse.SetToolTip(this.tbOpenDel, resources.GetString("tbOpenDel.ToolTip"));
-			this.tipTbOpenDel.SetToolTip(this.tbOpenDel, resources.GetString("tbOpenDel.ToolTip1"));
-			this.tbOpenDel.Validating += new System.ComponentModel.CancelEventHandler(this.tbOpenDel_Validating);
+			resources.ApplyResources(this._tbOpenDel, "_tbOpenDel");
+			this._tbOpenDel.Name = "_tbOpenDel";
+			this._tipBtnBrowse.SetToolTip(this._tbOpenDel, resources.GetString("tbOpenDel.ToolTip"));
+			this._tipTbOpenDel.SetToolTip(this._tbOpenDel, resources.GetString("tbOpenDel.ToolTip1"));
+			this._tbOpenDel.Validating += new System.ComponentModel.CancelEventHandler(this.TbOpenDelValidating);
 			//
 			// lbANAFile
 			//
-			resources.ApplyResources(this.lbANAFile, "lbANAFile");
-			this.lbANAFile.Name = "lbANAFile";
+			resources.ApplyResources(this._lbAnaFile, "_lbAnaFile");
+			this._lbAnaFile.Name = "_lbAnaFile";
 			//
 			// lbAmbMkr
 			//
-			resources.ApplyResources(this.lbAmbMkr, "lbAmbMkr");
-			this.lbAmbMkr.Name = "lbAmbMkr";
+			resources.ApplyResources(this._lbAmbMkr, "_lbAmbMkr");
+			this._lbAmbMkr.Name = "_lbAmbMkr";
 			//
 			// lbOpenDel
 			//
-			resources.ApplyResources(this.lbOpenDel, "lbOpenDel");
-			this.lbOpenDel.Name = "lbOpenDel";
+			resources.ApplyResources(this._lbOpenDel, "_lbOpenDel");
+			this._lbOpenDel.Name = "_lbOpenDel";
 			//
 			// tbCloseDel
 			//
-			resources.ApplyResources(this.tbCloseDel, "tbCloseDel");
-			this.tbCloseDel.Name = "tbCloseDel";
-			this.tipTbOpenDel.SetToolTip(this.tbCloseDel, resources.GetString("tbCloseDel.ToolTip"));
-			this.tipTbCloseDel.SetToolTip(this.tbCloseDel, resources.GetString("tbCloseDel.ToolTip1"));
-			this.tbCloseDel.Validating += new System.ComponentModel.CancelEventHandler(this.tbCloseDel_Validating);
+			resources.ApplyResources(this._tbCloseDel, "_tbCloseDel");
+			this._tbCloseDel.Name = "_tbCloseDel";
+			this._tipTbOpenDel.SetToolTip(this._tbCloseDel, resources.GetString("tbCloseDel.ToolTip"));
+			this._tipTbCloseDel.SetToolTip(this._tbCloseDel, resources.GetString("tbCloseDel.ToolTip1"));
+			this._tbCloseDel.Validating += new System.ComponentModel.CancelEventHandler(this.TbCloseDelValidating);
 			//
 			// tbAffixSep
 			//
-			resources.ApplyResources(this.tbAffixSep, "tbAffixSep");
-			this.tbAffixSep.Name = "tbAffixSep";
-			this.tipTbOpenDel.SetToolTip(this.tbAffixSep, resources.GetString("tbAffixSep.ToolTip"));
-			this.tipTbAffixSep.SetToolTip(this.tbAffixSep, resources.GetString("tbAffixSep.ToolTip1"));
-			this.tbAffixSep.Validating += new System.ComponentModel.CancelEventHandler(this.tbAffixSep_Validating);
+			resources.ApplyResources(this._tbAffixSep, "_tbAffixSep");
+			this._tbAffixSep.Name = "_tbAffixSep";
+			this._tipTbOpenDel.SetToolTip(this._tbAffixSep, resources.GetString("tbAffixSep.ToolTip"));
+			this._tipTbAffixSep.SetToolTip(this._tbAffixSep, resources.GetString("tbAffixSep.ToolTip1"));
+			this._tbAffixSep.Validating += new System.ComponentModel.CancelEventHandler(this.TbAffixSepValidating);
 			//
 			// btnSelect
 			//
-			resources.ApplyResources(this.btnSelect, "btnSelect");
-			this.btnSelect.Name = "btnSelect";
-			this.tipTbOpenDel.SetToolTip(this.btnSelect, resources.GetString("btnSelect.ToolTip"));
-			this.tipBtnSelect.SetToolTip(this.btnSelect, resources.GetString("btnSelect.ToolTip1"));
-			this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+			resources.ApplyResources(this._btnSelect, "_btnSelect");
+			this._btnSelect.Name = "_btnSelect";
+			this._tipTbOpenDel.SetToolTip(this._btnSelect, resources.GetString("btnSelect.ToolTip"));
+			this._tipBtnSelect.SetToolTip(this._btnSelect, resources.GetString("btnSelect.ToolTip1"));
+			this._btnSelect.Click += new System.EventHandler(this.BtnSelectClick);
 			//
 			// lbCloseDel
 			//
-			resources.ApplyResources(this.lbCloseDel, "lbCloseDel");
-			this.lbCloseDel.Name = "lbCloseDel";
+			resources.ApplyResources(this._lbCloseDel, "_lbCloseDel");
+			this._lbCloseDel.Name = "_lbCloseDel";
 			//
 			// chBxCategories
 			//
-			resources.ApplyResources(this.chBxCategories, "chBxCategories");
-			this.chBxCategories.MultiColumn = true;
-			this.chBxCategories.Name = "chBxCategories";
-			this.tipChBxCategories.SetToolTip(this.chBxCategories, resources.GetString("chBxCategories.ToolTip"));
-			this.tipTbCloseDel.SetToolTip(this.chBxCategories, resources.GetString("chBxCategories.ToolTip1"));
+			resources.ApplyResources(this._chBxCategories, "_chBxCategories");
+			this._chBxCategories.MultiColumn = true;
+			this._chBxCategories.Name = "_chBxCategories";
+			this._tipChBxCategories.SetToolTip(this._chBxCategories, resources.GetString("chBxCategories.ToolTip"));
+			this._tipTbCloseDel.SetToolTip(this._chBxCategories, resources.GetString("chBxCategories.ToolTip1"));
 			//
 			// lbAffixSep
 			//
-			resources.ApplyResources(this.lbAffixSep, "lbAffixSep");
-			this.lbAffixSep.Name = "lbAffixSep";
+			resources.ApplyResources(this._lbAffixSep, "_lbAffixSep");
+			this._lbAffixSep.Name = "_lbAffixSep";
 			//
 			// lbCatAnal
 			//
-			resources.ApplyResources(this.lbCatAnal, "lbCatAnal");
-			this.lbCatAnal.Name = "lbCatAnal";
+			resources.ApplyResources(this._lbCatAnal, "_lbCatAnal");
+			this._lbCatAnal.Name = "_lbCatAnal";
 			//
 			// tipBtnOK
 			//
-			this.tipBtnOK.ShowAlways = true;
+			this._tipBtnOk.ShowAlways = true;
 			//
 			// ANAConverterDlg
 			//
-			this.AcceptButton = this.btnAnal;
+			this.AcceptButton = this._btnAnal;
 			resources.ApplyResources(this, "$this");
-			this.CancelButton = this.btnClose;
-			this.Controls.Add(this.btnSelect);
-			this.Controls.Add(this.lbCatAnal);
-			this.Controls.Add(this.chBxCategories);
-			this.Controls.Add(this.lbAffixSep);
-			this.Controls.Add(this.tbAffixSep);
-			this.Controls.Add(this.tbCloseDel);
-			this.Controls.Add(this.tbOpenDel);
-			this.Controls.Add(this.tbAmbigMarker);
-			this.Controls.Add(this.tbANAFile);
-			this.Controls.Add(this.lbCloseDel);
-			this.Controls.Add(this.lbOpenDel);
-			this.Controls.Add(this.lbAmbMkr);
-			this.Controls.Add(this.lbANAFile);
-			this.Controls.Add(this.btnBrowse);
-			this.Controls.Add(this.btnClose);
-			this.Controls.Add(this.btnAnal);
+			this.CancelButton = this._btnClose;
+			this.Controls.Add(this._btnSelect);
+			this.Controls.Add(this._lbCatAnal);
+			this.Controls.Add(this._chBxCategories);
+			this.Controls.Add(this._lbAffixSep);
+			this.Controls.Add(this._tbAffixSep);
+			this.Controls.Add(this._tbCloseDel);
+			this.Controls.Add(this._tbOpenDel);
+			this.Controls.Add(this._tbAmbigMarker);
+			this.Controls.Add(this._tbAnaFile);
+			this.Controls.Add(this._lbCloseDel);
+			this.Controls.Add(this._lbOpenDel);
+			this.Controls.Add(this._lbAmbMkr);
+			this.Controls.Add(this._lbAnaFile);
+			this.Controls.Add(this._btnBrowse);
+			this.Controls.Add(this._btnClose);
+			this.Controls.Add(this._btnAnal);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.HelpButton = true;
 			this.MaximizeBox = false;
@@ -320,7 +321,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 
 		internal string AnaPathname
 		{
-			get { return tbANAFile.Text; }
+			get { return _tbAnaFile.Text; }
 		}
 
 		// <summary
@@ -328,12 +329,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		// </summary>
 		private void ResetCategories()
 		{
-			chBxCategories.BeginUpdate();
+			_chBxCategories.BeginUpdate();
 			StreamReader reader = null;
 
 			try
 			{
-				reader = new StreamReader(tbANAFile.Text);
+				reader = new StreamReader(_tbAnaFile.Text);
 				var analysisLines = new StringCollection();
 				var categoryLines = new StringCollection();
 				var categories = new StringCollection();
@@ -343,7 +344,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				{
 					// If the line contains %0%, then skip it, as it is a failure
 					// and has no useful information in it.
-					var failure = (line.IndexOf(String.Format("{0}0{1}", AmbiguityMarker, AmbiguityMarker)) > -1);
+					var failure = (line.IndexOf(String.Format("{0}0{1}", AmbiguityMarker, AmbiguityMarker), StringComparison.OrdinalIgnoreCase) > -1);
 					if (line.StartsWith(@"\a")
 						&& !analysisLines.Contains(line)
 						&& !failure)
@@ -397,7 +398,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 							{
 								// We want the root categories, but not affix categories.
 								var catsInnermost = catsInner[j].Split('=');
-								foreach (var cat in catsInnermost.Where(cat => cat.IndexOf("/") == -1 && !categories.Contains(cat)))
+								foreach (var cat in catsInnermost.Where(cat => cat.IndexOf("/", StringComparison.OrdinalIgnoreCase) == -1 && !categories.Contains(cat)))
 								{
 									categories.Add(cat);
 								}
@@ -408,9 +409,9 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 
 				// Add them to the control,and check them all.
 				// TODO: Add a control to select/unselect all.
-				foreach (var idx in from string cat in categories where cat != string.Empty select chBxCategories.Items.Add(cat))
+				foreach (var idx in from string cat in categories where cat != string.Empty select _chBxCategories.Items.Add(cat))
 				{
-					chBxCategories.SetItemChecked(idx, true);
+					_chBxCategories.SetItemChecked(idx, true);
 				}
 
 			}
@@ -418,7 +419,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			{
 				if (reader != null)
 					reader.Close();
-				chBxCategories.EndUpdate();
+				_chBxCategories.EndUpdate();
 			}
 		}
 
@@ -440,26 +441,26 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnBrowse_Click(object sender, System.EventArgs e)
+		private void BtnBrowseClick(object sender, EventArgs e)
 		{
 			using (var openDlg = new OpenFileDialog())
 			{
 				openDlg.Filter = Resources.kFileTypes ;
 				openDlg.Title = Resources.kAmpleAnalysisFile;
-				chBxCategories.Items.Clear();
+				_chBxCategories.Items.Clear();
 				if(openDlg.ShowDialog() == DialogResult.OK)
 				{
-					tbANAFile.Text = openDlg.FileName;
-					btnSelect.Enabled = true;
-					btnAnal.Enabled = true;
-					chBxCategories.Enabled = true;
+					_tbAnaFile.Text = openDlg.FileName;
+					_btnSelect.Enabled = true;
+					_btnAnal.Enabled = true;
+					_chBxCategories.Enabled = true;
 					ResetCategories();
 				}
 				else
 				{
-					tbANAFile.Text = "";
-					btnSelect.Enabled = false;
-					btnAnal.Enabled = false;
+					_tbAnaFile.Text = "";
+					_btnSelect.Enabled = false;
+					_btnAnal.Enabled = false;
 				}
 			}
 		}
@@ -469,16 +470,16 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnAnal_Click(object sender, System.EventArgs e)
+		private void BtnAnalClick(object sender, EventArgs e)
 		{
 			// User Defined parameters.
 			var parms = new Parameters();
-			ParametersPathname = (tbANAFile.Text.Split('.'))[0] + ".prm";
+			ParametersPathname = (_tbAnaFile.Text.Split('.'))[0] + ".prm";
 			parms.Marker.Ambiguity = AmbiguityMarker[0];
 			parms.RootDelimiter.OpenDelimiter = OpenDelimiter[0];
 			parms.RootDelimiter.CloseDelimiter = CloseDelimiter[0];
 			parms.Marker.Decomposition = AffixSeparator[0];
-			foreach (var t in chBxCategories.CheckedItems)
+			foreach (var t in _chBxCategories.CheckedItems)
 				parms.Categories.Add(new Category(t.ToString()));
 			parms.Serialize(ParametersPathname);
 
@@ -490,7 +491,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnClose_Click(object sender, System.EventArgs e)
+		private void BtnCloseClick(object sender, EventArgs e)
 		{
 			Close();
 		}
@@ -500,7 +501,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void tbAmbigMarker_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		private void TbAmbigMarkerValidating(object sender, CancelEventArgs e)
 		{
 			ValidateTextBox(sender as TextBox, "%");
 		}
@@ -510,7 +511,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void tbAffixSep_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		private void TbAffixSepValidating(object sender, CancelEventArgs e)
 		{
 			ValidateTextBox(sender as TextBox, "-");
 		}
@@ -520,7 +521,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void tbOpenDel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		private void TbOpenDelValidating(object sender, CancelEventArgs e)
 		{
 			ValidateTextBox(sender as TextBox, "<");
 		}
@@ -530,7 +531,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void tbCloseDel_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		private void TbCloseDelValidating(object sender, CancelEventArgs e)
 		{
 			ValidateTextBox(sender as TextBox, ">");
 		}
@@ -540,28 +541,28 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void btnSelect_Click(object sender, System.EventArgs e)
+		private void BtnSelectClick(object sender, EventArgs e)
 		{
 			// Select or unselect them all.
 			bool catChecked;
 
-			if (btnSelect.Text == Resources.kSelectAll)
+			if (_btnSelect.Text == Resources.kSelectAll)
 			{
 				catChecked = true;
-				btnSelect.Text = Resources.kDeSelectAll;
+				_btnSelect.Text = Resources.kDeSelectAll;
 			}
 			else
 			{
 				catChecked = false;
-				btnSelect.Text = Resources.kSelectAll;
+				_btnSelect.Text = Resources.kSelectAll;
 			}
 
-			chBxCategories.BeginUpdate();
-			for (var i = 0; i < chBxCategories.Items.Count; ++i)
+			_chBxCategories.BeginUpdate();
+			for (var i = 0; i < _chBxCategories.Items.Count; ++i)
 			{
-				chBxCategories.SetItemChecked(i, catChecked);
+				_chBxCategories.SetItemChecked(i, catChecked);
 			}
-			chBxCategories.EndUpdate();
+			_chBxCategories.EndUpdate();
 		}
 
 	#endregion Event handlers

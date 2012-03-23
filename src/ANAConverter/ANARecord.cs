@@ -27,20 +27,20 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// </summary>
 	internal abstract class AnaObject
 	{
-		static protected IGafawsData s_gd;
+		static protected IGafawsData Gd;
 
 		/// <summary>
 		/// Get or set the data layer object.
 		/// </summary>
 		internal static IGafawsData DataLayer
 		{
-			set { s_gd = value; }
-			get { return s_gd; }
+			set { Gd = value; }
+			get { return Gd; }
 		}
 
 		internal static void Reset()
 		{
-			s_gd = null;
+			Gd = null;
 			AnaRecord.Reset();
 			AnaAnalysis.Reset();
 		}
@@ -54,12 +54,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <summary>
 		/// Ambiguity character, default is: '%'.
 		/// </summary>
-		static private char s_ambiguityCharacter = '%';
-		protected List<AnaAnalysis> m_analyses;
+		static private char _ambiguityCharacter = '%';
+		protected List<AnaAnalysis> Analyses;
 
 		new internal static void Reset()
 		{
-			s_ambiguityCharacter = '%';
+			_ambiguityCharacter = '%';
 		}
 
 		/// <summary>
@@ -75,7 +75,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				return;
 
 			var pams = Parameters.DeSerialize(parms);
-			s_ambiguityCharacter = pams.Marker.Ambiguity;
+			_ambiguityCharacter = pams.Marker.Ambiguity;
 			AnaAnalysis.OpenRootDelimiter = pams.RootDelimiter.OpenDelimiter;
 			AnaAnalysis.CloseRootDelimiter = pams.RootDelimiter.CloseDelimiter;
 			AnaAnalysis.SeparatorCharacter = pams.Marker.Decomposition;
@@ -88,7 +88,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="line">The \a field without the field marker.</param>
 		internal AnaRecord(string line)
 		{
-			m_analyses = new List<AnaAnalysis>();
+			Analyses = new List<AnaAnalysis>();
 			ProcessALine(line);
 		}
 
@@ -97,7 +97,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal void Convert(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			foreach (var t in m_analyses)
+			foreach (var t in Analyses)
 				t.Convert(wordRecordFactory, morphemeFactory, stemFactory, affixFactory);
 		}
 
@@ -111,7 +111,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			{
 				var contents = TokenizeLine(line, true);
 				for (var i = 2; i < contents.Length - 1; ++i)
-					m_analyses.Add(new AnaAnalysis(contents[i]));
+					Analyses.Add(new AnaAnalysis(contents[i]));
 				return;
 			}
 			throw new ApplicationException("Incorrect ambiguity character.");
@@ -138,7 +138,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 				if(!Char.IsDigit(line[i]))
 				{
 					return (line[i] == possibleAmbChar)
-						   && (possibleAmbChar == s_ambiguityCharacter);
+						   && (possibleAmbChar == _ambiguityCharacter);
 				}
 			return false;
 		}
@@ -149,7 +149,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="originalForm">The original wordform.</param>
 		internal void ProcessWLine(string originalForm)
 		{
-			foreach (var t in m_analyses)
+			foreach (var t in Analyses)
 				t.OriginalForm = originalForm;
 		}
 
@@ -161,10 +161,10 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal void ProcessOtherLine(LineType type, string line)
 		{
 			var contents = TokenizeLine(line, false);
-			if (m_analyses.Count != contents.Length - 3)
+			if (Analyses.Count != contents.Length - 3)
 				return;
-			for (var i = 0; i < m_analyses.Count; ++i)
-				m_analyses[i].ProcessContent(type, contents[i + 2]);
+			for (var i = 0; i < Analyses.Count; ++i)
+				Analyses[i].ProcessContent(type, contents[i + 2]);
 		}
 
 		/// <summary>
@@ -176,7 +176,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// [NB: The array is returned, as if it all were ambiguous.]</returns>
 		protected string[] TokenizeLine(string line, bool isALine)
 		{
-			var contents = line.Trim().Split(s_ambiguityCharacter);
+			var contents = line.Trim().Split(_ambiguityCharacter);
 			if (contents.Length == 4 && isALine)
 				contents[2] = null; // Analysis failure.
 			else if (contents.Length == 1)

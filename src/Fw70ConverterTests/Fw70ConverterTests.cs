@@ -12,5 +12,10 @@ namespace Fw70ConverterTests
 	[TestFixture]
 	public class Fw70ConverterTests
 	{
+		[Test]
+		public void DummyTest()
+		{
+			Assert.IsTrue(true);
+		}
 	}
 }
