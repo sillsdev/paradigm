@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<RootDir>$(teamcity_build_checkoutDir)</RootDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<Solution>GAFAWS 2010.sln</Solution>
+	<ApplicationName>AffixPositionAnalyzer</ApplicationName>
+	<Configuration>Release</Configuration>
+  </PropertyGroup>
+
+  <UsingTask TaskName="StampAssemblies" AssemblyFile="$(RootDir)/build/Palaso.BuildTasks.dll"/>
+  <UsingTask TaskName="Split" AssemblyFile="$(RootDir)/build/Palaso.BuildTasks.dll"/>
+  <UsingTask TaskName="FileUpdate" AssemblyFile="$(RootDir)/build/Palaso.BuildTasks.dll"/>
+  <UsingTask TaskName="NUnitTeamCity" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)"/>
+
+  <!-- ***************** Main build ***************** -->
+
+  <Import Project="$(RootDir)/build/gafaws.build.common.proj"/>
+
+  <Target Name="CreateDirectories">
+	<MakeDir Directories="$(RootDir)/output/"/>
+	<MakeDir Directories="$(RootDir)/output/common/"/>
+	<MakeDir Directories="$(RootDir)/output/Release/"/>
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="SetAssemblyVersion">
+	<MSBuild Projects="$(RootDir)/$(Solution)" Targets="Build"
+	  Properties="Configuration=Release"/>
+	<Message Text="Build Complete"/>
+  </Target>
+
+  <Target Name="Test" DependsOnTargets ="Build">
+	<ItemGroup>
+	  <TestAssemblies Include="$(RootDir)/output/Release/*Tests.dll;"  Exclude="**\obj\**" />
+	</ItemGroup>
+	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
+  </Target>
+
+<Target Name="Clean">
+<RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
+</Target>
+
+</Project>

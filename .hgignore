@@ -34,3 +34,10 @@ glob:src/GAFAWSAnalysisTests/GafawsAnalysisTests.csproj.user
 glob:src/PlainWordlistConverter/PlainWordlistConverter.csproj.ReSharper.user
 glob:src/PlainWordlistConverter/PlainWordlistConverter.csproj.user
 relre:output/*
+syntax: glob
+GAFAWS 2010.6.1.ReSharper.user
+GAFAWS 2010.sln.DotSettings.user
+src/ANAConverter/AnaConverter.csproj.DotSettings.user
+src/AffixPositionAnalyzer/AffixPositionAnalyzer.csproj.DotSettings.user
+src/GAFAWSAnalysis/GafawsAnalysis.csproj.DotSettings.user
+src/PlainWordlistConverter/PlainWordlistConverter.csproj.DotSettings.user
