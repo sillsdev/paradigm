@@ -74,9 +74,9 @@
 	<Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\FW70Converter\Fw70Converter.csproj">
+	<ProjectReference Include="..\FW70Converter\FW70Converter.csproj">
 	  <Project>{150E0D64-58C6-4D4A-81D3-F227382EA1B2}</Project>
-	  <Name>Fw70Converter</Name>
+	  <Name>FW70Converter</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>

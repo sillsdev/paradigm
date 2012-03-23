@@ -97,9 +97,9 @@
 	</Compile>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
+	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
 	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GafawsAnalysis</Name>
+	  <Name>GAFAWSAnalysis</Name>
 	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
