@@ -20,14 +20,14 @@
   <Import Project="$(RootDir)/build/gafaws.build.common.proj"/>
 
 <Target Name="Clean">
-<RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
+<RemoveDir Directories="$(RootDir)/Output" ContinueOnError="true" />
 </Target>
 
   <Target Name="CreateDirectories">
-	<MakeDir Directories="$(RootDir)/output/"/>
-	<MakeDir Directories="$(RootDir)/output/common/"/>
-	<MakeDir Directories="$(RootDir)/output/$(Configuration)/"/>
-	<MakeDir Directories="$(RootDir)/output/Installer/"/>
+	<MakeDir Directories="$(RootDir)/Output/"/>
+	<MakeDir Directories="$(RootDir)/Output/common/"/>
+	<MakeDir Directories="$(RootDir)/Output/$(Configuration)/"/>
+	<MakeDir Directories="$(RootDir)/Output/Installer/"/>
   </Target>
 
   <Target Name="Build">
@@ -45,7 +45,7 @@
   </Target>
 
 	<ItemGroup>
-	  <TestAssemblies Include="$(RootDir)/output/$(Configuration)/*Tests.dll"  Exclude="**\obj\**" />
+	  <TestAssemblies Include="$(RootDir)/Output/$(Configuration)/*Tests.dll"  Exclude="**\obj\**" />
 	</ItemGroup>
   <Target Name="Test" DependsOnTargets ="Build">
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />

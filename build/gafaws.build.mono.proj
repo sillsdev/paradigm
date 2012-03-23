@@ -27,12 +27,12 @@
   </Target>
 
 <Target Name="Clean">
-<RemoveDir Directories="$(RootDir)/output" ContinueOnError="true" />
+<RemoveDir Directories="$(RootDir)/Output" ContinueOnError="true" />
 </Target>
 
   <Target Name="CreateDirectories">
-	<MakeDir Directories="$(RootDir)/output/"/>
-	<MakeDir Directories="$(RootDir)/output/$(Configuration)/"/>
+	<MakeDir Directories="$(RootDir)/Output/"/>
+	<MakeDir Directories="$(RootDir)/Output/$(Configuration)/"/>
   </Target>
 
   <Target Name="Compile" >
@@ -40,7 +40,7 @@
   </Target>
 
   <Target Name="Test" DependsOnTargets="Build">
-	<CreateItem Include="$(RootDir)/output/$(Configuration)/*Tests.dll">
+	<CreateItem Include="$(RootDir)/Output/$(Configuration)/*Tests.dll">
 	  <Output ItemName="TestAssemblies" TaskParameter="Include"/>
 	</CreateItem>
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity;UnknownMonoIssue" NUnitVersion="NUnit-2.5.5"/>
