@@ -58,10 +58,10 @@
 
 	<!-- copy it so we aren't modifying the original, which then is a pain on dev machines -->
 	<Copy SourceFiles="$(RootDir)\src\Installer\DownloadPointers.htm"
-	  DestinationFolder="$(RootDir)\output\Installer"/>
+	  DestinationFolder="$(RootDir)\Output\Installer"/>
 
 	<!-- replace some parts of the file with the version number & date -->
-	<FileUpdate File="$(RootDir)\output\Installer\DownloadPointers.htm"
+	<FileUpdate File="$(RootDir)\Output\Installer\DownloadPointers.htm"
 	  DatePlaceholder="DEV_RELEASE_DATE" Regex="DEV_VERSION_NUMBER" ReplacementText="$(Version)"/>
 
 	<!-- push up to the web so that on our downloads page, we can give a link to the latest version -->
@@ -94,14 +94,14 @@
 	<MSBuild Projects="$(RootDir)\src\Installer\Installer.wixproj"/>
 
 	<!-- remove an existing one with the same name, if necessary -->
-	<Delete Files="$(RootDir)\output\Installer\LiftBridgeForFW7Installer.$(Version).msi"
+	<Delete Files="$(RootDir)\Output\Installer\LiftBridgeForFW7Installer.$(Version).msi"
 	  TreatErrorsAsWarnings="false"/>
 
-	<Copy SourceFiles="$(RootDir)\output\Installer\LiftBridgeForFW7Installer.msi"
-	  DestinationFiles="$(RootDir)\output\Installer\LiftBridgeForFW7Installer.$(Version).msi"/>
+	<Copy SourceFiles="$(RootDir)\Output\Installer\LiftBridgeForFW7Installer.msi"
+	  DestinationFiles="$(RootDir)\Output\Installer\LiftBridgeForFW7Installer.$(Version).msi"/>
 
 	<!-- remove the installer which has no version number (wouldn't need this if the copy above was a move, instead) -->
-	<Delete Files="$(RootDir)\output\Installer\LiftBridgeForFW7Installer.msi"
+	<Delete Files="$(RootDir)\Output\Installer\LiftBridgeForFW7Installer.msi"
 	  TreatErrorsAsWarnings="false"/>
 
   </Target>
@@ -109,7 +109,7 @@
   <Target Name="MakeWixForDistFiles" DependsOnTargets="CreateDirectories">
 	<MakeWixForDirTree DirectoryReferenceId="FW7INSTALLDIR" ComponentGroupId="DistFiles"
 	  RootDirectory="$(RootDir)\DistFiles"
-	  OutputFilePath="$(RootDir)\output\Installer\GeneratedDistFiles.wxs"
+	  OutputFilePath="$(RootDir)\Output\Installer\GeneratedDistFiles.wxs"
 	  MatchRegExPattern=".*">
 	  <!--what does this do?-->
 	  <Output TaskParameter="OutputFilePath" ItemName="Compile"/>
