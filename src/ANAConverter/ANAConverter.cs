@@ -6,7 +6,10 @@
 // Responsibility: Randy Regnier
 // Last reviewed:
 using System;
+using System.ComponentModel.Composition;
+#if DEBUG
 using System.Diagnostics;
+#endif
 using System.IO;
 using System.Windows.Forms;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
@@ -16,28 +19,20 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// <summary>
 	/// Converts an Ample ANA file into an XML document suitable for input to GAFAWSAnalysis.
 	/// </summary>
+	[Export(typeof(IGafawsConverter))]
 	public class AnaConverter : IGafawsConverter
 	{
-		private readonly IWordRecordFactory _wordRecordFactory;
-		private readonly IAffixFactory _affixFactory;
-		private readonly IStemFactory _stemFactory;
-		private readonly IMorphemeFactory _morphemeFactory;
+		[Import(typeof(IWordRecordFactory))]
+		private IWordRecordFactory _wordRecordFactory;
+		[Import(typeof(IAffixFactory))]
+		private IAffixFactory _affixFactory;
+		[Import(typeof(IStemFactory))]
+		private IStemFactory _stemFactory;
+		[Import(typeof(IMorphemeFactory))]
+		private IMorphemeFactory _morphemeFactory;
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
-		internal AnaConverter(
-			IWordRecordFactory wordRecordFactory,
-			IAffixFactory affixFactory,
-			IStemFactory stemFactory,
-			IMorphemeFactory morphemeFactory)
-		{
-			_wordRecordFactory = wordRecordFactory;
-			_affixFactory = affixFactory;
-			_stemFactory = stemFactory;
-			_morphemeFactory = morphemeFactory;
-			AnaObject.Reset();
-		}
+		internal AnaConverter()
+		{}
 
 		#region IGAFAWSConverter implementation
 
@@ -107,13 +102,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 										record.ProcessOtherLine(LineType.Category, line.Substring(5));
 										break;
 									}
-								default:
-									// Eat this line.
-									break;
 							}
 							line = reader.ReadLine();
 						}
+#if DEBUG
 						Debug.Assert(record != null);
+#endif
 						record.Convert(_wordRecordFactory, _morphemeFactory, _stemFactory, _affixFactory); // Process last record.
 					}
 					outputPathname = OutputPathServices.GetOutputPathname(anaPathname);
@@ -164,7 +158,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_ANA.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 

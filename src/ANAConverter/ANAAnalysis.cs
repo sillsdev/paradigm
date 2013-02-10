@@ -22,26 +22,26 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// </summary>
 	internal class AnaAnalysis : AnaObject
 	{
-		private readonly List<AnaPrefix> m_prefixes;
-		private readonly AnaStem m_stem;
-		private readonly string m_sstem;
-		private readonly List<AnaSuffix> m_suffixes;
-		private string m_originalForm;
-		private string m_wordCategory;
+		private readonly List<AnaPrefix> _prefixes;
+		private readonly AnaStem _stem;
+		private readonly string _stemAsString;
+		private readonly List<AnaSuffix> _suffixes;
+		private string _originalForm;
+		private string _wordCategory;
 
-		static private char s_openRootDelimiter = '<';
-		static private char s_closeRootDelimiter = '>';
-		static private char s_separatorCharacter = '-';
-		static private char s_categorySeparator = '=';
-		static private List<Category> s_partsOfSpeech;
+		static private char _openRootDelimiter = '<';
+		static private char _closeRootDelimiter = '>';
+		static private char _separatorCharacter = '-';
+		static private char _categorySeparator = '=';
+		static private List<Category> _partsOfSpeech;
 
 		static new internal void Reset()
 		{
-			s_openRootDelimiter = '<';
-			s_closeRootDelimiter = '>';
-			s_separatorCharacter = '-';
-			s_categorySeparator = '=';
-			s_partsOfSpeech = null;
+			_openRootDelimiter = '<';
+			_closeRootDelimiter = '>';
+			_separatorCharacter = '-';
+			_categorySeparator = '=';
+			_partsOfSpeech = null;
 		}
 
 		/// <summary>
@@ -49,8 +49,8 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal static List<Category> PartsOfSpeech
 		{
-			set { s_partsOfSpeech = value; }
-			get { return s_partsOfSpeech; }
+			set { _partsOfSpeech = value; }
+			get { return _partsOfSpeech; }
 		}
 
 		/// <summary>
@@ -58,7 +58,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal static char OpenRootDelimiter
 		{
-			set { s_openRootDelimiter = value; }
+			set { _openRootDelimiter = value; }
 		}
 
 		/// <summary>
@@ -66,7 +66,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal static char CloseRootDelimiter
 		{
-			set { s_closeRootDelimiter = value; }
+			set { _closeRootDelimiter = value; }
 		}
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal static char SeparatorCharacter
 		{
-			set { s_separatorCharacter = value; }
+			set { _separatorCharacter = value; }
 		}
 
 		/// <summary>
@@ -82,8 +82,8 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal string OriginalForm
 		{
-			get { return m_originalForm; }
-			set { m_originalForm = value; }
+			get { return _originalForm; }
+			set { _originalForm = value; }
 		}
 
 		/// <summary>
@@ -93,23 +93,23 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="form">The form from the ANA field.</param>
 		internal void ProcessContent(LineType type, string form)
 		{
-			if (m_stem == null)
+			if (_stem == null)
 				return;	// Don't process a failure.
 
 			string[] forms;
-			char[] sep = {s_separatorCharacter};
+			char[] sep = {_separatorCharacter};
 			if (type == LineType.Category)
 			{
 				// \cat %5%N N%ADJ ADJ%N N%V VA/V=VA%V VA/V=VA%
 				sep = new char[1];
 				sep[0] = ' ';
 				forms = TokenizeLine(form, sep);
-				m_wordCategory = forms[0];
-				if (form.Length == m_wordCategory.Length)
+				_wordCategory = forms[0];
+				if (form.Length == _wordCategory.Length)
 					return;
-				form = form.Substring(m_wordCategory.Length);
+				form = form.Substring(_wordCategory.Length);
 				sep = new char[1];
-				sep[0] = s_categorySeparator;
+				sep[0] = _categorySeparator;
 			}
 			forms = TokenizeLine(form, sep);
 			if (MorphemeCount != forms.Length)
@@ -124,12 +124,12 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			}
 			var formCnt = 0;
 			int i;
-			for (i = 0; m_prefixes != null && i < m_prefixes.Count; ++i)
-				m_prefixes[i].AddContent(type, forms[formCnt++]);
-			for (i = 0; i < m_stem.RootCount; ++i)
-				m_stem.AddContent(type, forms[formCnt++]);
-			for (i = 0; m_suffixes != null && i < m_suffixes.Count; ++i)
-				m_suffixes[i].AddContent(type, forms[formCnt++]);
+			for (i = 0; _prefixes != null && i < _prefixes.Count; ++i)
+				_prefixes[i].AddContent(type, forms[formCnt++]);
+			for (i = 0; i < _stem.RootCount; ++i)
+				_stem.AddContent(type, forms[formCnt++]);
+			for (i = 0; _suffixes != null && i < _suffixes.Count; ++i)
+				_suffixes[i].AddContent(type, forms[formCnt++]);
 		}
 
 		/// <summary>
@@ -139,9 +139,9 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			get
 			{
-				var pfxCnt = (m_prefixes != null) ? m_prefixes.Count : 0;
-				var sfxCnt = (m_suffixes != null) ? m_suffixes.Count : 0;
-				return pfxCnt + m_stem.RootCount + sfxCnt;
+				var pfxCnt = (_prefixes != null) ? _prefixes.Count : 0;
+				var sfxCnt = (_suffixes != null) ? _suffixes.Count : 0;
+				return pfxCnt + _stem.RootCount + sfxCnt;
 			}
 		}
 
@@ -151,25 +151,25 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="analysis">An analysis string from the \a field.</param>
 		internal AnaAnalysis(string analysis)
 		{
-			m_wordCategory = null;
-			m_originalForm = null;
+			_wordCategory = null;
+			_originalForm = null;
 
 			if (analysis == null)
 			{
-				m_prefixes = null;
-				m_stem = null;
-				m_suffixes = null;
+				_prefixes = null;
+				_stem = null;
+				_suffixes = null;
 			}
 			else
 			{
-				char[] seps = {s_openRootDelimiter, s_closeRootDelimiter};
+				char[] seps = {_openRootDelimiter, _closeRootDelimiter};
 				var morphemes = TokenizeLine(analysis, seps);
 				if (morphemes.Length != 3)
 					throw new ApplicationException("Incorrect delimiters.");
-				m_prefixes = AnaPrefix.TokenizeAffixes(morphemes[0]);
-				m_stem = new AnaStem(morphemes[1]);
-				m_sstem = morphemes[1]; // For cat filter
-				m_suffixes = AnaSuffix.TokenizeAffixes(morphemes[2]);
+				_prefixes = AnaPrefix.TokenizeAffixes(morphemes[0]);
+				_stem = new AnaStem(morphemes[1]);
+				_stemAsString = morphemes[1]; // For cat filter
+				_suffixes = AnaSuffix.TokenizeAffixes(morphemes[2]);
 			}
 		}
 
@@ -178,21 +178,21 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal void Convert(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			if (m_stem == null || (m_prefixes == null && m_suffixes == null))
+			if (_stem == null || (_prefixes == null && _suffixes == null))
 				return;	// Don't convert a failure or no affixes.
 
 			// Category Filter
 			if ((PartsOfSpeech != null) && (PartsOfSpeech.Count != 0))
 			{
 				// \cat?
-				string[] catCats = {m_wordCategory};
-				if (m_wordCategory != null)
+				string[] catCats = {_wordCategory};
+				if (_wordCategory != null)
 					if (ContainsCat(catCats))
 						goto label1;
 					else
 						return;
 				// \a?
-				var stemElements = m_sstem.Split(' ');
+				var stemElements = _stemAsString.Split(' ');
 				var stemCats = new string[(stemElements.Length - 2)/2];
 				for (var i = 0; i < (stemElements.Length - 2)/2; ++i)
 					stemCats[i] = new string(stemElements[(i*2)+1].ToCharArray());
@@ -210,25 +210,25 @@ label1:
 		private void DoConversion(IWordRecordFactory wordRecordFactory, IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
 			var wr = wordRecordFactory.Create();
-			s_gd.WordRecords.Add(wr);
-			if (m_prefixes != null)
+			Gd.WordRecords.Add(wr);
+			if (_prefixes != null)
 				wr.Prefixes = new List<IAffix>();
-			if (m_suffixes != null)
+			if (_suffixes != null)
 				wr.Suffixes = new List<IAffix>();
 
-			if ((m_originalForm != null) || (m_wordCategory != null))
+			if ((_originalForm != null) || (_wordCategory != null))
 			{
 				var infoElement = new XElement("ANAInfo",
-					m_originalForm == null ? null : new XAttribute("form", m_originalForm),
-					m_wordCategory == null ? null : new XAttribute("category", m_wordCategory));
+					_originalForm == null ? null : new XAttribute("form", _originalForm),
+					_wordCategory == null ? null : new XAttribute("category", _wordCategory));
 				wr.Other = infoElement.ToString();
 			}
 
-			for (var i = 0; m_prefixes != null && i < m_prefixes.Count; ++i)
-				m_prefixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
-			m_stem.Convert(morphemeFactory, stemFactory, affixFactory);
-			for (var i = 0; m_suffixes != null && i < m_suffixes.Count; ++i)
-				m_suffixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
+			for (var i = 0; _prefixes != null && i < _prefixes.Count; ++i)
+				_prefixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
+			_stem.Convert(morphemeFactory, stemFactory, affixFactory);
+			for (var i = 0; _suffixes != null && i < _suffixes.Count; ++i)
+				_suffixes[i].Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
 		/// <summary>
@@ -250,6 +250,5 @@ label1:
 		{
 			return line.Trim().Split(seps);
 		}
-
 	}
 }

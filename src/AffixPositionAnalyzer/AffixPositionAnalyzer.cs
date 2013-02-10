@@ -9,6 +9,7 @@
 // Responsibility: Randy Regnier
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -21,10 +22,15 @@ using SIL.WordWorks.GAFAWS.PositionAnalysis.Properties;
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
 	/// <summary></summary>
+	[Export(typeof(AffixPositionAnalyzer))]
 	public partial class AffixPositionAnalyzer : Form
 	{
-		private readonly IGafawsAnalyzer _analyzer;
-		private readonly IGafawsData _gafawsData;
+		[Import(typeof(IGafawsAnalyzer))]
+		private IGafawsAnalyzer _analyzer;
+		[Import(typeof(IGafawsData))]
+		private IGafawsData _gafawsData;
+		[ImportMany]
+		private IEnumerable<IGafawsConverter> _converters;
 		private IGafawsConverter _selectedConverter;
 		private string _convertedPathname;
 
@@ -36,23 +42,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			InitializeComponent();
 		}
 
-		public AffixPositionAnalyzer(
-			IEnumerable<IGafawsConverter> converters,
-			IGafawsAnalyzer analyzer,
-			IGafawsData gafawsData)
-			: this()
-		{
-			_analyzer = analyzer;
-			_gafawsData = gafawsData;
-			foreach (var lvi in converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) {Tag = gafawsConverter}))
-			{
-				m_lvConverters.Items.Add(lvi);
-			}
-			if (m_lvConverters.Items.Count > 0)
-				m_lvConverters.Items[0].Selected = true;
-		}
-
-		private void m_btnProcess_Click(object sender, EventArgs e)
+		private void BtnProcessClick(object sender, EventArgs e)
 		{
 			if (_selectedConverter == null)
 				return;
@@ -105,7 +95,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 			catch (Exception err)
 			{
-				Console.WriteLine("Crash. :-(");
+				Console.WriteLine(AppResources.kCrash);
 				MessageBox.Show(AppResources.kProblemData, PublicResources.kInformation);
 			}
 			finally
@@ -116,19 +106,19 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			}
 		}
 
-		private void m_btnClose_Click(object sender, EventArgs e)
+		private void BtnCloseClick(object sender, EventArgs e)
 		{
 			Close();
 		}
 
-		private void m_lvConverters_SelectedIndexChanged(object sender, EventArgs e)
+		private void ConvertersSelectedIndexChanged(object sender, EventArgs e)
 		{
 			SetSelectedConverter();
 			if (_selectedConverter != null)
 				m_tbDescription.Text = _selectedConverter.Description;
 		}
 
-		private void m_lvConverters_DoubleClick(object sender, EventArgs e)
+		private void ConvertersDoubleClick(object sender, EventArgs e)
 		{
 			SetSelectedConverter();
 			m_btnProcess.PerformClick();
@@ -140,6 +130,16 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			if (m_lvConverters.SelectedItems.Count <= 0) return;
 
 			_selectedConverter = (IGafawsConverter)m_lvConverters.SelectedItems[0].Tag;
+		}
+
+		private void AffixPositionAnalyzerLoad(object sender, EventArgs e)
+		{
+			foreach (var lvi in _converters.Select(gafawsConverter => new ListViewItem(gafawsConverter.Name) { Tag = gafawsConverter }))
+			{
+				m_lvConverters.Items.Add(lvi);
+			}
+			if (m_lvConverters.Items.Count > 0)
+				m_lvConverters.Items[0].Selected = true;
 		}
 	}
 }

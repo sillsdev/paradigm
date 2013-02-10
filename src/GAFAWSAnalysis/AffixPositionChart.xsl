@@ -700,6 +700,7 @@ OutputWordform
 ================================================================
 Revision History
 - - - - - - - - - - - - - - - - - - -
+Various up to 3 Oct 2010 Randy Regnier Add new sections to support Coocurrences and Component Subgraphs.
 14-Oct-2002   Andy Black       Redo wordforms in morpheme section so that the highlighted morpheme remains in the same postion for all wordforms for a given morpheme
 03-Oct-2002   Andy Black       Rework Challenges report, error info in chart and add wordforms to morpheme display
 01-Oct-2002   Andy Black        Remove ??? in first row of a failed affix report.  Add more info to Challenges report.

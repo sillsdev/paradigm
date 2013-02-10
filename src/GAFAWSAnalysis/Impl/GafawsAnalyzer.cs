@@ -11,6 +11,7 @@
 // </remarks>
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
@@ -18,6 +19,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// Main class for analyzing affix positions and cooccurrence restrictions.
 	/// </summary>
+	[Export(typeof(IGafawsAnalyzer))]
 	internal class GafawsAnalyzer : IGafawsAnalyzer
 	{
 		/// <summary>

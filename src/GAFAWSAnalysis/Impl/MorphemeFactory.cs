@@ -1,5 +1,8 @@
-﻿namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
+﻿using System.ComponentModel.Composition;
+
+namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 {
+	[Export(typeof(IMorphemeFactory))]
 	internal class MorphemeFactory : IMorphemeFactory
 	{
 		#region Implementation of IMorphemeFactory

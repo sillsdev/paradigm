@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,24 +14,20 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 	/// Implementation of the IGafawsConverter interface that supports
 	/// the FieldWorks 7.0 xml file format.
 	/// </summary>
+	[Export(typeof(IGafawsConverter))]
 	public class Fw70Converter : IGafawsConverter
 	{
-		private readonly IWordRecordFactory _wordRecordFactory;
-		private readonly IAffixFactory _affixFactory;
-		private readonly IStemFactory _stemFactory;
-		private readonly IMorphemeFactory _morphemeFactory;
+		[Import(typeof(IWordRecordFactory))]
+		private IWordRecordFactory _wordRecordFactory;
+		[Import(typeof(IAffixFactory))]
+		private IAffixFactory _affixFactory;
+		[Import(typeof(IStemFactory))]
+		private IStemFactory _stemFactory;
+		[Import(typeof(IMorphemeFactory))]
+		private IMorphemeFactory _morphemeFactory;
 
-		internal Fw70Converter(
-			IWordRecordFactory wordRecordFactory,
-			IAffixFactory affixFactory,
-			IStemFactory stemFactory,
-			IMorphemeFactory morphemeFactory)
-		{
-			_wordRecordFactory = wordRecordFactory;
-			_affixFactory = affixFactory;
-			_stemFactory = stemFactory;
-			_morphemeFactory = morphemeFactory;
-		}
+		internal Fw70Converter()
+		{}
 
 		#region Implementation of IGafawsConverter
 
@@ -39,8 +36,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		/// </summary>
 		public string Convert(IGafawsData gafawsData)
 		{
-			string outputpathname = null;
-
 			List<XElement> wordforms;
 			Dictionary<string, XElement> analyses;
 			Dictionary<string, XElement> morphBundles;
@@ -52,9 +47,9 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			using (var converterDlg = new Fw70ConverterDlg())
 			{
 				if (converterDlg.ShowDialog() != DialogResult.OK)
-					return outputpathname; // bail out, since nothing was selected.
+					return null; // bail out, since nothing was selected.
 
-				converterDlg.GetReults(out selectedPos,
+				converterDlg.GetResults(out selectedPos,
 					out wordforms,
 					out analyses,
 					out morphBundles,
@@ -83,9 +78,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			foreach (var wf in wordformsList)
 				wf.Convert(gafawsData, _wordRecordFactory, _morphemeFactory, _affixFactory, _stemFactory, prefixes, stems, suffixes);
 
-			outputpathname = Path.GetTempFileName() + ".xml";
-
-			return outputpathname;
+			return Path.GetTempFileName() + ".xml";
 		}
 
 		/// <summary>
@@ -114,6 +107,15 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			{
 				morph.Id = EatIds(morph.Id);
 			}
+			var newSets = new Dictionary<string, List<HashSet<IMorpheme>>>();
+			foreach (var kvp in gafawsData.ElementarySubgraphs)
+			{
+				var oldKey = kvp.Key;
+				newSets.Add(oldKey == "xxx" ? oldKey : EatIds(oldKey), kvp.Value);
+			}
+			gafawsData.ElementarySubgraphs.Clear();
+			foreach (var kvp in newSets)
+				gafawsData.ElementarySubgraphs.Add(kvp.Key, kvp.Value);
 		}
 
 		/// <summary>
@@ -143,7 +145,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_FW7.0.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 
