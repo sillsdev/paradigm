@@ -30,6 +30,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		List<HashSet<IMorpheme>> DistinctSets { get; }
 
 		/// <summary>
+		/// Get the basic subgraph building blocks.
+		/// </summary>
+		Dictionary<string, List<HashSet<IMorpheme>>> ElementarySubgraphs { get; }
+
+		/// <summary>
 		/// Collection of position classes. (Reserved for use by the Paradigm DLL.)
 		/// </summary>
 		IClasses Classes { get; }

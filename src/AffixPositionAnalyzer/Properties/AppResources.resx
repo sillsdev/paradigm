@@ -104,4 +104,7 @@
 	<data name="kNothingToShow">
 		<value xml:space="preserve">Nothing to show.</value>
 	</data>
+  <data name="kCrash">
+	<value xml:space="preserve">Crash. :-(</value>
+  </data>
 </root>

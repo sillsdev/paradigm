@@ -6,6 +6,7 @@
 // Responsibility: Randy Regnier
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -14,9 +15,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 	/// <summary>
 	/// Main class in the GAFAWS data layer.
 	/// </summary>
+	[Export(typeof(IGafawsData))]
 	internal sealed class GafawsData : IGafawsData
 	{
 		#region Data members
+
+		internal readonly IMorpheme NothingMorpheme = new Morpheme(MorphemeType.Suffix, "xxx");
 
 		#endregion // Data members
 
@@ -31,6 +35,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			DistinctSets = new List<HashSet<IMorpheme>>();
 			AffixCooccurrences = new List<HashSet<IMorpheme>>();
 			AffixNonCooccurrences = new List<HashSet<IMorpheme>>();
+			ElementarySubgraphs = new Dictionary<string, List<HashSet<IMorpheme>>>();
 		}
 
 		#endregion // Construction
@@ -63,6 +68,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		public List<HashSet<IMorpheme>> DistinctSets { get; private set; }
 
 		/// <summary>
+		/// Get the basic subgraph building blocks.
+		/// </summary>
+		public Dictionary<string, List<HashSet<IMorpheme>>> ElementarySubgraphs { get; private set; }
+
+		/// <summary>
 		/// Collection of position classes. (Reserved for use by the Paradigm DLL.)
 		/// </summary>
 		public IClasses Classes { get; private set; }
@@ -93,6 +103,10 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			Morphemes.Clear();
 			Classes = new Classes();
 			Challenges.Clear();
+			AffixCooccurrences.Clear();
+			AffixNonCooccurrences.Clear();
+			DistinctSets.Clear();
+			ElementarySubgraphs.Clear();
 		}
 
 		#region Serialization
@@ -159,6 +173,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 																				 select new XElement("DistinctSet", from morph in distinctSet
 																																		 select new XElement("Morpheme",
 																																			 new XAttribute("id", morph.Id))))),
+													new XElement("SubgraphSets", from mainSubgraphSetKvp in ElementarySubgraphs
+																				 select new XElement("SubgraphSet",
+																					 new XAttribute("id", mainSubgraphSetKvp.Key),
+																					 from subgraph in mainSubgraphSetKvp.Value
+																					 select new XElement("Subgraph", from morph in subgraph
+																													 select new XElement("Morpheme", new XAttribute("id", morph.Id))))),
 												  new XElement("Classes",
 													  new XElement("PrefixClasses", Classes.PrefixClasses.Count == 0 ? null : from pfxClass in Classes.PrefixClasses
 																															  select new XElement("Class",
@@ -300,11 +320,43 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 					var newSet = new HashSet<IMorpheme>();
 					foreach (var morphemeInSet in setHolderElement.Elements("Morpheme"))
 					{
+						var morp = morphemeInSet;
 						newSet.Add((from morpheme in gd.Morphemes
-									where morpheme.Id == morphemeInSet.Attribute("id").Value.ToLowerInvariant()
+									where morpheme.Id == morp.Attribute("id").Value.ToLowerInvariant()
 									select morpheme).First());
 					}
 					gd.DistinctSets.Add(newSet);
+				}
+			}
+
+			// Load Subgraph sets.
+			holder = root.Element("SubgraphSets");
+			if (holder.Element("SubgraphSet") != null && holder.Elements("SubgraphSet").Count() > 0)
+			{
+				foreach (var subgraphSetElement in holder.Elements("SubgraphSet"))
+				{
+					var key = subgraphSetElement.Attribute("id").Value;
+					var newList = new List<HashSet<IMorpheme>>();
+					foreach (var subgraph in subgraphSetElement.Elements("Subgraph"))
+					{
+						var newSet = new HashSet<IMorpheme>();
+						foreach (var morphemeInSet in subgraph.Elements("Morpheme"))
+						{
+							var morp = morphemeInSet;
+							if (key == "xxx")
+							{
+								newSet.Add(gd.NothingMorpheme);
+							}
+							else
+							{
+								newSet.Add((from morpheme in gd.Morphemes
+											where morpheme.Id == morp.Attribute("id").Value.ToLowerInvariant()
+											select morpheme).First());
+							}
+						}
+						newList.Add(newSet);
+					}
+					gd.ElementarySubgraphs.Add(key, newList);
 				}
 			}
 

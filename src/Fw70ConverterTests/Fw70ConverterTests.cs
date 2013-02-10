@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Fw70ConverterTests
 {
@@ -12,5 +8,10 @@ namespace Fw70ConverterTests
 	[TestFixture]
 	public class Fw70ConverterTests
 	{
+		[Test]
+		public void DummyTest()
+		{
+			Assert.IsTrue(true);
+		}
 	}
 }

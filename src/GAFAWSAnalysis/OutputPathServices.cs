@@ -34,8 +34,17 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis
 		public static string GetXslPathname(string xslFile)
 		{
 			return Path.Combine(
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Replace(@"file:///", null)),
+				RemoveFileFromUrl(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase)),
 				xslFile);
+		}
+
+		public static string RemoveFileFromUrl(string pathname)
+		{
+			if (String.IsNullOrEmpty(pathname))
+				throw new ArgumentException("Input is null or an empty string.", "pathname");
+
+			var match = pathname.StartsWith(@"file:///") ? @"file:///" : @"file:/";
+			return pathname.Replace(match, Environment.OSVersion.Platform == PlatformID.Unix ? "/" : null);
 		}
 	}
 }

@@ -42,6 +42,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			"    <AffixNonCooccurrences />" + Environment.NewLine +
 			"    <DistinctSets />" + Environment.NewLine +
 			"  </AffixSets>" + Environment.NewLine +
+			"  <SubgraphSets />" + Environment.NewLine +
 			"  <Classes>" + Environment.NewLine +
 			"    <PrefixClasses />" + Environment.NewLine +
 			"    <SuffixClasses />" + Environment.NewLine +
@@ -64,10 +65,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try to save with null as the pathname.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void SaveDataWithNullPathname()
 		{
-			m_gd.SaveData(null);
+			Assert.Throws<ArgumentNullException>(() => m_gd.SaveData(null));
 		}
 
 		/// <summary>
@@ -105,10 +105,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading a null pathname.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(ArgumentNullException))]
 		public void LoadDataWithNullPathname()
 		{
-			m_gd = GafawsData.LoadData(null);
+			Assert.Throws<ArgumentNullException>(() => m_gd = GafawsData.LoadData(null));
 		}
 
 		/// <summary>
@@ -139,14 +138,13 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading data file that is empty.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(XmlException))]
 		public void LoadDataWithEmptyFile()
 		{
 			string fileName = null;
 			try
 			{
 				fileName = MakeFile();
-				m_gd = GafawsData.LoadData(fileName);
+				Assert.Throws<XmlException>(() => m_gd = GafawsData.LoadData(fileName));
 			}
 			finally
 			{
@@ -158,7 +156,6 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// Try loading XML data that isn't in the right model of data.
 		/// </summary>
 		[Test]
-		[ExpectedException(typeof(InvalidOperationException))]
 		public void LoadDataWrongXml()
 		{
 			string fileName = null;
@@ -168,7 +165,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 					"<NOTGAFAWSData xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"" +
 						" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n" +
 					"</NOTGAFAWSData>");
-				m_gd = GafawsData.LoadData(fileName);
+				Assert.Throws<InvalidOperationException>(() => m_gd = GafawsData.LoadData(fileName));
 			}
 			finally
 			{

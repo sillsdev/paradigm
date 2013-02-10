@@ -16,13 +16,13 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 	/// </summary>
 	internal abstract class AnaMorpheme : AnaObject
 	{
-		protected string m_morphname;
-		protected string m_decomposition;
-		protected string m_underlyingForm;
-		protected string m_category;
-		protected IDataLayerMorpheme m_dataLayerMorpheme;
-		protected IMorpheme m_morpheme;
-		protected MorphemeType m_type;
+		protected string MorphnameAsString;
+		protected string Decomposition;
+		protected string UnderlyingForm;
+		protected string Category;
+		protected IDataLayerMorpheme DataLayerMorpheme;
+		protected IMorpheme Morpheme;
+		protected MorphemeType Type;
 
 		/// <summary>
 		/// Constructor.
@@ -30,14 +30,14 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// <param name="morphname">The morphname of the morpheme.</param>
 		internal AnaMorpheme(string morphname)
 		{
-			m_morphname = morphname;
+			MorphnameAsString = morphname;
 		}
 
 		protected IWordRecord LastRecord
 		{
 			get
 			{
-				return s_gd.WordRecords[s_gd.WordRecords.Count - 1];
+				return Gd.WordRecords[Gd.WordRecords.Count - 1];
 			}
 		}
 
@@ -52,17 +52,17 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			{
 				case LineType.UnderlyingForm:
 				{
-					m_underlyingForm = form;
+					UnderlyingForm = form;
 					break;
 				}
 				case LineType.Category:
 				{
-					m_category = form;
+					Category = form;
 					break;
 				}
 				case LineType.Decomposition:
 				{
-					m_decomposition = form;
+					Decomposition = form;
 					break;
 				}
 			}
@@ -74,30 +74,30 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal virtual void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
-			foreach (var m in s_gd.Morphemes.Where(m => m.Id == m_morphname))
+			foreach (var m in Gd.Morphemes.Where(m => m.Id == MorphnameAsString))
 			{
-				m_morpheme = m;
+				Morpheme = m;
 				break;
 			}
-			if (m_morpheme == null)
+			if (Morpheme == null)
 			{
-				m_morpheme = morphemeFactory.Create(m_type, m_morphname);
-				s_gd.Morphemes.Add(m_morpheme);
+				Morpheme = morphemeFactory.Create(Type, MorphnameAsString);
+				Gd.Morphemes.Add(Morpheme);
 			}
-			m_dataLayerMorpheme.Id = m_morpheme.Id;
-			if (m_underlyingForm != null)
+			DataLayerMorpheme.Id = Morpheme.Id;
+			if (UnderlyingForm != null)
 			{
-				m_morpheme.Other = "<ANAInfo underlyingForm=\'" + m_underlyingForm + "\' />";
+				Morpheme.Other = "<ANAInfo underlyingForm=\'" + UnderlyingForm + "\' />";
 			}
-			if (m_category == null && m_decomposition == null) return;
+			if (Category == null && Decomposition == null) return;
 
 			var xml = "<ANAInfo";
-			if (m_category != null)
-				xml += " category=\'" + m_category + "\'";
-			if (m_decomposition != null)
-				xml += " decomposition=\'" + m_decomposition + "\'";
+			if (Category != null)
+				xml += " category=\'" + Category + "\'";
+			if (Decomposition != null)
+				xml += " decomposition=\'" + Decomposition + "\'";
 			xml += " />";
-			m_dataLayerMorpheme.Other = xml;
+			DataLayerMorpheme.Other = xml;
 		}
 	}
 
@@ -113,7 +113,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal AnaStem(string morphname)
 			: base(morphname.Trim().Replace(" ", "_"))
 		{
-			m_type = MorphemeType.Stem;
+			Type = MorphemeType.Stem;
 		}
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal override void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
 			LastRecord.Stem = stemFactory.Create();
-			m_dataLayerMorpheme = LastRecord.Stem;
+			DataLayerMorpheme = LastRecord.Stem;
 			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
@@ -131,7 +131,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		/// </summary>
 		internal int RootCount
 		{
-			get { return  m_morphname.Split('_').Length/2; }
+			get { return  MorphnameAsString.Split('_').Length/2; }
 		}
 
 		/// <summary>
@@ -145,26 +145,26 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 			{
 				case LineType.UnderlyingForm:
 				{
-					if (m_underlyingForm == null)
-						m_underlyingForm = form;
+					if (UnderlyingForm == null)
+						UnderlyingForm = form;
 					else
-						m_underlyingForm += "_" + form;
+						UnderlyingForm += "_" + form;
 					break;
 				}
 				case LineType.Category:
 				{
-					if (m_category == null)
-						m_category = form;
+					if (Category == null)
+						Category = form;
 					else
-						m_category += "_" + form;
+						Category += "_" + form;
 					break;
 				}
 				case LineType.Decomposition:
 				{
-					if (m_decomposition == null)
-						m_decomposition = form;
+					if (Decomposition == null)
+						Decomposition = form;
 					else
-						m_decomposition += "_" + form;
+						Decomposition += "_" + form;
 					break;
 				}
 			}
@@ -195,7 +195,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal AnaPrefix(string morphname)
 			: base(morphname)
 		{
-			m_type = MorphemeType.Prefix;
+			Type = MorphemeType.Prefix;
 		}
 
 		/// <summary>
@@ -204,7 +204,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal override void Convert(IMorphemeFactory morphemeFactory, IStemFactory stemFactory, IAffixFactory affixFactory)
 		{
 			var afx = affixFactory.Create();
-			m_dataLayerMorpheme = afx;
+			DataLayerMorpheme = afx;
 			LastRecord.Prefixes.Add(afx);
 			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
@@ -235,7 +235,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		internal AnaSuffix(string morphname)
 			: base(morphname)
 		{
-			m_type = MorphemeType.Suffix;
+			Type = MorphemeType.Suffix;
 		}
 
 		/// <summary>
@@ -245,7 +245,7 @@ namespace SIL.WordWorks.GAFAWS.ANAConverter
 		{
 			var afx = affixFactory.Create();
 			LastRecord.Suffixes.Add(afx);
-			m_dataLayerMorpheme = afx;
+			DataLayerMorpheme = afx;
 			base.Convert(morphemeFactory, stemFactory, affixFactory);
 		}
 
