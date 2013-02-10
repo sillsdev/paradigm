@@ -7,6 +7,7 @@
 // Last reviewed:
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Windows.Forms;
 using SIL.WordWorks.GAFAWS.PlainWordlistConverter.Properties;
@@ -28,24 +29,20 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 	/// Technically, the optional whitespace can be on either side of the hyphen,
 	/// or on both sides of it.
 	/// </summary>
+	[Export(typeof(IGafawsConverter))]
 	public class PlainWordlistConverter : IGafawsConverter
 	{
-		private readonly IWordRecordFactory _wordRecordFactory;
-		private readonly IAffixFactory _affixFactory;
-		private readonly IStemFactory _stemFactory;
-		private readonly IMorphemeFactory _morphemeFactory;
+		[Import(typeof(IWordRecordFactory))]
+		private IWordRecordFactory _wordRecordFactory;
+		[Import(typeof(IAffixFactory))]
+		private IAffixFactory _affixFactory;
+		[Import(typeof(IStemFactory))]
+		private IStemFactory _stemFactory;
+		[Import(typeof(IMorphemeFactory))]
+		private IMorphemeFactory _morphemeFactory;
 
-		internal PlainWordlistConverter(
-			IWordRecordFactory wordRecordFactory,
-			IAffixFactory affixFactory,
-			IStemFactory stemFactory,
-			IMorphemeFactory morphemeFactory)
-		{
-			_wordRecordFactory = wordRecordFactory;
-			_affixFactory = affixFactory;
-			_stemFactory = stemFactory;
-			_morphemeFactory = morphemeFactory;
-		}
+		internal PlainWordlistConverter()
+		{}
 
 		#region IGAFAWSConverter implementation
 
@@ -189,7 +186,7 @@ namespace SIL.WordWorks.GAFAWS.PlainWordlistConverter
 		{
 			get
 			{
-				return OutputPathServices.GetXslPathname("AffixPositionChart_PWL.xsl");
+				return OutputPathServices.GetXslPathname("AffixPositionChart.xsl");
 			}
 		}
 

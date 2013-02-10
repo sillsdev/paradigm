@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
 	<ProjectType>Local</ProjectType>
 	<ProductVersion>9.0.21022</ProductVersion>
@@ -30,8 +30,9 @@
 	</FileUpgradeFlags>
 	<UpgradeBackupLocation>
 	</UpgradeBackupLocation>
-	<OldToolsVersion>2.0</OldToolsVersion>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<OldToolsVersion>3.5</OldToolsVersion>
+	<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+	<IsWebBootstrapper>false</IsWebBootstrapper>
 	<PublishUrl>publish\</PublishUrl>
 	<Install>true</Install>
 	<InstallFrom>Disk</InstallFrom>
@@ -44,12 +45,11 @@
 	<MapFileExtensions>true</MapFileExtensions>
 	<ApplicationRevision>0</ApplicationRevision>
 	<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-	<IsWebBootstrapper>false</IsWebBootstrapper>
 	<UseApplicationTrust>false</UseApplicationTrust>
 	<BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<OutputPath>obj\Debug\</OutputPath>
+	<OutputPath>..\..\Output\$(Configuration)\</OutputPath>
 	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
 	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -69,9 +69,12 @@
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+	<PlatformTarget>x86</PlatformTarget>
+	<TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<OutputPath>obj\Release\</OutputPath>
+	<OutputPath>..\..\Output\$(Configuration)\</OutputPath>
 	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
 	<BaseAddress>285212672</BaseAddress>
 	<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
@@ -91,12 +94,57 @@
 	<WarningLevel>4</WarningLevel>
 	<DebugType>full</DebugType>
 	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+	<PlatformTarget>x86</PlatformTarget>
+	<TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseMono|AnyCPU'">
+	<DebugSymbols>true</DebugSymbols>
+	<OutputPath>..\..\Output\$(Configuration)\</OutputPath>
+	<DefineConstants>TRACE;MONO</DefineConstants>
+	<BaseAddress>285212672</BaseAddress>
+	<Optimize>true</Optimize>
+	<FileAlignment>4096</FileAlignment>
+	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
+	<DebugType>full</DebugType>
+	<PlatformTarget>x86</PlatformTarget>
+	<CodeAnalysisLogFile>..\..\Output\$(Configuration)\GAFAWSAnalysisTests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+	<CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+	<CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+	<CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+	<CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+	<TargetFrameworkProfile>
+	</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugMono|AnyCPU'">
+	<DebugSymbols>true</DebugSymbols>
+	<OutputPath>..\..\Output\$(Configuration)\</OutputPath>
+	<DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
+	<BaseAddress>285212672</BaseAddress>
+	<FileAlignment>4096</FileAlignment>
+	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
+	<DebugType>full</DebugType>
+	<PlatformTarget>x86</PlatformTarget>
+	<CodeAnalysisLogFile>..\..\Output\$(Configuration)\GAFAWSAnalysisTests.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+	<CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+	<CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+	<ErrorReport>prompt</ErrorReport>
+	<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+	<CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+	<CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+	<CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+	<CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+	<TargetFrameworkProfile>
+	</TargetFrameworkProfile>
   </PropertyGroup>
   <ItemGroup>
 	<Reference Include="nunit.framework, Version=2.5.5.10112, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
 	  <SpecificVersion>False</SpecificVersion>
 	  <HintPath>..\..\lib\common\nunit.framework.dll</HintPath>
 	</Reference>
+	<Reference Include="System" />
 	<Reference Include="System.Xml.Linq">
 	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
 	</Reference>
@@ -118,7 +166,7 @@
   <ItemGroup>
 	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
 	  <Visible>False</Visible>
-	  <ProductName>.NET Framework Client Profile</ProductName>
+	  <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
 	  <Install>false</Install>
 	</BootstrapperPackage>
 	<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -141,12 +189,6 @@
 	  <ProductName>.NET Framework 3.5 SP1</ProductName>
 	  <Install>false</Install>
 	</BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GafawsAnalysis.csproj">
-	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GafawsAnalysis</Name>
-	</ProjectReference>
   </ItemGroup>
   <ItemGroup>
 	<None Include="XML\GAFAWS.xsd" />
@@ -186,6 +228,12 @@
 	<Content Include="XML\TestC.xml">
 	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</Content>
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
+	  <Name>GAFAWSAnalysis</Name>
+	</ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -32,7 +32,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA.xml");
+			CheckFile(@"XML/TestA.xml");
 		}
 
 		/// <summary>
@@ -42,7 +42,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA1.xml");
+			CheckFile(@"XML/TestA1.xml");
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestA1A_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestA1A.xml");
+			CheckFile(@"XML/TestA1A.xml");
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		public void Process_TestB_Data()
 		{
 			// has been copied to executing dir during build
-			CheckFile(@"XML\TestB.xml");
+			CheckFile(@"XML/TestB.xml");
 		}
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			// has been copied to executing dir during build
 			// skip position checking, and just test cooccurrences.
 			var pa = new GafawsAnalyzer();
-			var outputPathname = pa.AnalyzeTestFile(@"XML\Huichol.xml");
+			var outputPathname = pa.AnalyzeTestFile(@"XML/Huichol.xml");
 
 			// Distinct sets checking.
 			var gd = GafawsData.LoadData(outputPathname);
@@ -117,6 +117,74 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 																// Sixth set not present. Were they removed, because they were empty?
 				};
 			CheckSets(distSets, sets);
+
+			// Check Component Subgraphs
+			var subGraphSets = gd.ElementarySubgraphs;
+			Assert.AreEqual(7, subGraphSets.Count);
+
+			var currentSubgraphSet = subGraphSets["ke"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(1) { "ke" },
+					new List<string>(2) { "ni", "ke" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["p&"];
+			Assert.AreEqual(4, currentSubgraphSet.Count);
+			sets = new List<List<string>>(4)
+				{
+					new List<string>(1) { "p&" },
+					new List<string>(2) { "p&", "ka2" },
+					new List<string>(2) { "p&", "ka1" },
+					new List<string>(3) { "p&", "ka2", "ka1" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ka1"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(2) { "ni", "ka1" },
+					new List<string>(3) { "ni", "ka1", "ka2" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ka2"];
+			Assert.AreEqual(3, currentSubgraphSet.Count);
+			sets = new List<List<string>>(3)
+				{
+					new List<string>(2) { "m&", "ka2" },
+					new List<string>(3) { "m&", "ka2",  "ni" },
+					new List<string>(1) { "ka2" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["m&"];
+			Assert.AreEqual(2, currentSubgraphSet.Count);
+			sets = new List<List<string>>(2)
+				{
+					new List<string>(1) { "m&" },
+					new List<string>(3) { "m&", "ni" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["ni"];
+			Assert.AreEqual(1, currentSubgraphSet.Count);
+			sets = new List<List<string>>(1)
+				{
+					new List<string>(1) { "ni" }
+				};
+			CheckSets(currentSubgraphSet, sets);
+
+			currentSubgraphSet = subGraphSets["xxx"];
+			Assert.AreEqual(1, currentSubgraphSet.Count);
+			sets = new List<List<string>>(1)
+				{
+					new List<string>(1) { "xxx" }
+				};
+			CheckSets(currentSubgraphSet, sets);
 		}
 
 		/// <summary>
@@ -128,7 +196,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			// has been copied to executing dir during build
 			// skip position checking, and just test cooccurrences.
 			var pa = new GafawsAnalyzer();
-			var outputPathname = pa.AnalyzeTestFile(@"XML\Mapudungu.xml");
+			var outputPathname = pa.AnalyzeTestFile(@"XML/Mapudungu.xml");
 
 			// Distinct sets checking.
 			var gd = GafawsData.LoadData(outputPathname);
@@ -200,7 +268,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			// has been copied to executing dir during build
 			// p14 fails, but why?
-			CheckFile(@"XML\TestC.xml");
+			CheckFile(@"XML/TestC.xml");
 		}
 
 		private static string CheckFile(string testFile)

@@ -82,7 +82,7 @@
 			this._btnBrowse.TabIndex = 4;
 			this._btnBrowse.Text = "Browse...";
 			this._btnBrowse.UseVisualStyleBackColor = true;
-			this._btnBrowse.Click += new System.EventHandler(this.BrowseBtn_Click);
+			this._btnBrowse.Click += new System.EventHandler(this.BrowseBtnClick);
 			//
 			// btnCancel
 			//

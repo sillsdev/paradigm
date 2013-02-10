@@ -172,6 +172,7 @@
 		<AffixNonCooccurrences />
 		<DistinctSets />
 	</AffixSets>
+	<SubgraphSets />
   <Classes>
 	<PrefixClasses>
 	  <Class id="PP1"/>

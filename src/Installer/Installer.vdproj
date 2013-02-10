@@ -21,26 +21,236 @@
 		}
 		"Entry"
 		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_364A18A091E98003D7C276E38006D6BE"
+		"OwnerKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
 		"MsmKey" = "8:_38CFA51476D4447AA3804951D2098273"
 		"OwnerKey" = "8:_UNDEFINED"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
-		"MsmKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
+		"MsmKey" = "8:_41B0CE0A647843EC8C4A060C10F9933D"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_4C95ED31F8E84B79A0EC754DCFA9CB98"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_5A55ECE3DD964AD6B05424E77FDC47B8"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_5E7EB273A2B645D7BC3742B884AE452B"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_6F72407990A34889B26F394E2CDA03E9"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_747023CF2FA44A66BC53A79675B799B1"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_9FDFA0DE5B9644EB96E74C7A9F618D75"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
+		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
+		"OwnerKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_EF55D60694AF4B7681EC9F55C57CE4E8"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_FB2EDA0C0ED74BD4AAFB1EB49C27F417"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_FE3C11E95B25458B978D2E719D5162AA"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_FEB594E94FD54EE5AA46287AB0E2897F"
+		"OwnerKey" = "8:_UNDEFINED"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
 		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
 		"MsmKey" = "8:_UNDEFINED"
-		"OwnerKey" = "8:_95E9E6B821FE9BF4BDD93680276E27EE"
+		"OwnerKey" = "8:_BE0E513D8F7D3812F3715628C26AE2AD"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 		"Entry"
 		{
 		"MsmKey" = "8:_UNDEFINED"
-		"OwnerKey" = "8:_38CFA51476D4447AA3804951D2098273"
+		"OwnerKey" = "8:_7991D16C4900407E91DD602B61D318F5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_9C61B12EB0B9510D7CEAA29598C013FE"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_CAB19B915ADB56E902110AB7A641F5C0"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_558FE97FF0634203BEB58F943F3BCC98"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_457FB1C4509D45E28D0D270406DAC4AD"
+		"MsmSig" = "8:_UNDEFINED"
+		}
+		"Entry"
+		{
+		"MsmKey" = "8:_UNDEFINED"
+		"OwnerKey" = "8:_364A18A091E98003D7C276E38006D6BE"
 		"MsmSig" = "8:_UNDEFINED"
 		}
 	}
@@ -51,7 +261,7 @@
 		"DisplayName" = "8:Debug"
 		"IsDebugOnly" = "11:TRUE"
 		"IsReleaseOnly" = "11:FALSE"
-		"OutputFilename" = "8:Debug\\GAFAWS.msi"
+		"OutputFilename" = "8:..\\..\\output\\Installer\\Debug\\GAFAWS.msi"
 		"PackageFilesAs" = "3:2"
 		"PackageFileSize" = "3:-2147483648"
 		"CabType" = "3:1"
@@ -61,13 +271,39 @@
 		"PrivateKeyFile" = "8:"
 		"TimeStampServer" = "8:"
 		"InstallerBootstrapper" = "3:2"
+			"BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+			{
+			"Enabled" = "11:TRUE"
+			"PromptEnabled" = "11:TRUE"
+			"PrerequisitesLocation" = "2:1"
+			"Url" = "8:"
+			"ComponentsUrl" = "8:"
+				"Items"
+				{
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+					{
+					"Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+					"ProductCode" = "8:.NETFramework,Version=v4.0"
+					}
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+					{
+					"Name" = "8:.NET Framework 3.5 SP1"
+					"ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+					}
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+					{
+					"Name" = "8:Windows Installer 3.1"
+					"ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+					}
+				}
+			}
 		}
 		"Release"
 		{
 		"DisplayName" = "8:Release"
 		"IsDebugOnly" = "11:FALSE"
 		"IsReleaseOnly" = "11:TRUE"
-		"OutputFilename" = "8:Release\\GAFAWS.msi"
+		"OutputFilename" = "8:..\\..\\output\\Installer\\Release\\GAFAWS.msi"
 		"PackageFilesAs" = "3:2"
 		"PackageFileSize" = "3:-2147483648"
 		"CabType" = "3:1"
@@ -77,6 +313,27 @@
 		"PrivateKeyFile" = "8:"
 		"TimeStampServer" = "8:"
 		"InstallerBootstrapper" = "3:2"
+			"BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+			{
+			"Enabled" = "11:TRUE"
+			"PromptEnabled" = "11:TRUE"
+			"PrerequisitesLocation" = "2:1"
+			"Url" = "8:"
+			"ComponentsUrl" = "8:"
+				"Items"
+				{
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+					{
+					"Name" = "8:.NET Framework 3.5"
+					"ProductCode" = "8:Microsoft.Net.Framework.3.5"
+					}
+					"{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+					{
+					"Name" = "8:Windows Installer 3.1"
+					"ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+					}
+				}
+			}
 		}
 	}
 	"Deployable"
@@ -98,7 +355,7 @@
 				{
 				"Name" = "8:.NET Framework"
 				"Message" = "8:[VSDNETMSG]"
-				"Version" = "8:3.5.21022"
+				"FrameworkVersion" = "8:.NETFramework,Version=v4.0"
 				"AllowLaterVersions" = "11:FALSE"
 				"InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
 				}
@@ -126,20 +383,20 @@
 			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
-			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_95E9E6B821FE9BF4BDD93680276E27EE"
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_364A18A091E98003D7C276E38006D6BE"
 			{
 			"AssemblyRegister" = "3:1"
 			"AssemblyIsInGAC" = "11:FALSE"
-			"AssemblyAsmDisplayName" = "8:GAFAWSAnalysis, Version=1.0.0.23605, Culture=neutral, processorArchitecture=MSIL"
+			"AssemblyAsmDisplayName" = "8:StructureMap, Version=2.5.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL"
 				"ScatterAssemblies"
 				{
-					"_95E9E6B821FE9BF4BDD93680276E27EE"
+					"_364A18A091E98003D7C276E38006D6BE"
 					{
-					"Name" = "8:GAFAWSAnalysis.dll"
+					"Name" = "8:StructureMap.dll"
 					"Attributes" = "3:512"
 					}
 				}
-			"SourcePath" = "8:GAFAWSAnalysis.dll"
+			"SourcePath" = "8:StructureMap.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -155,6 +412,319 @@
 			"Register" = "3:1"
 			"Exclude" = "11:FALSE"
 			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_41B0CE0A647843EC8C4A060C10F9933D"
+			{
+			"SourcePath" = "8:..\\ANAConverter\\Sample_Problems.ana"
+			"TargetName" = "8:Sample_Problems.ana"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C95ED31F8E84B79A0EC754DCFA9CB98"
+			{
+			"SourcePath" = "8:..\\PlainWordlistConverter\\Sample_Good.txt"
+			"TargetName" = "8:Sample_Good.txt"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5A55ECE3DD964AD6B05424E77FDC47B8"
+			{
+			"SourcePath" = "8:..\\GAFAWSAnalysis\\AffixPositionChart.xsl"
+			"TargetName" = "8:AffixPositionChart.xsl"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E7EB273A2B645D7BC3742B884AE452B"
+			{
+			"SourcePath" = "8:..\\PlainWordlistConverter\\Mapudungu.txt"
+			"TargetName" = "8:Mapudungu.txt"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F72407990A34889B26F394E2CDA03E9"
+			{
+			"SourcePath" = "8:..\\ANAConverter\\Sample_Good.ana"
+			"TargetName" = "8:Sample_Good.ana"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_747023CF2FA44A66BC53A79675B799B1"
+			{
+			"SourcePath" = "8:..\\FW70Converter\\Sample_Problems.fwdata"
+			"TargetName" = "8:Sample_Problems.fwdata"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9C61B12EB0B9510D7CEAA29598C013FE"
+			{
+			"AssemblyRegister" = "3:1"
+			"AssemblyIsInGAC" = "11:FALSE"
+			"AssemblyAsmDisplayName" = "8:LibChorus, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+				"ScatterAssemblies"
+				{
+					"_9C61B12EB0B9510D7CEAA29598C013FE"
+					{
+					"Name" = "8:LibChorus.dll"
+					"Attributes" = "3:512"
+					}
+				}
+			"SourcePath" = "8:LibChorus.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9FDFA0DE5B9644EB96E74C7A9F618D75"
+			{
+			"SourcePath" = "8:..\\PlainWordlistConverter\\Sample_Problems.txt"
+			"TargetName" = "8:Sample_Problems.txt"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BE0E513D8F7D3812F3715628C26AE2AD"
+			{
+			"AssemblyRegister" = "3:1"
+			"AssemblyIsInGAC" = "11:FALSE"
+			"AssemblyAsmDisplayName" = "8:GafawsAnalysis, Version=2.0.0.26491, Culture=neutral, processorArchitecture=MSIL"
+				"ScatterAssemblies"
+				{
+					"_BE0E513D8F7D3812F3715628C26AE2AD"
+					{
+					"Name" = "8:GafawsAnalysis.dll"
+					"Attributes" = "3:512"
+					}
+				}
+			"SourcePath" = "8:GafawsAnalysis.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CAB19B915ADB56E902110AB7A641F5C0"
+			{
+			"AssemblyRegister" = "3:1"
+			"AssemblyIsInGAC" = "11:FALSE"
+			"AssemblyAsmDisplayName" = "8:Autofac, Version=1.4.4.561, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL"
+				"ScatterAssemblies"
+				{
+					"_CAB19B915ADB56E902110AB7A641F5C0"
+					{
+					"Name" = "8:Autofac.dll"
+					"Attributes" = "3:512"
+					}
+				}
+			"SourcePath" = "8:Autofac.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:TRUE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EF55D60694AF4B7681EC9F55C57CE4E8"
+			{
+			"SourcePath" = "8:..\\..\\DistFiles\\License.rtf"
+			"TargetName" = "8:License.rtf"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB2EDA0C0ED74BD4AAFB1EB49C27F417"
+			{
+			"SourcePath" = "8:..\\PlainWordlistConverter\\Huichol.txt"
+			"TargetName" = "8:Huichol.txt"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FE3C11E95B25458B978D2E719D5162AA"
+			{
+			"SourcePath" = "8:..\\FW70Converter\\Sample_Good.fwdata"
+			"TargetName" = "8:Sample_Good.fwdata"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			}
+			"{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FEB594E94FD54EE5AA46287AB0E2897F"
+			{
+			"SourcePath" = "8:..\\..\\original\\Affix Positions and Cooccurrences_The Paradigm Program.pdf"
+			"TargetName" = "8:Affix Positions and Cooccurrences_The Paradigm Program.pdf"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
 			"IsolateTo" = "8:"
 			}
 		}
@@ -234,15 +804,16 @@
 		"Product"
 		{
 		"Name" = "8:Microsoft Visual Studio"
-		"ProductName" = "8:GAFAWS Position Analyzer"
-		"ProductCode" = "8:{9270A8E5-C1CF-4183-99DB-809A1DFD1F51}"
-		"PackageCode" = "8:{792BFCC0-1EDE-4D28-AE3F-FBA8F70F1E1F}"
+		"ProductName" = "8:GAFAWS 2.0 RC1"
+		"ProductCode" = "8:{3CB71ACA-223A-44CB-8078-CC05F350D52E}"
+		"PackageCode" = "8:{400D4D90-CB1C-45C6-A34E-97BBA89E2F50}"
 		"UpgradeCode" = "8:{F9A1D79F-6416-4515-B167-3DD9C7D5488B}"
+		"AspNetVersion" = "8:4.0.30319.0"
 		"RestartWWWService" = "11:FALSE"
 		"RemovePreviousVersions" = "11:FALSE"
 		"DetectNewerInstalledVersion" = "11:TRUE"
 		"InstallAllUsers" = "11:FALSE"
-		"ProductVersion" = "8:1.0.0"
+		"ProductVersion" = "8:2.0.0"
 		"Manufacturer" = "8:SIL"
 		"ARPHELPTELEPHONE" = "8:"
 		"ARPHELPLINK" = "8:"
@@ -355,6 +926,20 @@
 		}
 		"Shortcut"
 		{
+			"{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_062594D5B3A344369C806FB2A4529EED"
+			{
+			"Name" = "8:Affix Positions and Cooccurrences_The Paradigm Program"
+			"Arguments" = "8:"
+			"Description" = "8:"
+			"ShowCmd" = "3:1"
+			"IconIndex" = "3:0"
+			"Transitive" = "11:FALSE"
+			"Target" = "8:_FEB594E94FD54EE5AA46287AB0E2897F"
+			"Folder" = "8:_A52069C34F974E629003FCC1752ABB64"
+			"WorkingFolder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Icon" = "8:"
+			"Feature" = "8:"
+			}
 			"{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1DC464626E564248854A3B5A7E121FCE"
 			{
 			"Name" = "8:GAFAWS Position Analyzer"
@@ -669,6 +1254,53 @@
 			"Attributes" = "3:1"
 				"Dialogs"
 				{
+					"{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_07DEF8D32D3C4825AC178AB160FFD7C0"
+					{
+					"Sequence" = "3:110"
+					"DisplayName" = "8:License Agreement"
+					"UseDynamicProperties" = "11:TRUE"
+					"IsDependency" = "11:FALSE"
+					"SourcePath" = "8:<VsdDialogDir>\\VsdLicenseDlg.wid"
+						"Properties"
+						{
+							"BannerBitmap"
+							{
+							"Name" = "8:BannerBitmap"
+							"DisplayName" = "8:#1001"
+							"Description" = "8:#1101"
+							"Type" = "3:8"
+							"ContextData" = "8:Bitmap"
+							"Attributes" = "3:4"
+							"Setting" = "3:1"
+							"UsePlugInResources" = "11:TRUE"
+							}
+							"EulaText"
+							{
+							"Name" = "8:EulaText"
+							"DisplayName" = "8:#1008"
+							"Description" = "8:#1108"
+							"Type" = "3:6"
+							"ContextData" = "8:"
+							"Attributes" = "3:0"
+							"Setting" = "3:2"
+							"Value" = "8:_EF55D60694AF4B7681EC9F55C57CE4E8"
+							"UsePlugInResources" = "11:TRUE"
+							}
+							"Sunken"
+							{
+							"Name" = "8:Sunken"
+							"DisplayName" = "8:#1007"
+							"Description" = "8:#1107"
+							"Type" = "3:5"
+							"ContextData" = "8:4;True=4;False=0"
+							"Attributes" = "3:0"
+							"Setting" = "3:0"
+							"Value" = "3:4"
+							"DefaultValue" = "3:4"
+							"UsePlugInResources" = "11:TRUE"
+							}
+						}
+					}
 					"{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_3652EBCE1B194F1E9E98486CC6DE1E29"
 					{
 					"Sequence" = "3:100"
@@ -784,7 +1416,7 @@
 		{
 			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_38CFA51476D4447AA3804951D2098273"
 			{
-			"SourcePath" = "8:..\\AffixPositionAnalyzer\\obj\\Release\\AffixPositionAnalyzer.exe"
+			"SourcePath" = "8:..\\AffixPositionAnalyzer\\obj\\Debug\\AffixPositionAnalyzer.exe"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -810,9 +1442,9 @@
 				{
 				}
 			}
-			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FA58BBDACDC5428FBCCB865980C61160"
+			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_457FB1C4509D45E28D0D270406DAC4AD"
 			{
-			"SourcePath" = "8:"
+			"SourcePath" = "8:..\\FW60Converter\\obj\\Debug\\FW60Converter.dll"
 			"TargetName" = "8:"
 			"Tag" = "8:"
 			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
@@ -831,8 +1463,92 @@
 			"IsolateTo" = "8:"
 			"ProjectOutputGroupRegister" = "3:1"
 			"OutputConfiguration" = "8:"
-			"OutputGroupCanonicalName" = "8:ContentFiles"
-			"OutputProjectGuid" = "8:{DE8540D7-7DB6-478F-A599-A0229683D9F7}"
+			"OutputGroupCanonicalName" = "8:Built"
+			"OutputProjectGuid" = "8:{83DB6628-AA11-430B-A213-73F40A301536}"
+			"ShowKeyOutput" = "11:TRUE"
+				"ExcludeFilters"
+				{
+				}
+			}
+			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4B6CC0F929AE49ED9FDF92EACC0A77C5"
+			{
+			"SourcePath" = "8:..\\PlainWordlistConverter\\obj\\Debug\\PlainWordlistConverter.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			"ProjectOutputGroupRegister" = "3:1"
+			"OutputConfiguration" = "8:"
+			"OutputGroupCanonicalName" = "8:Built"
+			"OutputProjectGuid" = "8:{206F2257-7C03-4FD8-8585-94DEB647EA66}"
+			"ShowKeyOutput" = "11:TRUE"
+				"ExcludeFilters"
+				{
+				}
+			}
+			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_558FE97FF0634203BEB58F943F3BCC98"
+			{
+			"SourcePath" = "8:..\\ANAConverter\\obj\\Debug\\ANAConverter.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			"ProjectOutputGroupRegister" = "3:1"
+			"OutputConfiguration" = "8:"
+			"OutputGroupCanonicalName" = "8:Built"
+			"OutputProjectGuid" = "8:{85EDD98B-67B0-46A0-80EE-645FC5914CE2}"
+			"ShowKeyOutput" = "11:TRUE"
+				"ExcludeFilters"
+				{
+				}
+			}
+			"{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7991D16C4900407E91DD602B61D318F5"
+			{
+			"SourcePath" = "8:..\\FW70Converter\\obj\\Debug\\FW70Converter.dll"
+			"TargetName" = "8:"
+			"Tag" = "8:"
+			"Folder" = "8:_E7D3078C844545F39C65860711211CBD"
+			"Condition" = "8:"
+			"Transitive" = "11:FALSE"
+			"Vital" = "11:TRUE"
+			"ReadOnly" = "11:FALSE"
+			"Hidden" = "11:FALSE"
+			"System" = "11:FALSE"
+			"Permanent" = "11:FALSE"
+			"SharedLegacy" = "11:FALSE"
+			"PackageAs" = "3:1"
+			"Register" = "3:1"
+			"Exclude" = "11:FALSE"
+			"IsDependency" = "11:FALSE"
+			"IsolateTo" = "8:"
+			"ProjectOutputGroupRegister" = "3:1"
+			"OutputConfiguration" = "8:"
+			"OutputGroupCanonicalName" = "8:Built"
+			"OutputProjectGuid" = "8:{150E0D64-58C6-4D4A-81D3-F227382EA1B2}"
 			"ShowKeyOutput" = "11:TRUE"
 				"ExcludeFilters"
 				{
