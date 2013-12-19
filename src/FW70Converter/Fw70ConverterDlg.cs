@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Palaso.Extensions;
-using Palaso.Xml;
 using SIL.WordWorks.GAFAWS.FW70Converter.Properties;
 
 namespace SIL.WordWorks.GAFAWS.FW70Converter
 {
 	public partial class Fw70ConverterDlg : Form
 	{
-		private static readonly Encoding Utf8 = Encoding.UTF8;
-		private static readonly byte CloseDoubleQuote = Utf8.GetBytes("\"")[0];
-		private static readonly byte CloseSingleQuote = Utf8.GetBytes("'")[0];
 		private FwPos _selectedPos;
 		private readonly List<XElement> _wordforms = new List<XElement>();
 		private readonly Dictionary<string, XElement> _analyses = new Dictionary<string, XElement>();
@@ -103,55 +97,53 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				XElement langProj = null;
 				var lists = new List<XElement>();
 				var cats = new Dictionary<string, XElement>();
-				using (var splitter = new FastXmlElementSplitter(_tbPathname.Text))
+				var doc = XDocument.Load(_tbPathname.Text);
+				// We want all PartOfSpeech instances that are owned by the list
+				// that is owned by the LangProj in its "PartsOfSpeech" property.
+				foreach (var currentRtElement in doc.Root.Elements("rt"))
 				{
-					// We want all PartOfSpeech instances that are owned by the list
-					// that is owned by the LangProj in its "PartsOfSpeech" property.
-					foreach (var element in splitter.GetSecondLevelElementBytes("rt"))
+					switch (currentRtElement.Attribute("class").Value)
 					{
-						switch (GetClass(element))
-						{
-								// Skip it.
-							case "LangProject":
-								langProj = XElement.Parse(Utf8.GetString(element));
-								break;
-							case "CmAgent":
-								var agentElement = XElement.Parse(Utf8.GetString(element));
-								var humanElement = agentElement.Element("Human");
-								if (humanElement != null && humanElement.Attribute("val").Value.ToLowerInvariant() == "true")
-									_humanApprovedEvalIds.Add(agentElement.Element("Approves").Element("objsur").Attribute("guid").Value.ToLowerInvariant());
-								break;
-							case "CmPossibilityList":
-								lists.Add(XElement.Parse(Utf8.GetString(element)));
-								break;
-							case "WfiWordform":
-								_wordforms.Add(XElement.Parse(Utf8.GetString(element)));
-								break;
-							case "PartOfSpeech":
-								AddItem(element, cats);
-								break;
-							case "WfiAnalysis":
-								AddItem(element, _analyses);
-								break;
-							case "WfiMorphBundle":
-								AddItem(element, _morphBundles);
-								break;
-							case "LexEntry":
-								AddItem(element, _entries);
-								break;
-							case "MoStemAllomorph":
-							case "MoAffixProcess":
-							case "MoAffixAllomorph":
-								AddItem(element, _forms);
-								break;
-							case "MoUnclassifiedAffixMsa":
-							case "MoDerivAffMsa":
-							case "MoDerivStepMsa":
-							case "MoInflAffMsa":
-							case "MoStemMsa":
-								AddItem(element, _msas);
-								break;
-						}
+						// Skip it.
+						case "LangProject":
+							langProj = currentRtElement;
+							break;
+						case "CmAgent":
+							var agentElement = currentRtElement;
+							var humanElement = agentElement.Element("Human");
+							if (humanElement != null && humanElement.Attribute("val").Value.ToLowerInvariant() == "true")
+								_humanApprovedEvalIds.Add(agentElement.Element("Approves").Element("objsur").Attribute("guid").Value.ToLowerInvariant());
+							break;
+						case "CmPossibilityList":
+							lists.Add(currentRtElement);
+							break;
+						case "WfiWordform":
+							_wordforms.Add(currentRtElement);
+							break;
+						case "PartOfSpeech":
+							AddItem(currentRtElement, cats);
+							break;
+						case "WfiAnalysis":
+							AddItem(currentRtElement, _analyses);
+							break;
+						case "WfiMorphBundle":
+							AddItem(currentRtElement, _morphBundles);
+							break;
+						case "LexEntry":
+							AddItem(currentRtElement, _entries);
+							break;
+						case "MoStemAllomorph":
+						case "MoAffixProcess":
+						case "MoAffixAllomorph":
+							AddItem(currentRtElement, _forms);
+							break;
+						case "MoUnclassifiedAffixMsa":
+						case "MoDerivAffMsa":
+						case "MoDerivStepMsa":
+						case "MoInflAffMsa":
+						case "MoStemMsa":
+							AddItem(currentRtElement, _msas);
+							break;
 					}
 				}
 
@@ -190,29 +182,9 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			}
 		}
 
-		private static void AddItem(byte[] item, IDictionary<string, XElement> holder)
+		private static void AddItem(XElement item, IDictionary<string, XElement> holder)
 		{
-			var itemElement = XElement.Parse(Utf8.GetString(item));
-			holder.Add(itemElement.Attribute("guid").Value.ToLowerInvariant(), itemElement);
-		}
-
-		private static string GetClass(byte[] rtElement)
-		{
-			return GetAttribute(Utf8.GetBytes("class=\""), CloseDoubleQuote, rtElement)
-					   ?? GetAttribute(Utf8.GetBytes("class='"), CloseSingleQuote, rtElement);
-		}
-
-		private static string GetAttribute(byte[] name, byte closeQuote, byte[] input)
-		{
-			var start = input.IndexOfSubArray(name);
-			if (start == -1)
-				return null;
-
-			start += name.Length;
-			var end = Array.IndexOf(input, closeQuote, start);
-			return (end == -1)
-					? null
-					: Utf8.GetString(input.SubArray(start, end - start));
+			holder.Add(item.Attribute("guid").Value.ToLowerInvariant(), item);
 		}
 	}
 }
