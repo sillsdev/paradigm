@@ -1,0 +1,45 @@
+src/AffixPositionAnalyzer/Bin/*
+src/AffixPositionAnalyzer/obj/*
+src/GAFAWSAnalysis/obj/*
+src/GAFAWSAnalysisTests/obj/*
+src/Installer/Release/*
+src/Installer/Debug/*
+src/ANAConverter/bin/*
+src/ANAConverter/obj/*
+src/FW60Converter/bin/*
+src/FW60Converter/obj/*
+src/FW70Converter/bin/*
+src/FW70Converter/obj/*
+src/PlainWordlistConverter/bin/*
+src/PlainWordlistConverter/obj/*
+src/Bin/*
+src/Fw70ConverterTests/bin/*
+src/Fw70ConverterTests/obj/*
+original/PTP406.PIF
+GAFAWS 2010.suo
+GAFAWS 2010.5.1.ReSharper.user
+_ReSharper.GAFAWS 2010/*
+src/ANAConverter/ANAConverter.csproj.ReSharper.user
+src/ANAConverter/AnaConverter.csproj.user
+src/AffixPositionAnalyzer/AffixPositionAnalyzer.csproj.ReSharper.user
+src/AffixPositionAnalyzer/AffixPositionAnalyzer.csproj.user
+src/Fw70ConverterTests/Fw70ConverterTests.csproj.user
+src/FW60Converter/Fw60Converter.csproj.user
+src/FW70Converter/Fw70Converter.csproj.user
+src/GAFAWS.5.1.ReSharper.user
+src/GAFAWSAnalysis/GafawsAnalysis.csproj.ReSharper.user
+src/GAFAWSAnalysis/GafawsAnalysis.csproj.user
+src/GAFAWSAnalysis/_ReSharper.GAFAWSAnalysis/*
+src/GAFAWSAnalysisTests/GafawsAnalysisTests.csproj.user
+src/PlainWordlistConverter/PlainWordlistConverter.csproj.ReSharper.user
+src/PlainWordlistConverter/PlainWordlistConverter.csproj.user
+output/*
+
+GAFAWS 2010.6.1.ReSharper.user
+GAFAWS 2010.sln.DotSettings.user
+src/ANAConverter/AnaConverter.csproj.DotSettings.user
+src/AffixPositionAnalyzer/AffixPositionAnalyzer.csproj.DotSettings.user
+src/GAFAWSAnalysis/GafawsAnalysis.csproj.DotSettings.user
+src/PlainWordlistConverter/PlainWordlistConverter.csproj.DotSettings.user
+gexp
+Output/*.*
