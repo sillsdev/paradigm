@@ -1,14 +1,8 @@
-// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2003, SIL International. All Rights Reserved.
-// </copyright>
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: OtherTests.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
-//
-// <remarks>
-// Misc. unit tests for the GAFAWS data layer.
-// </remarks>
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.Xml.Linq;
 using NUnit.Framework;
@@ -23,8 +17,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 	[TestFixture]
 	public class OtherTests : DataLayerBase
 	{
-		private string m_fileName;
-		private string m_otherStuff;
+		private string _fileName;
+		private string _otherStuff;
 
 		/// <summary>
 		/// Initialize a class before each test is run.
@@ -34,13 +28,13 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[SetUp]
 		public void Init()
 		{
-			m_fileName = MakeFile();
-			m_gd = new GafawsData();
+			_fileName = MakeFile();
+			_gd = new GafawsData();
 			var otherStuff = new XElement("MyStuff",
 				new XAttribute("val", "true"),
 				new XElement("YourStuff",
 					new XAttribute("ID", "YS1")));
-			m_otherStuff = otherStuff.ToString();
+			_otherStuff = otherStuff.ToString();
 		}
 
 		/// <summary>
@@ -49,23 +43,23 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[TearDown]
 		public void TearDown()
 		{
-			m_fileName = null;
-			m_gd = null;
+			_fileName = null;
+			_gd = null;
 		}
 
 		public void AddOtherContents()
 		{
-			m_gd.SaveData(m_fileName);
+			_gd.SaveData(_fileName);
 
-			m_gd = null;
+			_gd = null;
 
 			// Make sure it is there.
-			m_gd = GafawsData.LoadData(m_fileName);
+			_gd = GafawsData.LoadData(_fileName);
 		}
 
 		public void CheckOtherContents()
 		{
-			var element = XElement.Parse(m_otherStuff);
+			var element = XElement.Parse(_otherStuff);
 			Assert.AreEqual("true", element.Attribute("val").Value, "Wrong value for 'val'");
 			var ys = element.Element("YourStuff");
 			Assert.IsNotNull(ys);
@@ -80,17 +74,17 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				m_gd.Other = m_otherStuff;
+				_gd.Other = _otherStuff;
 
 				AddOtherContents();
 
-				m_otherStuff = m_gd.Other;
+				_otherStuff = _gd.Other;
 
 				CheckOtherContents();
 			}
 			finally
 			{
-				DeleteFile(m_fileName);
+				DeleteFile(_fileName);
 			}
 		}
 
@@ -102,23 +96,23 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+				_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
 				var wr = new WordRecord("wr1");
-				m_gd.WordRecords.Add(wr);
+				_gd.WordRecords.Add(wr);
 				var stem = new Stem {Id = "S1"};
 				wr.Stem = stem;
-				stem.Other = m_otherStuff;
+				stem.Other = _otherStuff;
 
 				AddOtherContents();
 
-				m_otherStuff = m_gd.WordRecords[0].Stem.Other;
+				_otherStuff = _gd.WordRecords[0].Stem.Other;
 
 				CheckOtherContents();
 			}
 			finally
 			{
-				DeleteFile(m_fileName);
+				DeleteFile(_fileName);
 			}
 		}
 
@@ -130,28 +124,28 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
-				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+				_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
+				_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
 				var wr = new WordRecord("wr1");
-				m_gd.WordRecords.Add(wr);
+				_gd.WordRecords.Add(wr);
 				var stem = new Stem { Id = "S1" };
 				wr.Stem = stem;
 				wr.Prefixes = new List<IAffix>();
 				var afx = new Affix {Id = "A1"};
 				wr.Prefixes.Add(afx);
 
-				afx.Other = m_otherStuff;
+				afx.Other = _otherStuff;
 
 				AddOtherContents();
 
-				m_otherStuff = m_gd.WordRecords[0].Prefixes[0].Other;
+				_otherStuff = _gd.WordRecords[0].Prefixes[0].Other;
 
 				CheckOtherContents();
 			}
 			finally
 			{
-				DeleteFile(m_fileName);
+				DeleteFile(_fileName);
 			}
 		}
 
@@ -163,28 +157,28 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		{
 			try
 			{
-				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
-				m_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
+				_gd.Morphemes.Add(new Morpheme(MorphemeType.Prefix, "A1"));
+				_gd.Morphemes.Add(new Morpheme(MorphemeType.Stem, "S1"));
 
 				var wr = new WordRecord("wr1");
-				m_gd.WordRecords.Add(wr);
+				_gd.WordRecords.Add(wr);
 				wr.Prefixes = new List<IAffix>();
 				var afx = new Affix { Id = "A1" };
 				var stem = new Stem { Id = "S1" };
 				wr.Stem = stem;
 				wr.Prefixes.Add(afx);
 
-				wr.Other = m_otherStuff;
+				wr.Other = _otherStuff;
 
 				AddOtherContents();
 
-				m_otherStuff = m_gd.WordRecords[0].Other;
+				_otherStuff = _gd.WordRecords[0].Other;
 
 				CheckOtherContents();
 			}
 			finally
 			{
-				DeleteFile(m_fileName);
+				DeleteFile(_fileName);
 			}
 		}
 	}

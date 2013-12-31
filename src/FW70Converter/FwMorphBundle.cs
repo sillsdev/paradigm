@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
+//
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace SIL.WordWorks.GAFAWS.FW70Converter

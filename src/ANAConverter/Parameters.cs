@@ -1,10 +1,8 @@
-﻿// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2007, SIL International. All Rights Reserved.
-// </copyright>
+﻿// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: Parameters.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;

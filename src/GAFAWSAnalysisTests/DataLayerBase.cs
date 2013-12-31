@@ -1,13 +1,8 @@
-// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2009, SIL International. All Rights Reserved.
-// </copyright>
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: DataLayerBase.cs
-// Responsibility: Randy Regnier
-//
-// <remarks>
-// Superclass for unit tests that work with a GAFAWSData object.
-// </remarks>
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System.IO;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
 
@@ -21,7 +16,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		/// <summary>
 		/// Main Data layer object.
 		/// </summary>
-		protected IGafawsData m_gd;
+		protected IGafawsData _gd;
 
 		/// <summary>
 		/// Make a temporary file with the given contents.

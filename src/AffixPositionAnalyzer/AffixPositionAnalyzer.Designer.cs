@@ -1,12 +1,8 @@
-// <copyright from='2007' to='2010' company='SIL International'>
-//		Copyright (c) 2007, SIL International. All Rights Reserved.
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-//		Distributable under the terms of either the Common Public License or the
-//		GNU Lesser General Public License, as specified in the LICENSING.txt file.
-// </copyright>
-//
-// File: AffixPositionAnalyzer.cs
-// Responsibility: Randy Regnier
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 {
 	/// <summary></summary>
@@ -40,56 +36,56 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffixPositionAnalyzer));
-			this.m_btnProcess = new System.Windows.Forms.Button();
-			this.m_btnClose = new System.Windows.Forms.Button();
-			this.m_lvConverters = new System.Windows.Forms.ListView();
-			this.m_chConverter = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this._btnProcess = new System.Windows.Forms.Button();
+			this._btnClose = new System.Windows.Forms.Button();
+			this._lvConverters = new System.Windows.Forms.ListView();
+			this._chConverter = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label1 = new System.Windows.Forms.Label();
-			this.m_tbDescription = new System.Windows.Forms.TextBox();
+			this._tbDescription = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			//
-			// m_btnProcess
+			// _btnProcess
 			//
-			this.m_btnProcess.Location = new System.Drawing.Point(110, 322);
-			this.m_btnProcess.Name = "m_btnProcess";
-			this.m_btnProcess.Size = new System.Drawing.Size(75, 23);
-			this.m_btnProcess.TabIndex = 0;
-			this.m_btnProcess.Text = "Analyze...";
-			this.m_btnProcess.UseVisualStyleBackColor = true;
-			this.m_btnProcess.Click += new System.EventHandler(this.BtnProcessClick);
+			this._btnProcess.Location = new System.Drawing.Point(110, 322);
+			this._btnProcess.Name = "_btnProcess";
+			this._btnProcess.Size = new System.Drawing.Size(75, 23);
+			this._btnProcess.TabIndex = 0;
+			this._btnProcess.Text = "Analyze...";
+			this._btnProcess.UseVisualStyleBackColor = true;
+			this._btnProcess.Click += new System.EventHandler(this.BtnProcessClick);
 			//
-			// m_btnClose
+			// _btnClose
 			//
-			this.m_btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.m_btnClose.Location = new System.Drawing.Point(219, 322);
-			this.m_btnClose.Name = "m_btnClose";
-			this.m_btnClose.Size = new System.Drawing.Size(75, 23);
-			this.m_btnClose.TabIndex = 1;
-			this.m_btnClose.Text = "Close";
-			this.m_btnClose.UseVisualStyleBackColor = true;
-			this.m_btnClose.Click += new System.EventHandler(this.BtnCloseClick);
+			this._btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this._btnClose.Location = new System.Drawing.Point(219, 322);
+			this._btnClose.Name = "_btnClose";
+			this._btnClose.Size = new System.Drawing.Size(75, 23);
+			this._btnClose.TabIndex = 1;
+			this._btnClose.Text = "Close";
+			this._btnClose.UseVisualStyleBackColor = true;
+			this._btnClose.Click += new System.EventHandler(this.BtnCloseClick);
 			//
-			// m_lvConverters
+			// _lvConverters
 			//
-			this.m_lvConverters.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.m_chConverter});
-			this.m_lvConverters.FullRowSelect = true;
-			this.m_lvConverters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-			this.m_lvConverters.HideSelection = false;
-			this.m_lvConverters.Location = new System.Drawing.Point(6, 24);
-			this.m_lvConverters.MultiSelect = false;
-			this.m_lvConverters.Name = "m_lvConverters";
-			this.m_lvConverters.Size = new System.Drawing.Size(176, 280);
-			this.m_lvConverters.TabIndex = 2;
-			this.m_lvConverters.UseCompatibleStateImageBehavior = false;
-			this.m_lvConverters.View = System.Windows.Forms.View.Details;
-			this.m_lvConverters.SelectedIndexChanged += new System.EventHandler(this.ConvertersSelectedIndexChanged);
-			this.m_lvConverters.DoubleClick += new System.EventHandler(this.ConvertersDoubleClick);
+			this._lvConverters.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+			this._chConverter});
+			this._lvConverters.FullRowSelect = true;
+			this._lvConverters.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this._lvConverters.HideSelection = false;
+			this._lvConverters.Location = new System.Drawing.Point(6, 24);
+			this._lvConverters.MultiSelect = false;
+			this._lvConverters.Name = "_lvConverters";
+			this._lvConverters.Size = new System.Drawing.Size(176, 280);
+			this._lvConverters.TabIndex = 2;
+			this._lvConverters.UseCompatibleStateImageBehavior = false;
+			this._lvConverters.View = System.Windows.Forms.View.Details;
+			this._lvConverters.SelectedIndexChanged += new System.EventHandler(this.ConvertersSelectedIndexChanged);
+			this._lvConverters.DoubleClick += new System.EventHandler(this.ConvertersDoubleClick);
 			//
-			// m_chConverter
+			// _chConverter
 			//
-			this.m_chConverter.Text = "Converter";
-			this.m_chConverter.Width = 170;
+			this._chConverter.Text = "Converter";
+			this._chConverter.Width = 170;
 			//
 			// label1
 			//
@@ -100,27 +96,27 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			this.label1.TabIndex = 3;
 			this.label1.Text = "Available Converters";
 			//
-			// m_tbDescription
+			// _tbDescription
 			//
-			this.m_tbDescription.Enabled = false;
-			this.m_tbDescription.Location = new System.Drawing.Point(198, 24);
-			this.m_tbDescription.Multiline = true;
-			this.m_tbDescription.Name = "m_tbDescription";
-			this.m_tbDescription.Size = new System.Drawing.Size(203, 280);
-			this.m_tbDescription.TabIndex = 4;
+			this._tbDescription.Enabled = false;
+			this._tbDescription.Location = new System.Drawing.Point(198, 24);
+			this._tbDescription.Multiline = true;
+			this._tbDescription.Name = "_tbDescription";
+			this._tbDescription.Size = new System.Drawing.Size(203, 280);
+			this._tbDescription.TabIndex = 4;
 			//
 			// AffixPositionAnalyzer
 			//
-			this.AcceptButton = this.m_btnClose;
+			this.AcceptButton = this._btnClose;
 			this.AccessibleName = "AffixPositionAnalyzer";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(426, 351);
-			this.Controls.Add(this.m_tbDescription);
+			this.Controls.Add(this._tbDescription);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.m_lvConverters);
-			this.Controls.Add(this.m_btnClose);
-			this.Controls.Add(this.m_btnProcess);
+			this.Controls.Add(this._lvConverters);
+			this.Controls.Add(this._btnClose);
+			this.Controls.Add(this._btnProcess);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AffixPositionAnalyzer";
@@ -133,11 +129,11 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 
 		#endregion
 
-		private System.Windows.Forms.Button m_btnProcess;
-		private System.Windows.Forms.Button m_btnClose;
-		private System.Windows.Forms.ListView m_lvConverters;
+		private System.Windows.Forms.Button _btnProcess;
+		private System.Windows.Forms.Button _btnClose;
+		private System.Windows.Forms.ListView _lvConverters;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ColumnHeader m_chConverter;
-		private System.Windows.Forms.TextBox m_tbDescription;
+		private System.Windows.Forms.ColumnHeader _chConverter;
+		private System.Windows.Forms.TextBox _tbDescription;
 	}
 }

@@ -1,15 +1,8 @@
-// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2003, SIL International. All Rights Reserved.
-// </copyright>
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: ClassAssigner.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
-//
-// <remarks>
-// Implementation of ClassAssigner and it two sublasses:
-// PrefixClassAssigner and SuffixClassAssigner
-// </remarks>
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,30 +27,30 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// <summary>
 		/// Affixes remaining to be assigned.
 		/// </summary>
-		protected Dictionary<string, MorphemeWrapper> m_toCheck;
+		protected Dictionary<string, MorphemeWrapper> _toCheck;
 
 		/// <summary></summary>
-		protected bool m_assignedOk;
+		protected bool _assignedOk;
 
 		/// <summary>
 		/// Main GAFAWS data layer object.
 		/// </summary>
-		protected IGafawsData m_gd;
+		protected IGafawsData _gd;
 
 		/// <summary>
 		/// Collection of classes.
 		/// </summary>
-		protected List<IClass> m_classes;
+		protected List<IClass> _classes;
 
 		/// <summary>
 		/// The class ID prefix.
 		/// </summary>
-		protected string m_classPrefix;
+		protected string _classPrefix;
 
 		/// <summary>
 		/// The class that is the unknown group of classes.
 		/// </summary>
-		protected IClass m_fogBank;
+		protected IClass _fogBank;
 
 		/// <summary>
 		/// Constructor.
@@ -65,9 +58,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// <param name="gd">The main data layer object.</param>
 		protected ClassAssigner(IGafawsData gd)
 		{
-			m_assignedOk = true;
-			m_gd = gd;
-			m_fogBank = null;
+			_assignedOk = true;
+			_gd = gd;
+			_fogBank = null;
 		}
 
 		/// <summary>
@@ -77,26 +70,26 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		/// <returns>True if the classes were assigned, otherwise false.</returns>
 		internal bool AssignClasses(Dictionary<string, MorphemeWrapper> htToCheck)
 		{
-			m_toCheck = new Dictionary<string, MorphemeWrapper>(htToCheck);
+			_toCheck = new Dictionary<string, MorphemeWrapper>(htToCheck);
 			AssignClassesFromStem();
-			m_toCheck = new Dictionary<string, MorphemeWrapper>(htToCheck);
+			_toCheck = new Dictionary<string, MorphemeWrapper>(htToCheck);
 			AssignClassesFromEnd();
 
 			// Number the classes.
 			var i = 1;
-			foreach(var c in m_classes)
+			foreach(var c in _classes)
 			{
 				switch (c.IsFogBank)
 				{
 					case "0":
-						c.Id = m_classPrefix + i++;
+						c.Id = _classPrefix + i++;
 						break;
 					case "1":
-						c.Id = m_classPrefix + "0";
+						c.Id = _classPrefix + "0";
 						break;
 				}
 			}
-			return m_assignedOk;
+			return _assignedOk;
 		}
 
 		/// <summary>
@@ -120,15 +113,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			var idxFog = 0;
 			List<IClass> oldClasses = null;
 
-			if (m_fogBank != null)
+			if (_fogBank != null)
 			{
-				for (idxFog = 0; idxFog < m_classes.Count; ++idxFog)
+				for (idxFog = 0; idxFog < _classes.Count; ++idxFog)
 				{
-					if (m_classes[idxFog] == m_fogBank)
+					if (_classes[idxFog] == _fogBank)
 						break;
 				}
 			}
-			else oldClasses = new List<IClass>(m_classes);
+			else oldClasses = new List<IClass>(_classes);
 
 			AssignClassesCore(listType, false, idxFog, oldClasses);
 		}
@@ -154,7 +147,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		protected void AssignClassesCore(ListType listType, bool isStartPoint,
 			int idxFog, List<IClass> oldClasses)
 		{
-			while (m_toCheck.Count > 0)
+			while (_toCheck.Count > 0)
 			{
 				bool isInFog;
 				var toBeAssigned = GetCandidates(listType, out isInFog);
@@ -173,7 +166,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		protected Dictionary<string, MorphemeWrapper> GetCandidates(ListType listType, out bool isInFog)
 		{
 			isInFog = false;
-			var ht = m_toCheck
+			var ht = _toCheck
 				.Select(kvp => kvp.Value)
 				.Where(mr => mr.CanAssignClass(listType))
 				.ToDictionary(mr => mr.GetId());
@@ -182,7 +175,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				// Couldn't find any, so we have bad input data.
 				// Assign all remaining affixes to 'fog' class.
 				isInFog = true;
-				ht = new Dictionary<string, MorphemeWrapper>(m_toCheck);
+				ht = new Dictionary<string, MorphemeWrapper>(_toCheck);
 			}
 			return ht;
 		}
@@ -208,13 +201,13 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			{
 				// Working out from stem.
 				cls = new Class();
-				m_classes.Add(cls);
+				_classes.Add(cls);
 				if (isInFog)
 				{
-					m_fogBank = cls;
+					_fogBank = cls;
 					cls.IsFogBank = "1";
 					var chl = new Challenge();
-					m_gd.Challenges.Add(chl);
+					_gd.Challenges.Add(chl);
 					chl.Message = GetMessage();
 				}
 			}
@@ -223,8 +216,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				// Working towards stem.
 				if (isInFog)
 				{
-					if (m_fogBank != null)
-						cls = m_fogBank;	// Other edge of fog bank.
+					if (_fogBank != null)
+						cls = _fogBank;	// Other edge of fog bank.
 					else
 					{
 						// How is it that the fog is unidirectional?
@@ -233,11 +226,11 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 				}
 				else
 				{
-					if (m_fogBank != null)
+					if (_fogBank != null)
 					{
 						cls = new Class();
 						// Insert it between fog and other outer classes.
-						m_classes.Insert(idxFog + 1, cls);
+						_classes.Insert(idxFog + 1, cls);
 					}
 					else
 					{
@@ -266,8 +259,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			{
 				mr.SetAffixClass(isStartPoint, cls);
 				var id = mr.GetId();
-				m_toCheck.Remove(id);
-				foreach (var kvpInner in m_toCheck)
+				_toCheck.Remove(id);
+				foreach (var kvpInner in _toCheck)
 				{
 					if (listType == ListType.Succ)
 						kvpInner.Value.RemoveSuccessor(id);
@@ -302,8 +295,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		internal PrefixClassAssigner(IGafawsData gd)
 			: base(gd)
 		{
-			m_classes = gd.Classes.PrefixClasses;
-			m_classPrefix = "PP";
+			_classes = gd.Classes.PrefixClasses;
+			_classPrefix = "PP";
 		}
 
 		/// <summary>
@@ -339,8 +332,8 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 		internal SuffixClassAssigner(IGafawsData gd)
 			: base(gd)
 		{
-			m_classes = gd.Classes.SuffixClasses;
-			m_classPrefix = "SP";
+			_classes = gd.Classes.SuffixClasses;
+			_classPrefix = "SP";
 		}
 
 		/// <summary>

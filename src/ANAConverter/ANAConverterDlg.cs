@@ -1,13 +1,8 @@
-﻿// <copyright from='2003' to='2010' company='SIL International'>
-//		Copyright (c) 2007, SIL International. All Rights Reserved.
+﻿// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-//		Distributable under the terms of either the Common Public License or the
-//		GNU Lesser General Public License, as specified in the LICENSING.txt file.
-// </copyright>
-//
-// File: ANAConverterDlg.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Specialized;
 using System.ComponentModel;

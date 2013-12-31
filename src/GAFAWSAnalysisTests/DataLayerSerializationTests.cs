@@ -1,14 +1,8 @@
-// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2003, SIL International. All Rights Reserved.
-// </copyright>
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: DataLayerSerializationTests.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
-//
-// <remarks>
-// Unit tests for data layer serialization.
-// </remarks>
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System;
 using System.IO;
 using System.Xml;
@@ -58,7 +52,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[SetUp]
 		public void Init()
 		{
-			m_gd = new GafawsData();
+			_gd = new GafawsData();
 		}
 
 		/// <summary>
@@ -67,7 +61,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[Test]
 		public void SaveDataWithNullPathname()
 		{
-			Assert.Throws<ArgumentNullException>(() => m_gd.SaveData(null));
+			Assert.Throws<ArgumentNullException>(() => _gd.SaveData(null));
 		}
 
 		/// <summary>
@@ -80,15 +74,15 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			StreamReader reader = null;
 			try
 			{
-				var cls = m_gd.Classes;
+				var cls = _gd.Classes;
 				Assert.IsNotNull(cls);
 				var m = new Morpheme(MorphemeType.Stem, "M1");
-				m_gd.Morphemes.Add(m);
+				_gd.Morphemes.Add(m);
 				var wr = new WordRecord("WR1");
-				m_gd.WordRecords.Add(wr);
+				_gd.WordRecords.Add(wr);
 				wr.Stem = new Stem {Id = m.Id};
 				fileName = MakeFile();
-				m_gd.SaveData(fileName);
+				_gd.SaveData(fileName);
 				reader = new StreamReader(fileName);
 				var dataAfter = reader.ReadToEnd();
 				Assert.AreEqual(_dataBefore, dataAfter, "Before and After");
@@ -107,7 +101,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 		[Test]
 		public void LoadDataWithNullPathname()
 		{
-			Assert.Throws<ArgumentNullException>(() => m_gd = GafawsData.LoadData(null));
+			Assert.Throws<ArgumentNullException>(() => _gd = GafawsData.LoadData(null));
 		}
 
 		/// <summary>
@@ -119,12 +113,12 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			string fileName = null;
 			try
 			{
-				Assert.AreEqual(0, m_gd.Morphemes.Count);	// Shouldn't have any at this point.
+				Assert.AreEqual(0, _gd.Morphemes.Count);	// Shouldn't have any at this point.
 				fileName = MakeFile(_dataBefore);
-				m_gd = GafawsData.LoadData(fileName);
-				Assert.AreEqual(1, m_gd.Morphemes.Count);	// Should be 1 of them now.
-				Assert.AreEqual(1, m_gd.WordRecords.Count, "Wrong word record count.");
-				var wr = m_gd.WordRecords[0];
+				_gd = GafawsData.LoadData(fileName);
+				Assert.AreEqual(1, _gd.Morphemes.Count);	// Should be 1 of them now.
+				Assert.AreEqual(1, _gd.WordRecords.Count, "Wrong word record count.");
+				var wr = _gd.WordRecords[0];
 				Assert.IsNull(wr.Prefixes, "Should have null preffix collection.");
 				Assert.IsNull(wr.Suffixes, "Should have null suffix collection.");
 			}
@@ -144,7 +138,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 			try
 			{
 				fileName = MakeFile();
-				Assert.Throws<XmlException>(() => m_gd = GafawsData.LoadData(fileName));
+				Assert.Throws<XmlException>(() => _gd = GafawsData.LoadData(fileName));
 			}
 			finally
 			{
@@ -165,7 +159,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalyser
 					"<NOTGAFAWSData xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"" +
 						" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n" +
 					"</NOTGAFAWSData>");
-				Assert.Throws<InvalidOperationException>(() => m_gd = GafawsData.LoadData(fileName));
+				Assert.Throws<InvalidOperationException>(() => _gd = GafawsData.LoadData(fileName));
 			}
 			finally
 			{

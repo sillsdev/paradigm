@@ -1,14 +1,8 @@
-// <copyright from='2003' to='2010' company='SIL International'>
-//    Copyright (c) 2003, SIL International. All Rights Reserved.
-// </copyright>
+// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
 //
-// File: WordRecord.cs
-// Responsibility: Randy Regnier
-// Last reviewed:
-//
-// <remarks>
-// Implementation of IWordRecord.
-// </remarks>
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
 using System.Collections.Generic;
 
 namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl

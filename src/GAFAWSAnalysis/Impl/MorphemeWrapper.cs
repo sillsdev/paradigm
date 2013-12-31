@@ -1,4 +1,9 @@
-﻿using System.Collections.Specialized;
+﻿// --------------------------------------------------------------------------------------------
+// Copyright (C) 2003-2013 SIL International. All rights reserved.
+//
+// Distributable under the terms of the MIT License, as specified in the license.rtf file.
+// --------------------------------------------------------------------------------------------
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 
