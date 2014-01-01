@@ -44,10 +44,10 @@
 	<Message Text="Build Complete"/>
   </Target>
 
-	<ItemGroup>
-	  <TestAssemblies Include="$(RootDir)/Output/$(Configuration)/*Tests.dll"  Exclude="**\obj\**" />
-	</ItemGroup>
   <Target Name="Test" DependsOnTargets ="Build">
+	<CreateItem Include="$(RootDir)/Output/$(Configuration)/*Tests.dll">
+	  <Output ItemName="TestAssemblies" TaskParameter="Include"/>
+	</CreateItem>
 	<NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
   </Target>
 
