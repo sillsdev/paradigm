@@ -1,7 +1,7 @@
-GAFAWS is a .Net (C#) implementation of [Joseph E. Grimes'](http://www.sil.org/resources/search/contributor/grimes-joseph-e) 1983 work entitled [Affix Positions and Cooccurrences: The PARADIGM Program](http://www.sil.org/resources/archives/8825). Grimes' original implementation was written in [PTP](http://www.sil.org/computing/catalog/show_software.asp?id=39).
+PARADIGM is a .Net (C#) implementation of [Joseph E. Grimes'](http://www.sil.org/resources/search/contributor/grimes-joseph-e) 1983 work entitled [Affix Positions and Cooccurrences: The PARADIGM Program](http://www.sil.org/resources/archives/8825). Grimes' original implementation was written in [PTP](http://www.sil.org/computing/catalog/show_software.asp?id=39).
 
 # Status
-The core GAFAWS code has been used by the parser in FieldWorks for a number of years. There is a GUI interface that allows users to convert data from various formats, so it can be fed into the core system for analysis. The results of the analysis are then displayed in an internet browser.
+The core PARADIGM code has been used by the parser in FieldWorks for a number of years. There is a GUI interface that allows users to convert data from various formats, so it can be fed into the core system for analysis. The results of the analysis are then displayed in an internet browser.
 
 Grimes' book describes two kinds of analysis: 1) positional, and 2) co-occurrences. (See [Part One: Morphology](http://www.sil.org/system/files/reapdata/28/03/36/28033685206467803523518673099687647776/18632.pdf) of the book for details. Requires [Adobe Reader](http://www.adobe.com/products/reader/)) Positional, co-occurrence, and basic component subgraph analyses are currently supported.
 
@@ -21,4 +21,4 @@ Developer version requires [.Net 4.0](http://www.microsoft.com/en-us/download/de
 
 To get the code, install Git, and do
 
-git clone https://github.com/sillsdev/gafaws.git
+git clone https://github.com/sillsdev/paradigm.git
