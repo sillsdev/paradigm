@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -22,20 +23,13 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 		private readonly Dictionary<string, XElement> _entries = new Dictionary<string, XElement>();
 		private readonly Dictionary<string, XElement> _forms = new Dictionary<string, XElement>();
 		private readonly HashSet<string> _humanApprovedEvalIds = new HashSet<string>();
+		[ImportMany]
+		private IEnumerable<ILoaderForModelVersion> _loaders;
 
 		public Fw70ConverterDlg()
 		{
 			InitializeComponent();
 			_btnClose.Enabled = false;
-		}
-
-		internal void SetupDlg(List<FwPos> poses)
-		{
-			foreach (var pos in poses)
-			{
-				var nodeCol = _tvPoses.Nodes;
-				AddNode(nodeCol, pos);
-			}
 		}
 
 		private static void AddNode(TreeNodeCollection treeNodeCollection, FwPos pos)
@@ -87,7 +81,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			Cursor = Cursors.WaitCursor;
 			try
 			{
-				// 1. Pick file, and
+				// 1. Pick file
 				using (var openFileDlg = new OpenFileDialog())
 				{
 					openFileDlg.Filter = String.Format("{0} (*.fwdata)|*.fwdata", Resources.kFw7XmlFiles);
@@ -99,57 +93,30 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				}
 
 				// 2. Read file contents.
-				XElement langProj = null;
 				var lists = new List<XElement>();
 				var cats = new Dictionary<string, XElement>();
+				// 7.0.6 - DM 7000037
+				// 7.1.? - DM 7000044
+				// 7.2.> - DM 7000051
+				// 8.0.RC1 - DM 7000068
 				var doc = XDocument.Load(_tbPathname.Text);
+				var modelVersionNumber = uint.Parse(doc.Root.Attribute("version").Value);
 				// We want all PartOfSpeech instances that are owned by the list
 				// that is owned by the LangProj in its "PartsOfSpeech" property.
-				foreach (var currentRtElement in doc.Root.Elements("rt"))
+				XElement langProj;
+				if (modelVersionNumber <= 7000068)
 				{
-					switch (currentRtElement.Attribute("class").Value)
+					langProj = Fw7ConverterServices.LoadFileForGeneralVersionNumbers(doc, lists, cats, _wordforms, _analyses, _morphBundles, _msas,
+						_entries, _forms, _humanApprovedEvalIds);
+				}
+				else
+				{
+					var currentLoader = _loaders.FirstOrDefault(loader => loader.SupportedModelVersion == modelVersionNumber);
+					if (currentLoader == null)
 					{
-						// Skip it.
-						case "LangProject":
-							langProj = currentRtElement;
-							break;
-						case "CmAgent":
-							var agentElement = currentRtElement;
-							var humanElement = agentElement.Element("Human");
-							if (humanElement != null && humanElement.Attribute("val").Value.ToLowerInvariant() == "true")
-								_humanApprovedEvalIds.Add(agentElement.Element("Approves").Element("objsur").Attribute("guid").Value.ToLowerInvariant());
-							break;
-						case "CmPossibilityList":
-							lists.Add(currentRtElement);
-							break;
-						case "WfiWordform":
-							_wordforms.Add(currentRtElement);
-							break;
-						case "PartOfSpeech":
-							AddItem(currentRtElement, cats);
-							break;
-						case "WfiAnalysis":
-							AddItem(currentRtElement, _analyses);
-							break;
-						case "WfiMorphBundle":
-							AddItem(currentRtElement, _morphBundles);
-							break;
-						case "LexEntry":
-							AddItem(currentRtElement, _entries);
-							break;
-						case "MoStemAllomorph":
-						case "MoAffixProcess":
-						case "MoAffixAllomorph":
-							AddItem(currentRtElement, _forms);
-							break;
-						case "MoUnclassifiedAffixMsa":
-						case "MoDerivAffMsa":
-						case "MoDerivStepMsa":
-						case "MoInflAffMsa":
-						case "MoStemMsa":
-							AddItem(currentRtElement, _msas);
-							break;
+						return;
 					}
+					langProj = currentLoader.LoadFile(doc, lists, cats, _wordforms, _analyses, _morphBundles, _msas, _entries, _forms, _humanApprovedEvalIds);
 				}
 
 				// Only keep relevant cats.
@@ -158,6 +125,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 									 langProj.Element("PartsOfSpeech").Element("objsur").Attribute("guid").Value.ToLowerInvariant()
 							   select list).First();
 				lists.Clear();
+				// Theory has it that FwPos.Create creates the top level instance and then creates all sub=poses, on down to the bottom.
 				var poses = (from objsur in catList.Element("Possibilities").Elements("objsur")
 							 select cats[objsur.Attribute("guid").Value.ToLowerInvariant()]).Select(posElement => FwPos.Create(posElement, cats)).ToList();
 				cats.Clear();
@@ -185,11 +153,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			{
 				Cursor = Cursors.Default;
 			}
-		}
-
-		private static void AddItem(XElement item, IDictionary<string, XElement> holder)
-		{
-			holder.Add(item.Attribute("guid").Value.ToLowerInvariant(), item);
 		}
 	}
 }

@@ -119,12 +119,14 @@
     <Compile Include="FwMsa.cs" />
     <Compile Include="FwPos.cs" />
     <Compile Include="FwWordform.cs" />
+    <Compile Include="ILoaderForModelVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Fw7ConverterServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Fw70ConverterDlg.resx">
@@ -168,6 +170,7 @@
       <Name>GAFAWSAnalysis</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
 	   Other similar extension points exist, see Microsoft.Common.targets.
