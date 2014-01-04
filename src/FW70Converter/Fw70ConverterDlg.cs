@@ -78,7 +78,6 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 		private void BrowseBtnClick(object sender, EventArgs e)
 		{
-			Cursor = Cursors.WaitCursor;
 			try
 			{
 				// 1. Pick file
@@ -91,6 +90,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 
 					_tbPathname.Text = openFileDlg.FileName;
 				}
+				Cursor = Cursors.WaitCursor;
 
 				// 2. Read file contents.
 				var lists = new List<XElement>();

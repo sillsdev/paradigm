@@ -77,7 +77,7 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 					return;
 				}
 
-				var htmlOutput = Path.GetTempFileName() + ".html";
+				var htmlOutput = Path.ChangeExtension(Path.GetTempFileName(), "html");
 				try
 				{
 					trans.Transform(_convertedPathname, htmlOutput);

@@ -118,7 +118,7 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			this.Name = "Fw70ConverterDlg";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.Text = "Prepare FieldWorks 7.0 xml file";
+			this.Text = "Prepare FieldWorks 7/8 xml file";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

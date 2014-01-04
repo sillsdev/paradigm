@@ -18,6 +18,7 @@ src/Fw70ConverterTests/obj/*
 original/PTP406.PIF
 PARADIGM 2010.suo
 PARADIGM 2010.5.1.ReSharper.user
+PARADIGM 2010.userprefs
 _ReSharper.PARADIGM 2010/*
 src/ANAConverter/ANAConverter.csproj.ReSharper.user
 src/ANAConverter/AnaConverter.csproj.user
@@ -43,3 +44,5 @@ src/GAFAWSAnalysis/GafawsAnalysis.csproj.DotSettings.user
 src/PlainWordlistConverter/PlainWordlistConverter.csproj.DotSettings.user
 gexp
 Output/*.*
+Output/*
+*.*~

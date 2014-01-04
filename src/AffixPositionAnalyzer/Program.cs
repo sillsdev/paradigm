@@ -27,7 +27,11 @@ namespace SIL.WordWorks.GAFAWS.AffixPositionAnalyzer
 			using (var catalog = new AggregateCatalog())
 			{
 				//catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
-				catalog.Catalogs.Add(new DirectoryCatalog(Path.GetDirectoryName(typeof (Program).Assembly.CodeBase.Substring(8))));
+				var runningAssemblyPath = typeof(Program).Assembly.CodeBase.Substring (8);
+				var runningAssemblyFolder = Path.GetDirectoryName(typeof (Program).Assembly.CodeBase.Substring(8));
+				if (runningAssemblyFolder.StartsWith ("home"))
+					runningAssemblyFolder = "/" + runningAssemblyFolder;
+				catalog.Catalogs.Add(new DirectoryCatalog(runningAssemblyFolder));
 
 				//Create the CompositionContainer with the parts in the catalog
 				using (var container = new CompositionContainer(catalog))

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using SIL.WordWorks.GAFAWS.FW70Converter.Properties;
 using SIL.WordWorks.GAFAWS.PositionAnalysis;
+using System.Diagnostics;
 
 namespace SIL.WordWorks.GAFAWS.FW70Converter
 {
@@ -113,14 +114,28 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 				morph.Id = EatIds(morph.Id);
 			}
 			var newSets = new Dictionary<string, List<HashSet<IMorpheme>>>();
+			var idInfo = new Dictionary<string, List<string>>();
 			foreach (var kvp in gafawsData.ElementarySubgraphs)
 			{
 				var oldKey = kvp.Key;
-				newSets.Add(oldKey == "xxx" ? oldKey : EatIds(oldKey), kvp.Value);
+				var newKey = oldKey == "xxx" ? oldKey : EatIds(oldKey);
+				if (newKey == "mu")
+					Debug.WriteLine ("stop here");
+				List<string> listOfUniquifiedKeys;
+				if (!idInfo.TryGetValue(newKey, out listOfUniquifiedKeys))
+				{
+					listOfUniquifiedKeys = new List<string>();
+					idInfo.Add(newKey, listOfUniquifiedKeys);
+				}
+				newKey = UniquifyKey(listOfUniquifiedKeys.Count, newKey);
+				listOfUniquifiedKeys.Add(newKey);
+				newSets.Add(newKey, kvp.Value);
 			}
 			gafawsData.ElementarySubgraphs.Clear();
 			foreach (var kvp in newSets)
-				gafawsData.ElementarySubgraphs.Add(kvp.Key, kvp.Value);
+			{
+				gafawsData.ElementarySubgraphs.Add (kvp.Key, kvp.Value);
+			}
 		}
 
 		/// <summary>
@@ -170,6 +185,11 @@ namespace SIL.WordWorks.GAFAWS.FW70Converter
 			}
 
 			return output.Trim();
+		}
+
+		private static string UniquifyKey(int count, string newKey)
+		{
+			return (newKey + "_" + (count + 1)).Trim();
 		}
 	}
 }

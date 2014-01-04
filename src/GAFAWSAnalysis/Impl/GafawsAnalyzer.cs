@@ -77,7 +77,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			if (!AnalyzeCompontentSubgraphs())
 				return;
 
-			// Set date and time. (Local date and tiome is fine.)
+			// Set date and time. (Local date and time is fine.)
 			var dt = DateTime.Now;
 			_gd.Date = dt.ToLongDateString();
 			_gd.Time = dt.ToLongTimeString();
@@ -232,7 +232,9 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 			}
 #endif
 			foreach (var kvp in subgraphSets)
-				_gd.ElementarySubgraphs.Add(kvp.Key, kvp.Value);
+			{
+				_gd.ElementarySubgraphs.Add (kvp.Key, kvp.Value);
+			}
 
 			return true;
 		}
@@ -587,7 +589,7 @@ namespace SIL.WordWorks.GAFAWS.PositionAnalysis.Impl
 					case "sfx":
 						_suffixes.Add(m.Id, new MorphemeWrapper(m));
 						break;
-						//case "s":	// Skip stems.
+					//case "s":	// Skip stems.
 				}
 			}
 		}

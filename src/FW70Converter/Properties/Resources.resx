@@ -118,12 +118,12 @@
 	<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="kDescription" xml:space="preserve">
-	<value>Process data in a FieldWorks (7.0 and newer) xml file.{0}{0}Only user-approved analyses that are the selected part of speech are included in the processing.</value>
+	<value>Process data in a FieldWorks (7 or 8) xml file.{0}{0}Only user-approved analyses that are the selected part of speech are included in the processing.</value>
   </data>
   <data name="kFw7XmlFiles" xml:space="preserve">
-	<value>FieldWorks 7.0 file</value>
+	<value>FieldWorks 7/8 file</value>
   </data>
   <data name="kName" xml:space="preserve">
-	<value>FieldWorks 7.0 xml file converter</value>
+	<value>FieldWorks 7/8 xml file converter</value>
   </data>
 </root>
