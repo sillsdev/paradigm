@@ -4,7 +4,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-	<Solution>GAFAWS 2010.sln</Solution>
+	<Solution>PARADIGM 2010.sln</Solution>
 	<ApplicationName>AffixPositionAnalyzer</ApplicationName>
 	<Configuration>Release</Configuration>
   </PropertyGroup>
