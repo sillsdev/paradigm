@@ -1,217 +1,217 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>9.0.21022</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{DE8540D7-7DB6-478F-A599-A0229683D9F7}</ProjectGuid>
-	<OutputType>WinExe</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace>SIL.WordWorks.GAFAWS.AffixPositionAnalyzer</RootNamespace>
-	<AssemblyName>AffixPositionAnalyzer</AssemblyName>
-	<SccProjectName>SAK</SccProjectName>
-	<SccLocalPath>SAK</SccLocalPath>
-	<SccAuxPath>SAK</SccAuxPath>
-	<SccProvider>SAK</SccProvider>
-	<FileUpgradeFlags>
-	</FileUpgradeFlags>
-	<OldToolsVersion>2.0</OldToolsVersion>
-	<UpgradeBackupLocation>
-	</UpgradeBackupLocation>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<PublishUrl>publish\</PublishUrl>
-	<Install>true</Install>
-	<InstallFrom>Disk</InstallFrom>
-	<UpdateEnabled>false</UpdateEnabled>
-	<UpdateMode>Foreground</UpdateMode>
-	<UpdateInterval>7</UpdateInterval>
-	<UpdateIntervalUnits>Days</UpdateIntervalUnits>
-	<UpdatePeriodically>false</UpdatePeriodically>
-	<UpdateRequired>false</UpdateRequired>
-	<MapFileExtensions>true</MapFileExtensions>
-	<ApplicationRevision>0</ApplicationRevision>
-	<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-	<IsWebBootstrapper>false</IsWebBootstrapper>
-	<UseApplicationTrust>false</UseApplicationTrust>
-	<BootstrapperEnabled>true</BootstrapperEnabled>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DE8540D7-7DB6-478F-A599-A0229683D9F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIL.WordWorks.GAFAWS.AffixPositionAnalyzer</RootNamespace>
+    <AssemblyName>AffixPositionAnalyzer</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>Bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE</DefineConstants>
-	<DocumentationFile>
-	</DocumentationFile>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
+    <OutputPath>Bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
-	<OutputPath>Bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <NoWarn>168,169,219,414,649,1635,1702,1701</NoWarn>
+    <OutputPath>Bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
-	<Reference Include="System.Core">
-	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
-	</Reference>
-	<Reference Include="System.Data" />
-	<Reference Include="System.Deployment" />
-	<Reference Include="System.Drawing" />
-	<Reference Include="System.Windows.Forms" />
-	<Reference Include="System.Xml" />
-	<Reference Include="System.Xml.Linq">
-	  <RequiredTargetFramework>3.5</RequiredTargetFramework>
-	</Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-	<Compile Include="AffixPositionAnalyzer.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="AffixPositionAnalyzer.Designer.cs">
-	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
-	</Compile>
-	<Compile Include="ANAConverter\ANAAnalysis.cs" />
-	<Compile Include="ANAConverter\ANAConverter.cs" />
-	<Compile Include="ANAConverter\ANAMorpheme.cs" />
-	<Compile Include="ANAConverter\ANARecord.cs" />
-	<Compile Include="ANAConverter\ANAConverterDlg.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="ANAConverter\Parameters.cs" />
-	<Compile Include="FWConverter\AskPassword.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="FWConverter\CompEnum.cs" />
-	<Compile Include="FWConverter\FWConverter.cs" />
-	<Compile Include="FWConverter\FWConverterDlg.cs">
-	  <SubType>Form</SubType>
-	</Compile>
-	<Compile Include="FWConverter\FWConverterDlg.Designer.cs">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
-	</Compile>
-	<Compile Include="FWConverter\NetworkSelect.cs">
-	  <SubType>UserControl</SubType>
-	</Compile>
-	<Compile Include="FWConverter\Shares.cs" />
-	<Compile Include="PlainWordlistConverter\PlainWordlistConverter.cs" />
-	<Compile Include="Program.cs" />
-	<Compile Include="Properties\AssemblyInfo.cs" />
-	<EmbeddedResource Include="AffixPositionAnalyzer.resx">
-	  <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="ANAConverter\ANAConverterDlg.resx">
-	  <DependentUpon>ANAConverterDlg.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FWConverter\AskPassword.resx">
-	  <DependentUpon>AskPassword.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FWConverter\FWConverterDlg.resx">
-	  <DependentUpon>FWConverterDlg.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="FWConverter\NetworkSelect.resx">
-	  <DependentUpon>NetworkSelect.cs</DependentUpon>
-	  <SubType>Designer</SubType>
-	</EmbeddedResource>
-	<EmbeddedResource Include="Properties\Resources.resx">
-	  <SubType>Designer</SubType>
-	  <Generator>ResXFileCodeGenerator</Generator>
-	  <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
-	</EmbeddedResource>
-	<Compile Include="Properties\Resources.Designer.cs">
-	  <DependentUpon>Resources.resx</DependentUpon>
-	</Compile>
-	<None Include="Properties\Settings.settings">
-	  <Generator>SettingsSingleFileGenerator</Generator>
-	  <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
-	</None>
-	<Compile Include="Properties\Resources1.Designer.cs">
-	  <AutoGen>True</AutoGen>
-	  <DesignTime>True</DesignTime>
-	  <DependentUpon>Resources.resx</DependentUpon>
-	</Compile>
-	<Compile Include="Properties\Settings.Designer.cs">
-	  <DependentUpon>Settings.settings</DependentUpon>
-	</Compile>
-	<Compile Include="Properties\Settings1.Designer.cs">
-	  <AutoGen>True</AutoGen>
-	  <DesignTimeSharedInput>True</DesignTimeSharedInput>
-	  <DependentUpon>Settings.settings</DependentUpon>
-	</Compile>
+    <Compile Include="AffixPositionAnalyzer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AffixPositionAnalyzer.Designer.cs">
+      <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ANAConverter\ANAAnalysis.cs" />
+    <Compile Include="ANAConverter\ANAConverter.cs" />
+    <Compile Include="ANAConverter\ANAMorpheme.cs" />
+    <Compile Include="ANAConverter\ANARecord.cs" />
+    <Compile Include="ANAConverter\ANAConverterDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ANAConverter\Parameters.cs" />
+    <Compile Include="FWConverter\AskPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FWConverter\CompEnum.cs" />
+    <Compile Include="FWConverter\FWConverter.cs" />
+    <Compile Include="FWConverter\FWConverterDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FWConverter\FWConverterDlg.Designer.cs">
+      <DependentUpon>FWConverterDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FWConverter\NetworkSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FWConverter\Shares.cs" />
+    <Compile Include="PlainWordlistConverter\PlainWordlistConverter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AffixPositionAnalyzer.resx">
+      <DependentUpon>AffixPositionAnalyzer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ANAConverter\ANAConverterDlg.resx">
+      <DependentUpon>ANAConverterDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FWConverter\AskPassword.resx">
+      <DependentUpon>AskPassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FWConverter\FWConverterDlg.resx">
+      <DependentUpon>FWConverterDlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FWConverter\NetworkSelect.resx">
+      <DependentUpon>NetworkSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-	<None Include="ANAConverter\AffixPositionChart_ANA.xsl">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</None>
-	<None Include="FWConverter\AffixPositionChart_FW.xsl">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</None>
-	<Content Include="FWConverter\images\Cabinet.ico" />
-	<Content Include="FWConverter\images\CD.ico" />
-	<Content Include="FWConverter\images\ClosedFolder.ico" />
-	<Content Include="FWConverter\images\CompleteNetwork.ico" />
-	<Content Include="FWConverter\images\Computer.ico" />
-	<Content Include="FWConverter\images\DontKnow.ico" />
-	<Content Include="FWConverter\images\File.ico" />
-	<Content Include="FWConverter\images\Floppy.ico" />
-	<Content Include="FWConverter\images\IPC.ico" />
-	<Content Include="FWConverter\images\Key.ico" />
-	<Content Include="FWConverter\images\Network.ico" />
-	<Content Include="FWConverter\images\NetworkFolder.ico" />
-	<Content Include="FWConverter\images\OpenFolder.ico" />
-	<Content Include="FWConverter\images\Partition.ico" />
-	<Content Include="FWConverter\images\Planned.ico" />
-	<Content Include="FWConverter\images\PleaseWait.ico" />
-	<Content Include="FWConverter\images\Printer.ico" />
-	<Content Include="FWConverter\images\Server.ico" />
-	<Content Include="FWConverter\images\Spook.ico" />
-	<None Include="PlainWordlistConverter\AffixPositionChart_PWL.xsl">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</None>
+    <None Include="ANAConverter\AffixPositionChart_ANA.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FWConverter\AffixPositionChart_FW.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="FWConverter\images\Cabinet.ico" />
+    <Content Include="FWConverter\images\CD.ico" />
+    <Content Include="FWConverter\images\ClosedFolder.ico" />
+    <Content Include="FWConverter\images\CompleteNetwork.ico" />
+    <Content Include="FWConverter\images\Computer.ico" />
+    <Content Include="FWConverter\images\DontKnow.ico" />
+    <Content Include="FWConverter\images\File.ico" />
+    <Content Include="FWConverter\images\Floppy.ico" />
+    <Content Include="FWConverter\images\IPC.ico" />
+    <Content Include="FWConverter\images\Key.ico" />
+    <Content Include="FWConverter\images\Network.ico" />
+    <Content Include="FWConverter\images\NetworkFolder.ico" />
+    <Content Include="FWConverter\images\OpenFolder.ico" />
+    <Content Include="FWConverter\images\Partition.ico" />
+    <Content Include="FWConverter\images\Planned.ico" />
+    <Content Include="FWConverter\images\PleaseWait.ico" />
+    <Content Include="FWConverter\images\Printer.ico" />
+    <Content Include="FWConverter\images\Server.ico" />
+    <Content Include="FWConverter\images\Spook.ico" />
+    <None Include="PlainWordlistConverter\AffixPositionChart_PWL.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-	<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-	  <Visible>False</Visible>
-	  <ProductName>.NET Framework Client Profile</ProductName>
-	  <Install>false</Install>
-	</BootstrapperPackage>
-	<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-	  <Visible>False</Visible>
-	  <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-	  <Install>true</Install>
-	</BootstrapperPackage>
-	<BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-	  <Visible>False</Visible>
-	  <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-	  <Install>false</Install>
-	</BootstrapperPackage>
-	<BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-	  <Visible>False</Visible>
-	  <ProductName>.NET Framework 3.5</ProductName>
-	  <Install>false</Install>
-	</BootstrapperPackage>
-	<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-	  <Visible>False</Visible>
-	  <ProductName>.NET Framework 3.5 SP1</ProductName>
-	  <Install>false</Install>
-	</BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-	<ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
-	  <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
-	  <Name>GAFAWSAnalysis</Name>
-	</ProjectReference>
+    <ProjectReference Include="..\GAFAWSAnalysis\GAFAWSAnalysis.csproj">
+      <Project>{99ADD953-FE50-4A29-8BA0-145FE3425855}</Project>
+      <Name>GAFAWSAnalysis</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
@@ -222,6 +222,6 @@
   </Target>
   -->
   <PropertyGroup>
-	<PostBuildEvent>copy $(SolutionDir)GAFAWSAnalysisTests\XML\GAFAWS.xsd $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(SolutionDir)GAFAWSAnalysisTests\XML\GAFAWS.xsd $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

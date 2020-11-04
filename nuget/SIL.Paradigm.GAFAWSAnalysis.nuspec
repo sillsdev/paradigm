@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>SIL.Paradigm.GAFAWSAnalysis</id>
+		<version>1.0.1</version>
+		<authors>SIL International</authors>
+		<owners>SIL International</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">MIT</license>
+		<licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+		<projectUrl>https://github.com/sillsdev/paradigm</projectUrl>
+		<description>PARADIGM is a .Net (C#) implementation of Joseph E. Grimes' 1983 work entitled "Affix Positions and Cooccurrences: The PARADIGM Program".</description>
+		<copyright>Copyright © SIL International 2007-2020</copyright>
+		<dependencies>
+			<group targetFramework=".NETFramework4.0">
+			</group>
+		</dependencies>
+	</metadata>
+</package>

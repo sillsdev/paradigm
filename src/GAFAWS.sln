@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysis", "GAFAWSAnalysis\GAFAWSAnalysis.csproj", "{99ADD953-FE50-4A29-8BA0-145FE3425855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAFAWSAnalysisTests", "GAFAWSAnalysisTests\GAFAWSAnalysisTests.csproj", "{C5633E62-2CFC-4787-9ACC-DC99FD47CCA1}"
@@ -49,5 +51,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {805D8990-9CF9-40C1-9E79-6BDC5B295240}
 	EndGlobalSection
 EndGlobal

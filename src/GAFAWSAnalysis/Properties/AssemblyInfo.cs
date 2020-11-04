@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SIL")]
 [assembly: AssemblyProduct("Affix Position Analysis")]
-[assembly: AssemblyCopyright("Copyright © 2007-2010 SIL International")]
+[assembly: AssemblyCopyright("Copyright (c) 2007-2020 SIL International")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
